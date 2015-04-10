@@ -1,14 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Made by
+ * Rudi Yu s231776
+ * Audun Brustad s236341
  */
 package models;
 
-/**
- *
- * @author rudiwyu
- */
+
 public class MainModel {
     
 }

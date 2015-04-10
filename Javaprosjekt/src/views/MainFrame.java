@@ -1,23 +1,23 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Made by
+ * Rudi Yu s231776
+ * Audun Brustad s236341
  */
 package views;
 
-/**
- *
- * @author rudiwyu
- */
+
 
 import javax.swing.*;
+import helpers.*;
 
 public class MainFrame extends JFrame{
     
     
     public MainFrame()
     {
-        setSize(500, 200);
+        setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
+        // TODO: Replace defaultCloseOperation when implementing save to file.
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 }

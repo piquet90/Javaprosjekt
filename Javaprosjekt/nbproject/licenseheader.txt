@@ -1,0 +1,9 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Made by
+${licensePrefix}Rudi Yu s231776
+${licensePrefix}Audun Brustad s236341
+<#if licenseLast??>
+${licenseLast}
+</#if>
