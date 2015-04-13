@@ -1,3 +1,4 @@
+
 /*
  * Made by
  * Rudi Yu s231776
@@ -7,6 +8,11 @@ package controllers;
 
 
 import javax.swing.*;
+=======
+
+package controllers;
+
+>>>>>>> Development
 import models.*;
 import views.*;
 
