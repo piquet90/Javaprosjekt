@@ -9,13 +9,13 @@ package views;
 import CustomSwing.CustomButton;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
-import javax.swing.JPanel;
+import CustomSwing.CustomPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 
-public class NyBrukerPanel extends JPanel {
+public class NyBrukerPanel extends CustomPanel {
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private GridBagConstraints gbc;
