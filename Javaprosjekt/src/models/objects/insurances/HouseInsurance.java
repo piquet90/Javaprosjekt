@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.classes;
+package models.objects.insurances;
 
 import java.util.Date;
 
@@ -11,9 +11,9 @@ import java.util.Date;
  *
  * @author rudiwyu
  */
-public class BoatInsurance extends ViechleInsurance{
+public class HouseInsurance extends PropertyInsurance{
 
-    public BoatInsurance(int price, int coverage, String conditions, String other, Date dateofcreation) {
+    public HouseInsurance(int price, int coverage, String conditions, String other, Date dateofcreation) {
         super(price, coverage, conditions, other, dateofcreation);
     }
     

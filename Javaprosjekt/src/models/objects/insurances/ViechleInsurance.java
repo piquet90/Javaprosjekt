@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.classes;
+package models.objects.insurances;
 
+import models.objects.insurances.Insurance;
 import java.util.Date;
 
 /**
