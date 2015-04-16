@@ -13,8 +13,25 @@ import java.util.Date;
  */
 public class HouseInsurance extends PropertyInsurance{
 
-    public HouseInsurance(int price, int coverage, String conditions, String other, Date dateofcreation) {
-        super(price, coverage, conditions, other, dateofcreation);
+    /**
+     *
+     * @param address
+     * @param type
+     * @param construtionmaterial
+     * @param standard
+     * @param squaremeter
+     * @param yearofconstruction
+     * @param buildingcoverage
+     * @param contentscoverage
+     * @param price
+     * @param coverage
+     * @param conditions
+     * @param other
+     * @param dateofcreation
+     */
+    public HouseInsurance(String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, double coverage, String conditions, String other, Date dateofcreation) {
+        super(address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, coverage, conditions, other, dateofcreation);
     }
-    
+
+
 }

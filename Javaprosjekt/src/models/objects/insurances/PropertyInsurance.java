@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author rudiwyu
  */
-public class PropertyInsurance extends Insurance {
+public abstract class PropertyInsurance extends Insurance {
 
     private String address;
     private String type;
@@ -39,7 +39,10 @@ public class PropertyInsurance extends Insurance {
      * @param other
      * @param dateofcreation
      */
-    public PropertyInsurance(String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, int coverage, String conditions, String other, Date dateofcreation) {
+    public PropertyInsurance(String address, String type, String construtionmaterial, 
+            String standard, int squaremeter, int yearofconstruction, double buildingcoverage, 
+            double contentscoverage, int price, double coverage, String conditions, String other, Date dateofcreation) 
+    {
         super(price, coverage, conditions, other, dateofcreation);
         this.address = address;
         this.type = type;

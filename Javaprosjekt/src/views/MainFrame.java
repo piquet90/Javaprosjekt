@@ -5,16 +5,18 @@
  */
 package views;
 
+
+import javax.swing.*;
+
 /**
  *
  * @author rudiwyu
  */
-
-import javax.swing.*;
-
 public class MainFrame extends JFrame{
     
-    
+    /**
+     * @author Rudi Yu
+     */
     public MainFrame()
     {
         setSize(500, 200);
