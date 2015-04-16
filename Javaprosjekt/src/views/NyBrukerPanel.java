@@ -6,11 +6,7 @@
 package views;
 
 import java.awt.Dimension;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -18,21 +14,19 @@ import java.awt.Insets;
 
 public class NyBrukerPanel extends JPanel {
     
-    private CustomTextField fNavn;
-    private JTextField eNavn, adresse, postSted, postNr;
-    private JButton submit;
-    private JLabel header, header2;
+    private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private GridBagConstraints gbc;
+    private CustomButton submit;
     
     private void initComponents()
     {
-        fNavn = new CustomTextField(10);
-        eNavn = new CustomTextField(10);
-        adresse = new CustomTextField(15);
+        fNavn = new CustomTextField(15);
+        eNavn = new CustomTextField(15);
+        adresse = new CustomTextField(20);
         postSted = new CustomTextField(15);
-        postNr = new CustomTextField(5);
+        postNr = new CustomTextField(6);
         
-        submit = new JButton("Submit");
+        submit = new CustomButton("Registrer");
         submit.addActionListener((e) -> System.out.println("trykk"));
         
         //header = new JLabel("Registrer ");
@@ -48,11 +42,14 @@ public class NyBrukerPanel extends JPanel {
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.ipadx = 2;
+        gbc.ipady = 5;
         
-        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        
         
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         add(new CustomLabel("Fornavn: "), gbc);
         
         gbc.gridy++;
@@ -70,7 +67,13 @@ public class NyBrukerPanel extends JPanel {
         gbc.anchor = GridBagConstraints.LINE_START;    
         
         gbc.gridx = 1;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
+        add(new CustomLabel("Registrer ny kunde"));
+        
+
+        
+        gbc.gridx = 1;
+        gbc.gridy = 1;
         add(fNavn, gbc);
         
         gbc.gridy++;
@@ -84,6 +87,9 @@ public class NyBrukerPanel extends JPanel {
         
         gbc.gridy++;
         add(postSted, gbc);
+        
+        gbc.gridy++;
+        add(submit, gbc);
 
         
         

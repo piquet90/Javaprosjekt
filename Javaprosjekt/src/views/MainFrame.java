@@ -9,17 +9,14 @@ package views;
 
 import javax.swing.*;
 import helpers.*;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame{
     
     private JPanel panel;
-    private JButton nyBruker, nyForsikring, nySkademelding;
+    private CustomButton nyBruker, nyForsikring, nySkademelding;
     private NyBrukerPanel nyBrukerPanel;
     private NyForsikringPanel nyForsikringPanel;
     private Container c;
@@ -27,16 +24,15 @@ public class MainFrame extends JFrame{
     private void initComponents()
     {
         panel = new JPanel();
-        //panel.setBackground(Color.RED);
         panel.setPreferredSize(new Dimension(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT-60));
         
         nyBrukerPanel = new NyBrukerPanel();
         nyForsikringPanel = new NyForsikringPanel();
         
-        nyBruker = new JButton("Ny bruker");
+        nyBruker = new CustomButton("Ny bruker");
         nyBruker.addActionListener((e) -> setPanel("nyBruker"));
         
-        nyForsikring = new JButton("Ny forskring");
+        nyForsikring = new CustomButton("Ny forskring");
         nyForsikring.addActionListener((e) -> setPanel("nyForsikring"));
        
     }
@@ -63,7 +59,7 @@ public class MainFrame extends JFrame{
         if(t.equals("nyBruker"))
         {
             panel.removeAll();
-            panel.add(new JLabel("Registrer ny kunde"));
+            
             panel.add(nyBrukerPanel);
         }
         

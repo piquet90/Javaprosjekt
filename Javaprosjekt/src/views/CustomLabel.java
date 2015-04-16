@@ -10,9 +10,10 @@ import javax.swing.JLabel;
 
 
 public class CustomLabel extends JLabel{
+    
     public CustomLabel(String tekst)
     {
         super(tekst);
-        setFont(new Font("DejaVu Sans", Font.BOLD, 16));
+        setFont(new Font("DejaVu Sans", Font.BOLD, 15));
     }
 }
