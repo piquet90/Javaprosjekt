@@ -18,18 +18,19 @@ import java.awt.Insets;
 
 public class NyBrukerPanel extends JPanel {
     
-    private JTextField fNavn, eNavn, adresse, postSted, postNr;
+    private CustomTextField fNavn;
+    private JTextField eNavn, adresse, postSted, postNr;
     private JButton submit;
     private JLabel header, header2;
     private GridBagConstraints gbc;
     
     private void initComponents()
     {
-        fNavn = new JTextField(10);
-        eNavn = new JTextField(10);
-        adresse = new JTextField(15);
-        postSted = new JTextField(15);
-        postNr = new JTextField(5);
+        fNavn = new CustomTextField(10);
+        eNavn = new CustomTextField(10);
+        adresse = new CustomTextField(15);
+        postSted = new CustomTextField(15);
+        postNr = new CustomTextField(5);
         
         submit = new JButton("Submit");
         submit.addActionListener((e) -> System.out.println("trykk"));
@@ -46,12 +47,49 @@ public class NyBrukerPanel extends JPanel {
         
         
         gbc = new GridBagConstraints();
+        gbc.insets = new Insets(15, 0, 0, 5);
+        
         gbc.anchor = GridBagConstraints.LINE_START;
         
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(new CustomLabel("Fornavn: "), gbc);
         
-       
+        gbc.gridy++;
+        add(new CustomLabel("Etternavn: "), gbc);
         
-        //// Første rad /////////////////////
+        gbc.gridy++;
+        add(new CustomLabel("Adresse: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Postnummer: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Poststed: "), gbc);
+  
+        gbc.anchor = GridBagConstraints.LINE_START;    
+        
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        add(fNavn, gbc);
+        
+        gbc.gridy++;
+        add(eNavn, gbc);
+        
+        gbc.gridy++;
+        add(adresse, gbc);
+        
+        gbc.gridy++;
+        add(postNr, gbc);
+        
+        gbc.gridy++;
+        add(postSted, gbc);
+
+        
+        
+       /*
+        
+    
         
         gbc.gridx = 0;
         gbc.gridy = -1;
@@ -107,7 +145,7 @@ public class NyBrukerPanel extends JPanel {
         gbc.gridy = -4;
         gbc.insets = new Insets(15, 0, 0, 5);
         add(submit, gbc);
-
+               */
     }
     
     public Dimension getMinimumSize()

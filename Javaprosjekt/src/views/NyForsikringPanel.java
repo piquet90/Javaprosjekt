@@ -6,7 +6,6 @@
 package views;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +14,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JFileChooser;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -61,63 +59,5 @@ public class NyForsikringPanel extends JPanel {
         
         gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.LINE_START;
-        gbc.weighty = 1;
-        
-        
-        
-       
-        
-        //// Første rad /////////////////////
-        
-        gbc.gridx = 0;
-        gbc.gridy = -1;
- 
-        gbc.insets = new Insets(15, 0, 0, 5);
-        add(new JLabel("Kundenr:"), gbc);
-        
-        gbc.gridx = 1;
-        gbc.insets = new Insets(15, 0, 0, 50);
-        add(kundeNr, gbc);
-        
-        gbc.gridx = 2;
-        gbc.insets = new Insets(15, 0, 0, 5);
-        add(new JLabel("Premie"), gbc);
-        
-        gbc.gridx = 3;
-        gbc.insets = new Insets(15, 0, 0, 5);
-        add(premie, gbc);
-        
-        //// Andre rad /////////////////////
-        
-        gbc.gridx = 0;
-        gbc.gridy = -2;
-        gbc.insets = new Insets(15, 0, 0, 5);
-        add(new JLabel("Beløp:"), gbc);
-        
-        gbc.gridx = 1;
-        gbc.insets = new Insets(15, 0, 0, 30);
-        add(belop, gbc);
-        
-        gbc.gridx = 2;
-        gbc.insets = new Insets(15, 0, 0, 5);
-        
-        add(new JLabel(""), gbc);
-        
-        gbc.gridx = 3;
-        gbc.insets = new Insets(15, 0, 0, 5);
-        add(betingelser, gbc);
-        
-        //// Tredje rad /////////////////////
-        
-        gbc.gridx = 0;
-        gbc.gridy = -3;
-        gbc.insets = new Insets(15, 0, 0, 5);
-        add(submit, gbc);  
-
-    }
-    
-    public Dimension getMinimumSize()
-    {
-        return super.getPreferredSize();
     }
 }
