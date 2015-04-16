@@ -11,5 +11,8 @@ package DAO;
  */
 public class Constants {
     
+    /**
+     *
+     */
     public static final int INSURANCE_NEXT_START_NUMBER = 1;
 }

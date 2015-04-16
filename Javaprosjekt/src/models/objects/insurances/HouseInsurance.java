@@ -8,30 +8,25 @@ package models.objects.insurances;
 import java.util.Date;
 
 /**
- *
+ * HouseInsurance Class.
+ * 
  * @author rudiwyu
  */
 public class HouseInsurance extends PropertyInsurance{
 
     /**
-     *
-     * @param address
-     * @param type
-     * @param construtionmaterial
-     * @param standard
-     * @param squaremeter
-     * @param yearofconstruction
-     * @param buildingcoverage
-     * @param contentscoverage
-     * @param price
-     * @param coverage
-     * @param conditions
-     * @param other
-     * @param dateofcreation
+     * Construct for HouseInsurance
+     * Is the same as PropertyInsurance
+     * 
+     * @see PropertyInsurance
      */
-    public HouseInsurance(String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, double coverage, String conditions, String other, Date dateofcreation) {
-        super(address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, coverage, conditions, other, dateofcreation);
+    public HouseInsurance(String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Date dateofcreation) {
+        super(address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
     }
+
+
+
+   
 
 
 }

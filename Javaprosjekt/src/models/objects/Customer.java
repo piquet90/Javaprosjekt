@@ -32,7 +32,17 @@ public class Customer {
     
     private HashSet<Insurance> insurances;
     
-        public Customer(Date registered, String name, String addressStreet, String addressLetter, String city, int addressNumber, int areacode) {
+    /**
+     *
+     * @param registered
+     * @param name
+     * @param addressStreet
+     * @param addressLetter
+     * @param city
+     * @param addressNumber
+     * @param areacode
+     */
+    public Customer(Date registered, String name, String addressStreet, String addressLetter, String city, int addressNumber, int areacode) {
         this.registered = registered;
         this.name = name;
         this.addressStreet = addressStreet;
