@@ -20,7 +20,8 @@ public class HouseInsurance extends PropertyInsurance{
      * 
      * @see PropertyInsurance
      */
-    public HouseInsurance(String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Date dateofcreation) {
+    public HouseInsurance(
+            String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Date dateofcreation) {
         super(address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
     }
 
