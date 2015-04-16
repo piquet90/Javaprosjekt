@@ -1,6 +1,13 @@
 
+/*
+ * Made by
+ * Rudi Yu s231776
+ * Audun Brustad s236341
+ */
 package controllers;
 
+
+import javax.swing.*;
 import models.*;
 import views.*;
 
