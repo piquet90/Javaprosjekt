@@ -1,19 +1,30 @@
 
-package models.classes;
+package models.objects.insurances;
 
+import DAO.Constants;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * Base Insurance Class
+ * 
+ * Base abstract insurance class. All other insurances must extend this class.
  *
  * @author rudiwyu
  */
-public abstract class Insurance {
+public abstract class Insurance implements Serializable{
+    
+    // Static variables
+    private static int next = Constants.INSURANCE_NEXT_START_NUMBER;
+
+
     
     
     
-    
+    // Instance variables
+    private int id;
     private int price;
-    private int coverage;
+    private double coverage;
     private String conditions;
     private String other;
     private Date dateofcreation;
@@ -32,12 +43,15 @@ public abstract class Insurance {
      * @param other String containing "other"-info about the insurance
      * @param dateofcreation Date-object with info about when the insurance was created
      */
-    public Insurance(int price, int coverage, String conditions, String other, Date dateofcreation) {
+    public Insurance(int price, double coverage, String conditions, String other, Date dateofcreation) {
         this.price = price;
         this.coverage = coverage;
         this.conditions = conditions;
         this.other = other;
         this.dateofcreation = dateofcreation;
+        
+        this.id = next++;
+        
     }
     
 
@@ -67,7 +81,7 @@ public abstract class Insurance {
      * @author Rudi Yu
      * @return the coverage
      */
-    public int getCoverage() {
+    public double getCoverage() {
         return coverage;
     }
 
@@ -78,7 +92,7 @@ public abstract class Insurance {
      * @author Rudi Yu
      * @param coverage the coverage to set
      */
-    public void setCoverage(int coverage) {
+    public void setCoverage(double coverage) {
         this.coverage = coverage;
     }
 
@@ -142,9 +156,45 @@ public abstract class Insurance {
     public void setDateofcreation(Date dateofcreation) {
         this.dateofcreation = dateofcreation;
     }
+
+    /**
+     * Returns the ID of an insurance
+     * 
+     * @return The id of the insurance
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * sets the insurance ID
+     * 
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
     
     
-    
+    /**
+     * Returns an int equal to the InsuranceNo counter.
+     * 
+     * @author Rudi Yu
+     * @return The next number in the counter
+     */
+    public static int getNext() {
+        return next;
+    }
+
+    /**
+     * Sets the InsuranceNoCounter to nextId
+     * 
+     * @author Rudi Yu
+     * @param nextId Sets next ID for insurances
+     */
+    public static void setNeste(int nextId) {
+        next = nextId;
+    }
     
     
     

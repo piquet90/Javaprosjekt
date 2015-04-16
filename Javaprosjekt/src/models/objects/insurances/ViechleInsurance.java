@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models.classes;
+package models.objects.insurances;
 
+import models.objects.insurances.Insurance;
 import java.util.Date;
 
 /**
@@ -26,6 +27,11 @@ public class ViechleInsurance extends Insurance{
      * @param conditions the value of conditions
      * @param other the value of other
      * @param dateofcreation the value of dateofcreation
+     * @param viechleOwner
+     * @param registrationNumber
+     * @param type
+     * @param power
+     * @param model
      */
     public ViechleInsurance(int price, int coverage, String conditions, String other, 
             Date dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power)

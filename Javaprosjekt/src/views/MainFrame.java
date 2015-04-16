@@ -4,7 +4,10 @@
  * Audun Brustad s236341
  */
 package views;
-
+    
+    /**
+     * @author Rudi Yu
+     */
 
 
 import CustomSwing.CustomButton;
