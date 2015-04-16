@@ -5,14 +5,11 @@
  */
 package views;
 
-import java.awt.Dimension;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.JFileChooser;
 
 /**
@@ -21,7 +18,7 @@ import javax.swing.JFileChooser;
  */
 public class NyForsikringPanel extends JPanel {
     
-    private JTextField kundeNr, premie, belop;
+    private CustomTextField kundeNr, premie, belop;
     private JButton submit, betingelser;
     private GridBagConstraints gbc, gbc2;
     private JFileChooser filvelger;
@@ -29,9 +26,10 @@ public class NyForsikringPanel extends JPanel {
     
     private void initComponents()
     {
-        kundeNr = new JTextField(10);
-        premie = new JTextField(10);
-        belop = new JTextField(5);
+        kundeNr = new CustomTextField(10);
+        premie = new CustomTextField(10);
+        belop = new CustomTextField(5);
+        
         filvelger = new JFileChooser();
         
      
