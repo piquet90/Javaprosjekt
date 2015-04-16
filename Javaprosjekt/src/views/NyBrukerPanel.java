@@ -5,6 +5,9 @@
  */
 package views;
 
+import CustomSwing.CustomButton;
+import CustomSwing.CustomTextField;
+import CustomSwing.CustomLabel;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;

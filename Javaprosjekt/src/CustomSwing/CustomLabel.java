@@ -3,7 +3,7 @@
  * Rudi Yu s231776
  * Audun Brustad s236341
  */
-package views;
+package CustomSwing;
 
 import java.awt.Font;
 import javax.swing.JLabel;
