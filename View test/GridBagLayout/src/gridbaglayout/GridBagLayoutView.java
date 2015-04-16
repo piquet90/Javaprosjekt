@@ -27,24 +27,32 @@ public class GridBagLayoutView extends JFrame{
     public void initComponents()
     {
         p1 = new CustomPanel();
-        p1.setBackground(Color.GRAY);
+        //p1.setPreferredSize(new Dimension(200,200));
+        //p1.setBackground(Color.GRAY);
+        
     }
     
     public GridBagLayoutView()
     {
         super("title");
         initComponents();
+        this.setLayout(new GridLayout());
+
+        this.setPreferredSize(new Dimension(960, 540));
+
+        this.setSize(getPreferredSize());
         
-        
-        this.setSize(960, 540);
         this.setVisible(true);
+        
         //this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout());
+        
         
         Container c = getContentPane();
         
+        
         c.add(p1);
+        
                  
         
     }

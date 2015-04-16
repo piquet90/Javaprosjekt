@@ -8,11 +8,6 @@ package controllers;
 
 
 import javax.swing.*;
-=======
-
-package controllers;
-
->>>>>>> Development
 import models.*;
 import views.*;
 

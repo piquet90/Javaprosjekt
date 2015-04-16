@@ -1,14 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Made by
+ * Rudi Yu s231776
+ * Audun Brustad s236341
  */
-package gridbaglayout;
+package views;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,15 +15,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-/**
- *
- * @author Audun
- */
-public class CustomPanel extends JPanel {
+
+public class NyBrukerPanel extends JPanel {
     
     private JTextField fNavn, eNavn, adresse, postSted, postNr;
     private JButton submit;
-    private JLabel header;
+    private JLabel header, header2;
     private GridBagConstraints gbc;
     
     private void initComponents()
@@ -39,11 +34,11 @@ public class CustomPanel extends JPanel {
         submit = new JButton("Submit");
         submit.addActionListener((e) -> System.out.println("trykk"));
         
-        header = new JLabel("Registrer ny kunde");
-        header.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
+        //header = new JLabel("Registrer ");
+        //header.setFont(new Font("DejaVu Sans", Font.BOLD, 12));
     }
     
-    public CustomPanel()
+    public NyBrukerPanel()
     {
         this.setLayout(new GridBagLayout());
         this.setSize(getPreferredSize());
@@ -53,12 +48,15 @@ public class CustomPanel extends JPanel {
         gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.LINE_START;
         
-        //// FÃ¸rste rad /////////////////////
+        
+       
+        
+        //// Første rad /////////////////////
         
         gbc.gridx = 0;
         gbc.gridy = -1;
  
-        gbc.insets = new Insets(15, 2, 0, 5);
+        gbc.insets = new Insets(15, 0, 0, 5);
         add(new JLabel("Fornavn:"), gbc);
         
         gbc.gridx = 1;

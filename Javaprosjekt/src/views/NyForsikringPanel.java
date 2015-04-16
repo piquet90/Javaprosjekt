@@ -1,14 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Made by
+ * Rudi Yu s231776
+ * Audun Brustad s236341
  */
-package gridbaglayout;
+package views;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,34 +14,45 @@ import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.JFileChooser;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author Audun
  */
-public class CustomPanel extends JPanel {
+public class NyForsikringPanel extends JPanel {
     
-    private JTextField fNavn, eNavn, adresse, postSted, postNr;
-    private JButton submit;
-    private JLabel header;
-    private GridBagConstraints gbc;
+    private JTextField kundeNr, premie, belop;
+    private JButton submit, betingelser;
+    private GridBagConstraints gbc, gbc2;
+    private JFileChooser filvelger;
+    private String filUrl;
     
     private void initComponents()
     {
-        fNavn = new JTextField(10);
-        eNavn = new JTextField(10);
-        adresse = new JTextField(15);
-        postSted = new JTextField(15);
-        postNr = new JTextField(5);
+        kundeNr = new JTextField(10);
+        premie = new JTextField(10);
+        belop = new JTextField(5);
+        filvelger = new JFileChooser();
+        
+     
+        betingelser = new JButton("Betingelser");
+        betingelser.addActionListener((e) ->
+        {
+                int returnVal = filvelger.showOpenDialog(null);
+                if(returnVal == JFileChooser.APPROVE_OPTION)
+                {
+                    String path = filvelger.getSelectedFile().getAbsolutePath();
+                    filUrl = (path);
+                }});
         
         submit = new JButton("Submit");
         submit.addActionListener((e) -> System.out.println("trykk"));
-        
-        header = new JLabel("Registrer ny kunde");
-        header.setFont(new Font("DejaVu Sans", Font.BOLD, 15));
+
     }
     
-    public CustomPanel()
+    public NyForsikringPanel()
     {
         this.setLayout(new GridBagLayout());
         this.setSize(getPreferredSize());
@@ -52,63 +61,58 @@ public class CustomPanel extends JPanel {
         
         gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.weighty = 1;
         
-        //// FÃ¸rste rad /////////////////////
+        
+        
+       
+        
+        //// Første rad /////////////////////
         
         gbc.gridx = 0;
         gbc.gridy = -1;
  
-        gbc.insets = new Insets(15, 2, 0, 5);
-        add(new JLabel("Fornavn:"), gbc);
+        gbc.insets = new Insets(15, 0, 0, 5);
+        add(new JLabel("Kundenr:"), gbc);
         
         gbc.gridx = 1;
         gbc.insets = new Insets(15, 0, 0, 50);
-        add(fNavn, gbc);
+        add(kundeNr, gbc);
         
         gbc.gridx = 2;
         gbc.insets = new Insets(15, 0, 0, 5);
-        add(new JLabel("Etternavn:"), gbc);
+        add(new JLabel("Premie"), gbc);
         
         gbc.gridx = 3;
         gbc.insets = new Insets(15, 0, 0, 5);
-        add(eNavn, gbc);
+        add(premie, gbc);
         
         //// Andre rad /////////////////////
         
         gbc.gridx = 0;
         gbc.gridy = -2;
         gbc.insets = new Insets(15, 0, 0, 5);
-        add(new JLabel("Adresse:"), gbc);
+        add(new JLabel("Beløp:"), gbc);
         
         gbc.gridx = 1;
         gbc.insets = new Insets(15, 0, 0, 30);
-        add(adresse, gbc);
+        add(belop, gbc);
         
         gbc.gridx = 2;
         gbc.insets = new Insets(15, 0, 0, 5);
-        add(new JLabel("Postnr:"), gbc);
+        
+        add(new JLabel(""), gbc);
         
         gbc.gridx = 3;
         gbc.insets = new Insets(15, 0, 0, 5);
-        add(postNr, gbc);
+        add(betingelser, gbc);
         
         //// Tredje rad /////////////////////
-
+        
         gbc.gridx = 0;
         gbc.gridy = -3;
         gbc.insets = new Insets(15, 0, 0, 5);
-        add(new JLabel("Poststed:"), gbc);
-        
-        gbc.gridx = 1;
-        gbc.insets = new Insets(15, 0, 0, 5);
-        add(postSted, gbc);
-        
-        //// Fjerde rad /////////////////////
-
-        gbc.gridx = 0;
-        gbc.gridy = -4;
-        gbc.insets = new Insets(15, 0, 0, 5);
-        add(submit, gbc);
+        add(submit, gbc);  
 
     }
     
