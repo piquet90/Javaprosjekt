@@ -79,6 +79,9 @@ public class MainFrame extends JFrame{
         panel.revalidate();
         
         
+        
+        
+        
     }
     
 
