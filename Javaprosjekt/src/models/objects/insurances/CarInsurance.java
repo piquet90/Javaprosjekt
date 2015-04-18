@@ -15,9 +15,9 @@ import java.util.Date;
  * @author rudiwyu
  */
 public class CarInsurance extends ViechleInsurance{
-
+    
     /**
-     *
+     * TODO: Comment and refactor
      * @param price
      * @param coverage
      * @param conditions

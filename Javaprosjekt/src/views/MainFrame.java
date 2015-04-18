@@ -11,33 +11,60 @@ package views;
 
 
 import CustomSwing.CustomButton;
+import CustomSwing.CustomPanel;
+import controllers.Controller;
+import controllers.MainController;
 import javax.swing.*;
 import helpers.*;
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame implements View{
     
-    private JPanel panel;
-    private CustomButton nyBruker, nyForsikring, nySkademelding;
-    private NyBrukerPanel nyBrukerPanel;
-    private NyForsikringPanel nyForsikringPanel;
-    private Container c;
+    
+    
+    
+    // instance variables
+    MainController controller;
+    CustomPanel activepanel, toppanel;
+    CustomButton button1, button2;
+    
+    
+    
     
     private void initComponents()
-    {
-        panel = new JPanel();
-        panel.setPreferredSize(new Dimension(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT-60));
+    {    
+        toppanel = new CustomPanel();
         
-        nyBrukerPanel = new NyBrukerPanel();
-        nyForsikringPanel = new NyForsikringPanel();
+        button1 = new CustomButton("NyBrukerPanel");
+        button2 = new CustomButton("Button2");
         
-        nyBruker = new CustomButton("Ny bruker");
-        nyBruker.addActionListener((e) -> setPanel("nyBruker"));
+        toppanel.add(button1);
+        toppanel.add(button2);
         
-        nyForsikring = new CustomButton("Ny forskring");
-        nyForsikring.addActionListener((e) -> setPanel("nyForsikring"));
+        button1.addActionListener((e)->{ controller.nybrukerpanel();});
+        button2.addActionListener((e)->{ controller.button2();});
+        
+        
+       
+        
+        
+        
+       Container c = getContentPane();
+       c.setLayout(new BorderLayout());
+       
+       
+       
+       
+       
+       
+       activepanel = new CustomPanel();
+       c.add(toppanel, BorderLayout.NORTH);
+       c.add(activepanel, BorderLayout.CENTER);
+       c.setVisible(true);
+       
        
     }
     
@@ -47,42 +74,32 @@ public class MainFrame extends JFrame{
         initComponents();
         
         setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // TODO: Replace defaultCloseOperation when implementing save to file.
         setVisible(true);
-        setLayout(new FlowLayout());
-        
-        c = getContentPane();
-        c.add(nyBruker);
-        c.add(nyForsikring);
-        
     }
-    
-    private void setPanel(String t)
-    {
-        if(t.equals("nyBruker"))
-        {
-            panel.removeAll();
-            
-            panel.add(nyBrukerPanel);
-        }
-        
-        else if(t.equals("nyForsikring"))
-        {
-            panel.removeAll();
-            panel.add(new JLabel("Registrer ny forsikring"));
-            panel.add(nyForsikringPanel);
-        }
-        
-        c.add(panel);
-        panel.repaint();
-        panel.revalidate();
-        
-        
-        
-        
-        
-    }
-    
 
+    public boolean addController(Controller c) {
+        if(c instanceof MainController)
+        {
+            this.controller = (MainController)c;
+            return true;
+        }
+        return false;
+    }
+    
+    public void newPanel(CustomPanel panel)
+    {
+        activepanel.removeAll();
+        activepanel.add(panel);
+        this.repaint();
+        this.revalidate();       
+    }
+    public void newPanel(View panel)
+    {
+        if(panel instanceof CustomPanel)
+        {
+            newPanel((CustomPanel)panel);
+        }
+    }
+    
+    
 }

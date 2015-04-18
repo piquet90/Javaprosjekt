@@ -17,7 +17,7 @@ import java.util.Date;
 public class BoatInsurance extends ViechleInsurance{
 
     /**
-     *
+     * TODO: Comment and refactor
      * @param price
      * @param coverage
      * @param conditions

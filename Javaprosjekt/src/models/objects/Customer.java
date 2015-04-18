@@ -8,6 +8,7 @@ package models.objects;
 import models.objects.insurances.Insurance;
 import java.util.Date;
 import java.util.HashSet;
+import DAO.Constants;
 
 /**
  *
@@ -15,8 +16,8 @@ import java.util.HashSet;
  */
 public class Customer {
 
-    // Stativ variables
-    
+    // Static variables
+    private int next = Constants.CUSTOMER_NEXT_START_NUMBER;
     
     
     // Instance variables

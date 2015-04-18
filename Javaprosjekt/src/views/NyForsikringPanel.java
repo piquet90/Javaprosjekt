@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JFileChooser;
 
+import CustomSwing.*;
 /**
  *
  * @author Audun

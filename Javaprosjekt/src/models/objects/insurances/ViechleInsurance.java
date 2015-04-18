@@ -28,12 +28,12 @@ public class ViechleInsurance extends Insurance{
      * @param other the value of other
      * @param dateofcreation the value of dateofcreation
      * @param viechleOwner
-     * @param registrationNumber
+     * @param registrationNumber TODO: finnish commenting
      * @param type
      * @param power
      * @param model
      */
-    public ViechleInsurance(int price, int coverage, String conditions, String other, 
+    public ViechleInsurance(int price, double coverage, String conditions, String other, 
             Date dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power)
     {
         super(price, coverage, conditions, other, dateofcreation);
