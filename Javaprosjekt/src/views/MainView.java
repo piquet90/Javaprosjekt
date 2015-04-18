@@ -27,23 +27,26 @@ public class MainView extends JFrame implements View{
     // instance variables
     MainController controller;
     CustomPanel activepanel, toppanel;
-    CustomButton nybrukerpanel, nyforskerpanel;
+    CustomButton nybrukerpanel, nyforskerpanel, viewInsurance;
     
     
     
     
-    private void initComponents()
+    public void initComponents()
     {    
         toppanel = new CustomPanel();
         
         nybrukerpanel = new CustomButton("NyBrukerPanel");
         nyforskerpanel = new CustomButton("NyForsikringPanel");
+        viewInsurance = new CustomButton("Forsikringer");
         
         toppanel.add(nybrukerpanel);
         toppanel.add(nyforskerpanel);
+        toppanel.add(viewInsurance);
         
         nybrukerpanel.addActionListener((e)->{ controller.nybrukerpanel();});
         nyforskerpanel.addActionListener((e)->{ controller.nyforskerpanel();});
+        viewInsurance.addActionListener((e)->{ controller.viewInsurancePanel();});
         
         
        Container c = getContentPane();
@@ -65,7 +68,6 @@ public class MainView extends JFrame implements View{
     public MainView()
     {
         super("Insurance Co. ver=Alpha");
-        initComponents();
         
         setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         setVisible(true);
@@ -79,7 +81,11 @@ public class MainView extends JFrame implements View{
         }
         return false;
     }
-    
+    /**
+     * Adds a new panel to the BorderLayout.CENTER area.
+     * 
+     * @param panel the panel to be added. 
+     */
     public void newPanel(CustomPanel panel)
     {
         activepanel.removeAll();

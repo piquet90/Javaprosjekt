@@ -7,6 +7,7 @@ package models;
 
 import DAO.Registries;
 import java.util.HashSet;
+import java.util.Iterator;
 import models.objects.Customer;
 
 /**
@@ -21,4 +22,10 @@ public class CustomerModel {
     {
         this.customers = r.getCustomers();
     }
+    
+    public HashSet<Customer> getCustomers()
+    {
+        return customers;
+    }
+    
 }

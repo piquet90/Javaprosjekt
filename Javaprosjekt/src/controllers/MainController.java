@@ -7,9 +7,7 @@
 package controllers;
 
 
-import CustomSwing.CustomPanel;
 import DAO.Registries;
-import javax.swing.*;
 import models.*;
 import views.*;
 
@@ -36,9 +34,27 @@ public class MainController implements Controller{
         
         r = new Registries();
         
+        view.initComponents();
         view.addController(this);
+        
+        defaultPanel();
     }
     
+    public void defaultPanel()
+    {
+        viewInsurancePanel();
+    }
+    
+    public void viewInsurancePanel()
+    {
+        View newview = new ViewInsurancePanel();
+        new ViewInsuranceController(r, newview);
+        
+        view.newPanel(newview);
+    }
+    
+    
+    // under-controller TODO: write more meaningful comments
     public void nybrukerpanel()
     {
         View newview = new NyBrukerPanel();
@@ -47,7 +63,7 @@ public class MainController implements Controller{
         
         view.newPanel(newview);
     }
-    
+    // under-controller
     public void nyforskerpanel()
     {
         View newview = new NyForsikringPanel();
