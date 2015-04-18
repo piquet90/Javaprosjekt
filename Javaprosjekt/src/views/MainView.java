@@ -12,16 +12,14 @@ package views;
 
 import CustomSwing.CustomButton;
 import CustomSwing.CustomPanel;
+import DAO.Constants;
 import controllers.Controller;
 import controllers.MainController;
 import javax.swing.*;
-import helpers.*;
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 
-public class MainFrame extends JFrame implements View{
+public class MainView extends JFrame implements View{
     
     
     
@@ -29,7 +27,7 @@ public class MainFrame extends JFrame implements View{
     // instance variables
     MainController controller;
     CustomPanel activepanel, toppanel;
-    CustomButton button1, button2;
+    CustomButton nybrukerpanel, nyforskerpanel;
     
     
     
@@ -38,18 +36,14 @@ public class MainFrame extends JFrame implements View{
     {    
         toppanel = new CustomPanel();
         
-        button1 = new CustomButton("NyBrukerPanel");
-        button2 = new CustomButton("Button2");
+        nybrukerpanel = new CustomButton("NyBrukerPanel");
+        nyforskerpanel = new CustomButton("NyForsikringPanel");
         
-        toppanel.add(button1);
-        toppanel.add(button2);
+        toppanel.add(nybrukerpanel);
+        toppanel.add(nyforskerpanel);
         
-        button1.addActionListener((e)->{ controller.nybrukerpanel();});
-        button2.addActionListener((e)->{ controller.button2();});
-        
-        
-       
-        
+        nybrukerpanel.addActionListener((e)->{ controller.nybrukerpanel();});
+        nyforskerpanel.addActionListener((e)->{ controller.nyforskerpanel();});
         
         
        Container c = getContentPane();
@@ -68,9 +62,9 @@ public class MainFrame extends JFrame implements View{
        
     }
     
-    public MainFrame()
+    public MainView()
     {
-        super("Frame title");
+        super("Insurance Co. ver=Alpha");
         initComponents();
         
         setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);

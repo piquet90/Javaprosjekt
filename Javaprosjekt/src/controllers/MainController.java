@@ -20,7 +20,7 @@ import views.*;
 public class MainController implements Controller{
     
     
-    private MainFrame view;
+    private MainView view;
     private MainModel model;
     private Registries r;
     
@@ -29,7 +29,7 @@ public class MainController implements Controller{
      * @param f
      * @param m
      */
-    public MainController(MainFrame f, MainModel m)
+    public MainController(MainView f, MainModel m)
     {
         view = f;
         model = m;
@@ -48,10 +48,11 @@ public class MainController implements Controller{
         view.newPanel(newview);
     }
     
-    public void button2()
+    public void nyforskerpanel()
     {
-        CustomPanel panel2 = new CustomPanel();
-        panel2.add(new JLabel("Panel2 works as fuck!"));
-        view.newPanel(panel2);
+        View newview = new NyForsikringPanel();
+
+        NewInsuranceController newcontroller = new NewInsuranceController(r, newview); 
+        view.newPanel(newview);
     }
 }

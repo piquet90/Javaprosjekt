@@ -13,11 +13,13 @@ import java.awt.GridBagConstraints;
 import javax.swing.JFileChooser;
 
 import CustomSwing.*;
+import controllers.Controller;
+import controllers.NewInsuranceController;
 /**
  *
  * @author Audun
  */
-public class NyForsikringPanel extends JPanel {
+public class NyForsikringPanel extends CustomPanel implements View{
     
     private CustomTextField kundeNr, premie, belop;
     private JButton submit, betingelser;
@@ -25,8 +27,15 @@ public class NyForsikringPanel extends JPanel {
     private JFileChooser filvelger;
     private String filUrl;
     
-    private void initComponents()
+    private NewInsuranceController controller;
+    
+    public void initComponents()
     {
+        // this.setLayout(new GridBagLayout());
+        
+        
+        // gbc = new GridBagConstraints();
+        // gbc.anchor = GridBagConstraints.LINE_START; 
         kundeNr = new CustomTextField(10);
         premie = new CustomTextField(10);
         belop = new CustomTextField(5);
@@ -46,17 +55,27 @@ public class NyForsikringPanel extends JPanel {
         
         submit = new JButton("Submit");
         submit.addActionListener((e) -> System.out.println("trykk"));
+        
+        add(kundeNr);
+        add(premie);
+        add(belop);
+        
+        add(betingelser);
 
     }
     
     public NyForsikringPanel()
     {
-        this.setLayout(new GridBagLayout());
-        this.setSize(getPreferredSize());
-        initComponents();
         
-        
-        gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.LINE_START;
+    }
+
+    @Override
+    public boolean addController(Controller c) {
+        if(c instanceof NewInsuranceController)
+        {
+            this.controller = (NewInsuranceController)c;
+            return true;
+        }
+        return false;
     }
 }

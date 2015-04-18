@@ -11,7 +11,6 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import controllers.Controller;
-import controllers.MainController;
 import controllers.NewCustomerController;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
