@@ -54,6 +54,17 @@ public abstract class Insurance implements Serializable{
         
     }
     
+    //TODO: add comments to the equals and hashCode functions
+    public boolean equals(Object o)
+    {
+        Insurance a = (Insurance)o;
+        return((o instanceof Insurance) && a.getId()==this.getId());
+    }
+    public int hashCode()
+    {
+        return this.id;
+    }
+    
 
 
     /**

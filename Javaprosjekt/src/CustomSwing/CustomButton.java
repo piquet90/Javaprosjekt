@@ -42,7 +42,7 @@ public class CustomButton extends JButton {
         else
         {
           setBackground(new Color(90, 140, 170));
-          setForeground(Color.WHITE);
+          setForeground(Color.BLACK);
         }
         if(getModel().isPressed())
         {

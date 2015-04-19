@@ -6,8 +6,9 @@
 package javaprosjekt;
 
 import controllers.MainController;
+import javax.swing.JFrame;
 import models.MainModel;
-import views.MainFrame;
+import views.MainView;
 
 
 public class Javaprosjekt {
@@ -17,9 +18,11 @@ public class Javaprosjekt {
      */
     public static void main(String[] args) {
         
-        MainFrame view = new MainFrame();
+        MainView view = new MainView();
         MainModel model = new MainModel();
         MainController controller = new MainController(view, model);
+        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // TODO: Replace defaultCloseOperation when implementing save to file.
     }
     
 }

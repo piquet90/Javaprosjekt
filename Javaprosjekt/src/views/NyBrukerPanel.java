@@ -10,21 +10,24 @@ import CustomSwing.CustomButton;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
+import controllers.Controller;
+import controllers.NewCustomerController;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 
-public class NyBrukerPanel extends CustomPanel {
+public class NyBrukerPanel extends CustomPanel implements View{
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private GridBagConstraints gbc;
     private CustomButton submit;
+    private NewCustomerController controller;
     
     /**
      * Initializes the GUI components (cleaner constructor)
      */
-    private void initComponents()
+    public void initComponents()
     {
         fNavn = new CustomTextField(15);
         eNavn = new CustomTextField(15);
@@ -33,16 +36,10 @@ public class NyBrukerPanel extends CustomPanel {
         postNr = new CustomTextField(6);
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> System.out.println("trykk"));
-    }
-    /**
-     * NyBrukerPanel constructor
-     */
-    public NyBrukerPanel()
-    {
+        submit.addActionListener((e) -> { controller.test();});
+        
         this.setLayout(new GridBagLayout());
         this.setSize(getPreferredSize());
-        initComponents();
         
         
         gbc = new GridBagConstraints();
@@ -95,5 +92,22 @@ public class NyBrukerPanel extends CustomPanel {
         
         gbc.gridy++;
         add(submit, gbc);
+    }
+    /**
+     * NyBrukerPanel constructor
+     */
+    public NyBrukerPanel()
+    {
+        
+    }
+
+    @Override
+    public boolean addController(Controller c) {
+        if(c instanceof NewCustomerController)
+        {
+            this.controller = (NewCustomerController)c;
+            return true;
+        }
+        return false;
     }
 }

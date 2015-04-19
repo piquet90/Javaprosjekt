@@ -15,4 +15,7 @@ public class Constants {
      *
      */
     public static final int INSURANCE_NEXT_START_NUMBER = 1;
+    public static final int CUSTOMER_NEXT_START_NUMBER = 1;
+    public static final int FRAME_WIDTH = 500;
+    public static final int FRAME_HEIGHT = 500;
 }
