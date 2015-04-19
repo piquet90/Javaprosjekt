@@ -10,8 +10,6 @@ import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
-import controllers.Controller;
-import controllers.NewCustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -24,13 +22,12 @@ import java.util.Calendar;
  * @author Audun
  */
 
-public class NyBilforsikring extends CustomPanel implements View{
+public class NyBilforsikring extends CustomPanel{
     
     private CustomTextField dato, bilEier, regNr, biltype, regAar, kmPerAar;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 endreEier;
-    private NewCustomerController controller;
     private int check = 0;
     
     /**
@@ -58,7 +55,7 @@ public class NyBilforsikring extends CustomPanel implements View{
         endreEier.addActionListener((e) -> { if(check == 0){bilEier.setEditable(true); check=1;}else{bilEier.setEditable(false); bilEier.setText("Satt til eier");check=0;}});
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> { controller.test();});
+        submit.addActionListener((e) -> {});
 
     }
     /**
@@ -129,10 +126,5 @@ public class NyBilforsikring extends CustomPanel implements View{
         gbc.gridx = 2;
         gbc.gridy = 2;
         add(endreEier, gbc);
-    }
-
-    @Override
-    public boolean addController(Controller c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
