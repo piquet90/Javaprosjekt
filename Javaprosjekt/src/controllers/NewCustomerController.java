@@ -17,16 +17,16 @@ import views.View;
 public class NewCustomerController implements Controller{
     
     Registries dataAccessObject;
-    NewUserPanel newCustomerView;
+    NewUserPanel view;
     
     
     
     public NewCustomerController(Registries r, View v)
     {
         this.dataAccessObject = r;
-        this.newCustomerView = (NewUserPanel) v;
-        this.newCustomerView.addController(this);
-        this.newCustomerView.initComponents();
+        this.view = (NewUserPanel) v;
+        this.view.addController(this);
+        this.view.initComponents();
         
     }
     

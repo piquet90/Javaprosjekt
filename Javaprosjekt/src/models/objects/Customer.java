@@ -95,19 +95,7 @@ public class Customer {
         this.addressStreet = addressStreet;
     }
 
-    /**
-     * @return the addressLetter
-     */
-    public String getAddressLetter() {
-        return addressLetter;
-    }
 
-    /**
-     * @param addressLetter the addressLetter to set
-     */
-    public void setAddressLetter(String addressLetter) {
-        this.addressLetter = addressLetter;
-    }
 
     /**
      * @return the city
@@ -123,19 +111,6 @@ public class Customer {
         this.city = city;
     }
 
-    /**
-     * @return the addressNumber
-     */
-    public int getAddressNumber() {
-        return addressNumber;
-    }
-
-    /**
-     * @param addressNumber the addressNumber to set
-     */
-    public void setAddressNumber(int addressNumber) {
-        this.addressNumber = addressNumber;
-    }
 
     /**
      * @return the areacode
