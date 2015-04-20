@@ -24,7 +24,7 @@ import java.util.Calendar;
  * @author Audun
  */
 
-public class NyBilforsikring extends CustomPanel implements View{
+public class NewCarInsurance extends CustomPanel implements View{
     
     private CustomTextField dato, bilEier, regNr, biltype, regAar, kmPerAar;
     private GridBagConstraints gbc;
@@ -58,13 +58,12 @@ public class NyBilforsikring extends CustomPanel implements View{
         endreEier.addActionListener((e) -> { if(check == 0){bilEier.setEditable(true); check=1;}else{bilEier.setEditable(false); bilEier.setText("Satt til eier");check=0;}});
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> { controller.test();});
 
     }
     /**
      * NyBilforsikring constructor
      */
-    public NyBilforsikring()
+    public NewCarInsurance()
     {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());

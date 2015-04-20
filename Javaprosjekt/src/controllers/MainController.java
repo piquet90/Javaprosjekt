@@ -57,7 +57,7 @@ public class MainController implements Controller{
     // under-controller TODO: write more meaningful comments
     public void nybrukerpanel()
     {
-        View newview = new NyBrukerPanel();
+        View newview = new NewUserPanel();
         NewCustomerController newcontroller = new NewCustomerController(r, newview);
         
         
@@ -66,7 +66,7 @@ public class MainController implements Controller{
     // under-controller
     public void nyforskerpanel()
     {
-        View newview = new NyForsikringPanel();
+        View newview = new NewInsurancePanel();
 
         NewInsuranceController newcontroller = new NewInsuranceController(r, newview); 
         view.newPanel(newview);

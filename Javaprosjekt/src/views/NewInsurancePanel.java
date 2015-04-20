@@ -26,7 +26,7 @@ import javax.swing.JPanel;
  * @author Audun
  */
 
-public class NyForsikringPanel extends CustomPanel implements View{
+public class NewInsurancePanel extends CustomPanel implements View{
     
     private CustomButton submit, betingelser;
     private JFileChooser filvelger;
@@ -34,7 +34,7 @@ public class NyForsikringPanel extends CustomPanel implements View{
     private CardLayout cl;
     private JComboBox<String> insType;
     
-    private NyBilforsikring bil;
+    private NewCarInsurance bil;
     
     
     //midlertidig
@@ -44,7 +44,7 @@ public class NyForsikringPanel extends CustomPanel implements View{
     
     public void initComponents()
     {
-        bil = new NyBilforsikring();
+        bil = new NewCarInsurance();
         
         filvelger = new JFileChooser();
         
@@ -61,7 +61,7 @@ public class NyForsikringPanel extends CustomPanel implements View{
         setLayout(new BorderLayout());
         setSize(getPreferredSize());
         
-        initComponents();
+        
         cl = new CardLayout();
         
         String[] t = {"Velg ny forsikring...", "Bilforsikring", "Husforsikring"}; 
@@ -98,7 +98,7 @@ public class NyForsikringPanel extends CustomPanel implements View{
             }});
     }
     
-    public NyForsikringPanel()
+    public NewInsurancePanel()
     {
         
     }

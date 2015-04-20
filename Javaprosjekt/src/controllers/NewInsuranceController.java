@@ -6,7 +6,7 @@
 package controllers;
 
 import DAO.*;
-import views.NyForsikringPanel;
+import views.NewInsurancePanel;
 import views.View;
 /**
  *
@@ -17,14 +17,14 @@ import views.View;
 public class NewInsuranceController implements Controller{
     
     Registries dataAccessObject;
-    NyForsikringPanel newCustomerView;
+    NewInsurancePanel newCustomerView;
     
     
     
     public NewInsuranceController(Registries r, View v)
     {
         this.dataAccessObject = r;
-        this.newCustomerView = (NyForsikringPanel) v;
+        this.newCustomerView = (NewInsurancePanel) v;
         this.newCustomerView.addController(this);
         this.newCustomerView.initComponents();
         

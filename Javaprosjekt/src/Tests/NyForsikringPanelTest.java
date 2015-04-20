@@ -6,7 +6,7 @@
 package Tests;
 
 import javax.swing.JFrame;
-import views.NyForsikringPanel;
+import views.NewInsurancePanel;
 
 /**
  *
@@ -18,7 +18,7 @@ public class NyForsikringPanelTest {
     public static void main(String[]args)
     {
         JFrame frame = new JFrame();
-        NyForsikringPanel panel = new NyForsikringPanel();
+        NewInsurancePanel panel = new NewInsurancePanel();
         frame.add(panel);
         frame.setVisible(true);
         frame.pack();

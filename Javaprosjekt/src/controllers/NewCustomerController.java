@@ -6,7 +6,7 @@
 package controllers;
 
 import DAO.*;
-import views.NyBrukerPanel;
+import views.NewUserPanel;
 import views.View;
 
 /**
@@ -16,21 +16,21 @@ import views.View;
 public class NewCustomerController implements Controller{
     
     Registries dataAccessObject;
-    NyBrukerPanel newCustomerView;
+    NewUserPanel newCustomerView;
     
     
     
     public NewCustomerController(Registries r, View v)
     {
         this.dataAccessObject = r;
-        this.newCustomerView = (NyBrukerPanel) v;
+        this.newCustomerView = (NewUserPanel) v;
         this.newCustomerView.addController(this);
         this.newCustomerView.initComponents();
         
     }
     
-    public void test()
+    public void register()
     {
-        System.out.println("trykk");
+
     }
 }

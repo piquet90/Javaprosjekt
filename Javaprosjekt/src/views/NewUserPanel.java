@@ -17,7 +17,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 
-public class NyBrukerPanel extends CustomPanel implements View{
+public class NewUserPanel extends CustomPanel implements View{
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private GridBagConstraints gbc;
@@ -36,7 +36,7 @@ public class NyBrukerPanel extends CustomPanel implements View{
         postNr = new CustomTextField(6);
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> { controller.test();});
+        submit.addActionListener((e) -> { controller.register();});
         
         this.setLayout(new GridBagLayout());
         this.setSize(getPreferredSize());
@@ -96,7 +96,7 @@ public class NyBrukerPanel extends CustomPanel implements View{
     /**
      * NyBrukerPanel constructor
      */
-    public NyBrukerPanel()
+    public NewUserPanel()
     {
         
     }
