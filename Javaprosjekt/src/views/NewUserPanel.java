@@ -5,7 +5,6 @@
  */
 package views;
 
-
 import CustomSwing.CustomButton;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
@@ -15,6 +14,7 @@ import controllers.NewCustomerController;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.JOptionPane;
 
 
 public class NewUserPanel extends CustomPanel implements View{
@@ -25,8 +25,8 @@ public class NewUserPanel extends CustomPanel implements View{
     private NewCustomerController controller;
     
     /**
-     * Initializes the GUI components (cleaner constructor)
-     */
+     * Initializes the GUI components
+    */
     public void initComponents()
     {
         fNavn = new CustomTextField(15);
@@ -41,14 +41,12 @@ public class NewUserPanel extends CustomPanel implements View{
         this.setLayout(new GridBagLayout());
         this.setSize(getPreferredSize());
         
-        
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
         gbc.anchor = GridBagConstraints.LINE_END;
-        
         
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -72,8 +70,6 @@ public class NewUserPanel extends CustomPanel implements View{
         gbc.gridy = 1;
         add(new CustomLabel("Registrer ny kunde"));
         
-
-        
         gbc.gridx = 1;
         gbc.gridy = 1;
         add(fNavn, gbc);
@@ -92,6 +88,35 @@ public class NewUserPanel extends CustomPanel implements View{
         
         gbc.gridy++;
         add(submit, gbc);
+    }
+
+    public String getFornavn() {
+        return fNavn.getText();
+    }
+
+    public String getEtternavn() {
+        return eNavn.getText();
+    }
+
+    public String getAdresse() {
+        return adresse.getText();
+    }
+
+    public String getPostSted() {
+        return postSted.getText();
+    }
+
+    public String getPostNr() {
+        return postNr.getText();
+    }
+    /**
+     * 
+     * @param error Recieves error message from controller and displays it to user
+     */
+    
+    public void showError(String error)
+    {
+        JOptionPane.showMessageDialog(this, error);
     }
     /**
      * NyBrukerPanel constructor
