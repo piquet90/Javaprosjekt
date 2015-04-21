@@ -9,6 +9,6 @@ package controllers;
  *
  * @author rudiwyu
  */
-public interface Controller {
+public abstract class Controller {
     
 }

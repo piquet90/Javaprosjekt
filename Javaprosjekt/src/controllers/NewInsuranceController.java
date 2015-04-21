@@ -14,7 +14,7 @@ import views.View;
  */
 
 
-public class NewInsuranceController implements Controller{
+public class NewInsuranceController extends Controller{
     
     Registries dataAccessObject;
     NewInsurancePanel newCustomerView;
