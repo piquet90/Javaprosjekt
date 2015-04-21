@@ -15,7 +15,7 @@ import views.*;
  *
  * @author Rudi
  */
-public class MainController implements Controller{
+public class MainController extends Controller{
     
     
     private MainView view;

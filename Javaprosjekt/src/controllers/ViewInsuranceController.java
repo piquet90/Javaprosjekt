@@ -13,7 +13,7 @@ import views.ViewInsurancePanel;
  *
  * @author rudiwyu
  */
-public class ViewInsuranceController implements Controller {
+public class ViewInsuranceController extends Controller {
     
     private Registries registries;
     private ViewInsurancePanel view;

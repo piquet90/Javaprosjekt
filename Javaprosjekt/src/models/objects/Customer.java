@@ -29,6 +29,10 @@ public class Customer {
     private String city;
     
     private int areacode;
+
+
+
+
     private int id;
     
     private HashSet<Insurance> insurances;
@@ -38,13 +42,12 @@ public class Customer {
      * @param registered
      * @param name
      * @param addressStreet
-     * @param addressLetter
      * @param city
-     * @param addressNumber
      * @param areacode
      */
-    public Customer(Calendar registered, String name, String addressStreet, String city, int areacode) {
-        this.registered = registered;
+    public Customer(String name, String addressStreet, String city, int areacode) {
+        
+        this.registered =  Calendar.getInstance();
         this.name = name;
         this.addressStreet = addressStreet;
         this.city = city;
@@ -125,6 +128,14 @@ public class Customer {
     public void setAreacode(int areacode) {
         this.areacode = areacode;
     }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+    
     
     
 }
