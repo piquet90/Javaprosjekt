@@ -6,7 +6,6 @@
 package models.objects;
 
 import models.objects.insurances.Insurance;
-import java.util.Date;
 import java.util.HashSet;
 import DAO.Constants;
 import java.util.Calendar;
@@ -29,13 +28,8 @@ public class Customer {
     private String city;
     
     private int areacode;
-
-
-
-
     private int id;
     
-    private HashSet<Insurance> insurances;
     
     /**
      *
