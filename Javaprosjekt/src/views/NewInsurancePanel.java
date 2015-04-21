@@ -26,19 +26,21 @@ public class NewInsurancePanel extends CustomPanel implements View{
     
     private CardLayout cl;
     private JComboBox<String> insType;
+    private GridBagConstraints g;
+    private String insuranceType;
+    private CustomPanel container, panelBlank;
+    
     private NewCarInsurance bil;
     private NewBoatInsurance boat;
     private InsurancePanel ip;
-    private GridBagConstraints g;
-    private String insuranceType;
-
-    private CustomPanel container, panelBlank;
+    private NewHouseInsurance house;
     
     private NewInsuranceController controller;
     
     public void initComponents() {
         
         setLayout(new GridBagLayout());
+        cl = new CardLayout();
         
         ip = new InsurancePanel();
         ip.initComponents();
@@ -48,13 +50,16 @@ public class NewInsurancePanel extends CustomPanel implements View{
         
         boat = new NewBoatInsurance();
         boat.initComponents();
-
-        cl = new CardLayout();
         
-        String[] t = {"Velg type forsikring...", "Bilforsikring", "Båtforsikring"}; 
+        house = new NewHouseInsurance();
+        house.initComponents();
+
+        
+        
+        String[] t = {"Velg type forsikring...", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring"}; 
         insType = new JComboBox<>(t);
         insType.setFont(new Font("DejaVu Sans", Font.BOLD, 16));
-        insType.setSize(new Dimension(100, 100));
+        insType.setBackground(new Color(250, 250, 250));
         
         container = new CustomPanel();
         container.setLayout(cl);
@@ -64,6 +69,7 @@ public class NewInsurancePanel extends CustomPanel implements View{
         container.add(panelBlank, "0");
         container.add(bil, "1");
         container.add(boat, "2");
+        container.add(house, "3");
         cl.show(container, "0");
         
 

@@ -12,6 +12,7 @@ import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import controllers.Controller;
 import controllers.NewCustomerController;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -54,7 +55,7 @@ public class NewBoatInsurance extends CustomPanel implements View {
         
         endreEier = new CustomButton2("Endre");
         
-        endreEier.addActionListener((e) -> test());
+        endreEier.addActionListener((e) -> change());
         
         submit = new CustomButton("Registrer");
         
@@ -64,6 +65,7 @@ public class NewBoatInsurance extends CustomPanel implements View {
         type = new JComboBox<>(t);
         type.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
         type.addActionListener((e)-> n = type.getSelectedIndex());
+        type.setBackground(new Color(250, 250, 250));
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -177,7 +179,7 @@ public class NewBoatInsurance extends CustomPanel implements View {
         
     }
     
-    public void test() {
+    public void change() {
         
         if(!check) {
             baatEier.setEditable(true);

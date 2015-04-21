@@ -12,6 +12,7 @@ import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import controllers.Controller;
 import controllers.NewCustomerController;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -51,11 +52,13 @@ public class NewCarInsurance extends CustomPanel implements View {
         regAar = new CustomTextField(10);
         kmPerAar = new CustomTextField(10);
         
-        String[] t = {"Stasjonsvogn", "Kombi 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruksbil",
+        String[] t = {"Velg type...", "Stasjonsvogn", "Kombi 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruksbil",
                       "Coupe", "Kombi 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elbil"};
+        
         carType = new JComboBox<>(t);
         carType.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
         carType.addActionListener((e)-> n = carType.getSelectedIndex());
+        carType.setBackground(new Color(250, 250, 250));
 
         endreEier = new CustomButton2("Endre");
         
