@@ -6,7 +6,7 @@
 package models.objects.insurances;
 
 import models.objects.insurances.Insurance;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -34,7 +34,7 @@ public class ViechleInsurance extends Insurance{
      * @param model
      */
     public ViechleInsurance(int price, double coverage, String conditions, String other, 
-            Date dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power)
+            Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power)
     {
         super(price, coverage, conditions, other, dateofcreation);
         this.viechleOwner = viechleOwner;

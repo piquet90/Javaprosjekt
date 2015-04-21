@@ -15,18 +15,21 @@ import controllers.NewCustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author Audun
  */
 
-public class NewCarInsurance extends CustomPanel implements View{
+public class InsurancePanel extends CustomPanel implements View{
     
-    private CustomTextField dato, bilEier, regNr, biltype, regAar, kmPerAar;
+    private CustomTextField date, customer, price, coverage, other;
+    private JTextArea conditions;
     private GridBagConstraints gbc;
-    private CustomButton submit;
-    private CustomButton2 endreEier;
     private NewCustomerController controller;
     private int check = 0;
     
@@ -35,22 +38,24 @@ public class NewCarInsurance extends CustomPanel implements View{
      */
     public void initComponents()
     {
+        date = new CustomTextField(10);
+        date.setEditable(false);
+        customer = new CustomTextField(15);
+        customer.setEditable(false);
+        customer.setText("Satt til valgt kunde");
+        price = new CustomTextField(10);
+        coverage = new CustomTextField(10);
+        conditions = new JTextArea(20, 30);
+        other = new CustomTextField(15);
+        
+        //få dato fra controller?
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar cal = Calendar.getInstance();
+        date.setText(dateFormat.format(cal.getTime()));
+        //_______________________
+        
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
-        
-        bilEier = new CustomTextField(15);
-        bilEier.setEditable(false);
-        bilEier.setText("Satt til eier");
-        regNr = new CustomTextField(10);
-        biltype = new CustomTextField(15);
-        regAar = new CustomTextField(10);
-        kmPerAar = new CustomTextField(10);
-        
-        endreEier = new CustomButton2("Endre");
-        
-        endreEier.addActionListener((e) -> { if(check == 0){bilEier.setEditable(true); check=1;}else{bilEier.setEditable(false); bilEier.setText("Satt til eier");check=0;}});
-        
-        submit = new CustomButton("Registrer");
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -61,57 +66,52 @@ public class NewCarInsurance extends CustomPanel implements View{
         
         gbc.gridx = 0;
         gbc.gridy = 1;
-        add(new CustomLabel("Bileier: "), gbc);
+        add(new CustomLabel("Dato: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Reg. nummer: "), gbc);
+        add(new CustomLabel("Kunde: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Biltype: "), gbc);
+        add(new CustomLabel("Årlig premie: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Reg. år: "), gbc);
+        add(new CustomLabel("Sum dekning: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Km per år: "), gbc);
+        add(new CustomLabel("Betingelser: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Annet: "), gbc);
   
         gbc.anchor = GridBagConstraints.LINE_START;    
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(new CustomLabel("Opprette ny bilforsikring"));
+        add(new CustomLabel("Default insurance field"));
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(bilEier, gbc);
+        add(date, gbc);
         
         gbc.gridy++;
-        add(regNr, gbc);
+        add(customer, gbc);
         
         gbc.gridy++;
-        add(biltype, gbc);
+        add(price, gbc);
         
         gbc.gridy++;
-        add(regAar, gbc);
+        add(coverage, gbc);
         
         gbc.gridy++;
-        add(kmPerAar, gbc);
+        add(conditions, gbc);
         
         gbc.gridy++;
-        add(submit, gbc);
-        
-        //Knapp som gjør eier-felt editable/uneditable
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        add(endreEier, gbc);
-        
-        
-
+        add(other, gbc);
     }
     /**
      * NyBilforsikring constructor
      */
-    public NewCarInsurance()
+    public InsurancePanel()
     {
         
     }

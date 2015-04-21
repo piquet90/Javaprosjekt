@@ -5,8 +5,6 @@
  */
 package views;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.JFileChooser;
 import CustomSwing.*;
 import controllers.Controller;
@@ -19,7 +17,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 
 /**
  *
@@ -35,49 +32,41 @@ public class NewInsurancePanel extends CustomPanel implements View{
     private JComboBox<String> insType;
     
     private NewCarInsurance bil;
+    private InsurancePanel ip;
     
     
     //midlertidig
-    private JPanel container, panelFirst, panelSecond, panelBlank;
+    private CustomPanel container, panelFirst, panelSecond, panelBlank;
     
     private NewInsuranceController controller;
     
     public void initComponents()
     {
-        bil = new NewCarInsurance();
-        
-        filvelger = new JFileChooser();
-        
-        betingelser = new CustomButton("Betingelser");
-        betingelser.addActionListener((e) ->
-        {
-            int returnVal = filvelger.showOpenDialog(null);
-            if(returnVal == JFileChooser.APPROVE_OPTION)
-            {
-                String path = filvelger.getSelectedFile().getAbsolutePath();
-                filUrl = (path);
-            }});
-        
         setLayout(new BorderLayout());
-        setSize(getPreferredSize());
         
+        ip = new InsurancePanel();
+        ip.initComponents();
         
+        bil = new NewCarInsurance();
+        bil.initComponents();
+
         cl = new CardLayout();
         
-        String[] t = {"Velg ny forsikring...", "Bilforsikring", "Husforsikring"}; 
+        String[] t = {"Velg type forsikring...", "Bilforsikring", "Husforsikring"}; 
         insType = new JComboBox<>(t);
         insType.setFont(new Font("DejaVu Sans", Font.BOLD, 16));
+        insType.setSize(new Dimension(100, 100));
         
-        container = new JPanel();
+        container = new CustomPanel();
         container.setLayout(cl);
         
-        panelBlank = new JPanel();
+        panelBlank = new CustomPanel();
         
-        panelFirst = new JPanel();
+        panelFirst = new CustomPanel();
         panelFirst.setBackground(Color.RED);
         panelFirst.add(new CustomLabel("Panel 1"));
         
-        panelSecond = new JPanel();
+        panelSecond = new CustomPanel();
         panelSecond.setBackground(Color.BLUE);
         panelSecond.add(new CustomLabel("Panel 2"));
         
@@ -86,16 +75,20 @@ public class NewInsurancePanel extends CustomPanel implements View{
         container.add(panelSecond, "2");
         cl.show(container, "0");
         
-        add(new CustomLabel("Opprett forsikring"), BorderLayout.PAGE_START);
-        add(insType, BorderLayout.CENTER);
+
+        
+        //add(new CustomLabel("Opprett forsikring"), BorderLayout.PAGE_START);
+       
+        add(ip, BorderLayout.PAGE_START);
+        add(new CustomLabel("Velg type forsikring: "), BorderLayout.LINE_START);
+        add(insType, BorderLayout.LINE_END);
         add(container, BorderLayout.PAGE_END);
                 
-        insType.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                int n = insType.getSelectedIndex();
+        insType.addActionListener((e)->{
+        int n = insType.getSelectedIndex();
                 String s = String.valueOf(n);
-                cl.show(container, s);
-            }});
+                cl.show(container, s);});
+                
     }
     
     public NewInsurancePanel()

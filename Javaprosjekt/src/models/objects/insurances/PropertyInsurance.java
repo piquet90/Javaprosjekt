@@ -6,7 +6,7 @@
 package models.objects.insurances;
 
 import models.objects.insurances.Insurance;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Abstract Base insurance class for PropertyInsurances.
@@ -56,7 +56,7 @@ public abstract class PropertyInsurance extends Insurance {
             int price, 
             String conditions, 
             String other, 
-            Date dateofcreation)
+            Calendar dateofcreation)
     {
         super(price, (buildingcoverage+buildingcoverage), conditions, other, dateofcreation);
         this.address = address;
