@@ -5,7 +5,7 @@
  */
 package models.objects.insurances;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * HouseInsurance Class.
@@ -21,7 +21,7 @@ public class HouseInsurance extends PropertyInsurance{
      * @see PropertyInsurance
      */
     public HouseInsurance(
-            String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Date dateofcreation) {
+            String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Calendar dateofcreation) {
         super(address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
     }
 

@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package models.objects.insurances;
-
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * LeisureHouseInsuranceClass.
@@ -20,7 +19,7 @@ public class LeisureHouseInsurance extends PropertyInsurance{
      * @see PropertyInsurance
      * 
      */
-    public LeisureHouseInsurance(String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Date dateofcreation) {
+    public LeisureHouseInsurance(String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Calendar dateofcreation) {
         super(address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
     }
 

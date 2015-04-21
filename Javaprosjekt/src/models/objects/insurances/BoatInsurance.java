@@ -8,7 +8,7 @@ package models.objects.insurances;
 
 
 import models.objects.insurances.ViechleInsurance;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -29,7 +29,7 @@ public class BoatInsurance extends ViechleInsurance{
      * @param model
      * @param power
      */
-    public BoatInsurance(int price, int coverage, String conditions, String other, Date dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power) {
+    public BoatInsurance(int price, int coverage, String conditions, String other, Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power) {
         super(price, coverage, conditions, other, dateofcreation, viechleOwner, registrationNumber, type, model, power);
     }
 

@@ -22,7 +22,7 @@ import java.awt.Container;
 public class MainView extends JFrame implements View{
     
     
-    
+    private JScrollPane scroll;
     
     // instance variables
     MainController controller;
@@ -52,15 +52,14 @@ public class MainView extends JFrame implements View{
        Container c = getContentPane();
        c.setLayout(new BorderLayout());
        
-       
-       
-       
-       
+     
        
        activepanel = new CustomPanel();
+       scroll = new JScrollPane(activepanel);
        c.add(toppanel, BorderLayout.NORTH);
-       c.add(activepanel, BorderLayout.CENTER);
+       c.add(scroll, BorderLayout.CENTER);
        c.setVisible(true);
+       
        
        
     }

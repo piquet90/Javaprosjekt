@@ -3,7 +3,7 @@ package models.objects.insurances;
 
 import DAO.Constants;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Base Insurance Class
@@ -27,7 +27,7 @@ public abstract class Insurance implements Serializable{
     private double coverage;
     private String conditions;
     private String other;
-    private Date dateofcreation;
+    private Calendar dateofcreation;
     
     
     
@@ -43,7 +43,7 @@ public abstract class Insurance implements Serializable{
      * @param other String containing "other"-info about the insurance
      * @param dateofcreation Date-object with info about when the insurance was created
      */
-    public Insurance(int price, double coverage, String conditions, String other, Date dateofcreation) {
+    public Insurance(int price, double coverage, String conditions, String other, Calendar dateofcreation) {
         this.price = price;
         this.coverage = coverage;
         this.conditions = conditions;
@@ -153,7 +153,7 @@ public abstract class Insurance implements Serializable{
      * @author Rudi Yu
      * @return Date-object with date of creation
      */
-    public Date getDateofcreation() {
+    public Calendar getDateofcreation() {
         return dateofcreation;
     }
 
@@ -164,7 +164,7 @@ public abstract class Insurance implements Serializable{
      * @author Rudi Yu
      * @param dateofcreation Date object with date of creation
      */
-    public void setDateofcreation(Date dateofcreation) {
+    public void setDateofcreation(Calendar dateofcreation) {
         this.dateofcreation = dateofcreation;
     }
 

@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package models.objects.insurances;
-
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -26,7 +25,7 @@ public class TravelInsurance extends Insurance{
      * @param area The area of which the insurance covers
      * @see Insurance
      */
-    public TravelInsurance(String area, int price, double coverage, String conditions, String other, Date dateofcreation) {
+    public TravelInsurance(String area, int price, double coverage, String conditions, String other, Calendar dateofcreation) {
         super(price, coverage, conditions, other, dateofcreation);
         this.area = area;
     }
