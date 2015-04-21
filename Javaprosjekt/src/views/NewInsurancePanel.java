@@ -23,13 +23,11 @@ import javax.swing.JComboBox;
 
 public class NewInsurancePanel extends CustomPanel implements View{
     
-    private CustomButton submit, betingelser;
-    private JFileChooser filvelger;
-    private String filUrl;
     private CardLayout cl;
     private JComboBox<String> insType;
     
     private NewCarInsurance bil;
+    private NewBoatInsurance boat;
     private InsurancePanel ip;
     
     
@@ -46,10 +44,13 @@ public class NewInsurancePanel extends CustomPanel implements View{
         
         bil = new NewCarInsurance();
         bil.initComponents();
+        
+        boat = new NewBoatInsurance();
+        boat.initComponents();
 
         cl = new CardLayout();
         
-        String[] t = {"Velg type forsikring...", "Bilforsikring", "Husforsikring"}; 
+        String[] t = {"Velg type forsikring...", "Bilforsikring", "Båtforsikring"}; 
         insType = new JComboBox<>(t);
         insType.setFont(new Font("DejaVu Sans", Font.BOLD, 16));
         insType.setSize(new Dimension(100, 100));
@@ -69,11 +70,10 @@ public class NewInsurancePanel extends CustomPanel implements View{
         
         container.add(panelBlank, "0");
         container.add(bil, "1");
-        container.add(panelSecond, "2");
+        container.add(boat, "2");
         cl.show(container, "0");
         
 
-        
         //add(new CustomLabel("Opprett forsikring"), BorderLayout.PAGE_START);
        
         add(ip, BorderLayout.PAGE_START);

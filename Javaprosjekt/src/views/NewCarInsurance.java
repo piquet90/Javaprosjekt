@@ -23,12 +23,12 @@ import java.awt.Insets;
 
 public class NewCarInsurance extends CustomPanel implements View {
     
-    private CustomTextField bilEier, regNr, biltype, effekt, regAar, kmPerAar, bilEierStatus;
+    private CustomTextField bilEier, regNr, biltype, modell, effekt, regAar, kmPerAar;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 endreEier;
     private NewCustomerController controller;
-    private int check = 0;
+    private boolean check = false;
     
     /**
      * Initializes the GUI components (cleaner constructor)
@@ -43,11 +43,12 @@ public class NewCarInsurance extends CustomPanel implements View {
         bilEier.setText("Satt til valgt kunde");
         regNr = new CustomTextField(10);
         biltype = new CustomTextField(21);
+        modell = new CustomTextField(15);
         effekt = new CustomTextField(10);
         regAar = new CustomTextField(10);
         kmPerAar = new CustomTextField(10);
         
-        bilEierStatus = new CustomTextField(10);
+        
         
         endreEier = new CustomButton2("Endre");
         
@@ -67,13 +68,13 @@ public class NewCarInsurance extends CustomPanel implements View {
         add(new CustomLabel("Bileier: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel(""), gbc);
-        
-        gbc.gridy++;
         add(new CustomLabel("Reg. nummer: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Biltype/modell: "), gbc);
+        add(new CustomLabel("Biltype: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Modell: "), gbc);
         
         gbc.gridy++;
         add(new CustomLabel("Effekt (i hk): "), gbc);
@@ -95,9 +96,6 @@ public class NewCarInsurance extends CustomPanel implements View {
         add(bilEier, gbc);
         
         gbc.gridy++;
-        add(new CustomLabel(""), gbc);
-        
-        gbc.gridy++;
         add(regNr, gbc);
         
         gbc.gridy++;
@@ -106,6 +104,9 @@ public class NewCarInsurance extends CustomPanel implements View {
         
         gbc.gridy++;
         gbc.gridwidth = 1;
+        add(modell, gbc);
+        
+        gbc.gridy++;
         add(effekt, gbc);
         
         gbc.gridy++;
@@ -134,34 +135,14 @@ public class NewCarInsurance extends CustomPanel implements View {
     
     public void test() {
         
-        if(check == 0) {
+        if(!check) {
             bilEier.setEditable(true);
-            check=1;
-            
-            gbc.gridx = 0;
-            gbc.gridy = 2;
-            add(new CustomLabel("Tilknytning: "), gbc);
-
-            gbc.gridx = 1;
-            gbc.gridy = 2;
-            add(bilEierStatus, gbc);
-            repaint();
-            revalidate();
+            check = true;
         }
         else {
             bilEier.setEditable(false);
             bilEier.setText("Satt til valgt kunde");
-            check=0;
-            
-            gbc.gridx = 0;
-            gbc.gridy = 2;
-            add(new CustomLabel(""), gbc);
-            
-            gbc.gridx = 1;
-            gbc.gridy = 2;
-            add(new CustomLabel(""), gbc);
-            repaint();
-            revalidate();
+            check = false;
         }
     }
 
