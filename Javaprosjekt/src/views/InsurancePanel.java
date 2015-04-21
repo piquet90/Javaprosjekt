@@ -84,10 +84,6 @@ public class InsurancePanel extends CustomPanel implements View {
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(new CustomLabel("Default insurance field"));
-        
-        gbc.gridx = 1;
-        gbc.gridy = 1;
         add(date, gbc);
         
         gbc.gridy++;

@@ -9,7 +9,6 @@ package views;
      * @author Rudi Yu
      */
 
-
 import CustomSwing.CustomButton;
 import CustomSwing.CustomPanel;
 import DAO.Constants;
@@ -21,17 +20,13 @@ import java.awt.Container;
 
 public class MainView extends JFrame implements View{
     
-    
     private JScrollPane scroll;
     
     // instance variables
     MainController controller;
     CustomPanel activepanel, toppanel;
     CustomButton nybrukerpanel, nyforskerpanel, viewInsurance;
-    
-    
-    
-    
+
     public void initComponents()
     {    
         toppanel = new CustomPanel();

@@ -7,12 +7,12 @@ package views;
 
 import CustomSwing.CustomButton;
 import CustomSwing.CustomButton2;
-import CustomSwing.CustomComboBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import controllers.Controller;
 import controllers.NewCustomerController;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -25,13 +25,14 @@ import javax.swing.JComboBox;
 
 public class NewBoatInsurance extends CustomPanel implements View {
     
-    private CustomTextField baatEier, regNr, baattype, modell, lengde, regAar, motorType, effekt;
+    private CustomTextField baatEier, regNr, modell, lengde, regAar, motorType, effekt;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 endreEier;
-    private CustomComboBox type;
+    private JComboBox<String> type;
     private NewCustomerController controller;
     private boolean check = false;
+    private int n = 0;
     
     /**
      * Initializes the GUI components (cleaner constructor)
@@ -45,12 +46,11 @@ public class NewBoatInsurance extends CustomPanel implements View {
         baatEier.setEditable(false);
         baatEier.setText("Satt til valgt kunde");
         regNr = new CustomTextField(10);
-        baattype = new CustomTextField(21);
         modell = new CustomTextField(15);
-        lengde = new CustomTextField(10);
-        regAar = new CustomTextField(10);
-        motorType = new CustomTextField(15);
-        effekt = new CustomTextField(10);
+        regAar = new CustomTextField(5);
+        motorType = new CustomTextField(10);
+        effekt = new CustomTextField(5);
+        lengde = new CustomTextField(5);
         
         endreEier = new CustomButton2("Endre");
         
@@ -58,9 +58,12 @@ public class NewBoatInsurance extends CustomPanel implements View {
         
         submit = new CustomButton("Registrer");
         
-        String[] t = {"Velg type...", "Jolle", "Seilbåt", "Hamburger"};
+        String[] t = {"Velg type...", "Cabincruiser", "Daycruiser", "RIB", "Jolle","Landstedsbåt",
+                       "Seilbåt/Motorseiler", "Speedbåt", "Trebåt/snekke", "Vannscooter", "Yacht", "Yrkesbåt" };
         
-        type = new CustomComboBox(t);
+        type = new JComboBox<>(t);
+        type.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
+        type.addActionListener((e)-> n = type.getSelectedIndex());
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -86,6 +89,9 @@ public class NewBoatInsurance extends CustomPanel implements View {
         add(new CustomLabel("Modell: "), gbc);
         
         gbc.gridy++;
+        add(new CustomLabel("Reg. år: "), gbc);
+        
+        gbc.gridy++;
         add(new CustomLabel("Motortype: "), gbc);
         
         gbc.gridy++;
@@ -94,17 +100,9 @@ public class NewBoatInsurance extends CustomPanel implements View {
         gbc.gridy++;
         add(new CustomLabel("Lengde (i fot): "), gbc);
         
-        gbc.gridy++;
-        add(new CustomLabel("Reg. år: "), gbc);
         
-        gbc.gridy++;
-        add(new CustomLabel("Km per år: "), gbc);
   
         gbc.anchor = GridBagConstraints.LINE_START;    
-        
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        add(new CustomLabel("Opprette ny bilforsikring"));
         
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -114,15 +112,10 @@ public class NewBoatInsurance extends CustomPanel implements View {
         add(regNr, gbc);
         
         gbc.gridy++;
-        gbc.gridwidth = 2;
         add(type, gbc);
         
         gbc.gridy++;
-        gbc.gridwidth = 1;
         add(modell, gbc);
-        
-        gbc.gridy++;
-        add(lengde, gbc);
         
         gbc.gridy++;
         add(regAar, gbc);
@@ -134,16 +127,49 @@ public class NewBoatInsurance extends CustomPanel implements View {
         add(effekt, gbc);
         
         gbc.gridy++;
+        add(lengde, gbc);
+        
+        gbc.gridy++;
         add(submit, gbc);
         
         //Knapp som gjør eier-felt editable/uneditable
         gbc.gridx = 2;
         gbc.gridy = 1;
         add(endreEier, gbc);
-        
-        
-
     }
+
+    public String getBaatEier() {
+        return baatEier.getText();
+    }
+
+    public String getRegNr() {
+        return regNr.getText();
+    }
+
+    public String getModell() {
+        return modell.getText();
+    }
+
+    public String getLengde() {
+        return lengde.getText();
+    }
+
+    public String getRegAar() {
+        return regAar.getText();
+    }
+
+    public String getMotorType() {
+        return motorType.getText();
+    }
+
+    public String getEffekt() {
+        return effekt.getText();
+    }
+
+    public String getType() {
+        return type.getItemAt(n);
+    }
+    
     /**
      * NyBilforsikring constructor
      */

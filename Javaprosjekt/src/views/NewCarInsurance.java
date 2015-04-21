@@ -12,9 +12,11 @@ import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import controllers.Controller;
 import controllers.NewCustomerController;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -23,12 +25,14 @@ import java.awt.Insets;
 
 public class NewCarInsurance extends CustomPanel implements View {
     
-    private CustomTextField bilEier, regNr, biltype, modell, effekt, regAar, kmPerAar;
+    private CustomTextField bilEier, regNr, modell, effekt, regAar, kmPerAar;
+    private JComboBox<String> carType;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 endreEier;
     private NewCustomerController controller;
     private boolean check = false;
+    private int n = 0;
     
     /**
      * Initializes the GUI components (cleaner constructor)
@@ -42,14 +46,17 @@ public class NewCarInsurance extends CustomPanel implements View {
         bilEier.setEditable(false);
         bilEier.setText("Satt til valgt kunde");
         regNr = new CustomTextField(10);
-        biltype = new CustomTextField(21);
         modell = new CustomTextField(15);
         effekt = new CustomTextField(10);
         regAar = new CustomTextField(10);
         kmPerAar = new CustomTextField(10);
         
-        
-        
+        String[] t = {"Stasjonsvogn", "Kombi 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruksbil",
+                      "Coupe", "Kombi 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elbil"};
+        carType = new JComboBox<>(t);
+        carType.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
+        carType.addActionListener((e)-> n = carType.getSelectedIndex());
+
         endreEier = new CustomButton2("Endre");
         
         endreEier.addActionListener((e) -> test());
@@ -89,10 +96,6 @@ public class NewCarInsurance extends CustomPanel implements View {
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(new CustomLabel("Opprette ny bilforsikring"));
-        
-        gbc.gridx = 1;
-        gbc.gridy = 1;
         add(bilEier, gbc);
         
         gbc.gridy++;
@@ -100,7 +103,7 @@ public class NewCarInsurance extends CustomPanel implements View {
         
         gbc.gridy++;
         gbc.gridwidth = 2;
-        add(biltype, gbc);
+        add(carType, gbc);
         
         gbc.gridy++;
         gbc.gridwidth = 1;
@@ -126,6 +129,35 @@ public class NewCarInsurance extends CustomPanel implements View {
         
 
     }
+
+    public String getBilEier() {
+        return bilEier.getText();
+    }
+
+    public String getRegNr() {
+        return regNr.getText();
+    }
+
+    public String getModell() {
+        return modell.getText();
+    }
+
+    public String getEffekt() {
+        return effekt.getText();
+    }
+
+    public String getRegAar() {
+        return regAar.getText();
+    }
+
+    public String getKmPerAar() {
+        return kmPerAar.getText();
+    }
+
+    public String getCarType() {
+        return carType.getItemAt(n);
+    }
+    
     /**
      * NyBilforsikring constructor
      */
