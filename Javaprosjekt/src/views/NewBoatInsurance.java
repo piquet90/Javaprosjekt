@@ -24,13 +24,13 @@ import javax.swing.JComboBox;
  * @author Audun
  */
 
-public class NewCarInsurance extends CustomPanel implements View {
+public class NewBoatInsurance extends CustomPanel implements View {
     
-    private CustomTextField bilEier, regNr, modell, effekt, regAar, kmPerAar;
-    private JComboBox<String> carType;
+    private CustomTextField baatEier, regNr, modell, lengde, regAar, motorType, effekt;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 endreEier;
+    private JComboBox<String> type;
     private NewCustomerController controller;
     private boolean check = false;
     private int n = 0;
@@ -43,28 +43,29 @@ public class NewCarInsurance extends CustomPanel implements View {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
-        bilEier = new CustomTextField(17);
-        bilEier.setEditable(false);
-        bilEier.setText("Satt til valgt kunde");
+        baatEier = new CustomTextField(17);
+        baatEier.setEditable(false);
+        baatEier.setText("Satt til valgt kunde");
         regNr = new CustomTextField(10);
         modell = new CustomTextField(15);
-        effekt = new CustomTextField(10);
-        regAar = new CustomTextField(10);
-        kmPerAar = new CustomTextField(10);
+        regAar = new CustomTextField(5);
+        motorType = new CustomTextField(10);
+        effekt = new CustomTextField(5);
+        lengde = new CustomTextField(5);
         
-        String[] t = {"Velg type...", "Stasjonsvogn", "Kombi 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruksbil",
-                      "Coupe", "Kombi 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elbil"};
-        
-        carType = new JComboBox<>(t);
-        carType.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
-        carType.addActionListener((e)-> n = carType.getSelectedIndex());
-        carType.setBackground(new Color(250, 250, 250));
-
         endreEier = new CustomButton2("Endre");
         
-        endreEier.addActionListener((e) -> test());
+        endreEier.addActionListener((e) -> change());
         
         submit = new CustomButton("Registrer");
+        
+        String[] t = {"Velg type...", "Cabincruiser", "Daycruiser", "RIB", "Jolle","Landstedsbåt",
+                       "Seilbåt/Motorseiler", "Speedbåt", "Trebåt/snekke", "Vannscooter", "Yacht", "Yrkesbåt" };
+        
+        type = new JComboBox<>(t);
+        type.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
+        type.addActionListener((e)-> n = type.getSelectedIndex());
+        type.setBackground(new Color(250, 250, 250));
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -75,51 +76,60 @@ public class NewCarInsurance extends CustomPanel implements View {
         
         gbc.gridx = 0;
         gbc.gridy = 1;
-        add(new CustomLabel("Bileier: "), gbc);
+        add(new CustomLabel("Båteier: "), gbc);
+        
+        //gbc.gridy++;
+        //TODO add buttongroup (båt har / har ikke reg nr
         
         gbc.gridy++;
         add(new CustomLabel("Reg. nummer: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Biltype: "), gbc);
+        add(new CustomLabel("Båttype: "), gbc);
         
         gbc.gridy++;
         add(new CustomLabel("Modell: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Effekt (i hk): "), gbc);
-        
-        gbc.gridy++;
         add(new CustomLabel("Reg. år: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Km per år: "), gbc);
+        add(new CustomLabel("Motortype: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Effekt (i hk): "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Lengde (i fot): "), gbc);
+        
+        
   
         gbc.anchor = GridBagConstraints.LINE_START;    
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(bilEier, gbc);
+        add(baatEier, gbc);
         
         gbc.gridy++;
         add(regNr, gbc);
         
         gbc.gridy++;
-        gbc.gridwidth = 2;
-        add(carType, gbc);
+        add(type, gbc);
         
         gbc.gridy++;
-        gbc.gridwidth = 1;
         add(modell, gbc);
-        
-        gbc.gridy++;
-        add(effekt, gbc);
         
         gbc.gridy++;
         add(regAar, gbc);
         
         gbc.gridy++;
-        add(kmPerAar, gbc);
+        add(motorType, gbc);
+        
+        gbc.gridy++;
+        add(effekt, gbc);
+        
+        gbc.gridy++;
+        add(lengde, gbc);
         
         gbc.gridy++;
         add(submit, gbc);
@@ -128,13 +138,10 @@ public class NewCarInsurance extends CustomPanel implements View {
         gbc.gridx = 2;
         gbc.gridy = 1;
         add(endreEier, gbc);
-        
-        
-
     }
 
-    public String getBilEier() {
-        return bilEier.getText();
+    public String getBaatEier() {
+        return baatEier.getText();
     }
 
     public String getRegNr() {
@@ -145,38 +152,42 @@ public class NewCarInsurance extends CustomPanel implements View {
         return modell.getText();
     }
 
-    public String getEffekt() {
-        return effekt.getText();
+    public String getLengde() {
+        return lengde.getText();
     }
 
     public String getRegAar() {
         return regAar.getText();
     }
 
-    public String getKmPerAar() {
-        return kmPerAar.getText();
+    public String getMotorType() {
+        return motorType.getText();
     }
 
-    public String getCarType() {
-        return carType.getItemAt(n);
+    public String getEffekt() {
+        return effekt.getText();
+    }
+
+    public String getType() {
+        return type.getItemAt(n);
     }
     
     /**
      * NyBilforsikring constructor
      */
-    public NewCarInsurance() {
+    public NewBoatInsurance() {
         
     }
     
-    public void test() {
+    public void change() {
         
         if(!check) {
-            bilEier.setEditable(true);
+            baatEier.setEditable(true);
             check = true;
         }
         else {
-            bilEier.setEditable(false);
-            bilEier.setText("Satt til valgt kunde");
+            baatEier.setEditable(false);
+            baatEier.setText("Satt til valgt kunde");
             check = false;
         }
     }
@@ -186,3 +197,15 @@ public class NewCarInsurance extends CustomPanel implements View {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+
+
+
+/* For båtforsikringer skal det i tillegg registreres
+
+    eier (kan være forskjellig fra forsikringskunde)
+    registreringsnummer (hvis det foreligger)
+    båttype og modell
+    lengde i fot
+    årsmodell
+    motortype og motorstyrke HK
+    annet?*/

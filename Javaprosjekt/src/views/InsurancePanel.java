@@ -5,10 +5,9 @@
  */
 package views;
 
-import CustomSwing.CustomButton;
-import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
+import CustomSwing.CustomTextArea;
 import CustomSwing.CustomTextField;
 import controllers.Controller;
 import controllers.NewCustomerController;
@@ -18,35 +17,33 @@ import java.awt.Insets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.JTextArea;
 
 /**
  *
  * @author Audun
  */
 
-public class InsurancePanel extends CustomPanel implements View{
+public class InsurancePanel extends CustomPanel implements View {
     
     private CustomTextField date, customer, price, coverage, other;
-    private JTextArea conditions;
+    private CustomTextArea conditions;
     private GridBagConstraints gbc;
     private NewCustomerController controller;
-    private int check = 0;
     
     /**
-     * Initializes the GUI components (cleaner constructor)
+     * Initializes the GUI components
      */
-    public void initComponents()
-    {
+
+    public void initComponents() {
         date = new CustomTextField(10);
         date.setEditable(false);
-        customer = new CustomTextField(15);
+        customer = new CustomTextField(20);
         customer.setEditable(false);
         customer.setText("Satt til valgt kunde");
         price = new CustomTextField(10);
         coverage = new CustomTextField(10);
-        conditions = new JTextArea(20, 30);
-        other = new CustomTextField(15);
+        conditions = new CustomTextArea(10, 20);
+        other = new CustomTextField(20);
         
         //få dato fra controller?
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -87,10 +84,6 @@ public class InsurancePanel extends CustomPanel implements View{
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(new CustomLabel("Default insurance field"));
-        
-        gbc.gridx = 1;
-        gbc.gridy = 1;
         add(date, gbc);
         
         gbc.gridy++;
@@ -108,11 +101,31 @@ public class InsurancePanel extends CustomPanel implements View{
         gbc.gridy++;
         add(other, gbc);
     }
+    
+
+    public String getCustomer() {
+        return customer.getText();
+    }
+
+    public String getPrice() {
+        return price.getText();
+    }
+
+    public String getCoverage() {
+        return coverage.getText();
+    }
+
+    public String getOther() {
+        return other.getText();
+    }
+
+    public String getConditions() {
+        return conditions.getText();
+    }
     /**
      * NyBilforsikring constructor
      */
-    public InsurancePanel()
-    {
+    public InsurancePanel() {
         
     }
 

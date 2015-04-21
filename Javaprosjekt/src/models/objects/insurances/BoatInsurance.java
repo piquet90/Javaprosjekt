@@ -7,14 +7,14 @@ package models.objects.insurances;
  */
 
 
-import models.objects.insurances.ViechleInsurance;
+import models.objects.insurances.VehicleInsurance;
 import java.util.Calendar;
 
 /**
  *
  * @author rudiwyu
  */
-public class BoatInsurance extends ViechleInsurance{
+public class BoatInsurance extends VehicleInsurance{
 
     /**
      * TODO: Comment and refactor

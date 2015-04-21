@@ -12,7 +12,7 @@ import java.util.Calendar;
  *
  * @author rudiwyu
  */
-public class ViechleInsurance extends Insurance{
+public class VehicleInsurance extends Insurance{
     
     private String viechleOwner;
     private String registrationNumber;
@@ -33,7 +33,7 @@ public class ViechleInsurance extends Insurance{
      * @param power
      * @param model
      */
-    public ViechleInsurance(int price, double coverage, String conditions, String other, 
+    public VehicleInsurance(int price, double coverage, String conditions, String other, 
             Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power)
     {
         super(price, coverage, conditions, other, dateofcreation);
