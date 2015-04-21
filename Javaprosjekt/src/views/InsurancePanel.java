@@ -36,8 +36,7 @@ public class InsurancePanel extends CustomPanel implements View{
     /**
      * Initializes the GUI components (cleaner constructor)
      */
-    public void initComponents()
-    {
+    public void initComponents() {
         date = new CustomTextField(10);
         date.setEditable(false);
         customer = new CustomTextField(15);
