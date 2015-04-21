@@ -34,6 +34,8 @@ public class NewInsurancePanel extends CustomPanel implements View{
     private NewBoatInsurance boat;
     private InsurancePanel ip;
     private NewHouseInsurance house;
+    private NewLeisureHouseInsurance leisureHouse;
+    private NewTravelInsurance travel;
     
     private NewInsuranceController controller;
     
@@ -53,10 +55,15 @@ public class NewInsurancePanel extends CustomPanel implements View{
         
         house = new NewHouseInsurance();
         house.initComponents();
+        
+        leisureHouse = new NewLeisureHouseInsurance();
+        leisureHouse.initComponents();
+        
+        travel = new NewTravelInsurance();
 
         
         
-        String[] t = {"Velg type forsikring...", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring"}; 
+        String[] t = {"Velg type forsikring...", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring", "Fritidsboligforsikring", "Reiseforsikring"}; 
         insType = new JComboBox<>(t);
         insType.setFont(new Font("DejaVu Sans", Font.BOLD, 16));
         insType.setBackground(new Color(250, 250, 250));
@@ -70,6 +77,8 @@ public class NewInsurancePanel extends CustomPanel implements View{
         container.add(bil, "1");
         container.add(boat, "2");
         container.add(house, "3");
+        container.add(leisureHouse, "4");
+        container.add(travel, "5");
         cl.show(container, "0");
         
 

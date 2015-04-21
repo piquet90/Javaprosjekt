@@ -6,7 +6,6 @@
 package views;
 
 import CustomSwing.CustomButton;
-import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
@@ -14,28 +13,26 @@ import controllers.NewCustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.JCheckBox;
 
 /**
  *
  * @author Audun
  */
 
-public class NewHouseInsurance extends CustomPanel {
+public class NewLeisureHouseInsurance extends CustomPanel {
     
     private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents;
     private GridBagConstraints gbc;
     private CustomButton submit;
-    private CustomButton2 changeAdress;
+    private JCheckBox lease;
     private NewCustomerController controller;
-    private boolean check = false;
     
     public void initComponents() {
         
         setLayout(new GridBagLayout());
         
-        adress = new CustomTextField(17);
-        adress.setEditable(false);
-        adress.setText("Satt til kundens adresse");
+        adress = new CustomTextField(20);
         yearBuilt = new CustomTextField(5);
         type = new CustomTextField(15);
         material = new CustomTextField(10);
@@ -44,9 +41,10 @@ public class NewHouseInsurance extends CustomPanel {
         amountBuilding = new CustomTextField(5);
         amountContents = new CustomTextField(5);
         
+        lease = new JCheckBox();
+        
         submit = new CustomButton("Registrer");
-        changeAdress = new CustomButton2("Endre");
-        changeAdress.addActionListener((e) -> change());
+        submit.addActionListener((e) -> System.out.println("s"));
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -75,10 +73,13 @@ public class NewHouseInsurance extends CustomPanel {
         add(new CustomLabel("Størrelse: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("beløp, bygg: "), gbc);
+        add(new CustomLabel("Beløp, bygg: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("beløp, innbo: "), gbc);
+        add(new CustomLabel("Beløp, innbo: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Utleie: "), gbc);
         
 
         gbc.anchor = GridBagConstraints.LINE_START;    
@@ -109,24 +110,12 @@ public class NewHouseInsurance extends CustomPanel {
         add(amountContents, gbc);
         
         gbc.gridy++;
+        add(lease, gbc);
+        
+        gbc.gridy++;
         add(submit, gbc);
         
-        //Knapp som gjør eier-felt editable/uneditable
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        add(changeAdress, gbc);
     }
-
-    
-    
-    
-    
-    public NewHouseInsurance() {
-        
-    }
-    
-    
-    
 
     public String getAdress() {
         return adress.getText();
@@ -151,26 +140,18 @@ public class NewHouseInsurance extends CustomPanel {
     public String getHouseSize() {
         return houseSize.getText();
     }
-    
-    public String getAmountBuilding() {
-        return amountBuilding.getText();
-    }
 
     public String getAmountContents() {
         return amountContents.getText();
     }
-    
-    
-    public void change() {
-        if(!check) {
-            adress.setEditable(true);
-            check = true;
-        }
-        else {
-            adress.setEditable(false);
-            adress.setText("Satt til kundens adresse");
-            check = false;
-        }
+
+    public boolean getLease() {
+        return lease.isSelected();
     }
     
+    
+    public NewLeisureHouseInsurance() {
+        
+    }
+ 
 }

@@ -101,6 +101,27 @@ public class InsurancePanel extends CustomPanel implements View {
         gbc.gridy++;
         add(other, gbc);
     }
+    
+
+    public String getCustomer() {
+        return customer.getText();
+    }
+
+    public String getPrice() {
+        return price.getText();
+    }
+
+    public String getCoverage() {
+        return coverage.getText();
+    }
+
+    public String getOther() {
+        return other.getText();
+    }
+
+    public String getConditions() {
+        return conditions.getText();
+    }
     /**
      * NyBilforsikring constructor
      */

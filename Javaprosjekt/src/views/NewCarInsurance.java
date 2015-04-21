@@ -43,7 +43,7 @@ public class NewCarInsurance extends CustomPanel implements View {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
-        bilEier = new CustomTextField(15);
+        bilEier = new CustomTextField(17);
         bilEier.setEditable(false);
         bilEier.setText("Satt til valgt kunde");
         regNr = new CustomTextField(10);

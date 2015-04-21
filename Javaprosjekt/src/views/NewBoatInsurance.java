@@ -43,7 +43,7 @@ public class NewBoatInsurance extends CustomPanel implements View {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
-        baatEier = new CustomTextField(15);
+        baatEier = new CustomTextField(17);
         baatEier.setEditable(false);
         baatEier.setText("Satt til valgt kunde");
         regNr = new CustomTextField(10);
