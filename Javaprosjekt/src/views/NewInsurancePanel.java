@@ -5,29 +5,28 @@
  */
 package views;
 
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 import javax.swing.JFileChooser;
 import CustomSwing.*;
-//import controllers.Controller;
-//import controllers.NewInsuranceController;
+import controllers.Controller;
+import controllers.NewInsuranceController;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import CustomSwing.*;
-import controllers.Controller;
-import controllers.NewInsuranceController;
 /**
  *
  * @author Audun
  */
 
-public class NyForsikringPanel extends CustomPanel implements View{
-
+public class NewInsurancePanel extends CustomPanel implements View{
     
     private CustomButton submit, betingelser;
     private JFileChooser filvelger;
@@ -35,48 +34,34 @@ public class NyForsikringPanel extends CustomPanel implements View{
     private CardLayout cl;
     private JComboBox<String> insType;
     
+    private NewCarInsurance bil;
     
     
-
+    //midlertidig
+    private JPanel container, panelFirst, panelSecond, panelBlank;
+    
     private NewInsuranceController controller;
     
     public void initComponents()
     {
-        // this.setLayout(new GridBagLayout());
-        
-        
-        // gbc = new GridBagConstraints();
-        // gbc.anchor = GridBagConstraints.LINE_START; 
-        /* 
-        kundeNr = new CustomTextField(10);
-        premie = new CustomTextField(10);
-        belop = new CustomTextField(5);
+        bil = new NewCarInsurance();
         
         filvelger = new JFileChooser();
         
         betingelser = new CustomButton("Betingelser");
         betingelser.addActionListener((e) ->
         {
-
-                int returnVal = filvelger.showOpenDialog(null);
-                if(returnVal == JFileChooser.APPROVE_OPTION)
-                {
-                    String path = filvelger.getSelectedFile().getAbsolutePath();
-                    filUrl = (path);
-                }});
+            int returnVal = filvelger.showOpenDialog(null);
+            if(returnVal == JFileChooser.APPROVE_OPTION)
+            {
+                String path = filvelger.getSelectedFile().getAbsolutePath();
+                filUrl = (path);
+            }});
         
-        submit = new JButton("Submit");
-        submit.addActionListener((e) -> System.out.println("trykk"));
-        
-        add(kundeNr);
-        add(premie);
-        add(belop);
-        
-        add(betingelser);
         setLayout(new BorderLayout());
         setSize(getPreferredSize());
         
-        initComponents();
+        
         cl = new CardLayout();
         
         String[] t = {"Velg ny forsikring...", "Bilforsikring", "Husforsikring"}; 
@@ -111,10 +96,9 @@ public class NyForsikringPanel extends CustomPanel implements View{
                 String s = String.valueOf(n);
                 cl.show(container, s);
             }});
-        */
     }
     
-    public NyForsikringPanel()
+    public NewInsurancePanel()
     {
         
     }
@@ -127,6 +111,5 @@ public class NyForsikringPanel extends CustomPanel implements View{
             return true;
         }
         return false;
-
     }
 }

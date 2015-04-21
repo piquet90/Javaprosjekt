@@ -9,6 +9,7 @@ import models.objects.insurances.Insurance;
 import java.util.Date;
 import java.util.HashSet;
 import DAO.Constants;
+import java.util.Calendar;
 
 /**
  *
@@ -21,15 +22,18 @@ public class Customer {
     
     
     // Instance variables
-    private Date registered;
+    private Calendar registered;
     
     private String name;
     private String addressStreet;
-    private String addressLetter;
     private String city;
     
-    private int addressNumber;
     private int areacode;
+
+
+
+
+    private int id;
     
     private HashSet<Insurance> insurances;
     
@@ -38,33 +42,31 @@ public class Customer {
      * @param registered
      * @param name
      * @param addressStreet
-     * @param addressLetter
      * @param city
-     * @param addressNumber
      * @param areacode
      */
-    public Customer(Date registered, String name, String addressStreet, String addressLetter, String city, int addressNumber, int areacode) {
-        this.registered = registered;
+    public Customer(String name, String addressStreet, String city, int areacode) {
+        
+        this.registered =  Calendar.getInstance();
         this.name = name;
         this.addressStreet = addressStreet;
-        this.addressLetter = addressLetter;
         this.city = city;
-        this.addressNumber = addressNumber;
         this.areacode = areacode;
+        this.id = next++;
     }
     
 
     /**
      * @return the registered
      */
-    public Date getRegistered() {
+    public Calendar getRegistered() {
         return registered;
     }
 
     /**
      * @param registered the registered to set
      */
-    public void setRegistered(Date registered) {
+    public void setRegistered(Calendar registered) {
         this.registered = registered;
     }
 
@@ -96,19 +98,7 @@ public class Customer {
         this.addressStreet = addressStreet;
     }
 
-    /**
-     * @return the addressLetter
-     */
-    public String getAddressLetter() {
-        return addressLetter;
-    }
 
-    /**
-     * @param addressLetter the addressLetter to set
-     */
-    public void setAddressLetter(String addressLetter) {
-        this.addressLetter = addressLetter;
-    }
 
     /**
      * @return the city
@@ -124,19 +114,6 @@ public class Customer {
         this.city = city;
     }
 
-    /**
-     * @return the addressNumber
-     */
-    public int getAddressNumber() {
-        return addressNumber;
-    }
-
-    /**
-     * @param addressNumber the addressNumber to set
-     */
-    public void setAddressNumber(int addressNumber) {
-        this.addressNumber = addressNumber;
-    }
 
     /**
      * @return the areacode
@@ -151,6 +128,14 @@ public class Customer {
     public void setAreacode(int areacode) {
         this.areacode = areacode;
     }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+    
     
     
 }
