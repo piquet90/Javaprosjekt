@@ -14,8 +14,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 
 /**
@@ -40,8 +38,7 @@ public class NewInsurancePanel extends CustomPanel implements View{
     
     private NewInsuranceController controller;
     
-    public void initComponents()
-    {
+    public void initComponents() {
         setLayout(new BorderLayout());
         
         ip = new InsurancePanel();
@@ -91,8 +88,7 @@ public class NewInsurancePanel extends CustomPanel implements View{
                 
     }
     
-    public NewInsurancePanel()
-    {
+    public NewInsurancePanel() {
         
     }
 
