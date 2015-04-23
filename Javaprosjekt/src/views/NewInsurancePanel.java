@@ -10,7 +10,6 @@ import controllers.Controller;
 import controllers.NewInsuranceController;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -32,7 +31,7 @@ public class NewInsurancePanel extends CustomPanel implements View{
     
     private NewCarInsurance bil;
     private NewBoatInsurance boat;
-    private InsurancePanel ip;
+    private NewDefaultInsurancePanel ip;
     private NewHouseInsurance house;
     private NewLeisureHouseInsurance leisureHouse;
     private NewTravelInsurance travel;
@@ -44,7 +43,7 @@ public class NewInsurancePanel extends CustomPanel implements View{
         setLayout(new GridBagLayout());
         cl = new CardLayout();
         
-        ip = new InsurancePanel();
+        ip = new NewDefaultInsurancePanel();
         ip.initComponents();
         
         bil = new NewCarInsurance();

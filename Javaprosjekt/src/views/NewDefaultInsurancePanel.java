@@ -23,7 +23,7 @@ import java.util.Calendar;
  * @author Audun
  */
 
-public class InsurancePanel extends CustomPanel implements View {
+public class NewDefaultInsurancePanel extends CustomPanel implements View {
     
     private CustomTextField date, customer, price, coverage, other;
     private CustomTextArea conditions;
@@ -125,7 +125,7 @@ public class InsurancePanel extends CustomPanel implements View {
     /**
      * NyBilforsikring constructor
      */
-    public InsurancePanel() {
+    public NewDefaultInsurancePanel() {
         
     }
 

@@ -48,7 +48,7 @@ public class NewTravelInsurance extends CustomPanel {
         oceania = new JCheckBox("Oseania");
         
         submit = new CustomButton("Registrer");
-        
+        submit.addActionListener((e)-> System.out.println(getArea()));
         
         changeTaker = new CustomButton2("Endre");
         changeTaker.setToolTipText("Endre forsikringstaker");
@@ -120,6 +120,8 @@ public class NewTravelInsurance extends CustomPanel {
     }
 
     public String getArea() {
+        area = "";
+        
         if(asia.isSelected())
             area += "Asia";
         if(africa.isSelected())
