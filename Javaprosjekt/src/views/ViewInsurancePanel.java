@@ -6,9 +6,11 @@
 package views;
 
 import CustomSwing.CustomPanel;
+import CustomSwing.CustomUserTable;
 import controllers.Controller;
 import controllers.ViewInsuranceController;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 
 /**
  *
@@ -21,9 +23,11 @@ public class ViewInsurancePanel extends CustomPanel implements View{
     
     @Override
     public void initComponents() {
-        System.out.println("works");
-        JLabel label = new JLabel("works");
-        this.add(label);
+        
+        CustomUserTable model = new CustomUserTable();
+        JTable table = new JTable(model);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        add(table);
     }
     
     @Override

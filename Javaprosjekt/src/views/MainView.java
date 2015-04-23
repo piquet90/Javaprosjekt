@@ -51,6 +51,8 @@ public class MainView extends JFrame implements View{
        
        activepanel = new CustomPanel();
        scroll = new JScrollPane(activepanel);
+       
+       scroll.getVerticalScrollBar().setUnitIncrement(Constants.SCROLL_SPEED);
        c.add(toppanel, BorderLayout.NORTH);
        c.add(scroll, BorderLayout.CENTER);
        c.setVisible(true);
