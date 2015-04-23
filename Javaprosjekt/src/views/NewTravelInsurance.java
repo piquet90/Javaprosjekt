@@ -7,25 +7,22 @@ package views;
 
 import CustomSwing.CustomButton;
 import CustomSwing.CustomButton2;
+import CustomSwing.CustomCheckBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JCheckBox;
 
 /**
  *
  * @author Audun
  */
-
-
-
 public class NewTravelInsurance extends CustomPanel {
     
     private CustomTextField insTaker, amount;
-    private JCheckBox asia, africa, europe, nAmerica, sAmerica, oceania;
+    private CustomCheckBox asia, africa, europe, nAmerica, sAmerica, oceania;
     private CustomButton submit;
     private CustomButton2 changeTaker;
     private GridBagConstraints g;
@@ -39,12 +36,12 @@ public class NewTravelInsurance extends CustomPanel {
         insTaker.setText("Satt til kunde");
         
         amount = new CustomTextField(10);
-        asia = new JCheckBox("Asia");
-        africa = new JCheckBox("Afrika");
-        europe = new JCheckBox("Europa");
-        nAmerica = new JCheckBox("Nord-Amerika");
-        sAmerica = new JCheckBox("Sør-Amerika");
-        oceania = new JCheckBox("Oseania");
+        asia = new CustomCheckBox("Asia");
+        africa = new CustomCheckBox("Afrika");
+        europe = new CustomCheckBox("Europa");
+        nAmerica = new CustomCheckBox("Nord-Amerika");
+        sAmerica = new CustomCheckBox("Sør-Amerika");
+        oceania = new CustomCheckBox("Oseania");
         
         submit = new CustomButton("Registrer");
         submit.addActionListener((e)->System.out.println(getArea()));
