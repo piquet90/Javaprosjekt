@@ -26,7 +26,6 @@ public class NewHouseInsurance extends CustomPanel {
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 changeAdress;
-    private CustomLabel amountB, amountC;
     private NewCustomerController controller;
     private boolean check = false;
     
@@ -43,14 +42,10 @@ public class NewHouseInsurance extends CustomPanel {
         standard = new CustomTextField(10);
         houseSize = new CustomTextField(5);
         amountBuilding = new CustomTextField(5);
+        amountBuilding.setToolTipText("Forsikringsbeløp til bygg og tomt");
         amountContents = new CustomTextField(5);
-        
-        amountB = new CustomLabel("F.beløp, bygg(?)");
-        amountB.setToolTipText("Forsirkingsbeløp til bygg og tomt");
-        
-        amountC = new CustomLabel("F.beløp, innbo(?)");
-        amountC.setToolTipText("Forsirkingsbeløp til husets innbo");
-        
+        amountContents.setToolTipText("Forsikringsbeløp til husets innbo");
+
         submit = new CustomButton("Registrer");
         changeAdress = new CustomButton2("Endre");
         changeAdress.addActionListener((e) -> change());
@@ -82,10 +77,10 @@ public class NewHouseInsurance extends CustomPanel {
         add(new CustomLabel("Størrelse: "), gbc);
         
         gbc.gridy++;
-        add(amountB, gbc);
+        add(new CustomLabel("Beløp, bygg: "), gbc);
         
         gbc.gridy++;
-        add(amountC, gbc);
+        add(new CustomLabel("Beløp, innbo: "), gbc);
         
 
         gbc.anchor = GridBagConstraints.LINE_START;    

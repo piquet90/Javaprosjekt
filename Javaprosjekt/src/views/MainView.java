@@ -16,6 +16,7 @@ import controllers.Controller;
 import controllers.MainController;
 import javax.swing.*;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 
 public class MainView extends JFrame implements View{
@@ -51,6 +52,7 @@ public class MainView extends JFrame implements View{
        
        activepanel = new CustomPanel();
        scroll = new JScrollPane(activepanel);
+       scroll.setBorder(BorderFactory.createSoftBevelBorder(1, Color.lightGray, Color.yellow));
        
        scroll.getVerticalScrollBar().setUnitIncrement(Constants.SCROLL_SPEED);
        c.add(toppanel, BorderLayout.NORTH);

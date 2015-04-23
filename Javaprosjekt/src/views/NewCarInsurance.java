@@ -46,14 +46,14 @@ public class NewCarInsurance extends CustomPanel implements View {
         bilEier = new CustomTextField(17);
         bilEier.setEditable(false);
         bilEier.setText("Satt til valgt kunde");
-        regNr = new CustomTextField(10);
-        modell = new CustomTextField(15);
-        effekt = new CustomTextField(10);
-        regAar = new CustomTextField(10);
-        kmPerAar = new CustomTextField(10);
+        regNr = new CustomTextField(9);
+        modell = new CustomTextField(17);
+        effekt = new CustomTextField(6);
+        regAar = new CustomTextField(6);
+        kmPerAar = new CustomTextField(9);
         
-        String[] t = {"Velg type...", "Stasjonsvogn", "Kombi 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruksbil",
-                      "Coupe", "Kombi 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elbil"};
+        String[] t = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
+                      "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
         
         carType = new JComboBox<>(t);
         carType.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));

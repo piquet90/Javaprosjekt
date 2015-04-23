@@ -17,7 +17,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JOptionPane;
 
-public class NewUserPanel extends CustomPanel implements View{
+public class NewCustomerPanel extends CustomPanel implements View{
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private GridBagConstraints gbc;
@@ -68,10 +68,12 @@ public class NewUserPanel extends CustomPanel implements View{
         
         gbc.gridx = 1;
         gbc.gridy = 1;
+        gbc.insets = new Insets(15, 0, 15, 5);
         add(new CustomLabelHeader("Registrer ny kunde"));
         
         gbc.gridx = 1;
         gbc.gridy = 1;
+        gbc.insets = new Insets(15, 0, 0, 5);
         add(fNavn, gbc);
         
         gbc.gridy++;
@@ -121,7 +123,7 @@ public class NewUserPanel extends CustomPanel implements View{
     /**
      * NyBrukerPanel constructor
      */
-    public NewUserPanel()
+    public NewCustomerPanel()
     {
         
     }

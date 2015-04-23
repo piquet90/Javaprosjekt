@@ -32,14 +32,14 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         
         setLayout(new GridBagLayout());
         
-        adress = new CustomTextField(20);
+        adress = new CustomTextField(15);
         yearBuilt = new CustomTextField(5);
         type = new CustomTextField(15);
         material = new CustomTextField(10);
         standard = new CustomTextField(10);
-        houseSize = new CustomTextField(5);
-        amountBuilding = new CustomTextField(5);
-        amountContents = new CustomTextField(5);
+        houseSize = new CustomTextField(4);
+        amountBuilding = new CustomTextField(6);
+        amountContents = new CustomTextField(6);
         
         lease = new CustomCheckBox("");
         

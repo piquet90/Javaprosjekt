@@ -57,7 +57,7 @@ public class MainController extends Controller{
     // under-controller TODO: write more meaningful comments
     public void nybrukerpanel()
     {
-        View newview = new NewUserPanel();
+        View newview = new NewCustomerPanel();
         NewCustomerController newcontroller = new NewCustomerController(r, newview);
         
         

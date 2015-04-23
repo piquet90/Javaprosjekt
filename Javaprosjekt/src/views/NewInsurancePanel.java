@@ -10,6 +10,7 @@ import controllers.Controller;
 import controllers.NewInsuranceController;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -31,7 +32,7 @@ public class NewInsurancePanel extends CustomPanel implements View {
     
     private NewCarInsurance bil;
     private NewBoatInsurance boat;
-    private NewDefaultInsurancePanel ip;
+    private NewDefaultInsurancePanel defaultPanel;
     private NewHouseInsurance house;
     private NewLeisureHouseInsurance leisureHouse;
     private NewTravelInsurance travel;
@@ -41,10 +42,11 @@ public class NewInsurancePanel extends CustomPanel implements View {
     public void initComponents() {
         
         setLayout(new GridBagLayout());
+        
         cl = new CardLayout();
         
-        ip = new NewDefaultInsurancePanel();
-        ip.initComponents();
+        defaultPanel = new NewDefaultInsurancePanel();
+        defaultPanel.initComponents();
         
         bil = new NewCarInsurance();
         bil.initComponents();
@@ -77,39 +79,51 @@ public class NewInsurancePanel extends CustomPanel implements View {
         container.add(leisureHouse, "4");
         container.add(travel, "5");
         
-        //Startpanel 0 = panelBlank
+        //Startpanel = 0(panelBlank)
         cl.show(container, "0");
         
+        
+        //GridBagConstraints init
         g = new GridBagConstraints();
+        g.anchor = GridBagConstraints.LINE_START;
         g.insets = new Insets(15, 0, 0, 5);
         g.ipadx = 2;
         g.ipady = 5;
         
-        g.anchor = GridBagConstraints.LINE_START;
-        
+        //Components added to window
         g.gridx = 0;
         g.gridy = 0;
         g.weighty = 0.5;
+        g.gridwidth = 2;
         add(new CustomLabelHeader("Opprette ny forsikring"), g);
         
         g.gridy++;
-        g.gridwidth = 2;
-        add(ip, g);
+        g.weighty = 1;
+        add(defaultPanel, g);
         
-        g.gridy++;
+        ////////////////////
+        
+        g.anchor = GridBagConstraints.LINE_END;
+        g.insets = new Insets(15, 70, 0, 5);
+        
+        g.gridx = 3;
+        g.gridy = 0;
+        g.weighty = 0.5;
         g.gridwidth = 1;
-        add(new CustomLabel("Forsikringstype: "), g);
+        add(insType, g);
         
+        g.gridx = 2;
         g.gridy++;
         g.gridwidth = 2;
+        g.weighty = 1;
         add(container, g);
         
-        g.gridx = 1;
+        /*g.gridx = 1;
         g.gridy = 2;
         g.ipadx = 5;
         g.ipady = 10;
         g.gridwidth = 1;
-        add(insType, g);
+        add(insType, g);*/
                 
         insType.addActionListener((e)->{
         int n = insType.getSelectedIndex();
@@ -127,6 +141,7 @@ public class NewInsurancePanel extends CustomPanel implements View {
         return insuranceType;
     }
     
+    //testmetode
     public String getTravelInsuranceArea()
     {
         return travel.getArea();

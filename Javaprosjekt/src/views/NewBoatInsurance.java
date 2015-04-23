@@ -46,12 +46,12 @@ public class NewBoatInsurance extends CustomPanel implements View {
         baatEier = new CustomTextField(17);
         baatEier.setEditable(false);
         baatEier.setText("Satt til valgt kunde");
-        regNr = new CustomTextField(10);
-        modell = new CustomTextField(15);
-        regAar = new CustomTextField(5);
+        regNr = new CustomTextField(9);
+        modell = new CustomTextField(17);
+        regAar = new CustomTextField(6);
         motorType = new CustomTextField(10);
-        effekt = new CustomTextField(5);
-        lengde = new CustomTextField(5);
+        effekt = new CustomTextField(6);
+        lengde = new CustomTextField(6);
         
         endreEier = new CustomButton2("Endre");
         
@@ -59,8 +59,8 @@ public class NewBoatInsurance extends CustomPanel implements View {
         
         submit = new CustomButton("Registrer");
         
-        String[] t = {"Velg type...", "Cabincruiser", "Daycruiser", "RIB", "Jolle","Landstedsbåt",
-                       "Seilbåt/Motorseiler", "Speedbåt", "Trebåt/snekke", "Vannscooter", "Yacht", "Yrkesbåt" };
+        String[] t = {"Velg type...", "Cabincruiser", "Daycruiser", "RIB", "Jolle","Landstedsbåt ",
+                       "Seilbåt", "Motorseiler", "Speedbåt", "Trebåt", "Vannscooter", "Yacht", "Yrkesbåt" };
         
         type = new JComboBox<>(t);
         type.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));

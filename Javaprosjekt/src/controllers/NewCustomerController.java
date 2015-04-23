@@ -8,7 +8,7 @@ package controllers;
 import DAO.*;
 import models.CustomerModel;
 import models.objects.Customer;
-import views.NewUserPanel;
+import views.NewCustomerPanel;
 import views.View;
 
 /**
@@ -18,14 +18,14 @@ import views.View;
 public class NewCustomerController extends Controller{
     
     Registries dataAccessObject;
-    NewUserPanel view;
+    NewCustomerPanel view;
     
     
     
     public NewCustomerController(Registries r, View v)
     {
         this.dataAccessObject = r;
-        this.view = (NewUserPanel) v;
+        this.view = (NewCustomerPanel) v;
         this.view.addController(this);
         this.view.initComponents();
         

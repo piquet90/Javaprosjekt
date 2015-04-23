@@ -75,7 +75,7 @@ public class CustomButton extends JButton {
         }
         if(getModel().isPressed())
         {
-            setBackground(new Color(250, 250, 250)); //funker ikke?
+            setBackground(new Color(115, 175, 220));
             setForeground(new Color(50, 90, 100));
         }
     }
