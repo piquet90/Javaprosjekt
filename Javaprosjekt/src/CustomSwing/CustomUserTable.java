@@ -13,7 +13,6 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CustomUserTable extends AbstractTableModel{
     
-    
     private String[] kolonnenavn = 
     {
         "head1", "head2", "head3"

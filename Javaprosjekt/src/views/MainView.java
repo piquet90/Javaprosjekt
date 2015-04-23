@@ -44,8 +44,8 @@ public class MainView extends JFrame implements View{
         viewInsurance.addActionListener((e)->{ controller.viewInsurancePanel();});
         
         
-       Container c = getContentPane();
-       c.setLayout(new BorderLayout());
+        Container c = getContentPane();
+        c.setLayout(new BorderLayout());
        
      
        

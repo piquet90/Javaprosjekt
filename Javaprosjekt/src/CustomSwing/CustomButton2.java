@@ -11,6 +11,7 @@ package CustomSwing;
  */
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -27,7 +28,10 @@ public class CustomButton2 extends CustomButton {
     public CustomButton2(String tekst)
     {
         super(tekst);
-        setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
+        Font f = new Font("Arial", Font.PLAIN, 12);
+        setPreferredSize(new Dimension(super.getStringWidth(f, tekst), 22));
+        
+        setFont(f);
     }
     
     /**

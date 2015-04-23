@@ -47,7 +47,6 @@ public class InsurancePanel extends CustomPanel implements View {
         other = new CustomTextField(20);
         
         conditions = new CustomTextArea(10, 20);
-        
         cScroll = new JScrollPane(conditions);
 
         //få dato fra controller?

@@ -60,8 +60,6 @@ public class NewInsurancePanel extends CustomPanel implements View {
         
         travel = new NewTravelInsurance();
 
-        
-        
         String[] t = {"Velg type forsikring...", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring", "Fritidsboligforsikring", "Reiseforsikring"}; 
         insType = new JComboBox<>(t);
         insType.setFont(new Font("DejaVu Sans", Font.BOLD, 16));
