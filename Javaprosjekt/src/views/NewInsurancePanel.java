@@ -10,7 +10,6 @@ import controllers.Controller;
 import controllers.NewInsuranceController;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,7 +21,7 @@ import javax.swing.JComboBox;
  * @author Audun
  */
 
-public class NewInsurancePanel extends CustomPanel implements View{
+public class NewInsurancePanel extends CustomPanel implements View {
     
     private CardLayout cl;
     private JComboBox<String> insType;
@@ -79,10 +78,10 @@ public class NewInsurancePanel extends CustomPanel implements View{
         container.add(house, "3");
         container.add(leisureHouse, "4");
         container.add(travel, "5");
+        
+        //Startpanel 0 = panelBlank
         cl.show(container, "0");
         
-
-        //add(new CustomLabel("Opprett forsikring"), BorderLayout.PAGE_START);
         g = new GridBagConstraints();
         g.insets = new Insets(15, 0, 0, 5);
         g.ipadx = 2;
@@ -109,7 +108,6 @@ public class NewInsurancePanel extends CustomPanel implements View{
         
         g.gridx = 1;
         g.gridy = 2;
-        //g.insets = new Insets(15, 0, 0, 5);
         g.ipadx = 5;
         g.ipady = 10;
         g.gridwidth = 1;
@@ -130,12 +128,17 @@ public class NewInsurancePanel extends CustomPanel implements View{
     public String getInsuranceType() {
         return insuranceType;
     }
+    
+    public String getTravelInsuranceArea()
+    {
+        return travel.getArea();
+    }
 
     @Override
     public boolean addController(Controller c) {
         if(c instanceof NewInsuranceController)
         {
-            this.controller = (NewInsuranceController)c;
+            this.controller = (NewInsuranceController) c;
             return true;
         }
         return false;

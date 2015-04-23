@@ -17,6 +17,7 @@ import java.awt.Insets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -26,6 +27,7 @@ import java.util.Calendar;
 public class InsurancePanel extends CustomPanel implements View {
     
     private CustomTextField date, customer, price, coverage, other;
+    private JScrollPane cScroll;
     private CustomTextArea conditions;
     private GridBagConstraints gbc;
     private NewCustomerController controller;
@@ -42,8 +44,12 @@ public class InsurancePanel extends CustomPanel implements View {
         customer.setText("Satt til valgt kunde");
         price = new CustomTextField(10);
         coverage = new CustomTextField(10);
-        conditions = new CustomTextArea(10, 20);
         other = new CustomTextField(20);
+        
+        conditions = new CustomTextArea(10, 20);
+        cScroll = new JScrollPane(conditions);
+        
+        
         
         //få dato fra controller?
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -96,7 +102,7 @@ public class InsurancePanel extends CustomPanel implements View {
         add(coverage, gbc);
         
         gbc.gridy++;
-        add(conditions, gbc);
+        add(cScroll, gbc);
         
         gbc.gridy++;
         add(other, gbc);

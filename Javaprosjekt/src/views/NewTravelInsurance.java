@@ -29,7 +29,6 @@ public class NewTravelInsurance extends CustomPanel {
     private CustomButton submit;
     private CustomButton2 changeTaker;
     private GridBagConstraints g;
-    private String area;
     private boolean check = false;
     
     public NewTravelInsurance() {
@@ -48,6 +47,7 @@ public class NewTravelInsurance extends CustomPanel {
         oceania = new JCheckBox("Oseania");
         
         submit = new CustomButton("Registrer");
+        submit.addActionListener((e)->System.out.println(getArea()));
         
         
         changeTaker = new CustomButton2("Endre");
@@ -120,18 +120,21 @@ public class NewTravelInsurance extends CustomPanel {
     }
 
     public String getArea() {
+        
+        String area = "";
+        
         if(asia.isSelected())
             area += "Asia";
         if(africa.isSelected())
-            area += "\nAfrika";
+            area += "Afrika";
         if(europe.isSelected())
-            area += "\nEuropa";
+            area += "Europa";
         if(nAmerica.isSelected())
-            area += "\nNord-Amerika";
+            area += "Nord-Amerika";
         if(sAmerica.isSelected())
-            area += "\nSør-Amerika";
+            area += "Sør-Amerika";
         if(oceania.isSelected())
-            area += "\nOseania";
+            area += "Oseania";
 
         return area;
     }

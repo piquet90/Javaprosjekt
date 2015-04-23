@@ -5,6 +5,8 @@
  */
 package CustomSwing;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 /**
@@ -13,4 +15,7 @@ import javax.swing.JPanel;
  */
 public class CustomPanel extends JPanel {
     
+    public CustomPanel() {
+        //setBorder(BorderFactory.createEtchedBorder(Color.lightGray, Color.yellow));
+    }
 }
