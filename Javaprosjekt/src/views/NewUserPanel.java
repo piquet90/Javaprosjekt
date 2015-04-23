@@ -8,6 +8,7 @@ package views;
 import CustomSwing.CustomButton;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
+import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
 import controllers.Controller;
 import controllers.NewCustomerController;
@@ -15,7 +16,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JOptionPane;
-
 
 public class NewUserPanel extends CustomPanel implements View{
     
@@ -68,7 +68,7 @@ public class NewUserPanel extends CustomPanel implements View{
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(new CustomLabel("Registrer ny kunde"));
+        add(new CustomLabelHeader("Registrer ny kunde"));
         
         gbc.gridx = 1;
         gbc.gridy = 1;

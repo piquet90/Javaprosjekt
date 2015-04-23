@@ -7,29 +7,25 @@ package views;
 
 import CustomSwing.CustomButton;
 import CustomSwing.CustomButton2;
+import CustomSwing.CustomCheckBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JCheckBox;
 
 /**
  *
  * @author Audun
  */
-
-
-
 public class NewTravelInsurance extends CustomPanel {
     
     private CustomTextField insTaker, amount;
-    private JCheckBox asia, africa, europe, nAmerica, sAmerica, oceania;
+    private CustomCheckBox asia, africa, europe, nAmerica, sAmerica, oceania;
     private CustomButton submit;
     private CustomButton2 changeTaker;
     private GridBagConstraints g;
-    private String area;
     private boolean check = false;
     
     public NewTravelInsurance() {
@@ -40,15 +36,15 @@ public class NewTravelInsurance extends CustomPanel {
         insTaker.setText("Satt til kunde");
         
         amount = new CustomTextField(10);
-        asia = new JCheckBox("Asia");
-        africa = new JCheckBox("Afrika");
-        europe = new JCheckBox("Europa");
-        nAmerica = new JCheckBox("Nord-Amerika");
-        sAmerica = new JCheckBox("Sør-Amerika");
-        oceania = new JCheckBox("Oseania");
+        asia = new CustomCheckBox("Asia");
+        africa = new CustomCheckBox("Afrika");
+        europe = new CustomCheckBox("Europa");
+        nAmerica = new CustomCheckBox("Nord-Amerika");
+        sAmerica = new CustomCheckBox("Sør-Amerika");
+        oceania = new CustomCheckBox("Oseania");
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e)-> System.out.println(getArea()));
+
         
         changeTaker = new CustomButton2("Endre");
         changeTaker.setToolTipText("Endre forsikringstaker");
@@ -120,20 +116,21 @@ public class NewTravelInsurance extends CustomPanel {
     }
 
     public String getArea() {
-        area = "";
+        
+        String area = "";
         
         if(asia.isSelected())
             area += "Asia";
         if(africa.isSelected())
-            area += "\nAfrika";
+            area += "Afrika";
         if(europe.isSelected())
-            area += "\nEuropa";
+            area += "Europa";
         if(nAmerica.isSelected())
-            area += "\nNord-Amerika";
+            area += "Nord-Amerika";
         if(sAmerica.isSelected())
-            area += "\nSør-Amerika";
+            area += "Sør-Amerika";
         if(oceania.isSelected())
-            area += "\nOseania";
+            area += "Oseania";
 
         return area;
     }

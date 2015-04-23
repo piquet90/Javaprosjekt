@@ -44,13 +44,15 @@ public class MainView extends JFrame implements View{
         viewInsurance.addActionListener((e)->{ controller.viewInsurancePanel();});
         
         
-       Container c = getContentPane();
-       c.setLayout(new BorderLayout());
+        Container c = getContentPane();
+        c.setLayout(new BorderLayout());
        
      
        
        activepanel = new CustomPanel();
        scroll = new JScrollPane(activepanel);
+       
+       scroll.getVerticalScrollBar().setUnitIncrement(Constants.SCROLL_SPEED);
        c.add(toppanel, BorderLayout.NORTH);
        c.add(scroll, BorderLayout.CENTER);
        c.setVisible(true);

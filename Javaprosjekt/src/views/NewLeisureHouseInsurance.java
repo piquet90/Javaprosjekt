@@ -6,6 +6,7 @@
 package views;
 
 import CustomSwing.CustomButton;
+import CustomSwing.CustomCheckBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
@@ -13,7 +14,6 @@ import controllers.NewCustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JCheckBox;
 
 /**
  *
@@ -25,7 +25,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents;
     private GridBagConstraints gbc;
     private CustomButton submit;
-    private JCheckBox lease;
+    private CustomCheckBox lease;
     private NewCustomerController controller;
     
     public void initComponents() {
@@ -41,7 +41,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         amountBuilding = new CustomTextField(5);
         amountContents = new CustomTextField(5);
         
-        lease = new JCheckBox();
+        lease = new CustomCheckBox("");
         
         submit = new CustomButton("Registrer");
         submit.addActionListener((e) -> System.out.println("s"));
