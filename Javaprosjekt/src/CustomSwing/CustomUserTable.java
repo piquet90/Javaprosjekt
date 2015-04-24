@@ -5,7 +5,11 @@
  */
 package CustomSwing;
 
+import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Iterator;
 import javax.swing.table.AbstractTableModel;
+import models.objects.Customer;
 
 /**
  *
@@ -13,31 +17,40 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CustomUserTable extends AbstractTableModel{
     
-    private String[] kolonnenavn = 
+    private Object[] kolonnenavn = 
     {
-        "head1", "head2", "head3"
+        "Navn", "Adresse", "Poststed", "Postnummer", "Opprettet"
     };
-    private Object[][] celler =
-    {
+    private Object[][] celler = {
         {
-            "cell1,koll1", "cell2, kol1", "cell3, col1"
-        },
-            
-        {
-            "cell1,koll2", "cell2, kol2", "cell3, col2"
-        },
-        {
-            "cell1,koll3", "cell2, kol3", "cell3, col3"
-        },
-        {
-            "cell1,koll4", "cell2, kol4", "cell3, col4"
-        },
-        {
-            "cell1,koll5", "cell2, kol5", "cell3, col5"
+            "Tabellen er tom!", "##", "##", "##", "##"
         }
     };
-          
+    
+    
+
+    public CustomUserTable(HashSet<Customer> users)     
+    {
+        if(users.isEmpty())
+        {
             
+        }
+        else {
+            celler = new Object[users.size()][5];
+            Iterator<Customer> iter = users.iterator();
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+            for(int i = 0; iter.hasNext(); i++)
+            {
+                Customer user = iter.next();
+                celler[i][0] = user.getName();
+                celler[i][1] = user.getAddressStreet();
+                celler[i][2] = user.getCity();
+                celler[i][3] = user.getAreacode();
+                celler[i][4] = format1.format(user.getRegistered().getTime());
+            }
+        }
+        
+    }
             
     @Override
     public int getRowCount() {
@@ -46,15 +59,25 @@ public class CustomUserTable extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-       return celler[ 0].length;
+       return celler[0].length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return celler[ rowIndex][ columnIndex];
     }
-     public String getColumnName(int kolonne)
+    
+    @Override
+    public Class getColumnClass(int kolonne)
     {
-        return kolonnenavn[ kolonne];
+        return celler[0][kolonne].getClass();
     }
+    
+    
+    @Override
+    public String getColumnName(int kolonne)
+    {
+        return (String)kolonnenavn[ kolonne];
+    }
+     
 }

@@ -6,6 +6,8 @@
 package javaprosjekt;
 
 import controllers.MainController;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import models.MainModel;
 import views.MainView;
@@ -21,7 +23,17 @@ public class Javaprosjekt {
         MainView view = new MainView();
         MainModel model = new MainModel();
         MainController controller = new MainController(view, model);
-        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        view.addWindowListener(
+            new WindowAdapter()
+            {
+                public void windowClosing(WindowEvent e)
+                {
+                    controller.save();
+                    System.exit(0);
+                            
+                }
+            }
+        );
         // TODO: Replace defaultCloseOperation when implementing save to file.
     }
     

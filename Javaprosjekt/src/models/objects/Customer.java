@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class Customer {
 
     // Static variables
-    private int next = Constants.CUSTOMER_NEXT_START_NUMBER;
+    private static int next = Constants.CUSTOMER_NEXT_START_NUMBER;
     
     
     // Instance variables

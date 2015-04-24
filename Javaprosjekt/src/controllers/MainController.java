@@ -40,6 +40,8 @@ public class MainController extends Controller{
         defaultPanel();
     }
     
+    
+    
     public void defaultPanel()
     {
         viewInsurancePanel();
@@ -47,8 +49,8 @@ public class MainController extends Controller{
     
     public void viewInsurancePanel()
     {
-        View newview = new ViewInsurancePanel();
-        new ViewInsuranceController(r, newview);
+        View newview = new ViewCustomerPanel();
+        new ViewCustomerController(r, newview);
         
         view.newPanel(newview);
     }
@@ -71,4 +73,11 @@ public class MainController extends Controller{
         NewInsuranceController newcontroller = new NewInsuranceController(r, newview); 
         view.newPanel(newview);
     }
+    
+    public void save()
+    {
+        r.save();
+    }
+    
+    
 }
