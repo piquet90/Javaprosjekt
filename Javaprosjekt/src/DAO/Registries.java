@@ -7,6 +7,7 @@ package DAO;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -43,11 +44,18 @@ public class Registries implements Serializable{
             this.customers = (HashSet<Customer>) in.readObject();
             Customer.setNext(in.readInt());
             Insurance.setNext(in.readInt());
+            in.close();
+
             
+        }
+        catch(FileNotFoundException e)
+        {
+            this.insurances = new HashSet<>();
+            this.customers = new HashSet<>();
         }
         catch(Exception e)
         {
-            
+            System.out.println(e.toString());
         }
         
         
@@ -70,6 +78,7 @@ public class Registries implements Serializable{
             out.writeObject(this.customers);
             out.writeInt(Customer.getNext());
             out.writeInt(Insurance.getNext());
+            out.close();
         
         }catch(Exception e)
         {

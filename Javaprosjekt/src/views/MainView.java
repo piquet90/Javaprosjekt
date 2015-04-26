@@ -26,23 +26,23 @@ public class MainView extends JFrame implements View{
     // instance variables
     MainController controller;
     CustomPanel activepanel, toppanel;
-    CustomButton nybrukerpanel, nyforskerpanel, viewInsurance;
+    CustomButton nybrukerpanel, nyforskerpanel, viewCustomers;
 
     public void initComponents()
     {    
         toppanel = new CustomPanel();
         
-        nybrukerpanel = new CustomButton("NyBrukerPanel");
-        nyforskerpanel = new CustomButton("NyForsikringPanel");
-        viewInsurance = new CustomButton("Forsikringer");
+        nybrukerpanel = new CustomButton("Ny Bruker");
+        nyforskerpanel = new CustomButton("Ny Forsikring");
+        viewCustomers = new CustomButton("Kunder");
         
         toppanel.add(nybrukerpanel);
         toppanel.add(nyforskerpanel);
-        toppanel.add(viewInsurance);
+        toppanel.add(viewCustomers);
         
         nybrukerpanel.addActionListener((e)->{ controller.nybrukerpanel();});
         nyforskerpanel.addActionListener((e)->{ controller.nyforskerpanel();});
-        viewInsurance.addActionListener((e)->{ controller.viewInsurancePanel();});
+        viewCustomers.addActionListener((e)->{ controller.viewInsurancePanel();});
         
         
         Container c = getContentPane();
