@@ -125,9 +125,10 @@ public class CustomerView extends CustomPanel implements View {
     }
     
     /**
-     * Method passes new customer information if its changed
+     * Method makes textfields editable and passes the changed information to registry
      */
     public void endre() {
+
         String f = fNavn.getText();
         String e = eNavn.getText();
         String a = adresse.getText();
