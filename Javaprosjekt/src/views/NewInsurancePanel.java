@@ -10,7 +10,6 @@ import controllers.Controller;
 import controllers.NewInsuranceController;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

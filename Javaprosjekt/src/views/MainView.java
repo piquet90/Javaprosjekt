@@ -59,8 +59,6 @@ public class MainView extends JFrame implements View{
        c.add(scroll, BorderLayout.CENTER);
        c.setVisible(true);
        
-       
-       
     }
     
     public MainView()

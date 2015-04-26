@@ -17,6 +17,7 @@ import java.awt.Insets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 /**
@@ -37,6 +38,10 @@ public class NewDefaultInsurancePanel extends CustomPanel implements View {
      */
 
     public void initComponents() {
+        
+        setLayout(new GridBagLayout());
+        setSize(getPreferredSize());
+        
         date = new CustomTextField(10);
         date.setEditable(false);
         customer = new CustomTextField(20);
@@ -53,11 +58,9 @@ public class NewDefaultInsurancePanel extends CustomPanel implements View {
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         Calendar cal = Calendar.getInstance();
         date.setText(dateFormat.format(cal.getTime()));
-        //_______________________
+        ///////////////////////////////////////////
         
-        setLayout(new GridBagLayout());
-        setSize(getPreferredSize());
-        
+        //GridBagConstraint init
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
         gbc.ipadx = 2;
@@ -131,6 +134,10 @@ public class NewDefaultInsurancePanel extends CustomPanel implements View {
      */
     public NewDefaultInsurancePanel() {
         
+    }
+    
+    public void showError(String s) {
+        JOptionPane.showMessageDialog(this, s);
     }
 
     @Override

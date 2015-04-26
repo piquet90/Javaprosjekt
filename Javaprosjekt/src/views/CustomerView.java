@@ -5,7 +5,7 @@
  */
 package views;
 
-import CustomSwing.CustomButton;
+import CustomSwing.CustomButton2;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
@@ -17,11 +17,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JOptionPane;
 
-public class NewCustomerPanel extends CustomPanel implements View{
+public class CustomerView extends CustomPanel implements View {
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private GridBagConstraints gbc;
-    private CustomButton submit;
+    private CustomButton2 endre, slett;
     private NewCustomerController controller;
     
     /**
@@ -29,15 +29,22 @@ public class NewCustomerPanel extends CustomPanel implements View{
     */
     public void initComponents()
     {
+        //Initalizing the GUI components
         fNavn = new CustomTextField(15);
+        fNavn.setEditable(false);
         eNavn = new CustomTextField(15);
+        eNavn.setEditable(false);
         adresse = new CustomTextField(20);
+        adresse.setEditable(false);
         postSted = new CustomTextField(15);
+        postSted.setEditable(false);
         postNr = new CustomTextField(6);
+        postNr.setEditable(false);
         
-        submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> { controller.register();});
+        endre = new CustomButton2("Endre");
+        slett = new CustomButton2("Slett kunde");
         
+        //Layout initalizing
         this.setLayout(new GridBagLayout());
         this.setSize(getPreferredSize());
         
@@ -47,6 +54,8 @@ public class NewCustomerPanel extends CustomPanel implements View{
         gbc.ipady = 5;
         
         gbc.anchor = GridBagConstraints.LINE_END;
+        
+        //Adding the components to the panel
         
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -69,7 +78,7 @@ public class NewCustomerPanel extends CustomPanel implements View{
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 15, 5);
-        add(new CustomLabelHeader("Registrer ny kunde"));
+        add(new CustomLabelHeader("Se på kunde"));
         
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -89,53 +98,62 @@ public class NewCustomerPanel extends CustomPanel implements View{
         add(postSted, gbc);
         
         gbc.gridy++;
-        add(submit, gbc);
+        add(endre, gbc);
         
+        gbc.gridx++;
+        add(slett, gbc);
+         
+    }
+    
+    
+    
+    /**
+     * Constructor that recieves the customer information and sets the textfields
+     * @param fn Fornavn
+     * @param en Etternavn
+     * @param adr Adresse
+     * @param ps Poststed
+     * @param pnr Postnummer
+     */
+    public CustomerView(String fn, String en, String adr, String ps, String pnr)
+    {
+        fNavn.setText(fn);
+        eNavn.setText(en);
+        adresse.setText(adr);
+        postSted.setText(ps);
+        postNr.setText(pnr);
+    }
+    
+    /**
+     * Method passes new customer information if its changed
+     */
+    public void endre() {
+        String f = fNavn.getText();
+        String e = eNavn.getText();
+        String a = adresse.getText();
+        String ps = postSted.getText();
+        String pn = postNr.getText();
+        
+        //controller.endre(f, e, a, ps, pn);
+    }
+    
+    public void slett() {
+        //controller.slett();
     }
 
-    public String getFornavn() {
-        return fNavn.getText();
-    }
-
-    public String getEtternavn() {
-        return eNavn.getText();
-    }
-
-    public String getAdresse() {
-        return adresse.getText();
-    }
-
-    public String getPostSted() {
-        return postSted.getText();
-    }
-
-    public String getPostNr() {
-        return postNr.getText();
-    }
+ 
     /**
      * 
      * @param error Recieves error message from controller and displays it to user
      */
-    
     public void showError(String error)
     {
         JOptionPane.showMessageDialog(this, error);
     }
-    /**
-     * NyBrukerPanel constructor
-     */
-    public NewCustomerPanel()
-    {
-        
-    }
+    
 
     @Override
     public boolean addController(Controller c) {
-        if(c instanceof NewCustomerController)
-        {
-            this.controller = (NewCustomerController)c;
-            return true;
-        }
         return false;
     }
 }
