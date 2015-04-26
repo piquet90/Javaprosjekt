@@ -203,7 +203,7 @@ public abstract class Insurance implements Serializable{
      * @author Rudi Yu
      * @param nextId Sets next ID for insurances
      */
-    public static void setNeste(int nextId) {
+    public static void setNext(int nextId) {
         next = nextId;
     }
     

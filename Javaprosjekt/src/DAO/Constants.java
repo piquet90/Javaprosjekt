@@ -16,6 +16,8 @@ public class Constants {
      */
     
     public static final String GENERAL_ERROR_MESSAGE = "Oops, looks like something went wrong. Please try again. If the problem persists, please contact your system administrator";
+    public static final String FILE_SAVE_PATH = "src/liste.data";
+    
     public static final int INSURANCE_NEXT_START_NUMBER = 1;
     public static final int CUSTOMER_NEXT_START_NUMBER = 1;
     public static final int FRAME_WIDTH = 1100;

@@ -8,16 +8,25 @@ package models.objects;
 import models.objects.insurances.Insurance;
 import java.util.HashSet;
 import DAO.Constants;
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author rudiwyu
  */
-public class Customer {
+public class Customer implements Serializable{
 
     // Static variables
     private static int next = Constants.CUSTOMER_NEXT_START_NUMBER;
+
+    public static int getNext() {
+        return next;
+    }
+
+    public static void setNext(int aNext) {
+        next = aNext;
+    }
     
     
     // Instance variables
