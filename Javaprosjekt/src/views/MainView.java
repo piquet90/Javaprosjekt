@@ -27,22 +27,10 @@ public class MainView extends JFrame implements View{
     MainController controller;
     CustomPanel activepanel, toppanel;
     CustomButton nybrukerpanel, nyforskerpanel, viewCustomers;
+    JMenuBar menubar;
 
     public void initComponents()
     {    
-        toppanel = new CustomPanel();
-        
-        nybrukerpanel = new CustomButton("Ny Bruker");
-        nyforskerpanel = new CustomButton("Ny Forsikring");
-        viewCustomers = new CustomButton("Kunder");
-        
-        toppanel.add(nybrukerpanel);
-        toppanel.add(nyforskerpanel);
-        toppanel.add(viewCustomers);
-        
-        nybrukerpanel.addActionListener((e)->{ controller.nybrukerpanel();});
-        nyforskerpanel.addActionListener((e)->{ controller.nyforskerpanel();});
-        viewCustomers.addActionListener((e)->{ controller.viewInsurancePanel();});
         
         
         Container c = getContentPane();
@@ -55,8 +43,8 @@ public class MainView extends JFrame implements View{
        scroll.setBorder(BorderFactory.createSoftBevelBorder(1, Color.lightGray, Color.yellow));
        
        scroll.getVerticalScrollBar().setUnitIncrement(Constants.SCROLL_SPEED);
-       c.add(toppanel, BorderLayout.NORTH);
        c.add(scroll, BorderLayout.CENTER);
+       
        c.setVisible(true);
        
     }

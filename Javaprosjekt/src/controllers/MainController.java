@@ -8,6 +8,7 @@ package controllers;
 
 
 import DAO.Registries;
+import javax.swing.JMenuBar;
 import models.*;
 import views.*;
 
@@ -22,6 +23,8 @@ public class MainController extends Controller{
     private MainModel model;
     private Registries r;
     
+    private JMenuBar menubar;
+    
     /**
      *
      * @param f
@@ -29,8 +32,12 @@ public class MainController extends Controller{
      */
     public MainController(MainView f, MainModel m)
     {
+        
         view = f;
         model = m;
+        
+        menubar = new MenuView(this);
+        view.setJMenuBar(menubar);
         
         r = new Registries();
         
@@ -44,10 +51,10 @@ public class MainController extends Controller{
     
     public void defaultPanel()
     {
-        viewInsurancePanel();
+        viewCustomerPanel();
     }
     
-    public void viewInsurancePanel()
+    public void viewCustomerPanel()
     {
         View newview = new ViewCustomerPanel();
         new ViewCustomerController(r, newview);
