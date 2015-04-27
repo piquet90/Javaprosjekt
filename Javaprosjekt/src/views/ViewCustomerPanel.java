@@ -9,7 +9,9 @@ import CustomSwing.CustomPanel;
 import CustomSwing.CustomUserTable;
 import controllers.Controller;
 import controllers.ViewCustomerController;
-import javax.swing.JLabel;
+import java.awt.Point;
+import java.awt.event.*;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -25,8 +27,23 @@ public class ViewCustomerPanel extends CustomPanel implements View{
     {
         this.removeAll();
         JTable jt = new JTable(table);
-        jt.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        
+        jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         add(new JScrollPane(jt));
+        
+        
+        
+        jt.addMouseListener(new MouseAdapter(){
+            public void mousePressed(MouseEvent me)
+            {
+                Point p = me.getPoint();
+                int row = jt.rowAtPoint(p);
+                if(me.getClickCount()==2)
+                {
+                    controller.ViewCustomer((int)table.getValueAt(row, 0));
+                }
+            }
+        });
     }
     
     

@@ -7,8 +7,10 @@
 package controllers;
 
 
+import CustomSwing.CustomPanel;
 import DAO.Registries;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import models.*;
 import views.*;
 
@@ -64,21 +66,28 @@ public class MainController extends Controller{
     
     
     // under-controller TODO: write more meaningful comments
-    public void nybrukerpanel()
+    public void newUserPanel()
     {
-        View newview = new NewCustomerPanel();
-        NewCustomerController newcontroller = new NewCustomerController(r, newview);
+        CustomPanel newview = new NewCustomerPanel();
+        NewCustomerController newcontroller = new NewCustomerController(r, (View) newview);
         
         
-        view.newPanel(newview);
+        JOptionPane.showConfirmDialog(null, newview, "Test", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
     }
     // under-controller
-    public void nyforskerpanel()
+    public void newInsurancePanel()
     {
         View newview = new NewInsurancePanel();
 
         NewInsuranceController newcontroller = new NewInsuranceController(r, newview); 
         view.newPanel(newview);
+    }
+    
+    public void showUser(int id)
+    {
+        View newview = new CustomerView("1","2","3","4","5");
+        view.newPanel(newview);
+        
     }
     
     public void save()

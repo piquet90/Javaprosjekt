@@ -67,7 +67,7 @@ public class NewCustomerController extends Controller{
         }
         else {
             
-            Customer c = new Customer((fornavn+" "+etternavn), adresse, poststed, postnr);
+            Customer c = new Customer(fornavn, etternavn, adresse, poststed, postnr);
             CustomerModel m = new CustomerModel(dataAccessObject);
             if(m.newCustomer(c))
                 view.showError("Bruker registert. \n\n"+

@@ -117,7 +117,7 @@ public class CustomerView extends CustomPanel implements View {
      */
     public CustomerView(String fn, String en, String adr, String ps, String pnr)
     {
-
+        initComponents();
         fNavn.setText(fn);
         eNavn.setText(en);
         adresse.setText(adr);

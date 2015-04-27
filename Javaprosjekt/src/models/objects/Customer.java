@@ -32,7 +32,8 @@ public class Customer implements Serializable{
     // Instance variables
     private Calendar registered;
     
-    private String name;
+    private String firstname;
+    private String lastname;
     private String addressStreet;
     private String city;
     
@@ -42,16 +43,17 @@ public class Customer implements Serializable{
     
     /**
      *
-     * @param registered
-     * @param name
+     * @param firstname
+     * @param lastname
      * @param addressStreet
      * @param city
      * @param areacode
      */
-    public Customer(String name, String addressStreet, String city, int areacode) {
+    public Customer(String firstname, String lastname, String addressStreet, String city, int areacode) {
         
         this.registered =  Calendar.getInstance();
-        this.name = name;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.addressStreet = addressStreet;
         this.city = city;
         this.areacode = areacode;
@@ -77,14 +79,25 @@ public class Customer implements Serializable{
      * @return the name
      */
     public String getName() {
-        return name;
+        return firstname+" "+lastname;
     }
 
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstname = name;
+    }
+    public void setLastName(String name) {
+        this.lastname = name;
+    }
+    public String getFirstname()
+    {
+        return this.firstname;
+    }
+    public String getLastname()
+    {
+        return this.lastname;
     }
 
     /**

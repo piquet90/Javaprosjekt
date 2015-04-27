@@ -19,11 +19,11 @@ public class CustomUserTable extends AbstractTableModel{
     
     private Object[] kolonnenavn = 
     {
-        "Navn", "Adresse", "Poststed", "Postnummer", "Opprettet"
+        "Kundenr","Navn", "Adresse", "Poststed", "Postnummer", "Opprettet"
     };
     private Object[][] celler = {
         {
-            "Tabellen er tom!", "##", "##", "##", "##"
+            "Tabellen er tom!", "##", "##", "##", "##", "##"
         }
     };
     
@@ -36,19 +36,22 @@ public class CustomUserTable extends AbstractTableModel{
             
         }
         else {
-            celler = new Object[users.size()][5];
+            celler = new Object[users.size()][kolonnenavn.length];
             Iterator<Customer> iter = users.iterator();
-            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
             for(int i = 0; iter.hasNext(); i++)
             {
                 Customer user = iter.next();
-                celler[i][0] = user.getName();
-                celler[i][1] = user.getAddressStreet();
-                celler[i][2] = user.getCity();
-                celler[i][3] = user.getAreacode();
-                celler[i][4] = format1.format(user.getRegistered().getTime());
+                celler[i][0] = user.getId();
+                celler[i][1] = user.getName();
+                celler[i][2] = user.getAddressStreet();
+                celler[i][3] = user.getCity();
+                celler[i][4] = user.getAreacode();
+                celler[i][5] = format1.format(user.getRegistered().getTime());
             }
         }
+        
+        
         
     }
             

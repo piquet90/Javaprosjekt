@@ -18,6 +18,7 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
 
 public class MainView extends JFrame implements View{
     
@@ -39,9 +40,9 @@ public class MainView extends JFrame implements View{
      
        
        activepanel = new CustomPanel();
-       scroll = new JScrollPane(activepanel);
-       scroll.setBorder(BorderFactory.createSoftBevelBorder(1, Color.lightGray, Color.yellow));
        
+       // add scrollpane around elemnt incase needed. Also fixes scrollspeed issues.
+       scroll = new JScrollPane(activepanel);
        scroll.getVerticalScrollBar().setUnitIncrement(Constants.SCROLL_SPEED);
        c.add(scroll, BorderLayout.CENTER);
        
@@ -73,7 +74,8 @@ public class MainView extends JFrame implements View{
     public void newPanel(CustomPanel panel)
     {
         activepanel.removeAll();
-        activepanel.add(panel);
+        activepanel.add(panel, BorderLayout.CENTER);
+        
         this.repaint();
         this.revalidate();       
     }
