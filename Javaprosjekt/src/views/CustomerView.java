@@ -12,42 +12,56 @@ import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
 import controllers.Controller;
 import controllers.NewCustomerController;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class CustomerView extends CustomPanel implements View {
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
-    private GridBagConstraints gbc;
+    private CustomPanel test, test2;
+    private GridBagConstraints gbc, g;
     private CustomButton2 endre, slett;
     private NewCustomerController controller;
     
-    /**
-     * Initializes the GUI components
-    */
+    
     public void initComponents()
     {
-        //Initalizing the GUI components
-        fNavn = new CustomTextField(15);
+        
+        this.setSize(getPreferredSize());
+        this.setLayout(new GridBagLayout());
+        test = new CustomPanel();
+        test2 = new CustomPanel();
+        test2.setPreferredSize(new Dimension(300, 310));
+        test2.setBackground(Color.WHITE);
+        
+        g = new GridBagConstraints();
+        g.anchor = GridBagConstraints.LINE_START;
+        g.ipadx = 10;
+        g.ipady = 0;
+        
+        //TIL INFOPANEL
+        fNavn = new CustomTextField(12);
         fNavn.setEditable(false);
-        eNavn = new CustomTextField(15);
+        eNavn = new CustomTextField(12);
         eNavn.setEditable(false);
-        adresse = new CustomTextField(20);
+        adresse = new CustomTextField(15);
         adresse.setEditable(false);
-        postSted = new CustomTextField(15);
+        postSted = new CustomTextField(12);
         postSted.setEditable(false);
-        postNr = new CustomTextField(6);
+        postNr = new CustomTextField(5);
         postNr.setEditable(false);
         
         endre = new CustomButton2("Endre");
         slett = new CustomButton2("Slett kunde");
         
         //Layout initalizing
-        this.setLayout(new GridBagLayout());
-        this.setSize(getPreferredSize());
-        
+        test.setLayout(new GridBagLayout());
+ 
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
         gbc.ipadx = 2;
@@ -59,49 +73,66 @@ public class CustomerView extends CustomPanel implements View {
         
         gbc.gridx = 0;
         gbc.gridy = 1;
-        add(new CustomLabel("Fornavn: "), gbc);
+        test.add(new CustomLabel("Fornavn: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Etternavn: "), gbc);
+        test.add(new CustomLabel("Etternavn: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Adresse: "), gbc);
+        test.add(new CustomLabel("Adresse: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Postnummer: "), gbc);
+        test.add(new CustomLabel("Postnummer: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Poststed: "), gbc);
+        test.add(new CustomLabel("Poststed: "), gbc);
   
         gbc.anchor = GridBagConstraints.LINE_START;    
         
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 15, 5);
-        add(new CustomLabelHeader("Se på kunde"));
+        test.add(new CustomLabelHeader("Se på kunde"));
         
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 0, 5);
-        add(fNavn, gbc);
+        gbc.gridwidth = 2;
+        test.add(fNavn, gbc);
         
         gbc.gridy++;
-        add(eNavn, gbc);
+        test.add(eNavn, gbc);
         
         gbc.gridy++;
-        add(adresse, gbc);
+        test.add(adresse, gbc);
         
         gbc.gridy++;
-        add(postNr, gbc);
+        test.add(postNr, gbc);
         
         gbc.gridy++;
-        add(postSted, gbc);
+        test.add(postSted, gbc);
         
         gbc.gridy++;
-        add(endre, gbc);
+        test.add(new CustomLabel(""), gbc);
         
+        gbc.gridy++;
+        gbc.gridwidth = 1;
+        test.add(endre, gbc);
+        
+        gbc.insets = new Insets(15, 25, 0, 5);
         gbc.gridx++;
-        add(slett, gbc);
+        test.add(slett, gbc);
+        
+        g.gridy = 0;
+        g.gridx = 0;
+        g.gridheight = 2;
+        
+        this.add(test, g);
+        g.gridx++;
+        g.gridheight = 1;
+        g.insets = new Insets(0, 20, 0, 0);
+        test2.add(new CustomLabel("Liste med kundens forsikringer"));
+        this.add(test2, g);
          
     }
     
