@@ -54,7 +54,6 @@ public class CustomButton2 extends CustomButton {
         }
         if(getModel().isPressed())
         {
-          setBackground(new Color(000, 000, 000)); //funker ikke?
           setForeground(new Color(50, 90, 100));
         }
     }

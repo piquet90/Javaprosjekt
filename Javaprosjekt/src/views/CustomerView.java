@@ -6,6 +6,7 @@
 package views;
 
 import CustomSwing.CustomButton2;
+import CustomSwing.CustomButton3;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
@@ -18,8 +19,10 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.border.TitledBorder;
 
 public class CustomerView extends JTabbedPane implements View {
     
@@ -32,12 +35,13 @@ public class CustomerView extends JTabbedPane implements View {
     
     public void initComponents()
     {
-        this.setBackground(Color.YELLOW);
+        this.setBackground(new Color(159, 196, 232));
         this.setFont(new Font("Arial", Font.BOLD, 20));
         
         cusTab = new CustomPanel();
         insTab = new CustomPanel();
         insTab.setPreferredSize(new Dimension(600, 400));
+        repTab = new CustomPanel();
 
   
         
@@ -116,10 +120,37 @@ public class CustomerView extends JTabbedPane implements View {
         gbc.gridx++;
         cusTab.add(slett, gbc);
         
-       
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        cusTab.add(new CustomLabel(""), gbc);
+        
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        cusTab.add(new CustomLabel(""), gbc);
+        
+        
+        
+        CustomPanel p = new CustomPanel();
+        p.setLayout(new GridBagLayout());
+        GridBagConstraints g = new GridBagConstraints();
+        g.anchor = GridBagConstraints.LINE_START;
+        g.insets = new Insets(10, 0, 0, 0);
+        g.gridx = 0;
+        g.gridy = 0;
+        p.add(new CustomButton3("Ny Forsikring"), g);
+        g.insets = new Insets(20, 0, 10, 0);
+        g.gridy++;
+        p.add(new CustomButton3("Ny Skademelding"), g);
+        p.setBorder(BorderFactory.createTitledBorder("Handlinger"));
+        
+        gbc.gridx = 4;
+        gbc.gridy = 1;
+        gbc.gridheight = 3;
+        cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=15 topmargin=8 marginwidth=15 marginheight=5>Kundeinformasjon</body></html>", cusTab);
-        this.addTab("Forsikringer", insTab);
+        this.addTab("<html><body leftmargin=15 topmargin=8 marginwidth=15 marginheight=5>Forsikringer</body></html>", insTab);
+        this.addTab("<html><body leftmargin=15 topmargin=8 marginwidth=15 marginheight=5>Skademeldinger</body></html>", repTab);
          
     }
     

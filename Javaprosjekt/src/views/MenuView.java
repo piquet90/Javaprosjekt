@@ -7,6 +7,7 @@ package views;
 
 
 import controllers.MainController;
+import java.awt.Font;
 import javax.swing.*;
 
 /**
@@ -26,6 +27,8 @@ public class MenuView extends JMenuBar{
     public MenuView(MainController c)
     {
         super();
+        Font f = new Font("Arial", Font.PLAIN, 16);
+        UIManager.put("Menu.font", f);
         controller = c;
         
         
