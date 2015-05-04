@@ -55,19 +55,21 @@ public class MainController extends Controller{
         view.initComponents();
         view.addController(this);
         
+        
+        initDefault();
+        
         customerModel = new CustomerModel(r);
-        
+    }
+    
+    public void initDefault()
+    {
+        customerModel = new CustomerModel(r);
         customers = customerModel.getCustomers();
-        
         CustomUserTable table = new CustomUserTable(customers);
-        
         ctable = new ViewCustomerTable(table);
         
+        vccontroller = new ViewCustomerController(r, ctable);
         view.addCenter(ctable);
-        
-        
-        
-        
     }
     
     // under-controller TODO: write more meaningful comments

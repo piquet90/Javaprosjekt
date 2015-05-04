@@ -13,6 +13,7 @@ import models.objects.Customer;
 import views.CustomerView;
 import views.View;
 import views.ViewCustomerPanel;
+import views.ViewCustomerTable;
 
 /**
  *
@@ -21,21 +22,20 @@ import views.ViewCustomerPanel;
 public class ViewCustomerController extends Controller {
     
     private Registries registries;
-    private ViewCustomerPanel view;
+    private ViewCustomerTable view;
     private CustomerModel model;
     
     
-    public ViewCustomerController(Registries r, View v)
+    public ViewCustomerController(Registries r, ViewCustomerTable v)
     {
         this.registries = r;
-        this.view = (ViewCustomerPanel)v;
+        this.view = v;
         model = new CustomerModel(r);
         
         view.addController(this);
         view.initComponents();
         
         CustomUserTable table = new CustomUserTable(model.getCustomers());
-        view.setTable(table);
         
     }
     
