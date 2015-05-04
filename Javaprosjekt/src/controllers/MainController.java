@@ -8,10 +8,13 @@ package controllers;
 
 
 import CustomSwing.CustomPanel;
+import CustomSwing.CustomUserTable;
 import DAO.Registries;
+import java.util.HashSet;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import models.*;
+import models.objects.Customer;
 import views.*;
 
 /**
@@ -26,6 +29,12 @@ public class MainController extends Controller{
     private Registries r;
     
     private JMenuBar menubar;
+    
+    private ViewCustomerTable ctable;
+    private ViewCustomerController vccontroller;
+    
+    private CustomerModel customerModel;
+    private HashSet<Customer> customers;
     
     /**
      *
@@ -46,24 +55,20 @@ public class MainController extends Controller{
         view.initComponents();
         view.addController(this);
         
-        defaultPanel();
-    }
-    
-    
-    
-    public void defaultPanel()
-    {
-        viewCustomerPanel();
-    }
-    
-    public void viewCustomerPanel()
-    {
-        View newview = new ViewCustomerPanel();
-        new ViewCustomerController(r, newview);
+        customerModel = new CustomerModel(r);
         
-        view.newPanel(newview);
+        customers = customerModel.getCustomers();
+        
+        CustomUserTable table = new CustomUserTable(customers);
+        
+        ctable = new ViewCustomerTable(table);
+        
+        view.addCenter(ctable);
+        
+        
+        
+        
     }
-    
     
     // under-controller TODO: write more meaningful comments
     public void newUserPanel()
@@ -75,21 +80,6 @@ public class MainController extends Controller{
         JOptionPane.showConfirmDialog(null, newview, "Test", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
     }
     // under-controller
-    public void newInsurancePanel()
-    {
-        View newview = new NewInsurancePanel();
-
-        NewInsuranceController newcontroller = new NewInsuranceController(r, newview); 
-        view.newPanel(newview);
-    }
-    
-    public void showUser(int id)
-    {
-        View newview = new CustomerView("1","2","3","4","5");
-        view.newPanel(newview);
-        
-    }
-    
     public void save()
     {
         r.save();

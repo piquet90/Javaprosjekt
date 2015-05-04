@@ -19,16 +19,15 @@ import javax.swing.JTable;
  *
  * @author rudiwyu
  */
-public class ViewCustomerPanel extends CustomPanel implements View{
+public class ViewCustomerPanel extends JTable implements View{
     
     private ViewCustomerController controller;
     
     public void setTable(CustomUserTable table)
     {
-        this.removeAll();
         JTable jt = new JTable(table);
         
-        jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         add(new JScrollPane(jt));
         
         

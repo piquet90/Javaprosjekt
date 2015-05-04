@@ -37,15 +37,6 @@ public class MainView extends JFrame implements View{
         Container c = getContentPane();
         c.setLayout(new BorderLayout());
        
-     
-       
-       activepanel = new CustomPanel();
-       
-       // add scrollpane around elemnt incase needed. Also fixes scrollspeed issues.
-       scroll = new JScrollPane(activepanel);
-       scroll.getVerticalScrollBar().setUnitIncrement(Constants.SCROLL_SPEED);
-       c.add(scroll, BorderLayout.CENTER);
-       
        c.setVisible(true);
        
     }
@@ -66,25 +57,13 @@ public class MainView extends JFrame implements View{
         }
         return false;
     }
-    /**
-     * Adds a new panel to the BorderLayout.CENTER area.
-     * 
-     * @param panel the panel to be added. 
-     */
-    public void newPanel(CustomPanel panel)
+    
+    
+    public void addCenter(JTable tpanel)
     {
-        activepanel.removeAll();
-        activepanel.add(panel, BorderLayout.CENTER);
-        
-        this.repaint();
-        this.revalidate();       
-    }
-    public void newPanel(View panel)
-    {
-        if(panel instanceof CustomPanel)
-        {
-            newPanel((CustomPanel)panel);
-        }
+        JScrollPane panel = new JScrollPane(tpanel);
+        Container c = getContentPane();
+        c.add(panel, BorderLayout.CENTER);
     }
     
     
