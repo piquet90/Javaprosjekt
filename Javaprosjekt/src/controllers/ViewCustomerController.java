@@ -41,6 +41,7 @@ public class ViewCustomerController extends Controller {
     
     public void ViewCustomer(int i)
     {
+        System.out.println(i);
         Customer customer = model.findById(i);
         
         CustomerView cus = new CustomerView(customer.getFirstname(), customer.getLastname(), customer.getAddressStreet(), customer.getCity(), Integer.toString(customer.getAreacode()));
