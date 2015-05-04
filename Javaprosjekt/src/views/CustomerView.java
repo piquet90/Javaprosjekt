@@ -36,7 +36,7 @@ public class CustomerView extends JTabbedPane implements View {
     public void initComponents()
     {
         this.setBackground(new Color(159, 196, 232));
-        this.setFont(new Font("Arial", Font.BOLD, 20));
+        this.setFont(new Font("Arial", Font.BOLD, 18));
         
         cusTab = new CustomPanel();
         insTab = new CustomPanel();
@@ -63,6 +63,8 @@ public class CustomerView extends JTabbedPane implements View {
         endre.addActionListener((e) -> endre());
         
         slett = new CustomButton3("Slett kunde");
+        slett.addActionListener((e) -> slett());
+        
         newIns = new CustomButton3("Ny Forsikring");
         newRep = new CustomButton3("Ny Skademelding");
         
@@ -152,9 +154,9 @@ public class CustomerView extends JTabbedPane implements View {
         gbc.insets = new Insets(0, 50, 0, 0);
         cusTab.add(p, gbc);
         
-        this.addTab("<html><body leftmargin=15 topmargin=8 marginwidth=15 marginheight=5>Kundeinformasjon</body></html>", cusTab);
-        this.addTab("<html><body leftmargin=15 topmargin=8 marginwidth=15 marginheight=5>Forsikringer</body></html>", insTab);
-        this.addTab("<html><body leftmargin=15 topmargin=8 marginwidth=15 marginheight=5>Skademeldinger</body></html>", repTab);
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
          
     }
     
@@ -218,7 +220,15 @@ public class CustomerView extends JTabbedPane implements View {
     }
     
     public void slett() {
-        //controller.slett();
+        
+        String[] j = {"Slett kunde", "Avbryt"};
+               
+        int y = JOptionPane.showOptionDialog(this, "Er du sikker på at du vil slette kunde " + fNavn.getText() + " " + eNavn.getText() + "?", "Slette kunde", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, j, j[1]);
+        
+        if(y ==  JOptionPane.YES_OPTION)
+            System.out.println("Brukeren er slettet");
+        else
+            System.out.println("Brukeren er IKKE slettet");
     }
 
  
