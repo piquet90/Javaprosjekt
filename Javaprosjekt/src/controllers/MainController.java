@@ -7,14 +7,15 @@
 package controllers;
 
 
+import views.registrations.NewCustomerPanel;
 import CustomSwing.CustomPanel;
-import CustomSwing.CustomUserTable;
+import TableModels.CustomerTable;
 import DAO.Registries;
 import java.util.HashSet;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import models.*;
-import models.objects.Customer;
+import models.Customer;
 import views.*;
 
 /**
@@ -25,7 +26,6 @@ public class MainController extends Controller{
     
     
     private MainView view;
-    private MainModel model;
     private Registries r;
     
     private JMenuBar menubar;
@@ -45,7 +45,6 @@ public class MainController extends Controller{
     {
         
         view = f;
-        model = m;
         
         menubar = new MenuView(this);
         view.setJMenuBar(menubar);
@@ -65,7 +64,7 @@ public class MainController extends Controller{
     {
         customerModel = new CustomerModel(r);
         customers = customerModel.getCustomers();
-        CustomUserTable table = new CustomUserTable(customers);
+        CustomerTable table = new CustomerTable(customers);
         ctable = new ViewCustomerTable(table);
         
         vccontroller = new ViewCustomerController(r, ctable);

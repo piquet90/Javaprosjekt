@@ -3,20 +3,20 @@
  * Rudi Yu s231776
  * Audun Brustad s236341
  */
-package CustomSwing;
+package TableModels;
 
 import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.table.AbstractTableModel;
-import models.objects.Customer;
+import models.Customer;
 
 /**
  *
  * @author rudiwyu
  */
-public class CustomUserTable extends AbstractTableModel{
+public class CustomerTable extends AbstractTableModel{
     
     private Object[] kolonnenavn = 
     {
@@ -30,7 +30,7 @@ public class CustomUserTable extends AbstractTableModel{
     
     
 
-    public CustomUserTable(HashSet<Customer> users)     
+    public CustomerTable(HashSet<Customer> users)     
     {
         
         if(users.isEmpty())

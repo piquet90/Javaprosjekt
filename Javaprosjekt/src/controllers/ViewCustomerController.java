@@ -5,15 +5,12 @@
  */
 package controllers;
 
-import CustomSwing.CustomUserTable;
+import TableModels.CustomerTable;
 import DAO.Registries;
 import javax.swing.JOptionPane;
-import models.CustomerModel;
-import models.objects.Customer;
-import views.CustomerView;
-import views.View;
-import views.ViewCustomerPanel;
-import views.ViewCustomerTable;
+import models.*;
+import views.*;
+import models.Customer;
 
 /**
  *
@@ -35,7 +32,7 @@ public class ViewCustomerController extends Controller {
         view.addController(this);
         view.initComponents();
         
-        CustomUserTable table = new CustomUserTable(model.getCustomers());
+        CustomerTable table = new CustomerTable(model.getCustomers());
         
     }
     

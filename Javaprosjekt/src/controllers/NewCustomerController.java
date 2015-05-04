@@ -7,8 +7,8 @@ package controllers;
 
 import DAO.*;
 import models.CustomerModel;
-import models.objects.Customer;
-import views.NewCustomerPanel;
+import models.Customer;
+import views.registrations.NewCustomerPanel;
 import views.View;
 
 /**

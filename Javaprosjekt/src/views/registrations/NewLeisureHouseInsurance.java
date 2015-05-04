@@ -3,7 +3,7 @@
  * Rudi Yu s231776
  * Audun Brustad s236341
  */
-package views;
+package views.registrations;
 
 import CustomSwing.CustomButton;
 import CustomSwing.CustomCheckBox;

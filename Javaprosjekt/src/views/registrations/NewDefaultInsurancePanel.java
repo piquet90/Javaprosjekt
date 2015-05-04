@@ -3,7 +3,7 @@
  * Rudi Yu s231776
  * Audun Brustad s236341
  */
-package views;
+package views.registrations;
 
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import views.View;
 
 /**
  *
