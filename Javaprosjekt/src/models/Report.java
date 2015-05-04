@@ -1,5 +1,5 @@
 
-package models.objects;
+package models;
 
 /**
  * Report class (Skademelding)

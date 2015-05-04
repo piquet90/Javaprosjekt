@@ -8,7 +8,6 @@ package models;
 import DAO.Registries;
 import java.util.HashSet;
 import java.util.Iterator;
-import models.objects.Customer;
 
 
 /**

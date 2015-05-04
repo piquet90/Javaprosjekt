@@ -8,7 +8,7 @@ package Test;
 import DAO.Registries;
 import java.util.HashSet;
 import models.*;
-import models.objects.Customer;
+import models.Customer;
 
 /**
  *

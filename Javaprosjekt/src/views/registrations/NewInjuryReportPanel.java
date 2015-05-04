@@ -3,7 +3,7 @@
  * Rudi Yu s231776
  * Audun Brustad s236341
  */
-package views;
+package views.registrations;
 
 import CustomSwing.CustomButton;
 import CustomSwing.CustomButton2;
@@ -16,6 +16,7 @@ import controllers.NewCustomerController;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import views.View;
 
 public class NewInjuryReportPanel extends CustomPanel implements View {
     

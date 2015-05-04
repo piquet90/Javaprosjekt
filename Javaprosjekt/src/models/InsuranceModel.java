@@ -8,7 +8,7 @@ package models;
 import DAO.*;
 import java.util.HashSet;
 import java.util.Iterator;
-import models.objects.insurances.Insurance;
+import models.objects.insurances.*;
 /**
  *
  * @author rudiwyu
@@ -39,5 +39,20 @@ public class InsuranceModel {
     public void addInsurance(Insurance i)
     {
         insurances.add(i);
+    }
+    
+    public HashSet<CarInsurance> getCarInsurances()
+    {
+        Iterator i = insurances.iterator();
+        HashSet<CarInsurance> result = new HashSet<>();
+        while(i.hasNext())
+        {
+            Object obj = i.next();
+            if(obj instanceof CarInsurance)
+            {
+                result.add((CarInsurance)obj);
+            }
+        }
+        return  result;
     }
 }
