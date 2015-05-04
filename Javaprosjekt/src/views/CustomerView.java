@@ -21,7 +21,7 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
-public class CustomerView extends CustomPanel implements View {
+public class CustomerView extends JTabbedPane implements View {
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private CustomPanel test, test2;
@@ -32,10 +32,11 @@ public class CustomerView extends CustomPanel implements View {
     
     public void initComponents()
     {
-        JTabbedPane tabs = new JTabbedPane();
-        tabs.addTab("Kundeinformsjon", new CustomPanel());
+       
+        this.addTab("Kundeinformsjon", new CustomPanel());
+        this.addTab("f", new CustomPanel());
         
-        this.setSize(getPreferredSize());
+        /*this.setSize(getPreferredSize());
         this.setLayout(new GridBagLayout());
         test = new CustomPanel();
         test2 = new CustomPanel();
@@ -135,7 +136,7 @@ public class CustomerView extends CustomPanel implements View {
         g.gridheight = 1;
         g.insets = new Insets(0, 20, 0, 0);
         test2.add(new CustomLabel("Liste med kundens forsikringer"));
-        this.add(test2, g);
+        this.add(test2, g);*/
          
     }
     
@@ -152,11 +153,11 @@ public class CustomerView extends CustomPanel implements View {
     public CustomerView(String fn, String en, String adr, String ps, String pnr)
     {
         initComponents();
-        fNavn.setText(fn);
+        /*fNavn.setText(fn);
         eNavn.setText(en);
         adresse.setText(adr);
         postSted.setText(ps);
-        postNr.setText(pnr);
+        postNr.setText(pnr);*/
     }
     
     /**
