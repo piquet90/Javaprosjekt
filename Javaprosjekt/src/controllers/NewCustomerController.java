@@ -17,20 +17,29 @@ import views.View;
  */
 public class NewCustomerController extends Controller{
     
-    Registries dataAccessObject;
-    NewCustomerPanel view;
+    
+    // Maincontroller & registries
+    private MainController mc;
+    private Registries registries;
+    
+    // View class
+    private NewCustomerPanel view;
     
     
     
-    public NewCustomerController(Registries r, View v)
+    public NewCustomerController(Registries r, MainController m)
     {
-        this.dataAccessObject = r;
-        this.view = (NewCustomerPanel) v;
-        this.view.addController(this);
-        this.view.initComponents();
-        
+        this.registries = r;
+        this.mc = m;     
     }
     
+    public void newCustomer()
+    {
+        view = new NewCustomerPanel();
+        view.addController(this);
+        view.initComponents();
+        mc.popUp(view);
+    }
     public void register()
     {
         String s = "";
@@ -68,7 +77,7 @@ public class NewCustomerController extends Controller{
         else {
             
             Customer c = new Customer(fornavn, etternavn, adresse, poststed, postnr);
-            CustomerModel m = new CustomerModel(dataAccessObject);
+            CustomerModel m = new CustomerModel(registries);
             if(m.newCustomer(c))
                 view.showError("Bruker registert. \n\n"+
                         "Fornavn: "+fornavn+"\n"+
