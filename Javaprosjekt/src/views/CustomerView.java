@@ -19,6 +19,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 
 public class CustomerView extends CustomPanel implements View {
     
@@ -31,6 +32,8 @@ public class CustomerView extends CustomPanel implements View {
     
     public void initComponents()
     {
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("Kundeinformsjon", new CustomPanel());
         
         this.setSize(getPreferredSize());
         this.setLayout(new GridBagLayout());

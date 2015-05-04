@@ -5,6 +5,7 @@
  */
 package CustomSwing;
 
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -31,6 +32,7 @@ public class CustomUserTable extends AbstractTableModel{
 
     public CustomUserTable(HashSet<Customer> users)     
     {
+        
         if(users.isEmpty())
         {
             
