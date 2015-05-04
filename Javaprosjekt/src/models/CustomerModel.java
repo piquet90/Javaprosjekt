@@ -50,4 +50,20 @@ public class CustomerModel {
         }
         return null;
     }
+    
+    public HashSet<Customer> searchName(String s)
+    {
+        Iterator<Customer> i = customers.iterator();
+        s = s.toLowerCase();
+        HashSet<Customer> result = new HashSet<>();
+        
+        while(i.hasNext())
+        {
+            Customer obj = i.next();
+            if(obj.getName().toLowerCase().contains(s))
+                result.add(obj);
+        }
+        
+        return result;
+    }
 }

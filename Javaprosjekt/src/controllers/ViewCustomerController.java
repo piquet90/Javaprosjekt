@@ -8,12 +8,9 @@ package controllers;
 import CustomSwing.CustomUserTable;
 import DAO.Registries;
 import javax.swing.JOptionPane;
-import models.CustomerModel;
+import models.*;
+import views.*;
 import models.objects.Customer;
-import views.CustomerView;
-import views.View;
-import views.ViewCustomerPanel;
-import views.ViewCustomerTable;
 
 /**
  *
