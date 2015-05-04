@@ -12,6 +12,7 @@ import javax.swing.*;
 
 /**
  *
+ * 
  * @author Rudi
  */
 public class MenuView extends JMenuBar{
@@ -62,7 +63,6 @@ public class MenuView extends JMenuBar{
         this.add(insurance);
         
         newCustomer.addActionListener((e)->{controller.ncController.newCustomer();});
-        
     }
     
 }

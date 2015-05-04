@@ -24,8 +24,7 @@ public class Javaprosjekt {
             @Override
             public void run() {
                 MainView view = new MainView();
-                MainModel model = new MainModel();
-                MainController controller = new MainController(view, model);
+                MainController controller = new MainController(view);
                 view.addWindowListener(
                 new WindowAdapter()
                 {

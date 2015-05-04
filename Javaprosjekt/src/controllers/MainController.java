@@ -39,11 +39,14 @@ public class MainController extends Controller{
     private HashSet<Customer> customers;
     
     /**
-     *
-     * @param f
-     * @param m
+     * MainController
+     * 
+     * Has resposibility of creating and managing all other controllers.
+     * This controller usually passes itself to all the controllers it creates.
+     * 
+     * @param MainView The main-view class.
      */
-    public MainController(MainView f, MainModel m)
+    public MainController(MainView f)
     {
         // init main view and controller
         

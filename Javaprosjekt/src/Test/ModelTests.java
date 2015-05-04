@@ -24,11 +24,13 @@ public class ModelTests {
         CustomerModel customer = new CustomerModel(r);
         InsuranceModel insurance = new InsuranceModel(r);
         
-        Customer rudi = customer.findById(1);
+        Customer rudi = customer.findById(2);
         if(rudi.getFirstname().equals("Rudi"))
             System.out.println("Find by ID: Pass");
+        else
+            System.out.println("Find by ID: failed");
         
-        HashSet<Customer> result = customer.searchName("brustad");
+        HashSet<Customer> result = customer.searchName("rudi");
         if(result.isEmpty())
             System.out.println("Find by partial name: Fail");
         else
