@@ -25,13 +25,15 @@ import views.*;
 public class MainController extends Controller{
     
     
-    private MainView view;
+    public MainView view;
     private Registries r;
     
     private JMenuBar menubar;
     
-    private ViewCustomerTable ctable;
-    private ViewCustomerController vccontroller;
+    
+    // controller references
+    public ViewCustomerController vcController;
+    public NewCustomerController ncController; 
     
     private CustomerModel customerModel;
     private HashSet<Customer> customers;
@@ -43,44 +45,42 @@ public class MainController extends Controller{
      */
     public MainController(MainView f, MainModel m)
     {
+        // init main view and controller
         
         view = f;
-        
-        menubar = new MenuView(this);
-        view.setJMenuBar(menubar);
-        
-        r = new Registries();
-        
         view.initComponents();
         view.addController(this);
         
         
-        initDefault();
+        // setting the menubar 
+        menubar = new MenuView(this);
+        view.setJMenuBar(menubar);
         
-        customerModel = new CustomerModel(r);
+        
+        // passing registries to controllers. Controllers can get the models it needs for itself.
+        r = new Registries();
+        
+        // creating all controllers and and passing registries and maincontroller for access to other parts of the program.
+        vcController = new ViewCustomerController(r, this);
+        ncController = new NewCustomerController(r, this);
+        
+        
+
+        
+       
+        
+        
     }
     
-    public void initDefault()
+    public void popUp(Object v)
     {
-        customerModel = new CustomerModel(r);
-        customers = customerModel.getCustomers();
-        CustomerTable table = new CustomerTable(customers);
-        ctable = new ViewCustomerTable(table);
         
-        vccontroller = new ViewCustomerController(r, ctable);
-        view.addCenter(ctable);
+        JOptionPane.showOptionDialog(null, v, "Test", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+    
     }
     
-    // under-controller TODO: write more meaningful comments
-    public void newUserPanel()
-    {
-        CustomPanel newview = new NewCustomerPanel();
-        NewCustomerController newcontroller = new NewCustomerController(r, (View) newview);
-        
-        
-        JOptionPane.showConfirmDialog(null, newview, "Test", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-    }
-    // under-controller
+    
+
     public void save()
     {
         r.save();

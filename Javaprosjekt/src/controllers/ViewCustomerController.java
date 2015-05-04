@@ -18,32 +18,38 @@ import models.Customer;
  */
 public class ViewCustomerController extends Controller {
     
+    
+    private MainController mc;
     private Registries registries;
     private ViewCustomerTable view;
-    private CustomerModel model;
+    private CustomerModel umodel;
     
     
-    public ViewCustomerController(Registries r, ViewCustomerTable v)
+    public ViewCustomerController(Registries r, MainController c)
     {
+        this.mc = c;
         this.registries = r;
-        this.view = v;
-        model = new CustomerModel(r);
         
+        umodel = new CustomerModel(registries);
+        
+        CustomerTable table = new CustomerTable(umodel.getCustomers());
+        view = new ViewCustomerTable(table);
         view.addController(this);
         view.initComponents();
         
-        CustomerTable table = new CustomerTable(model.getCustomers());
+        
+        mc.view.addCenter(view);
         
     }
     
     public void ViewCustomer(int i)
     {
         System.out.println(i);
-        Customer customer = model.findById(i);
+        Customer customer = umodel.findById(i);
         
         CustomerView cus = new CustomerView(customer.getFirstname(), customer.getLastname(), customer.getAddressStreet(), customer.getCity(), Integer.toString(customer.getAreacode()));
-        
-        JOptionPane.showConfirmDialog(null, cus, customer.getName(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        System.out.println("test");
+        mc.popUp(cus);
         
     }
     

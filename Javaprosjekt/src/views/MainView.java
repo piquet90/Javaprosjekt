@@ -16,6 +16,7 @@ import controllers.Controller;
 import controllers.MainController;
 import javax.swing.*;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
 
 public class MainView extends JFrame implements View{
@@ -57,11 +58,13 @@ public class MainView extends JFrame implements View{
     }
     
     
-    public void addCenter(JTable tpanel)
+    public void addCenter(Component tpanel)
     {
         JScrollPane panel = new JScrollPane(tpanel);
         Container c = getContentPane();
         c.add(panel, BorderLayout.CENTER);
+        c.revalidate();
+        c.repaint();
     }
     
     

@@ -61,7 +61,7 @@ public class MenuView extends JMenuBar{
         this.add(customer);
         this.add(insurance);
         
-        newCustomer.addActionListener((e)->{controller.newUserPanel();});
+        newCustomer.addActionListener((e)->{controller.ncController.newCustomer();});
         
     }
     
