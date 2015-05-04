@@ -16,9 +16,7 @@ import controllers.Controller;
 import controllers.MainController;
 import javax.swing.*;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 
 public class MainView extends JFrame implements View{
     

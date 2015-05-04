@@ -27,8 +27,10 @@ public class CustomerView extends JTabbedPane implements View {
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private CustomPanel cusTab, insTab, repTab;
     private GridBagConstraints gbc, g;
-    private CustomButton2 endre, slett;
+    private CustomButton2 endre;
+    private CustomButton3 slett, newIns, newRep;
     private NewCustomerController controller;
+    private boolean edit = false;
     
     
     public void initComponents()
@@ -58,7 +60,11 @@ public class CustomerView extends JTabbedPane implements View {
         postNr.setEditable(false);
         
         endre = new CustomButton2("Endre");
-        slett = new CustomButton2("Slett kunde");
+        endre.addActionListener((e) -> endre());
+        
+        slett = new CustomButton3("Slett kunde");
+        newIns = new CustomButton3("Ny Forsikring");
+        newRep = new CustomButton3("Ny Skademelding");
         
         //cusTab Layout initalizing
         cusTab.setLayout(new GridBagLayout());
@@ -114,10 +120,6 @@ public class CustomerView extends JTabbedPane implements View {
         gbc.gridwidth = 1;
         cusTab.add(endre, gbc);
         
-        gbc.insets = new Insets(15, 25, 0, 5);
-        gbc.gridx++;
-        cusTab.add(slett, gbc);
-        
         gbc.gridx = 2;
         gbc.gridy = 1;
         cusTab.add(new CustomLabel(""), gbc);
@@ -132,18 +134,22 @@ public class CustomerView extends JTabbedPane implements View {
         p.setLayout(new GridBagLayout());
         GridBagConstraints g = new GridBagConstraints();
         g.anchor = GridBagConstraints.LINE_START;
-        g.insets = new Insets(10, 0, 0, 0);
+        g.insets = new Insets(15, 0, 0, 0);
         g.gridx = 0;
         g.gridy = 0;
-        p.add(new CustomButton3("Ny Forsikring"), g);
-        g.insets = new Insets(20, 0, 10, 0);
+        p.add(newIns, g);
         g.gridy++;
-        p.add(new CustomButton3("Ny Skademelding"), g);
+        p.add(newRep, g);
+        g.gridy++;
+        g.insets = new Insets(15, 0, 15, 0);
+        p.add(slett, g);
+        
         p.setBorder(BorderFactory.createTitledBorder("Handlinger"));
         
         gbc.gridx = 4;
         gbc.gridy = 1;
-        gbc.gridheight = 3;
+        gbc.gridheight = 4;
+        gbc.insets = new Insets(0, 50, 0, 0);
         cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=15 topmargin=8 marginwidth=15 marginheight=5>Kundeinformasjon</body></html>", cusTab);
@@ -175,15 +181,40 @@ public class CustomerView extends JTabbedPane implements View {
     /**
      * Method makes textfields editable and passes the changed information to registry
      */
-    public void endre() {
+    public void endre()
+    {
+        if(!edit) {
+            fNavn.setEditable(true);
+            eNavn.setEditable(true);
+            adresse.setEditable(true);
+            postSted.setEditable(true);
+            postNr.setEditable(true);
+            
+            endre.setText("Lagre");
+            
+            edit = true;  
+        }
+        else {
+            String f = fNavn.getText();
+            String e = eNavn.getText();
+            String a = adresse.getText();
+            String ps = postSted.getText();
+            String pn = postNr.getText();
+            
+            //controller.endre(f, e, a, ps, pn);
 
-        String f = fNavn.getText();
-        String e = eNavn.getText();
-        String a = adresse.getText();
-        String ps = postSted.getText();
-        String pn = postNr.getText();
+            fNavn.setEditable(false);
+            eNavn.setEditable(false);
+            adresse.setEditable(false);
+            postSted.setEditable(false);
+            postNr.setEditable(false);
+            
+            endre.setText("Endre");
+            
+            edit = false;
+        }
+
         
-        //controller.endre(f, e, a, ps, pn);
     }
     
     public void slett() {
