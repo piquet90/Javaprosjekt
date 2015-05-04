@@ -24,15 +24,14 @@ public class ViewCustomerTable extends JTable{
     
     public void initComponents()
     {
-
-        
         this.addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent me) {
                 JTable table =(JTable) me.getSource();
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
-                    controller.ViewCustomer(row);
+                    int id = (int)table.getValueAt(row, 0);
+                    controller.ViewCustomer(id);
                 }        
             }
         });
