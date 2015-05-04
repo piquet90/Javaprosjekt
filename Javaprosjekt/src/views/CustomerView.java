@@ -9,11 +9,9 @@ import CustomSwing.CustomButton2;
 import CustomSwing.CustomButton3;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
-import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
 import controllers.Controller;
 import controllers.NewCustomerController;
-<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -21,12 +19,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
-=======
-import java.awt.*;
->>>>>>> 8f90656e17348c209aa3eb6fbf5fabf488d408a7
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
-import javax.swing.border.TitledBorder;
 
 public class CustomerView extends JTabbedPane implements View {
     
