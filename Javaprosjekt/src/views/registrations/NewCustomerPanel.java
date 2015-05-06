@@ -141,7 +141,7 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==submit)
         {
-            listener.customActionPerformed(new CustomEvent(Constants.REGISTER_BUTTON_PRESSED));
+            listener.customActionPerformed(new CustomEvent(Constants.REGISTER_BUTTON_PRESSED, Constants.NEW_CUSTOMER));
         }
     }
     

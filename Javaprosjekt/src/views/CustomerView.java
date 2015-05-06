@@ -10,28 +10,44 @@ import CustomSwing.CustomButton3;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
-import controllers.Controller;
-import controllers.CustomerController;
+import DAO.Constants;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-public class CustomerView extends JTabbedPane {
+public class CustomerView extends JTabbedPane implements ActionListener{
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
+
+    
     private CustomPanel cusTab, repTab;
     private GridBagConstraints gbc;
     private CustomButton2 endre;
-    private CustomButton3 slett, newIns, newRep;
+    private CustomButton3 newIns, newRep;
     private boolean edit = false;
     
-    public void initComponents()
+    private CustomListener listener;
+    
+    
+    
+    
+    /**
+     * Constructor that recieves the customer information and sets the textfields
+     * @param fn Fornavn
+     * @param en Etternavn
+     * @param adr Adresse
+     * @param ps Poststed
+     * @param pnr Postnummer
+     */
+    public CustomerView()
     {
         this.setBackground(new Color(159, 196, 232));
         this.setFont(new Font("Arial", Font.BOLD, 18));
@@ -59,14 +75,17 @@ public class CustomerView extends JTabbedPane {
         postNr = new CustomTextField(5);
         postNr.setEditable(false);
         
+        
+        // Buttons
         endre = new CustomButton2("Endre");
-        endre.addActionListener((e) -> endre());
-        
-        slett = new CustomButton3("Slett kunde");
-        slett.addActionListener((e) -> slett());
-        
-        newIns = new CustomButton3("Ny Forsikring");
+        newIns = new CustomButton3("Ny Forsikring");       
         newRep = new CustomButton3("Ny Skademelding");
+        
+        endre.addActionListener(this);
+        newIns.addActionListener(this);
+        newRep.addActionListener(this);
+        
+        // end of buttons
         
         //cusTab Layout initalizing
         cusTab.setLayout(new GridBagLayout());
@@ -144,7 +163,6 @@ public class CustomerView extends JTabbedPane {
         p.add(newRep, g);
         g.gridy++;
         g.insets = new Insets(15, 0, 15, 0);
-        p.add(slett, g);
         
         p.setBorder(BorderFactory.createTitledBorder("Handlinger"));
         
@@ -157,27 +175,7 @@ public class CustomerView extends JTabbedPane {
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
         // this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
-         
-    }
-    
-    
-    
-    /**
-     * Constructor that recieves the customer information and sets the textfields
-     * @param fn Fornavn
-     * @param en Etternavn
-     * @param adr Adresse
-     * @param ps Poststed
-     * @param pnr Postnummer
-     */
-    public CustomerView(String fn, String en, String adr, String ps, String pnr)
-    {
-        initComponents();
-        fNavn.setText(fn);
-        eNavn.setText(en);
-        adresse.setText(adr);
-        postSted.setText(ps);
-        postNr.setText(pnr);
+
     }
     
     /**
@@ -219,18 +217,50 @@ public class CustomerView extends JTabbedPane {
         
     }
     
-    public void slett() {
-        
-        String[] j = {"Slett kunde", "Avbryt"};
-               
-        int y = JOptionPane.showOptionDialog(this, "Er du sikker på at du vil slette kunde " + fNavn.getText() + " " + eNavn.getText() + "?", "Slette kunde", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, j, j[1]);
-        
-        if(y ==  JOptionPane.YES_OPTION)
-            System.out.println("Brukeren er slettet");
-        else
-            System.out.println("Brukeren er IKKE slettet");
+    public boolean isEditable()
+    {
+        return edit;
+    }
+    
+    public String getfNavn() {
+        return fNavn.getText();
     }
 
+    public void setfNavn(String fNavn) {
+        this.fNavn.setText(fNavn);
+    }
+
+    public String geteNavn() {
+        return eNavn.getText();
+    }
+
+    public void seteNavn(String eNavn) {
+        this.eNavn.setText(eNavn);
+    }
+
+    public String getAdresse() {
+        return adresse.getText();
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse.setText(adresse);
+    }
+
+    public String getPostSted() {
+        return postSted.getText();
+    }
+
+    public void setPostSted(String postSted) {
+        this.postSted.setText(postSted);
+    }
+
+    public String getPostNr() {
+        return postNr.getText();
+    }
+
+    public void setPostNr(String postNr) {
+        this.postNr.setText(postNr);
+    }
  
     /**
      * 
@@ -245,6 +275,28 @@ public class CustomerView extends JTabbedPane {
     {
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(v));
     }
+    
+    public void setEditable(Boolean b)
+    {
+        this.edit = b;
+    }
+    
+    public void addCustomListener(CustomListener e)
+    {
+        this.listener = e;
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==endre)// tilate endring av felt
+            if(!edit)
+                endre();
+            else
+                listener.customActionPerformed(new CustomEvent(Constants.NEW_CUSTOMER));
+        if(e.getSource()==newIns)// ny forsikring
+            listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE));
+        if(e.getSource()==newRep)
+            listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));
+    }
 
 }

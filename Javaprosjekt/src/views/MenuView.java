@@ -73,7 +73,7 @@ public class MenuView extends JMenuBar{
         this.add(test);
         
         newReport.addActionListener((e)->{controller.rController.newReport();});
-        newCustomer.addActionListener((e)->{controller.ncController.newCustomer();});
+        newCustomer.addActionListener((e)->{controller.regController.newUser();});
     }
     
 }

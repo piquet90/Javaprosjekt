@@ -31,11 +31,13 @@ public class CustomerController extends Controller implements CustomListener{
     private MainController mc;
     private Registries registries;
     
-    // View class
-    private NewCustomerPanel view;
+    // Views
+    private CustomerView view;
     
     // model 
     private CustomerModel m;
+    
+    private Customer customer;
     
     
     // constructor
@@ -46,29 +48,54 @@ public class CustomerController extends Controller implements CustomListener{
         this.m = new CustomerModel(r);
     }
     
-    // load new customer view
-    public void newCustomer()
+    public void viewCustomer(int i)
     {
-        view = new NewCustomerPanel();
-        view.addCustomListener(this);
-        mc.popUp(Constants.NEW_CUSTOMER_TEXT, view);
+        // find customer
+        customer = m.findById(i);
+        
+        // make view
+        CustomerView cus = new CustomerView();
+        cus.addCustomListener(this);
+        this.view = cus;
+        // fill Customer info
+        cus.setfNavn(customer.getFirstname());
+        cus.seteNavn(customer.getLastname());
+        cus.setAdresse(customer.getAddressStreet());
+        cus.setPostNr(customer.getAreacode());
+        cus.setPostSted(customer.getCity());
+        
+        // fill insurances
+        HashSet<Insurance> set = m.findInsuranceByUserId(i);
+        InsuranceTable table = new InsuranceTable(set);
+        ViewTable viewTable = new ViewTable(table);
+        cus.addTable("Forsikringer", viewTable);
+        
+        // show view
+        mc.popUp(customer.getName(), cus);
+        
+    }// end of viewCustomer
+    
+    public void newInsurance()
+    {
+        mc.regController.newInsurance(customer.getId());
     }
-    
-    
-    public void register()
+    public void newReport()
     {
+        System.out.println("new report for ID: "+customer.getId());
+    }
+    public void save()
+    {
+        
         String s = "";
         
         
-        String fornavn = view.getFornavn();
-        String etternavn = view.getEtternavn();
+        String fornavn = view.getfNavn();
+        String etternavn = view.geteNavn();
         String adresse = view.getAdresse();
         String poststed = view.getPostSted();
         String postnr = view.getPostNr();
         
 
-        Pattern letters = Pattern.compile(Constants.ONLY_ALPHABETIC);
-        Pattern areacode = Pattern.compile(Constants.AREA_CODE);
         // field validation
         if(fornavn.equals("")) // validation of names is silly
             s += "Fornavn \n";          
@@ -78,52 +105,29 @@ public class CustomerController extends Controller implements CustomListener{
             s += "Adresse \n";
         if(!Pattern.matches(Constants.AREA_CODE, postnr)) // validation of areacode makes sense.
             s += "Poststed \n";
+        if(poststed.equals(""))
+            s += "Poststed \n";
         if(!s.equals(""))
         {
             view.showError("Manglende felter: \n\n"+s+"\nVennligst fyll inn alle felter");
         }
         else {
-            
-            Customer c = new Customer(fornavn, etternavn, adresse, poststed, postnr);
-            m = new CustomerModel(registries);
-            if(m.newCustomer(c))
-            {
-                mc.vcController.update();
-                view.clearAll();
-                view.showError("Bruker registert. \n\n"+
-                        "Fornavn: "+fornavn+"\n"+
-                        "Etternavn: "+etternavn+"\n"+
-                        "Adresse: "+adresse+"\n"+
-                        "Poststed: "+poststed+"\n"+
-                        "Postnummer: "+postnr);
-                
-            }
-            else
-                view.showError(Constants.GENERAL_ERROR_MESSAGE);
-            
-            
+            customer.setFirstName(fornavn);
+            customer.setLastName(etternavn);
+            customer.setAddressStreet(adresse);
+            customer.setAreacode(postnr);
+            customer.setCity(poststed);
+            mc.vcController.update();
+            view.endre();
         }
-    }  // end of register()
-    
-    public void viewCustomer(int i)
-    {
-        Customer customer = m.findById(i);
-        
-        CustomerView cus = new CustomerView(customer.getFirstname(), customer.getLastname(), customer.getAddressStreet(), customer.getCity(), customer.getAreacode());
-        
-        HashSet<Insurance> set = m.findInsuranceByUserId(i);
-        InsuranceTable table = new InsuranceTable(set);
-        ViewTable viewTable = new ViewTable(table);
-        
-        cus.addTable("Forsikringer", viewTable);
-        
-        mc.popUp(customer.getName(), cus);
-        
-    }// end of viewCustomer
-
+    }
     @Override
     public void customActionPerformed(CustomEvent i) {
-        if(i.getAction()==Constants.REGISTER_BUTTON_PRESSED)
-            register();
+        if(i.getAction()==Constants.NEW_CUSTOMER)
+            save();
+        if(i.getAction()==Constants.NEW_INSURANCE)
+            newInsurance();
+        if(i.getAction()==Constants.NEW_REPORT)
+            newReport();
     }
 }// end of class

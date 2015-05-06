@@ -26,7 +26,7 @@ import views.View;
  * @author Audun
  */
 
-public class NewDefaultInsurancePanel extends CustomPanel implements View {
+public class NewDefaultInsurancePanel extends CustomPanel{
     
     private CustomTextField date, customer, price, coverage, other;
     private JScrollPane cScroll;
@@ -34,12 +34,11 @@ public class NewDefaultInsurancePanel extends CustomPanel implements View {
     private GridBagConstraints gbc;
     private CustomerController controller;
     
-    /**
-     * Initializes the GUI components
-     */
 
-    public void initComponents() {
-        
+    /**
+     * NyBilforsikring constructor
+     */
+    public NewDefaultInsurancePanel() {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
@@ -130,19 +129,9 @@ public class NewDefaultInsurancePanel extends CustomPanel implements View {
     public String getConditions() {
         return conditions.getText();
     }
-    /**
-     * NyBilforsikring constructor
-     */
-    public NewDefaultInsurancePanel() {
-        
-    }
+    
     
     public void showError(String s) {
         JOptionPane.showMessageDialog(this, s);
-    }
-
-    @Override
-    public boolean addController(Controller c) {
-        return false;
     }
 }

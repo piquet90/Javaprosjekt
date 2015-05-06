@@ -6,8 +6,6 @@
 package views.registrations;
 
 import CustomSwing.*;
-import controllers.Controller;
-import controllers.NewInsuranceController;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -15,14 +13,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JComboBox;
-import views.View;
-
 /**
  *
  * @author Audun
  */
 
-public class NewInsurancePanel extends CustomPanel implements View {
+public class NewInsurancePanel extends CustomPanel{
     
     private CardLayout cl;
     private JComboBox<String> insType;
@@ -37,16 +33,13 @@ public class NewInsurancePanel extends CustomPanel implements View {
     private NewLeisureHouseInsurance leisureHouse;
     private NewTravelInsurance travel;
     
-    private NewInsuranceController controller;
     
-    public void initComponents() {
-        
+    public NewInsurancePanel() {
         setLayout(new GridBagLayout());
         
         cl = new CardLayout();
         
         defaultPanel = new NewDefaultInsurancePanel();
-        defaultPanel.initComponents();
         
         bil = new NewCarInsurance();
         bil.initComponents();
@@ -130,11 +123,6 @@ public class NewInsurancePanel extends CustomPanel implements View {
                 String s = String.valueOf(n);
                 cl.show(container, s);
         insuranceType = insType.getItemAt(n);});
-                
-    }
-    
-    public NewInsurancePanel() {
-        
     }
     
     public String getInsuranceType() {
@@ -145,15 +133,5 @@ public class NewInsurancePanel extends CustomPanel implements View {
     public String getTravelInsuranceArea()
     {
         return travel.getArea();
-    }
-
-    @Override
-    public boolean addController(Controller c) {
-        if(c instanceof NewInsuranceController)
-        {
-            this.controller = (NewInsuranceController) c;
-            return true;
-        }
-        return false;
     }
 }

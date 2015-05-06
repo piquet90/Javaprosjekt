@@ -31,14 +31,14 @@ public class ViewTable extends JTable{
         this.addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent me) {
                 if(listener == null)
-            System.out.println("No listener, please add a listener.");
+                    System.out.println("No listener, please add a listener.");
                 JTable table =(JTable) me.getSource();
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
                     int id = (int)table.getValueAt(row, 0);
                     listener.customActionPerformed(new CustomEvent(Constants.DOUBLECLICK, id));
-                    System.out.println("test");
+                    
                 }        
             }
         });
