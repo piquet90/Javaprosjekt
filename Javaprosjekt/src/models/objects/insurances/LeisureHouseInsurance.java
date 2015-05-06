@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package models.objects.insurances;
+import DAO.Constants;
 import java.util.Calendar;
 
 /**
@@ -19,12 +20,15 @@ public class LeisureHouseInsurance extends PropertyInsurance{
      * @see PropertyInsurance
      * 
      */
-    public LeisureHouseInsurance(String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Calendar dateofcreation) {
-        super(address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
+    public LeisureHouseInsurance(int id,String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Calendar dateofcreation) {
+        super(id, address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
     }
 
 
-
+    public String getType()
+    {
+        return Constants.LEISUREHOUSE_INSURANCE;
+    }
 
     
 }

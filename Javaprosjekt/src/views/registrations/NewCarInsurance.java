@@ -11,7 +11,7 @@ import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import controllers.Controller;
-import controllers.NewCustomerController;
+import controllers.CustomerController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -32,7 +32,7 @@ public class NewCarInsurance extends CustomPanel implements View {
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 endreEier;
-    private NewCustomerController controller;
+    private CustomerController controller;
     private boolean check = false;
     private int n = 0;
     

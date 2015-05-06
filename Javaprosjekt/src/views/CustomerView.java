@@ -11,27 +11,26 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import controllers.Controller;
-import controllers.NewCustomerController;
+import controllers.CustomerController;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-public class CustomerView extends JTabbedPane implements View {
+public class CustomerView extends JTabbedPane {
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
-    private CustomPanel cusTab, insTab, repTab;
+    private CustomPanel cusTab, repTab;
     private GridBagConstraints gbc, g;
     private CustomButton2 endre;
     private CustomButton3 slett, newIns, newRep;
-    private NewCustomerController controller;
+    private CustomerController controller;
     private boolean edit = false;
-    
     
     public void initComponents()
     {
@@ -39,9 +38,10 @@ public class CustomerView extends JTabbedPane implements View {
         this.setFont(new Font("Arial", Font.BOLD, 18));
         
         cusTab = new CustomPanel();
-        insTab = new CustomPanel();
-        insTab.setPreferredSize(new Dimension(600, 400));
+        // insTab = new CustomPanel();
+        // insTab.setPreferredSize(new Dimension(600, 400));
         repTab = new CustomPanel();
+        
         
 
   
@@ -156,7 +156,7 @@ public class CustomerView extends JTabbedPane implements View {
         cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
-        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
+        // this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
          
     }
@@ -242,9 +242,13 @@ public class CustomerView extends JTabbedPane implements View {
         JOptionPane.showMessageDialog(this, error);
     }
     
+    public void addTable(String s, ViewTable v)
+    {
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(v));
+    }
 
-    @Override
     public boolean addController(Controller c) {
-        return false;
+        this.controller = (CustomerController)c;
+        return true;
     }
 }

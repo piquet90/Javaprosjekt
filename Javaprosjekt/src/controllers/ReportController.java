@@ -20,6 +20,11 @@ public class ReportController {
     private NewReportPanel view;
     private MainController mc;
     
+    /**
+     *
+     * @param r
+     * @param c
+     */
     public ReportController(Registries r, MainController c)
     {
         this.dataAccessObject = r;
@@ -27,6 +32,9 @@ public class ReportController {
         
     }
     
+    /**
+     *
+     */
     public void newReport()
     {
         this.view = new NewReportPanel();

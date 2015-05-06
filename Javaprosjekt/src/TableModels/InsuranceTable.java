@@ -5,7 +5,11 @@
  */
 package TableModels;
 
+import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Iterator;
 import javax.swing.table.AbstractTableModel;
+import models.objects.insurances.Insurance;
 
 /**
  *
@@ -23,6 +27,32 @@ public class InsuranceTable extends AbstractTableModel{
         }
     };
 
+    
+    
+    public InsuranceTable(HashSet<Insurance> insurances)     
+    {
+        
+        if(insurances.isEmpty())
+        {
+            
+        }
+        else {
+            celler = new Object[insurances.size()][kolonnenavn.length];
+            Iterator<Insurance> iter = insurances.iterator();
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+            for(int i = 0; iter.hasNext(); i++)
+            {
+                Insurance ins = iter.next();
+                celler[i][0] = ins.getId();
+                celler[i][1] = ins.getType();
+                celler[i][2] = ins.getDateofcreation();
+                celler[i][3] = "HER ER JEG";
+            }
+        }
+        
+        
+        
+    }
     @Override
     public int getRowCount() {
         return celler.length;

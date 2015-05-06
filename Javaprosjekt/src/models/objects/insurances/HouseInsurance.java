@@ -5,6 +5,7 @@
  */
 package models.objects.insurances;
 
+import DAO.Constants;
 import java.util.Calendar;
 
 /**
@@ -21,12 +22,15 @@ public class HouseInsurance extends PropertyInsurance{
      * @see PropertyInsurance
      */
     public HouseInsurance(
-            String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Calendar dateofcreation) {
-        super(address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
+            int id, String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Calendar dateofcreation) {
+        super(id, address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
     }
 
 
-
+    public String getType()
+    {
+        return Constants.HOUSE_INSURANCE;
+    }
    
 
 

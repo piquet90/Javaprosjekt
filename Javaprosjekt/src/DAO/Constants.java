@@ -24,8 +24,25 @@ public class Constants {
     public static final int FRAME_HEIGHT = 720;
     public static final int SCROLL_SPEED = 18;
     
+    
+    // Action Commands
+    public static final int DOUBLECLICK = 22222222;
+    public static final int REGISTER_BUTTON_PRESSED = 11111111;
+    
+    
+    public static final String BOAT_INSURANCE = "BÂtforsikring";
+    public static final String CAR_INSURANCE = "Bilforsikring";
+    public static final String HOUSE_INSURANCE = "Hus og innboforsikring";
+    public static final String LEISUREHOUSE_INSURANCE = "Fritidsboligforsikring";
+    public static final String TRAVEL_INSURANCE = "ReiseForsikring";
+    
+            
+            
+    
     // regexs
     
     public static final String ONLY_ALPHABETIC = "^[Ê¯Â∆ÿ≈a-zA-Z]+$";
+    public static final String ONLY_ALPHABETIC_NOT_EMPTY = "^[Ê¯Â∆ÿ≈a-zA-Z]{1,}+$";
+    public static final String AREA_CODE = "^[0-9]{4}$";
     
 }

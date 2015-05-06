@@ -5,8 +5,8 @@
  */
 package views;
 
+import DAO.Constants;
 import java.awt.Font;
-import controllers.ViewCustomerController;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,39 +17,37 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author rudiwyu
  */
-/*
-public class ViewCustomerTable extends JTable{
+public class ViewTable extends JTable{
     
-    private ViewCustomerController controller;
+    private CustomListener listener;
     
     
-    public void initComponents()
+    public ViewTable(AbstractTableModel table)
     {
+        super(table);
+        this.setFont(new Font("Arial", Font.BOLD, 16));
+        this.setRowHeight(40);
+        
         this.addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent me) {
+                if(listener == null)
+            System.out.println("No listener, please add a listener.");
                 JTable table =(JTable) me.getSource();
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
                     int id = (int)table.getValueAt(row, 0);
-                    controller.ViewCustomer(id);
+                    listener.customActionPerformed(new CustomEvent(Constants.DOUBLECLICK, id));
+                    System.out.println("test");
                 }        
             }
         });
     }
     
     
-    public ViewCustomerTable(AbstractTableModel table)
+
+    public void addCustomListener(CustomListener l)
     {
-        super(table);
-        this.setFont(new Font("Arial", Font.BOLD, 16));
-        this.setRowHeight(40);
-    
-    }
-    
-    public void addController(ViewCustomerController c)
-    {
-        controller = c;
+        this.listener = l;
     }
 }
-*/

@@ -6,22 +6,24 @@
 package controllers;
 
 import TableModels.CustomerTable;
-import DAO.Registries;
-import javax.swing.JOptionPane;
+import DAO.*;
+import TableModels.InsuranceTable;
+import java.util.HashSet;
 import models.*;
 import views.*;
 import models.Customer;
+import models.objects.insurances.Insurance;
 
 /**
  *
  * @author rudiwyu
  */
-public class ViewCustomerController extends Controller {
+public class ViewCustomerController extends Controller implements CustomListener{
     
     
     private MainController mc;
     private Registries registries;
-    private ViewCustomerTable view;
+    private ViewTable view;
     private CustomerModel umodel;
     private CustomerTable table;
     
@@ -35,12 +37,9 @@ public class ViewCustomerController extends Controller {
     
     public void showAllCustomers()
     {
-        
         table = new CustomerTable(umodel.getCustomers());
-        view = new ViewCustomerTable(table);
-        view.addController(this);
-        view.initComponents();
-        
+        view = new ViewTable(table);
+        view.addCustomListener(this);
         mc.view.addCenter(view);
     }
     
@@ -50,16 +49,14 @@ public class ViewCustomerController extends Controller {
         view.setModel(table);
     }
     
-    public void ViewCustomer(int i)
-    {
-        System.out.println(i);
-        Customer customer = umodel.findById(i);
+    
+
+    @Override
+    public void customActionPerformed(CustomEvent i) {
         
-        CustomerView cus = new CustomerView(customer.getFirstname(), customer.getLastname(), customer.getAddressStreet(), customer.getCity(), Integer.toString(customer.getAreacode()));
-        System.out.println("test");
-        mc.popUp(cus);
         
+        if(i.getAction()==Constants.DOUBLECLICK)
+            System.out.println("test");
+        mc.ncController.viewCustomer(i.getValue());
     }
-    
-    
 }

@@ -7,6 +7,7 @@ package models.objects.insurances;
  */
 
 
+import DAO.Constants;
 import models.objects.insurances.VehicleInsurance;
 import java.util.Calendar;
 
@@ -29,11 +30,14 @@ public class CarInsurance extends VehicleInsurance{
      * @param model
      * @param power
      */
-    public CarInsurance(int price, int coverage, String conditions, String other, Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power) {
-        super(price, coverage, conditions, other, dateofcreation, viechleOwner, registrationNumber, type, model, power);
+    public CarInsurance(int id, int price, int coverage, String conditions, String other, Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power) {
+        super(id, price, coverage, conditions, other, dateofcreation, viechleOwner, registrationNumber, type, model, power);
         
     }
 
-
+    public String getType()
+    {
+        return Constants.CAR_INSURANCE;
+    }
     
 }

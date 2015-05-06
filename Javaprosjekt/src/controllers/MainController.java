@@ -6,10 +6,6 @@
  */
 package controllers;
 
-
-import views.registrations.NewCustomerPanel;
-import CustomSwing.CustomPanel;
-import TableModels.CustomerTable;
 import DAO.Registries;
 import java.util.HashSet;
 import javax.swing.JMenuBar;
@@ -33,11 +29,8 @@ public class MainController extends Controller{
     
     // controller references
     public ViewCustomerController vcController;
-    public NewCustomerController ncController; 
+    public CustomerController ncController;
     public ReportController rController;
-    
-    private CustomerModel customerModel;
-    private HashSet<Customer> customers;
     
     /**
      * MainController
@@ -66,10 +59,12 @@ public class MainController extends Controller{
         
         // creating all controllers and and passing registries and maincontroller for access to other parts of the program.
         vcController = new ViewCustomerController(r, this);
-        ncController = new NewCustomerController(r, this);
+        ncController = new CustomerController(r, this);
         rController = new ReportController(r, this);
         
+        // start with ViewCustomerController
         vcController.showAllCustomers();
+        
     }
     
     public void popUp(Object v)

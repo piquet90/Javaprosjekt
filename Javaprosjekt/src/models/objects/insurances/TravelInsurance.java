@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package models.objects.insurances;
+import DAO.Constants;
 import java.util.Calendar;
 
 /**
@@ -25,8 +26,8 @@ public class TravelInsurance extends Insurance{
      * @param area The area of which the insurance covers
      * @see Insurance
      */
-    public TravelInsurance(String area, int price, double coverage, String conditions, String other, Calendar dateofcreation) {
-        super(price, coverage, conditions, other, dateofcreation);
+    public TravelInsurance(int id, String area, int price, double coverage, String conditions, String other, Calendar dateofcreation) {
+        super(id, price, coverage, conditions, other, dateofcreation);
         this.area = area;
     }
 
@@ -49,5 +50,8 @@ public class TravelInsurance extends Insurance{
     public void setArea(String area) {
         this.area = area;
     }
-    
+    public String getType()
+    {
+        return Constants.TRAVEL_INSURANCE;
+    }
 }

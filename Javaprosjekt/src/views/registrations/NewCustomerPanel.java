@@ -10,25 +10,29 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
-import controllers.Controller;
-import controllers.NewCustomerController;
+import DAO.Constants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import views.View;
+import views.CustomEvent;
+import views.CustomListener;
 
-public class NewCustomerPanel extends CustomPanel implements View{
+
+public class NewCustomerPanel extends CustomPanel implements ActionListener{
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private GridBagConstraints gbc;
     private CustomButton submit;
-    private NewCustomerController controller;
+    private CustomListener listener;
+
     
     /**
-     * Initializes the GUI components
-    */
-    public void initComponents()
+     * NyBrukerPanel constructor
+     */
+    public NewCustomerPanel()
     {
         fNavn = new CustomTextField(15);
         eNavn = new CustomTextField(15);
@@ -37,7 +41,7 @@ public class NewCustomerPanel extends CustomPanel implements View{
         postNr = new CustomTextField(6);
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> { controller.register();});
+        submit.addActionListener(this);
         
         this.setLayout(new GridBagLayout());
         this.setSize(getPreferredSize());
@@ -91,7 +95,6 @@ public class NewCustomerPanel extends CustomPanel implements View{
         
         gbc.gridy++;
         add(submit, gbc);
-        
     }
 
     public String getFornavn() {
@@ -113,6 +116,16 @@ public class NewCustomerPanel extends CustomPanel implements View{
     public String getPostNr() {
         return postNr.getText();
     }
+    
+    public void clearAll()
+    {
+        fNavn.setText("");
+        eNavn.setText("");
+        adresse.setText("");
+        postSted.setText("");
+        postNr.setText("");
+        
+    }
     /**
      * 
      * @param error Recieves error message from controller and displays it to user
@@ -122,21 +135,18 @@ public class NewCustomerPanel extends CustomPanel implements View{
     {
         JOptionPane.showMessageDialog(this, error);
     }
-    /**
-     * NyBrukerPanel constructor
-     */
-    public NewCustomerPanel()
-    {
-        
-    }
+    
 
     @Override
-    public boolean addController(Controller c) {
-        if(c instanceof NewCustomerController)
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==submit)
         {
-            this.controller = (NewCustomerController)c;
-            return true;
+            listener.customActionPerformed(new CustomEvent(Constants.REGISTER_BUTTON_PRESSED));
         }
-        return false;
     }
-}
+    
+    public void addCustomListener(CustomListener e)
+    {
+        this.listener = e;
+    }
+} // end of class

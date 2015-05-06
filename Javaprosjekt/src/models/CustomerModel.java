@@ -8,6 +8,7 @@ package models;
 import DAO.Registries;
 import java.util.HashSet;
 import java.util.Iterator;
+import models.objects.insurances.Insurance;
 
 
 /**
@@ -17,10 +18,12 @@ import java.util.Iterator;
 public class CustomerModel {
     
     HashSet<Customer> customers;
+    HashSet<Insurance> insurances;
     
     public CustomerModel(Registries r)
     {
         this.customers = r.getCustomers();
+        this.insurances = r.getInsurances();
     }
     
     public boolean newCustomer(Customer c)
@@ -64,5 +67,24 @@ public class CustomerModel {
         }
         
         return result;
+    }
+    
+    public HashSet<Insurance> findInsuranceByUserId(int id)
+    {
+        Iterator<Insurance> i = insurances.iterator();
+        
+        HashSet<Insurance> result = new HashSet<>();
+        while(i.hasNext())
+        {
+            Insurance obj = i.next();
+            
+            if(obj.getOwnerId() == id )
+                result.add(obj);
+            
+        }
+        
+        return result;
+        
+        
     }
 }

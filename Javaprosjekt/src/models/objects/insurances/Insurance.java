@@ -23,6 +23,7 @@ public abstract class Insurance implements Serializable{
     
     // Instance variables
     private int id;
+    private int ownerid;
     private int price;
     private double coverage;
     private String conditions;
@@ -43,7 +44,8 @@ public abstract class Insurance implements Serializable{
      * @param other String containing "other"-info about the insurance
      * @param dateofcreation Date-object with info about when the insurance was created
      */
-    public Insurance(int price, double coverage, String conditions, String other, Calendar dateofcreation) {
+    public Insurance(int id, int price, double coverage, String conditions, String other, Calendar dateofcreation) {
+        this.ownerid = id;
         this.price = price;
         this.coverage = coverage;
         this.conditions = conditions;
@@ -205,6 +207,25 @@ public abstract class Insurance implements Serializable{
      */
     public static void setNext(int nextId) {
         next = nextId;
+    }
+    
+    public String getType()
+    {
+        return "";
+    }
+
+    /**
+     * @return the ownerid
+     */
+    public int getOwnerId() {
+        return ownerid;
+    }
+
+    /**
+     * @param ownerid the ownerid to set
+     */
+    public void setOwnerId(int ownerid) {
+        this.ownerid = ownerid;
     }
     
     

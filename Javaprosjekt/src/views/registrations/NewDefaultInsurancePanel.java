@@ -10,7 +10,7 @@ import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextArea;
 import CustomSwing.CustomTextField;
 import controllers.Controller;
-import controllers.NewCustomerController;
+import controllers.CustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -32,7 +32,7 @@ public class NewDefaultInsurancePanel extends CustomPanel implements View {
     private JScrollPane cScroll;
     private CustomTextArea conditions;
     private GridBagConstraints gbc;
-    private NewCustomerController controller;
+    private CustomerController controller;
     
     /**
      * Initializes the GUI components

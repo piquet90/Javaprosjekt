@@ -45,6 +45,7 @@ public abstract class PropertyInsurance extends Insurance {
      * @see Insurance
      */
     public PropertyInsurance(
+            int id,
             String address, 
             String type, 
             String construtionmaterial, 
@@ -58,7 +59,7 @@ public abstract class PropertyInsurance extends Insurance {
             String other, 
             Calendar dateofcreation)
     {
-        super(price, (buildingcoverage+buildingcoverage), conditions, other, dateofcreation);
+        super(id, price, (buildingcoverage+buildingcoverage), conditions, other, dateofcreation);
         this.address = address;
         this.type = type;
         this.construtionmaterial = construtionmaterial;

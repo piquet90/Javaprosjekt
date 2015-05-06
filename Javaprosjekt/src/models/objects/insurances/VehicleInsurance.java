@@ -33,10 +33,10 @@ public class VehicleInsurance extends Insurance{
      * @param power
      * @param model
      */
-    public VehicleInsurance(int price, double coverage, String conditions, String other, 
+    public VehicleInsurance(int id, int price, double coverage, String conditions, String other, 
             Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power)
     {
-        super(price, coverage, conditions, other, dateofcreation);
+        super(id, price, coverage, conditions, other, dateofcreation);
         this.viechleOwner = viechleOwner;
         this.registrationNumber = registrationNumber;
         this.type = type;

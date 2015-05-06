@@ -10,7 +10,7 @@ import CustomSwing.CustomCheckBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
-import controllers.NewCustomerController;
+import controllers.CustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -26,7 +26,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomCheckBox lease;
-    private NewCustomerController controller;
+    private CustomerController controller;
     
     public void initComponents() {
         

@@ -5,8 +5,6 @@
  */
 package models;
 
-import models.objects.insurances.Insurance;
-import java.util.HashSet;
 import DAO.Constants;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -37,7 +35,7 @@ public class Customer implements Serializable{
     private String addressStreet;
     private String city;
     
-    private int areacode;
+    private String areacode;
     private int id;
     
     
@@ -49,7 +47,7 @@ public class Customer implements Serializable{
      * @param city
      * @param areacode
      */
-    public Customer(String firstname, String lastname, String addressStreet, String city, int areacode) {
+    public Customer(String firstname, String lastname, String addressStreet, String city, String areacode) {
         
         this.registered =  Calendar.getInstance();
         this.firstname = firstname;
@@ -134,14 +132,14 @@ public class Customer implements Serializable{
     /**
      * @return the areacode
      */
-    public int getAreacode() {
+    public String getAreacode() {
         return areacode;
     }
 
     /**
      * @param areacode the areacode to set
      */
-    public void setAreacode(int areacode) {
+    public void setAreacode(String areacode) {
         this.areacode = areacode;
     }
 
@@ -151,7 +149,5 @@ public class Customer implements Serializable{
     public int getId() {
         return id;
     }
-    
-    
-    
+   
 }
