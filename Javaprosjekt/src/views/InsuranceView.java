@@ -5,10 +5,15 @@
  */
 package views;
 
+import CustomSwing.CustomPanel;
+
 /**
  *
  * @author Audun
  */
-public class InsuranceView {
+public class InsuranceView extends CustomPanel {
     
+    public InsuranceView() {
+        
+    }
 }
