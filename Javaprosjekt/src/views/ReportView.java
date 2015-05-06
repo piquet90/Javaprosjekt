@@ -3,10 +3,9 @@
  * Rudi Yu s231776
  * Audun Brustad s236341
  */
-package views.registrations;
+package registrations;
 
-import CustomSwing.CustomButton;
-import CustomSwing.CustomButton3;
+import CustomSwing.CustomButton2;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
@@ -18,27 +17,22 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.io.File;
-import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class NewReportPanel extends JTabbedPane {
+
+public class ReportView extends JTabbedPane {
     
-    private CustomTextField dato, taksering, utbetalt, mPath,
+    private CustomTextField dato, taksering, utbetalt, type,
             vitneFornavn, vitneEtternavn, vitneAdresse, vitneBy, vitnePnr, vitneTlf;
-    private JFileChooser bildeVelger, meldingVelger;
-    private CustomTextArea beskrivelse, links;
-    private JScrollPane bScroll, fcScroll;
+    private CustomTextArea beskrivelse;
+    private JScrollPane bScroll;
     private GridBagConstraints gbc, gbc2, gbc3;
-    private CustomButton submit;
-    private CustomButton3 bKnapp, sKnapp;
     private CustomPanel txtTab, ulTab, wiTab;
-    private JComboBox<String> type;
+    private CustomButton2 endreInfo, endreVitne;
     private ReportController controller;
+    private boolean edit = false;
+    private boolean edit2 = false;
     
     
     /**
@@ -58,42 +52,11 @@ public class NewReportPanel extends JTabbedPane {
         wiTab = new CustomPanel();
         wiTab.setLayout(new GridBagLayout());
         
-
-        bKnapp = new CustomButton3("Last opp bilder");
-        sKnapp = new CustomButton3("Last opp fil");
+        endreInfo = new CustomButton2("Endre");
+        endreInfo.addActionListener((e) -> endreInfo());
         
-        submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> {});
-        
-        // Filechoosers settings ///////////////////////////////////////////////
-        bildeVelger = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG / GIF / PNG", "jpg", "gif", "png");
-        bildeVelger.setFileFilter(filter);
-        bildeVelger.setMultiSelectionEnabled(true);
-        bildeVelger.setDialogTitle("Velg bilder");
-        bildeVelger.setApproveButtonText("Velg");
-        
-        bKnapp.addActionListener((e) -> { int returnVal = bildeVelger.showOpenDialog(null);
-                if(returnVal == JFileChooser.APPROVE_OPTION)
-                {
-                    File[] f = bildeVelger.getSelectedFiles();
-                    lagreBilder(f);
-                }});
-        
-        
-        meldingVelger = new JFileChooser();
-        FileNameExtensionFilter filter2 = new FileNameExtensionFilter("PDF / JPG", "pdf", "jpg");
-        meldingVelger.setFileFilter(filter2);
-        meldingVelger.setMultiSelectionEnabled(false);
-        
-        sKnapp.addActionListener((e) -> { int returnVal = meldingVelger.showOpenDialog(null);
-                if(returnVal == JFileChooser.APPROVE_OPTION)
-                {
-                    File f = meldingVelger.getSelectedFile();
-                    lagreSkademelding(f);
-                }});
-
-        
+        endreVitne = new CustomButton2("Endre");
+        endreVitne.addActionListener((e) -> endreVitne());
         
         
         
@@ -102,15 +65,20 @@ public class NewReportPanel extends JTabbedPane {
         
         // txtTab - tab for basic injury information ///////////////////////////
         beskrivelse = new CustomTextArea(8, 22);
+        beskrivelse.setEditable(false);
         bScroll = new JScrollPane(beskrivelse);
         bScroll.setPreferredSize(beskrivelse.getPreferredSize());
 
-        String[] t = {"Velg type...", "Bil", "Hus/innbo", "Fritidshus", "Båt"};
-        type = new JComboBox<>(t);
         
         dato = new CustomTextField(10);
+        dato.setEditable(false);
+        type = new CustomTextField(10);
+        type.setEditable(false);
         taksering = new CustomTextField(6);
+        taksering.setEditable(false);
         utbetalt = new CustomTextField(6);
+        utbetalt.setEditable(false);
+        
         
         
         
@@ -122,7 +90,12 @@ public class NewReportPanel extends JTabbedPane {
         gbc.anchor = GridBagConstraints.LINE_END;
         
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(15, 5, 0, 5);
+        txtTab.add(new CustomLabelHeader("Skademelding nr 0"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(15, 0, 0, 5);
         txtTab.add(new CustomLabel("Hendelsesdato: "), gbc);
         
         gbc.gridy++;
@@ -139,11 +112,7 @@ public class NewReportPanel extends JTabbedPane {
   
         gbc.anchor = GridBagConstraints.LINE_START;    
         
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(15, 0, 15, 5);
-        txtTab.add(new CustomLabelHeader("Opprett ny skademelding"));
-        
+
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 0, 55);
@@ -164,27 +133,13 @@ public class NewReportPanel extends JTabbedPane {
         txtTab.add(utbetalt, gbc);
         
         gbc.gridy++;
-        gbc.insets = new Insets(15, 0, 22, 5);
-        txtTab.add(submit, gbc);
-        
+        gbc.insets = new Insets(15, 0, 25, 5);
+        txtTab.add(endreInfo, gbc);
         
         
         
         // ulTab - tab for uploading images and injury report //////////////////
-        
-        mPath = new CustomTextField(40);
-        mPath.setBorder(BorderFactory.createTitledBorder(null, "Valgt fil"));
-        mPath.setFont(new Font("Arial", Font.PLAIN, 10));
-        mPath.setEditable(false);
-        mPath.setBackground(Color.WHITE);
-        
-   
-        links = new CustomTextArea(5, 40);
-        links.setBorder(BorderFactory.createTitledBorder(null, "Valgte bilder"));
-        links.setFont(new Font("Arial", Font.PLAIN, 10));
-        links.setEditable(false);
-        fcScroll = new JScrollPane(links);
-        fcScroll.setPreferredSize(links.getPreferredSize());
+
         
         
         
@@ -201,30 +156,18 @@ public class NewReportPanel extends JTabbedPane {
         
         gbc2.anchor = GridBagConstraints.LINE_END;
         gbc2.gridy++;
-        ulTab.add(bKnapp, gbc2);
+        ulTab.add(new CustomLabel("Bilder i editorpane"), gbc2);
         
         gbc2.anchor = GridBagConstraints.LINE_START;
         gbc2.gridy++;
-        gbc2.gridy++;
         gbc2.gridwidth = 2;
         ulTab.add(new CustomLabelHeader("Skademeldingsskjema"), gbc2);
-        
-        gbc2.anchor = GridBagConstraints.LINE_END;
-        gbc2.gridy++;
-        gbc2.gridwidth = 1;
-        ulTab.add(sKnapp, gbc2);
-       
-        gbc2.gridy = 1;
-        gbc2.gridx++;
-        gbc2.gridwidth = 2;
-        gbc2.gridheight = 2;
-        ulTab.add(fcScroll, gbc2);
         
         gbc2.gridy = 4;
         gbc2.gridwidth = 2;
         gbc2.gridheight = 2;
         gbc2.anchor = GridBagConstraints.LINE_START;
-        ulTab.add(mPath, gbc2);
+        ulTab.add(new CustomLabel("link til skademeldingsskjema"), gbc2);
 
         
         
@@ -236,6 +179,12 @@ public class NewReportPanel extends JTabbedPane {
         vitneBy = new CustomTextField(15);
         vitnePnr = new CustomTextField(6);
         vitneTlf = new CustomTextField(10);
+        vitneFornavn.setEditable(false);
+        vitneEtternavn.setEditable(false);
+        vitneAdresse.setEditable(false);
+        vitneBy.setEditable(false);
+        vitnePnr.setEditable(false);
+        vitneTlf.setEditable(false);
         
         wiTab.add(new CustomLabelHeader("Kontaktinformasjon"));
         
@@ -287,6 +236,9 @@ public class NewReportPanel extends JTabbedPane {
         gbc3.gridy++;
         wiTab.add(vitneTlf, gbc3);
         
+        gbc3.gridy++;
+        wiTab.add(endreVitne, gbc3);
+        
         //Adding tabs
 
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Informasjon</body></html>", txtTab);
@@ -294,32 +246,9 @@ public class NewReportPanel extends JTabbedPane {
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Vitner</body></html>", wiTab);
         
         
-        
+        setFelter();
     }
     
-    
-    public void lagreBilder(File[] f)
-    {
-        File[] files = f;
-        links.setText("");
-        
-        for(int i = 0; i < f.length; i++)
-        {
-            if(f[i] != null)
-            {
-                links.append(f[i].getAbsolutePath() + "\n");
-            }
-        }
-    }
-    
-    public void lagreSkademelding(File f) 
-    {
-        File file = f;
-        
-        if(f != null)
-            mPath.setText(f.getAbsolutePath());
-    }
-
 
 
     public String getBeskrivelse() {
@@ -333,13 +262,98 @@ public class NewReportPanel extends JTabbedPane {
     public String getUtbetalt() {
         return utbetalt.getText();
     }
+    
+    public void setFelter()
+    {
+        dato.setText("06.05.2015");
+        type.setText("Bil");
+        beskrivelse.setText("Beskrivelse av skaden");
+        taksering.setText("68 000");
+        utbetalt.setText("61 518");
+        
+        vitneFornavn.setText("Jørgen");
+        vitneEtternavn.setText("Jørgensen");
+        vitneAdresse.setText("Jørgenveien 12 jørgen");
+        vitneBy.setText("Jørgem");
+        vitnePnr.setText("11");
+        vitneTlf.setText("22Jørgen");
+    }
+    
+    public void endreInfo()
+    {
+        if(!edit) {
+            dato.setEditable(true);
+ 
+            beskrivelse.setEditable(true);
+            taksering.setEditable(true);
+            utbetalt.setEditable(true);
+
+            endreInfo.setText("Lagre");
+            
+            edit = true;
+        }
+        else {
+            String d = dato.getText();
+            String t = type.getText();
+            String bes = beskrivelse.getText();
+            String ps = taksering.getText();
+            String pn = utbetalt.getText();
+            
+            //controller.endre(f, e, a, ps, pn);
+
+            dato.setEditable(false);
+            beskrivelse.setEditable(false);
+            taksering.setEditable(false);
+            utbetalt.setEditable(false);
+            
+            endreInfo.setText("Endre");
+            
+            edit = false;
+        }
+
+        
+    }
+    
+    public void endreVitne()
+    {
+        if(!edit2) {
+            vitneFornavn.setEditable(true);
+            vitneEtternavn.setEditable(true);
+            vitneAdresse.setEditable(true);
+            vitneBy.setEditable(true);
+            vitnePnr.setEditable(true);
+            vitneTlf.setEditable(true);
+            
+            endreVitne.setText("Lagre");
+            edit2 = true;
+        }
+        else {
+            
+            String fnavn = vitneFornavn.getText();
+            String enavn = vitneEtternavn.getText();
+            String adresse = vitneAdresse.getText();
+            String by = vitneBy.getText();
+            String pnr = vitnePnr.getText();
+            String tlf = vitneTlf.getText();
+            
+            vitneFornavn.setEditable(false);
+            vitneEtternavn.setEditable(false);
+            vitneAdresse.setEditable(false);
+            vitneBy.setEditable(false);
+            vitnePnr.setEditable(false);
+            vitneTlf.setEditable(false);
+            
+            endreVitne.setText("Endre");
+            edit2 = false;
+        }
+    }
  
     
 
     
-    public NewReportPanel()
+    public ReportView()
     {
-        
+
     }
 
     public boolean addController(ReportController c) {
