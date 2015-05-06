@@ -42,6 +42,7 @@ public class CustomerView extends JTabbedPane implements View {
         insTab = new CustomPanel();
         insTab.setPreferredSize(new Dimension(600, 400));
         repTab = new CustomPanel();
+        
 
   
         
