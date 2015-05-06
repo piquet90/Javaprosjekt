@@ -5,14 +5,12 @@
  */
 package controllers;
 
-import CustomSwing.CustomUserTable;
+import TableModels.CustomerTable;
 import DAO.Registries;
 import javax.swing.JOptionPane;
-import models.CustomerModel;
-import models.objects.Customer;
-import views.CustomerView;
-import views.View;
-import views.ViewCustomerPanel;
+import models.*;
+import views.*;
+import models.Customer;
 
 /**
  *
@@ -20,32 +18,38 @@ import views.ViewCustomerPanel;
  */
 public class ViewCustomerController extends Controller {
     
+    
+    private MainController mc;
     private Registries registries;
-    private ViewCustomerPanel view;
-    private CustomerModel model;
+    private ViewCustomerTable view;
+    private CustomerModel umodel;
     
     
-    public ViewCustomerController(Registries r, View v)
+    public ViewCustomerController(Registries r, MainController c)
     {
+        this.mc = c;
         this.registries = r;
-        this.view = (ViewCustomerPanel)v;
-        model = new CustomerModel(r);
         
+        umodel = new CustomerModel(registries);
+        
+        CustomerTable table = new CustomerTable(umodel.getCustomers());
+        view = new ViewCustomerTable(table);
         view.addController(this);
         view.initComponents();
         
-        CustomUserTable table = new CustomUserTable(model.getCustomers());
-        view.setTable(table);
+        
+        mc.view.addCenter(view);
         
     }
     
     public void ViewCustomer(int i)
     {
-        Customer customer = model.findById(i);
+        System.out.println(i);
+        Customer customer = umodel.findById(i);
         
         CustomerView cus = new CustomerView(customer.getFirstname(), customer.getLastname(), customer.getAddressStreet(), customer.getCity(), Integer.toString(customer.getAreacode()));
-        
-        JOptionPane.showConfirmDialog(null, cus, customer.getName(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        System.out.println("test");
+        mc.popUp(cus);
         
     }
     

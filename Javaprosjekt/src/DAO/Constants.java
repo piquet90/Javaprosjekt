@@ -24,4 +24,8 @@ public class Constants {
     public static final int FRAME_HEIGHT = 720;
     public static final int SCROLL_SPEED = 18;
     
+    // regexs
+    
+    public static final String ONLY_ALPHABETIC = "^[Ê¯Â∆ÿ≈a-zA-Z]+$";
+    
 }

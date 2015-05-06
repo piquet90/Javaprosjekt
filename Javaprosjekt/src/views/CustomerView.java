@@ -6,45 +6,48 @@
 package views;
 
 import CustomSwing.CustomButton2;
+import CustomSwing.CustomButton3;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
-import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
 import controllers.Controller;
 import controllers.NewCustomerController;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Toolkit;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 
-public class CustomerView extends CustomPanel implements View {
+public class CustomerView extends JTabbedPane implements View {
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
-    private CustomPanel test, test2;
+    private CustomPanel cusTab, insTab, repTab;
     private GridBagConstraints gbc, g;
-    private CustomButton2 endre, slett;
+    private CustomButton2 endre;
+    private CustomButton3 slett, newIns, newRep;
     private NewCustomerController controller;
+    private boolean edit = false;
     
     
     public void initComponents()
     {
+        this.setBackground(new Color(159, 196, 232));
+        this.setFont(new Font("Arial", Font.BOLD, 18));
         
-        this.setSize(getPreferredSize());
-        this.setLayout(new GridBagLayout());
-        test = new CustomPanel();
-        test2 = new CustomPanel();
-        test2.setPreferredSize(new Dimension(300, 310));
-        test2.setBackground(Color.WHITE);
+        cusTab = new CustomPanel();
+        insTab = new CustomPanel();
+        insTab.setPreferredSize(new Dimension(600, 400));
+        repTab = new CustomPanel();
+
+  
         
-        g = new GridBagConstraints();
-        g.anchor = GridBagConstraints.LINE_START;
-        g.ipadx = 10;
-        g.ipady = 0;
         
-        //TIL INFOPANEL
+        
+        //cusTab components
         fNavn = new CustomTextField(12);
         fNavn.setEditable(false);
         eNavn = new CustomTextField(12);
@@ -57,10 +60,16 @@ public class CustomerView extends CustomPanel implements View {
         postNr.setEditable(false);
         
         endre = new CustomButton2("Endre");
-        slett = new CustomButton2("Slett kunde");
+        endre.addActionListener((e) -> endre());
         
-        //Layout initalizing
-        test.setLayout(new GridBagLayout());
+        slett = new CustomButton3("Slett kunde");
+        slett.addActionListener((e) -> slett());
+        
+        newIns = new CustomButton3("Ny Forsikring");
+        newRep = new CustomButton3("Ny Skademelding");
+        
+        //cusTab Layout initalizing
+        cusTab.setLayout(new GridBagLayout());
  
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -69,70 +78,85 @@ public class CustomerView extends CustomPanel implements View {
         
         gbc.anchor = GridBagConstraints.LINE_END;
         
-        //Adding the components to the panel
-        
+        //Adding the components to cusTab panel
         gbc.gridx = 0;
         gbc.gridy = 1;
-        test.add(new CustomLabel("Fornavn: "), gbc);
+        cusTab.add(new CustomLabel("Fornavn: "), gbc);
         
         gbc.gridy++;
-        test.add(new CustomLabel("Etternavn: "), gbc);
+        cusTab.add(new CustomLabel("Etternavn: "), gbc);
         
         gbc.gridy++;
-        test.add(new CustomLabel("Adresse: "), gbc);
+        cusTab.add(new CustomLabel("Adresse: "), gbc);
         
         gbc.gridy++;
-        test.add(new CustomLabel("Postnummer: "), gbc);
+        cusTab.add(new CustomLabel("Postnummer: "), gbc);
         
         gbc.gridy++;
-        test.add(new CustomLabel("Poststed: "), gbc);
+        cusTab.add(new CustomLabel("Poststed: "), gbc);
   
         gbc.anchor = GridBagConstraints.LINE_START;    
-        
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(15, 0, 15, 5);
-        test.add(new CustomLabelHeader("Se på kunde"));
-        
+
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 0, 5);
         gbc.gridwidth = 2;
-        test.add(fNavn, gbc);
+        cusTab.add(fNavn, gbc);
         
         gbc.gridy++;
-        test.add(eNavn, gbc);
+        cusTab.add(eNavn, gbc);
         
         gbc.gridy++;
-        test.add(adresse, gbc);
+        cusTab.add(adresse, gbc);
         
         gbc.gridy++;
-        test.add(postNr, gbc);
+        cusTab.add(postNr, gbc);
         
         gbc.gridy++;
-        test.add(postSted, gbc);
+        cusTab.add(postSted, gbc);
         
         gbc.gridy++;
-        test.add(new CustomLabel(""), gbc);
+        cusTab.add(new CustomLabel(""), gbc);
         
         gbc.gridy++;
         gbc.gridwidth = 1;
-        test.add(endre, gbc);
+        cusTab.add(endre, gbc);
         
-        gbc.insets = new Insets(15, 25, 0, 5);
-        gbc.gridx++;
-        test.add(slett, gbc);
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        cusTab.add(new CustomLabel(""), gbc);
         
-        g.gridy = 0;
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        cusTab.add(new CustomLabel(""), gbc);
+        
+        
+        
+        CustomPanel p = new CustomPanel();
+        p.setLayout(new GridBagLayout());
+        GridBagConstraints g = new GridBagConstraints();
+        g.anchor = GridBagConstraints.LINE_START;
+        g.insets = new Insets(15, 0, 0, 0);
         g.gridx = 0;
-        g.gridheight = 2;
+        g.gridy = 0;
+        p.add(newIns, g);
+        g.gridy++;
+        p.add(newRep, g);
+        g.gridy++;
+        g.insets = new Insets(15, 0, 15, 0);
+        p.add(slett, g);
         
-        this.add(test, g);
-        g.gridx++;
-        g.gridheight = 1;
-        g.insets = new Insets(0, 20, 0, 0);
-        test2.add(new CustomLabel("Liste med kundens forsikringer"));
-        this.add(test2, g);
+        p.setBorder(BorderFactory.createTitledBorder("Handlinger"));
+        
+        gbc.gridx = 4;
+        gbc.gridy = 1;
+        gbc.gridheight = 4;
+        gbc.insets = new Insets(0, 50, 0, 0);
+        cusTab.add(p, gbc);
+        
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
          
     }
     
@@ -159,19 +183,52 @@ public class CustomerView extends CustomPanel implements View {
     /**
      * Method makes textfields editable and passes the changed information to registry
      */
-    public void endre() {
+    public void endre()
+    {
+        if(!edit) {
+            fNavn.setEditable(true);
+            eNavn.setEditable(true);
+            adresse.setEditable(true);
+            postSted.setEditable(true);
+            postNr.setEditable(true);
+            
+            endre.setText("Lagre");
+            
+            edit = true;  
+        }
+        else {
+            String f = fNavn.getText();
+            String e = eNavn.getText();
+            String a = adresse.getText();
+            String ps = postSted.getText();
+            String pn = postNr.getText();
+            
+            //controller.endre(f, e, a, ps, pn);
 
-        String f = fNavn.getText();
-        String e = eNavn.getText();
-        String a = adresse.getText();
-        String ps = postSted.getText();
-        String pn = postNr.getText();
+            fNavn.setEditable(false);
+            eNavn.setEditable(false);
+            adresse.setEditable(false);
+            postSted.setEditable(false);
+            postNr.setEditable(false);
+            
+            endre.setText("Endre");
+            
+            edit = false;
+        }
+
         
-        //controller.endre(f, e, a, ps, pn);
     }
     
     public void slett() {
-        //controller.slett();
+        
+        String[] j = {"Slett kunde", "Avbryt"};
+               
+        int y = JOptionPane.showOptionDialog(this, "Er du sikker på at du vil slette kunde " + fNavn.getText() + " " + eNavn.getText() + "?", "Slette kunde", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, j, j[1]);
+        
+        if(y ==  JOptionPane.YES_OPTION)
+            System.out.println("Brukeren er slettet");
+        else
+            System.out.println("Brukeren er IKKE slettet");
     }
 
  

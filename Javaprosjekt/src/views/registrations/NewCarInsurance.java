@@ -3,7 +3,7 @@
  * Rudi Yu s231776
  * Audun Brustad s236341
  */
-package views;
+package views.registrations;
 
 import CustomSwing.CustomButton;
 import CustomSwing.CustomButton2;
@@ -18,6 +18,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JComboBox;
+import views.View;
 
 /**
  *

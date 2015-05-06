@@ -7,11 +7,15 @@
 package controllers;
 
 
+import views.registrations.NewCustomerPanel;
 import CustomSwing.CustomPanel;
+import TableModels.CustomerTable;
 import DAO.Registries;
+import java.util.HashSet;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import models.*;
+import models.Customer;
 import views.*;
 
 /**
@@ -21,75 +25,65 @@ import views.*;
 public class MainController extends Controller{
     
     
-    private MainView view;
-    private MainModel model;
+    public MainView view;
     private Registries r;
     
     private JMenuBar menubar;
     
+    
+    // controller references
+    public ViewCustomerController vcController;
+    public NewCustomerController ncController; 
+    
+    private CustomerModel customerModel;
+    private HashSet<Customer> customers;
+    
     /**
-     *
-     * @param f
-     * @param m
+     * MainController
+     * 
+     * Has resposibility of creating and managing all other controllers.
+     * This controller usually passes itself to all the controllers it creates.
+     * 
+     * @param MainView The main-view class.
      */
-    public MainController(MainView f, MainModel m)
+    public MainController(MainView f)
     {
+        // init main view and controller
         
         view = f;
-        model = m;
-        
-        menubar = new MenuView(this);
-        view.setJMenuBar(menubar);
-        
-        r = new Registries();
-        
         view.initComponents();
         view.addController(this);
         
-        defaultPanel();
-    }
-    
-    
-    
-    public void defaultPanel()
-    {
-        viewCustomerPanel();
-    }
-    
-    public void viewCustomerPanel()
-    {
-        View newview = new ViewCustomerPanel();
-        new ViewCustomerController(r, newview);
         
-        view.newPanel(newview);
-    }
-    
-    
-    // under-controller TODO: write more meaningful comments
-    public void newUserPanel()
-    {
-        CustomPanel newview = new NewCustomerPanel();
-        NewCustomerController newcontroller = new NewCustomerController(r, (View) newview);
+        // setting the menubar 
+        menubar = new MenuView(this);
+        view.setJMenuBar(menubar);
         
         
-        JOptionPane.showConfirmDialog(null, newview, "Test", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-    }
-    // under-controller
-    public void newInsurancePanel()
-    {
-        View newview = new NewInsurancePanel();
+        // passing registries to controllers. Controllers can get the models it needs for itself.
+        r = new Registries();
+        
+        // creating all controllers and and passing registries and maincontroller for access to other parts of the program.
+        vcController = new ViewCustomerController(r, this);
+        ncController = new NewCustomerController(r, this);
+        
+        
 
-        NewInsuranceController newcontroller = new NewInsuranceController(r, newview); 
-        view.newPanel(newview);
-    }
-    
-    public void showUser(int id)
-    {
-        View newview = new CustomerView("1","2","3","4","5");
-        view.newPanel(newview);
+        
+       
+        
         
     }
     
+    public void popUp(Object v)
+    {
+        
+        JOptionPane.showOptionDialog(null, v, "Test", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+    
+    }
+    
+    
+
     public void save()
     {
         r.save();

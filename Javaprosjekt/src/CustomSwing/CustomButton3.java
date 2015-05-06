@@ -19,13 +19,13 @@ import java.awt.Graphics;
  *
  * @author Audun
  */
-public class CustomButton2 extends CustomButton {
+public class CustomButton3 extends CustomButton {
     
     /**
      * Konstruktør som kaller opp og sender med knapp-teksten til konstruktøren til JButton
      * @param tekst Teksten som vises på knappen
      */
-    public CustomButton2(String tekst)
+    public CustomButton3(String tekst)
     {
         super(tekst);
         Font f = new Font("Arial", Font.PLAIN, 12);
@@ -45,11 +45,11 @@ public class CustomButton2 extends CustomButton {
         
         if(getModel().isRollover())
         {
-            setBackground(Color.LIGHT_GRAY);
+            setBackground(new Color(159, 196, 232));
         }
         else
         {
-          setBackground(Color.LIGHT_GRAY);
+          setBackground(new Color(159, 196, 232));
           setForeground(Color.BLACK);
         }
         if(getModel().isPressed())

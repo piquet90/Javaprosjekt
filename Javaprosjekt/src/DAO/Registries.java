@@ -13,7 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashSet;
-import models.objects.Customer;
+import models.Customer;
 import models.objects.insurances.Insurance;
 
 /**

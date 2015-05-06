@@ -7,10 +7,12 @@ package views;
 
 
 import controllers.MainController;
+import java.awt.Font;
 import javax.swing.*;
 
 /**
  *
+ * 
  * @author Rudi
  */
 public class MenuView extends JMenuBar{
@@ -26,6 +28,8 @@ public class MenuView extends JMenuBar{
     public MenuView(MainController c)
     {
         super();
+        Font f = new Font("Arial", Font.PLAIN, 16);
+        UIManager.put("Menu.font", f);
         controller = c;
         
         
@@ -58,11 +62,7 @@ public class MenuView extends JMenuBar{
         this.add(customer);
         this.add(insurance);
         
-        newCustomer.addActionListener((e)->{controller.newUserPanel();});
-        viewCustomer.addActionListener((e)->{controller.viewCustomerPanel();});
-        
-        newInsurance.addActionListener((e)->{controller.newInsurancePanel();});
-        
+        newCustomer.addActionListener((e)->{controller.ncController.newCustomer();});
     }
     
 }

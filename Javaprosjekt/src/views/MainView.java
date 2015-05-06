@@ -16,9 +16,8 @@ import controllers.Controller;
 import controllers.MainController;
 import javax.swing.*;
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
-import java.awt.FlowLayout;
 
 public class MainView extends JFrame implements View{
     
@@ -36,15 +35,6 @@ public class MainView extends JFrame implements View{
         
         Container c = getContentPane();
         c.setLayout(new BorderLayout());
-       
-     
-       
-       activepanel = new CustomPanel();
-       
-       // add scrollpane around elemnt incase needed. Also fixes scrollspeed issues.
-       scroll = new JScrollPane(activepanel);
-       scroll.getVerticalScrollBar().setUnitIncrement(Constants.SCROLL_SPEED);
-       c.add(scroll, BorderLayout.CENTER);
        
        c.setVisible(true);
        
@@ -66,25 +56,15 @@ public class MainView extends JFrame implements View{
         }
         return false;
     }
-    /**
-     * Adds a new panel to the BorderLayout.CENTER area.
-     * 
-     * @param panel the panel to be added. 
-     */
-    public void newPanel(CustomPanel panel)
+    
+    
+    public void addCenter(Component tpanel)
     {
-        activepanel.removeAll();
-        activepanel.add(panel, BorderLayout.CENTER);
-        
-        this.repaint();
-        this.revalidate();       
-    }
-    public void newPanel(View panel)
-    {
-        if(panel instanceof CustomPanel)
-        {
-            newPanel((CustomPanel)panel);
-        }
+        JScrollPane panel = new JScrollPane(tpanel);
+        Container c = getContentPane();
+        c.add(panel, BorderLayout.CENTER);
+        c.revalidate();
+        c.repaint();
     }
     
     

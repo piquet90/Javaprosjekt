@@ -6,7 +6,7 @@
 package controllers;
 
 import DAO.*;
-import views.NewInsurancePanel;
+import views.registrations.NewInsurancePanel;
 import views.View;
 /**
  *
