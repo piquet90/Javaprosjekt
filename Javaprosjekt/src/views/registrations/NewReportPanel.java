@@ -13,17 +13,18 @@ import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
 import controllers.Controller;
 import controllers.NewCustomerController;
+import controllers.ReportController;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import views.View;
 
-public class NewInjuryReportPanel extends CustomPanel implements View {
+public class NewReportPanel extends CustomPanel{
     
     private CustomTextField dato, typeSkade, beskrivelse, vitner, taksering, utbetalt;
     private GridBagConstraints gbc;
     private CustomButton submit;
-    private NewCustomerController controller;
+    private ReportController controller;
     
     /**
      * Initializes the GUI components
@@ -40,7 +41,7 @@ public class NewInjuryReportPanel extends CustomPanel implements View {
         vitner = new CustomTextField(10);
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> { controller.register();});
+        submit.addActionListener((e) -> {});
         
         this.setLayout(new GridBagLayout());
         this.setSize(getPreferredSize());
@@ -138,13 +139,13 @@ public class NewInjuryReportPanel extends CustomPanel implements View {
     
 
     
-    public NewInjuryReportPanel()
+    public NewReportPanel()
     {
         
     }
 
-    @Override
-    public boolean addController(Controller c) {
-        return false;
+    public boolean addController(ReportController c) {
+        this.controller = c;
+        return true;
     }
 }
