@@ -6,6 +6,7 @@
  */
 package controllers;
 
+import DAO.Constants;
 import DAO.Registries;
 import java.util.HashSet;
 import javax.swing.JMenuBar;
@@ -70,7 +71,13 @@ public class MainController extends Controller{
     public void popUp(Object v)
     {
         
-        JOptionPane.showOptionDialog(null, v, "Test", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+        JOptionPane.showOptionDialog(null, v, Constants.APP_NAME, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+    
+    }
+    public void popUp(String title,Object v)
+    {
+        
+        JOptionPane.showOptionDialog(null, v, Constants.APP_NAME+" - "+title, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
     
     }
     

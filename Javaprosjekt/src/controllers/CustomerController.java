@@ -51,7 +51,7 @@ public class CustomerController extends Controller implements CustomListener{
     {
         view = new NewCustomerPanel();
         view.addCustomListener(this);
-        mc.popUp(view);
+        mc.popUp(Constants.NEW_CUSTOMER_TEXT, view);
     }
     
     
@@ -70,13 +70,13 @@ public class CustomerController extends Controller implements CustomListener{
         Pattern letters = Pattern.compile(Constants.ONLY_ALPHABETIC);
         Pattern areacode = Pattern.compile(Constants.AREA_CODE);
         // field validation
-        if(!Pattern.matches(Constants.ONLY_ALPHABETIC_NOT_EMPTY, fornavn))
+        if(fornavn.equals("")) // validation of names is silly
             s += "Fornavn \n";          
-        if(!Pattern.matches(Constants.ONLY_ALPHABETIC_NOT_EMPTY, etternavn))
+        if(etternavn.equals(""))
             s += "Etternavn \n";
         if(adresse.equals(""))
             s += "Adresse \n";
-        if(!Pattern.matches(Constants.AREA_CODE, postnr))
+        if(!Pattern.matches(Constants.AREA_CODE, postnr)) // validation of areacode makes sense.
             s += "Poststed \n";
         if(!s.equals(""))
         {
@@ -94,7 +94,8 @@ public class CustomerController extends Controller implements CustomListener{
                         "Fornavn: "+fornavn+"\n"+
                         "Etternavn: "+etternavn+"\n"+
                         "Adresse: "+adresse+"\n"+
-                        "Poststed: "+poststed+" Postnummer: "+postnr);
+                        "Poststed: "+poststed+"\n"+
+                        "Postnummer: "+postnr);
                 
             }
             else
@@ -106,7 +107,6 @@ public class CustomerController extends Controller implements CustomListener{
     
     public void viewCustomer(int i)
     {
-        System.out.println(i);
         Customer customer = m.findById(i);
         
         CustomerView cus = new CustomerView(customer.getFirstname(), customer.getLastname(), customer.getAddressStreet(), customer.getCity(), customer.getAreacode());
@@ -117,7 +117,7 @@ public class CustomerController extends Controller implements CustomListener{
         
         cus.addTable("Forsikringer", viewTable);
         
-        mc.popUp(cus);
+        mc.popUp(customer.getName(), cus);
         
     }// end of viewCustomer
 

@@ -15,6 +15,9 @@ public class Constants {
      *
      */
     
+    public static final String APP_NAME = "Evil Insurance Co.";
+    public static final String NEW_CUSTOMER_TEXT = "Ny Kunde";
+    
     public static final String GENERAL_ERROR_MESSAGE = "Oops, looks like something went wrong. Please try again. If the problem persists, please contact your system administrator";
     public static final String FILE_SAVE_PATH = "src/liste.data";
     
@@ -42,7 +45,6 @@ public class Constants {
     // regexs
     
     public static final String ONLY_ALPHABETIC = "^[Ê¯Â∆ÿ≈a-zA-Z]+$";
-    public static final String ONLY_ALPHABETIC_NOT_EMPTY = "^[Ê¯Â∆ÿ≈a-zA-Z]{1,}+$";
     public static final String AREA_CODE = "^[0-9]{4}$";
     
 }

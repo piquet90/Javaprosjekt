@@ -26,10 +26,9 @@ public class CustomerView extends JTabbedPane {
     
     private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
     private CustomPanel cusTab, repTab;
-    private GridBagConstraints gbc, g;
+    private GridBagConstraints gbc;
     private CustomButton2 endre;
     private CustomButton3 slett, newIns, newRep;
-    private CustomerController controller;
     private boolean edit = false;
     
     public void initComponents()
@@ -247,8 +246,5 @@ public class CustomerView extends JTabbedPane {
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(v));
     }
 
-    public boolean addController(Controller c) {
-        this.controller = (CustomerController)c;
-        return true;
-    }
+
 }
