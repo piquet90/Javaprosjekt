@@ -9,6 +9,7 @@ package views;
 import controllers.MainController;
 import java.awt.Font;
 import javax.swing.*;
+import views.registrations.NewReportPanel;
 
 /**
  *
@@ -21,7 +22,7 @@ public class MenuView extends JMenuBar{
     JMenuItem newCustomer, viewCustomer;
     JMenuItem newInsurance, viewInsurance;
     JMenuItem newReport, viewReport;
-    
+     
     
     private MainController controller;
     
@@ -55,13 +56,20 @@ public class MenuView extends JMenuBar{
         report.add(newReport);
         report.add(viewReport);
         
+        //TODO: remove before production bugbug
+        
+        JMenu test = new JMenu("Testing");
+        JMenuItem refresh = new JMenuItem("Refresh");
         
         
         
         
         this.add(customer);
         this.add(insurance);
+        this.add(report);
+        this.add(test);
         
+        newReport.addActionListener((e)->{controller.rController.newReport();});
         newCustomer.addActionListener((e)->{controller.ncController.newCustomer();});
     }
     

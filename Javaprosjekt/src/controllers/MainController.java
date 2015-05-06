@@ -34,6 +34,7 @@ public class MainController extends Controller{
     // controller references
     public ViewCustomerController vcController;
     public NewCustomerController ncController; 
+    public ReportController rController;
     
     private CustomerModel customerModel;
     private HashSet<Customer> customers;
@@ -66,13 +67,9 @@ public class MainController extends Controller{
         // creating all controllers and and passing registries and maincontroller for access to other parts of the program.
         vcController = new ViewCustomerController(r, this);
         ncController = new NewCustomerController(r, this);
+        rController = new ReportController(r, this);
         
-        
-
-        
-       
-        
-        
+        vcController.showAllCustomers();
     }
     
     public void popUp(Object v)

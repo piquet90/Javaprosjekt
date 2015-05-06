@@ -32,6 +32,12 @@ public class ViewCustomerController extends Controller {
         
         umodel = new CustomerModel(registries);
         
+        
+        
+    }
+    
+    public void showAllCustomers()
+    {
         CustomerTable table = new CustomerTable(umodel.getCustomers());
         view = new ViewCustomerTable(table);
         view.addController(this);
@@ -39,8 +45,10 @@ public class ViewCustomerController extends Controller {
         
         
         mc.view.addCenter(view);
-        
+        mc.view.revalidate();
+        mc.view.repaint();
     }
+    
     
     public void ViewCustomer(int i)
     {
