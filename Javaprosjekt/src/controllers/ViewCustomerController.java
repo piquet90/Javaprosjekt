@@ -23,32 +23,32 @@ public class ViewCustomerController extends Controller {
     private Registries registries;
     private ViewCustomerTable view;
     private CustomerModel umodel;
+    private CustomerTable table;
     
     
     public ViewCustomerController(Registries r, MainController c)
     {
         this.mc = c;
         this.registries = r;
-        
         umodel = new CustomerModel(registries);
-        
-        
-        
     }
     
     public void showAllCustomers()
     {
-        CustomerTable table = new CustomerTable(umodel.getCustomers());
+        
+        table = new CustomerTable(umodel.getCustomers());
         view = new ViewCustomerTable(table);
         view.addController(this);
         view.initComponents();
         
-        
         mc.view.addCenter(view);
-        mc.view.revalidate();
-        mc.view.repaint();
     }
     
+    public void update()
+    {
+        table = new CustomerTable(umodel.getCustomers());
+        view.setModel(table);
+    }
     
     public void ViewCustomer(int i)
     {

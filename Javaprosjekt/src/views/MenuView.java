@@ -61,6 +61,9 @@ public class MenuView extends JMenuBar{
         JMenu test = new JMenu("Testing");
         JMenuItem refresh = new JMenuItem("Refresh");
         
+        test.add(refresh);
+        refresh.addActionListener((e)->{controller.vcController.showAllCustomers();});
+        
         
         
         

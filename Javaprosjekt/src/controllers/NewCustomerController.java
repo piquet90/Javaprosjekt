@@ -80,16 +80,19 @@ public class NewCustomerController extends Controller{
             CustomerModel m = new CustomerModel(registries);
             if(m.newCustomer(c))
             {
+                mc.vcController.update();
                 view.showError("Bruker registert. \n\n"+
                         "Fornavn: "+fornavn+"\n"+
                         "Etternavn: "+etternavn+"\n"+
                         "Adresse: "+adresse+"\n"+
                         "Poststed: "+poststed+
                         "Postnummer: "+postnr);
-                mc.vcController.showAllCustomers();
+                
             }
             else
                 view.showError(Constants.GENERAL_ERROR_MESSAGE);
+            
+            
         }
         
         
