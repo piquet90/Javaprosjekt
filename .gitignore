@@ -2,4 +2,4 @@
 /Javaprosjekt/build/
 /Javaprosjekt/dist/
 
-liste.data
+*.data
