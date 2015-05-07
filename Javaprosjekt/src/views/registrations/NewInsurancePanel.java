@@ -25,6 +25,7 @@ public class NewInsurancePanel extends CustomPanel{
     private GridBagConstraints g;
     private String insuranceType;
     private CustomPanel container, panelBlank;
+    private String type;
     
     private NewCarInsurance bil;
     private NewBoatInsurance boat;
@@ -36,8 +37,6 @@ public class NewInsurancePanel extends CustomPanel{
     
     public NewInsurancePanel() {
         setLayout(new GridBagLayout());
-        
-        cl = new CardLayout();
         
         defaultPanel = new NewDefaultInsurancePanel();
         
@@ -54,26 +53,10 @@ public class NewInsurancePanel extends CustomPanel{
         leisureHouse.initComponents();
         
         travel = new NewTravelInsurance();
-
-        String[] t = {"Velg type forsikring...", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring", "Fritidsboligforsikring", "Reiseforsikring"}; 
-        insType = new JComboBox<>(t);
-        insType.setFont(new Font("DejaVu Sans", Font.BOLD, 16));
-        insType.setBackground(new Color(250, 250, 250));
         
         container = new CustomPanel();
-        container.setLayout(cl);
+
         
-        panelBlank = new CustomPanel();
-        
-        container.add(panelBlank, "0");
-        container.add(bil, "1");
-        container.add(boat, "2");
-        container.add(house, "3");
-        container.add(leisureHouse, "4");
-        container.add(travel, "5");
-        
-        //Startpanel = 0(panelBlank)
-        cl.show(container, "0");
         
         
         //GridBagConstraints init
@@ -103,30 +86,25 @@ public class NewInsurancePanel extends CustomPanel{
         g.gridy = 0;
         g.weighty = 0.5;
         g.gridwidth = 1;
-        add(insType, g);
+        add(new CustomLabel("hallo"), g);
         
         g.gridx = 2;
         g.gridy++;
         g.gridwidth = 2;
         g.weighty = 1;
-        add(container, g);
+        add(container, g);    
         
-        /*g.gridx = 1;
-        g.gridy = 2;
-        g.ipadx = 5;
-        g.ipady = 10;
-        g.gridwidth = 1;
-        add(insType, g);*/
-                
-        insType.addActionListener((e)->{
-        int n = insType.getSelectedIndex();
-                String s = String.valueOf(n);
-                cl.show(container, s);
-        insuranceType = insType.getItemAt(n);});
     }
     
-    public String getInsuranceType() {
-        return insuranceType;
+    public void setInsuranceType(String type) {
+        this.type = type;
+        if(type.equals("Bilforsikring"))
+            container.add(new NewCarInsurance());
+    }
+    
+    public String getInsuranceType()
+    {
+        return type;
     }
     
     //testmetode

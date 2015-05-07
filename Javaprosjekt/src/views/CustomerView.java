@@ -19,7 +19,11 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
@@ -32,6 +36,9 @@ public class CustomerView extends JTabbedPane implements ActionListener{
     private GridBagConstraints gbc;
     private CustomButton2 endre;
     private CustomButton3 newIns, newRep;
+    private JPopupMenu insPopup, repPopup;
+    
+    
     private boolean edit = false;
     
     private CustomListener listener;
@@ -78,14 +85,52 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         
         // Buttons
         endre = new CustomButton2("Endre");
-        newIns = new CustomButton3("Ny Forsikring");       
-        newRep = new CustomButton3("Ny Skademelding");
+        newIns = new CustomButton3("Opprett ny forsikring");       
+        newRep = new CustomButton3("Opprett ny skademelding");
         
         endre.addActionListener(this);
         newIns.addActionListener(this);
         newRep.addActionListener(this);
         
         // end of buttons
+        
+        //init of popups
+        String[] insType = {"Bilforsikring", "Båtforsikring", "Hus- /innboforsikring", "Fritidsboligforsikring", "Reiseforsikring"};
+        insPopup = new JPopupMenu();
+        
+        for(int i = 0; i < insType.length; i++)
+        {
+            String a = insType[i];
+            JMenuItem b = new JMenuItem(a);
+            b.addActionListener(this);
+            b.setName(a);
+            insPopup.add(b);
+        }
+        
+        newIns.addActionListener((ActionEvent ev) -> {
+            insPopup.show(newIns, 0, 0 + newIns.getHeight());
+        });
+        
+        
+        
+        
+        String[] repType = {"Bilskade", "Båtskade", "Hus- /innboskade", "Fritidsboligskade", "Reiseskade"};
+        repPopup = new JPopupMenu();
+        
+        for(int i = 0; i < repType.length; i++)
+        {
+            String a = repType[i];
+            JMenuItem b = new JMenuItem(a);
+            b.addActionListener(this);
+            b.setName(a);
+            repPopup.add(b);
+        }
+        
+        newRep.addActionListener((ActionEvent ev) -> {
+            repPopup.show(newRep, 0, 0 + newRep.getHeight());
+        });
+        
+        //end of popups
         
         //cusTab Layout initalizing
         cusTab.setLayout(new GridBagLayout());
@@ -280,15 +325,40 @@ public class CustomerView extends JTabbedPane implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==endre)// tilate endring av felt
+        
+        if(e.getSource()==endre)// tillate endring av felt
             if(!edit)
                 endre();
             else
                 listener.customActionPerformed(new CustomEvent(Constants.NEW_CUSTOMER));
-        if(e.getSource()==newIns)// ny forsikring
+        
+ 
+                switch (e.getActionCommand()) {
+                    case "Båtforsikring":
+                        System.out.println("Du valgte båtforsikring");
+                        break;
+                    case "Bilforsikring":
+                        System.out.println("Du valgte bilforsikring");
+                        break;
+                    case "Hus- /innboforsikring":
+                        System.out.println("Du valgte hus- / innboforsikring");
+                        break;
+                    case "Fritidsboligforsikring":
+                        System.out.println("Du valgte fritidsboligforsikring");
+                        break;
+                    case "Reiseforsikring":
+                        System.out.println("Du valgte reiseforsikring");
+                        break;
+                }
+        
+        
+        
+        
+        
+        /*if(e.getSource()==newIns)// ny forsikring
             listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE));
         if(e.getSource()==newRep)
-            listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));
+            listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));*/
     }
 
 }

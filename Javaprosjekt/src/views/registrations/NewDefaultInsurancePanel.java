@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
  * @author Audun
  */
 
-public class NewDefaultInsurancePanel extends CustomPanel{
+public class NewDefaultInsurancePanel extends CustomPanel {
     
     private CustomTextField date, customer, price, coverage, other;
     private JScrollPane cScroll;
