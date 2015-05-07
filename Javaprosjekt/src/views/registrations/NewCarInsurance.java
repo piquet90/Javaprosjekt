@@ -18,14 +18,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JComboBox;
-import views.View;
 
 /**
  *
  * @author Audun
  */
 
-public class NewCarInsurance extends CustomPanel implements View {
+public class NewCarInsurance extends CustomPanel {
     
     private CustomTextField bilEier, regNr, modell, effekt, regAar, kmPerAar;
     private JComboBox<String> carType;
@@ -37,10 +36,9 @@ public class NewCarInsurance extends CustomPanel implements View {
     private int n = 0;
     
     /**
-     * Initializes the GUI components (cleaner constructor)
+     * NyBilforsikring constructor
      */
-    public void initComponents() {
-        
+    public NewCarInsurance() {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
@@ -129,9 +127,6 @@ public class NewCarInsurance extends CustomPanel implements View {
         gbc.gridx = 2;
         gbc.gridy = 1;
         add(endreEier, gbc);
-        
-        
-
     }
 
     public String getBilEier() {
@@ -162,12 +157,7 @@ public class NewCarInsurance extends CustomPanel implements View {
         return carType.getItemAt(n);
     }
     
-    /**
-     * NyBilforsikring constructor
-     */
-    public NewCarInsurance() {
-        
-    }
+    
     
     public void test() {
         
@@ -182,7 +172,7 @@ public class NewCarInsurance extends CustomPanel implements View {
         }
     }
 
-    @Override
+   
     public boolean addController(Controller c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

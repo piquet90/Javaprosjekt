@@ -12,7 +12,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JComboBox;
 /**
  *
  * @author Audun
@@ -20,11 +19,9 @@ import javax.swing.JComboBox;
 
 public class NewInsurancePanel extends CustomPanel{
     
-    private CardLayout cl;
-    private JComboBox<String> insType;
     private GridBagConstraints g;
     private String insuranceType;
-    private CustomPanel container, panelBlank;
+    private CustomPanel container;
     private String type;
     
     private NewCarInsurance bil;
@@ -86,7 +83,7 @@ public class NewInsurancePanel extends CustomPanel{
         g.gridy = 0;
         g.weighty = 0.5;
         g.gridwidth = 1;
-        add(new CustomLabel("hallo"), g);
+        add(new CustomLabel("under skal type-panelet legges"), g);
         
         g.gridx = 2;
         g.gridy++;
@@ -98,6 +95,7 @@ public class NewInsurancePanel extends CustomPanel{
     
     public void setInsuranceType(String type) {
         this.type = type;
+        //eksempel: 
         if(type.equals("Bilforsikring"))
             container.add(new NewCarInsurance());
     }

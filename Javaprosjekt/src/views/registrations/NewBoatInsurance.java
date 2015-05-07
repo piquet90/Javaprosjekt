@@ -37,10 +37,9 @@ public class NewBoatInsurance extends CustomPanel implements View {
     private int n = 0;
     
     /**
-     * Initializes the GUI components (cleaner constructor)
+     * NyBilforsikring constructor
      */
-    public void initComponents() {
-        
+    public NewBoatInsurance() {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
@@ -140,6 +139,22 @@ public class NewBoatInsurance extends CustomPanel implements View {
         gbc.gridy = 1;
         add(endreEier, gbc);
     }
+    
+    
+    
+    /**
+     * Initializes the GUI components (cleaner constructor)
+     */
+    public void initComponents() {
+        
+        
+    }
+    
+    
+    
+    
+    
+    
 
     public String getBaatEier() {
         return baatEier.getText();
@@ -173,12 +188,7 @@ public class NewBoatInsurance extends CustomPanel implements View {
         return type.getItemAt(n);
     }
     
-    /**
-     * NyBilforsikring constructor
-     */
-    public NewBoatInsurance() {
-        
-    }
+    
     
     public void change() {
         
