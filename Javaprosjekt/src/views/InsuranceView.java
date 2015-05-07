@@ -13,7 +13,13 @@ import CustomSwing.CustomPanel;
  */
 public class InsuranceView extends CustomPanel {
     
-    public InsuranceView() {
+    public void initComponents()
+    {
+        
+    }
+    
+    public InsuranceView()
+    {
         
     }
 }

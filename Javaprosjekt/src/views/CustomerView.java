@@ -91,7 +91,7 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         cusTab.setLayout(new GridBagLayout());
  
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.insets = new Insets(15, 15, 0, 5);
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
@@ -118,7 +118,7 @@ public class CustomerView extends JTabbedPane implements ActionListener{
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.insets = new Insets(15, 0, 0, 10);
         gbc.gridwidth = 2;
         cusTab.add(fNavn, gbc);
         
@@ -141,14 +141,6 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         gbc.gridwidth = 1;
         cusTab.add(endre, gbc);
         
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        cusTab.add(new CustomLabel(""), gbc);
-        
-        gbc.gridx = 3;
-        gbc.gridy = 1;
-        cusTab.add(new CustomLabel(""), gbc);
-        
         
         
         CustomPanel p = new CustomPanel();
@@ -162,14 +154,14 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         g.gridy++;
         p.add(newRep, g);
         g.gridy++;
-        g.insets = new Insets(15, 0, 15, 0);
+        g.insets = new Insets(15, 0, 5, 0);
         
         p.setBorder(BorderFactory.createTitledBorder("Handlinger"));
         
         gbc.gridx = 4;
         gbc.gridy = 1;
         gbc.gridheight = 4;
-        gbc.insets = new Insets(0, 50, 0, 0);
+        gbc.insets = new Insets(0, 50, 0, 15);
         cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);

@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import views.View;
 
 /**
  *
@@ -62,7 +61,7 @@ public class NewDefaultInsurancePanel extends CustomPanel{
         
         //GridBagConstraint init
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.insets = new Insets(15, 15, 0, 5);
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
@@ -87,7 +86,8 @@ public class NewDefaultInsurancePanel extends CustomPanel{
         gbc.gridy++;
         add(new CustomLabel("Annet: "), gbc);
   
-        gbc.anchor = GridBagConstraints.LINE_START;    
+        gbc.anchor = GridBagConstraints.LINE_START;   
+        gbc.insets = new Insets(15, 0, 0, 5);
         
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -107,6 +107,10 @@ public class NewDefaultInsurancePanel extends CustomPanel{
         
         gbc.gridy++;
         add(other, gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(15, 0, 45, 5);
+        add(new CustomLabel(""), gbc);
     }
     
 
