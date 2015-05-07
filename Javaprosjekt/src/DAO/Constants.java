@@ -52,5 +52,6 @@ public class Constants {
     
     public static final String ONLY_ALPHABETIC = "^[Ê¯Â∆ÿ≈a-zA-Z]+$";
     public static final String AREA_CODE = "^[0-9]{4}$";
+
     
 }

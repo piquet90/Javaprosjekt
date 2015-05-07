@@ -44,6 +44,9 @@ public class ViewCustomerTable extends JTable{
         super(table);
         this.setFont(new Font("Arial", Font.BOLD, 16));
         this.setRowHeight(40);
+        this.getTableHeader().setReorderingAllowed(false);
+        this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        
     
     }
     
