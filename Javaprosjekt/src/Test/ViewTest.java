@@ -6,6 +6,7 @@
 package Test;
 
 import javax.swing.JOptionPane;
+import views.BoatInsuranceView;
 import views.CarInsuranceView;
 import views.InsuranceView;
 import views.SimpleSearchView;
@@ -22,7 +23,7 @@ public class ViewTest {
         
         //JOptionPane.showMessageDialog(null, new SimpleSearchView());
         JOptionPane.showMessageDialog(null, new InsuranceView());
-        JOptionPane.showMessageDialog(null, new CarInsuranceView());
+        JOptionPane.showMessageDialog(null, new BoatInsuranceView());
         
       
         

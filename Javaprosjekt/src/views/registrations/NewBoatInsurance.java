@@ -18,14 +18,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JComboBox;
-import views.View;
 
 /**
  *
  * @author Audun
  */
 
-public class NewBoatInsurance extends CustomPanel implements View {
+public class NewBoatInsurance extends CustomPanel {
     
     private CustomTextField baatEier, regNr, modell, lengde, regAar, motorType, effekt;
     private GridBagConstraints gbc;
@@ -141,20 +140,6 @@ public class NewBoatInsurance extends CustomPanel implements View {
     }
     
     
-    
-    /**
-     * Initializes the GUI components (cleaner constructor)
-     */
-    public void initComponents() {
-        
-        
-    }
-    
-    
-    
-    
-    
-    
 
     public String getBaatEier() {
         return baatEier.getText();
@@ -203,9 +188,10 @@ public class NewBoatInsurance extends CustomPanel implements View {
         }
     }
 
-    @Override
+   
     public boolean addController(Controller c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return true;
     }
 }
 

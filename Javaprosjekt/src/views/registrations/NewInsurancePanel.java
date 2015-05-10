@@ -6,9 +6,6 @@
 package views.registrations;
 
 import CustomSwing.*;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -38,10 +35,8 @@ public class NewInsurancePanel extends CustomPanel{
         defaultPanel = new NewDefaultInsurancePanel();
         
         bil = new NewCarInsurance();
-        bil.initComponents();
         
         boat = new NewBoatInsurance();
-        boat.initComponents();
         
         house = new NewHouseInsurance();
         house.initComponents();
