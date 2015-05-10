@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  *
  * @author Audun
  */
-public class SimpleSearchView extends CustomPanel {
+public class SimpleSearchPanel extends CustomPanel {
     
     private GridBagConstraints gbc;
     private CustomTextField srcField;
@@ -29,7 +29,7 @@ public class SimpleSearchView extends CustomPanel {
     private JCheckBox showInactive;
     
     
-    public SimpleSearchView() 
+    public SimpleSearchPanel() 
     {
         initComponents();
     }
