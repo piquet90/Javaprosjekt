@@ -6,6 +6,7 @@
 package views;
 
 
+import CustomSwing.CustomButton;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
@@ -27,8 +28,9 @@ public class AdvancedSearchPanel extends CustomPanel {
     private JTabbedPane tabs;
     private CustomPanel customerSrc, insuranceSrc, reportSrc;
     private JTextArea resultInfo;
-    private GridBagConstraints gbc, gbc2;
+    private GridBagConstraints gbc, gbc2, gbcRep;
     private CustomTextField customerSrcField, reportSrcField, reportDate1, reportDate2;
+    private CustomButton cusSrc, insSrc, repSrc;
     private JCheckBox showInactiveCustomers;
     private JComboBox<String> insType, repType;
     
@@ -44,10 +46,13 @@ public class AdvancedSearchPanel extends CustomPanel {
         customerSrc.setLayout(new GridBagLayout());
         customerSrc.setPreferredSize(new Dimension(800, 200));
         
+        cusSrc = new CustomButton("Kundesøk-");
+        cusSrc.addActionListener((e) -> customerSearch());
+        
         customerSrcField = new CustomTextField(22);
         showInactiveCustomers = new JCheckBox();
         
-        String[] t = {"Velg forsikringstype", "Type"};
+        String[] t = {"Velg forsikringstype", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring", "Fritidshusforsikring", "Reiseforsikring"};
         insType = new JComboBox<>(t);
         
         gbc2 = new GridBagConstraints();
@@ -79,9 +84,9 @@ public class AdvancedSearchPanel extends CustomPanel {
         gbc2.gridx++;
         customerSrc.add(showInactiveCustomers, gbc2);
         
-        
-        
-        
+        gbc2.gridx = 2;
+        gbc2.gridy = 2;
+        customerSrc.add(cusSrc, gbc2);
         
         
         
@@ -93,37 +98,56 @@ public class AdvancedSearchPanel extends CustomPanel {
         //Report search tab////////////////////////////////////////////////////
 
         reportSrc = new CustomPanel();
+        reportSrc.setLayout(new GridBagLayout());
         reportSrc.setPreferredSize(new Dimension(800, 200));
+        
+        
         
         reportSrcField = new CustomTextField(5);
         reportDate1 = new CustomTextField(8);
         reportDate2 = new CustomTextField(8);
         
-        String[] r = {"Velg skadetype", "Type"};
+        String[] r = {"Velg skadetype", "Bilskade", "Båtskade", "Hus-/ innboskade", "Fritidshusskade", "Reiseskade"};
         repType = new JComboBox<>(r);
         
-        reportSrc.add(new CustomLabel("Søk med skadenummer: "));
-        reportSrc.add(reportSrcField);
+        gbcRep = new GridBagConstraints();
+        gbcRep.anchor = GridBagConstraints.LINE_END;
+        gbcRep.insets = new Insets(10, 5, 10, 5);
+        gbcRep.ipadx = 2;
+        gbcRep.ipady = 3;
         
-        reportSrc.add(new CustomLabel("Vis skader registrert i perioden: "));
-        reportSrc.add(reportDate1);
-        reportSrc.add(new CustomLabel(" og "));
-        reportSrc.add(reportDate2);
-        reportSrc.add(new CustomLabel("Vis skader av en gitt type: "));
-        reportSrc.add(repType);
+        gbcRep.gridx = 0;
+        gbcRep.gridy = 0;
+        reportSrc.add(new CustomLabel("Søk med skadenummer: "), gbcRep);
+        
+        gbcRep.gridy++;
+        reportSrc.add(new CustomLabel("Vis skader registrert i perioden: "), gbcRep);
+        
+        gbcRep.gridy++;
+        reportSrc.add(new CustomLabel("Vis skader av en gitt type: "), gbcRep);
+        
+        gbcRep.gridx = 1;
+        gbcRep.gridy = 0;
+        gbcRep.anchor = GridBagConstraints.LINE_START;
+        reportSrc.add(reportSrcField, gbcRep);
+        
+        gbcRep.gridy++;
+        reportSrc.add(reportDate1, gbcRep);
+        
+        gbcRep.gridx++;
+        reportSrc.add(new CustomLabel(" og "), gbcRep);
+        gbcRep.gridx++;
+        reportSrc.add(reportDate2, gbcRep);
+        
+        gbcRep.gridx = 1;
+        gbcRep.gridy++;
+        reportSrc.add(repType, gbcRep);
         
         
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
+        //panel init
         
         tabs = new JTabbedPane();
         resultInfo = new JTextArea(2, 50);
@@ -146,4 +170,26 @@ public class AdvancedSearchPanel extends CustomPanel {
         this.add(resultInfo, gbc);
         
     }
+    
+    
+    
+    public void customerSearch()
+    {
+        String insuranceType = (String) insType.getSelectedItem();
+        
+    }
+    
+    public void insuranceSearch()
+    {
+        
+        
+    }
+    
+    public void reportSearch()
+    {
+        String reportType = (String) repType.getSelectedItem();
+        
+    }
+    
+    
 }
