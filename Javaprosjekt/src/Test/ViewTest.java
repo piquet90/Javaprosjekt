@@ -20,7 +20,7 @@ public class ViewTest {
 
     public static void main(String[] args) {
         
-        JOptionPane.showMessageDialog(null, new SimpleSearchView());
+        //JOptionPane.showMessageDialog(null, new SimpleSearchView());
         JOptionPane.showMessageDialog(null, new InsuranceView());
         JOptionPane.showMessageDialog(null, new CarInsuranceView());
         

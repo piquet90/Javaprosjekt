@@ -7,8 +7,8 @@ package views;
 
 import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
+import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -17,9 +17,9 @@ import java.awt.Insets;
  *
  * @author Audun
  */
-public class CarInsuranceView extends InsuranceView {
+public class CarInsuranceView extends CustomPanel {
     
-    private CustomTextField bilEier, carType, regNr, modell, effekt, regAar, kmPerAar;
+    private CustomTextField bilEier, type, regNr, modell, effekt, regAar, kmPerAar;
     private CustomButton2 endre;
     private GridBagConstraints gbc;
     
@@ -29,10 +29,11 @@ public class CarInsuranceView extends InsuranceView {
     {
         this.setLayout(new GridBagLayout());
         
+        
         bilEier = new CustomTextField(17);
         bilEier.setEditable(false);
-        carType = new CustomTextField(15);
-        carType.setEditable(false);
+        type = new CustomTextField(15);
+        type.setEditable(false);
         regNr = new CustomTextField(9);
         regNr.setEditable(false);
         modell = new CustomTextField(17);
@@ -53,8 +54,8 @@ public class CarInsuranceView extends InsuranceView {
         
         gbc.anchor = GridBagConstraints.LINE_END;
         
-        gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         this.add(new CustomLabel("Bileier: "), gbc);
         
         gbc.gridy++;
@@ -78,7 +79,7 @@ public class CarInsuranceView extends InsuranceView {
         gbc.anchor = GridBagConstraints.LINE_START;    
         
         gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
         this.add(bilEier, gbc);
         
         gbc.gridy++;
@@ -86,7 +87,7 @@ public class CarInsuranceView extends InsuranceView {
         
         gbc.gridy++;
         gbc.gridwidth = 2;
-        this.add(carType, gbc);
+        this.add(type, gbc);
         
         gbc.gridy++;
         gbc.gridwidth = 1;
@@ -100,12 +101,37 @@ public class CarInsuranceView extends InsuranceView {
         
         gbc.gridy++;
         this.add(kmPerAar, gbc);
-       
-        
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        this.add(endre, gbc);
 
         
+    }
+    
+    
+
+    public void setBilEier(String e) {
+        bilEier.setText(e);
+    }
+
+    public void setCarType(String t) {
+        type.setText(t);
+    }
+
+    public void setRegNr(String rnr) {
+        regNr.setText(rnr);
+    }
+
+    public void setModell(String mo) {
+        modell.setText(mo);
+    }
+
+    public void setEffekt(String ef) {
+        effekt.setText(ef);
+    }
+
+    public void setRegAar(String aar) {
+        regAar.setText(aar);
+    }
+
+    public void setKmPerAar(String km) {
+        kmPerAar.setText(km);
     }
 }
