@@ -26,12 +26,11 @@ import javax.swing.JComboBox;
 
 public class NewCarInsurance extends CustomPanel {
     
-    private CustomTextField bilEier, regNr, modell, effekt, regAar, kmPerAar;
+    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear;
     private JComboBox<String> carType;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 endreEier;
-    private CustomerController controller;
     private boolean check = false;
     private int n = 0;
     
@@ -42,14 +41,14 @@ public class NewCarInsurance extends CustomPanel {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
-        bilEier = new CustomTextField(17);
-        bilEier.setEditable(false);
-        bilEier.setText("Satt til valgt kunde");
+        carOwner = new CustomTextField(17);
+        carOwner.setEditable(false);
+        carOwner.setText("Satt til valgt kunde");
         regNr = new CustomTextField(9);
-        modell = new CustomTextField(17);
-        effekt = new CustomTextField(6);
-        regAar = new CustomTextField(6);
-        kmPerAar = new CustomTextField(9);
+        model = new CustomTextField(17);
+        horsepower = new CustomTextField(6);
+        regYear = new CustomTextField(6);
+        kmPerYear = new CustomTextField(9);
         
         String[] t = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
                       "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
@@ -98,7 +97,7 @@ public class NewCarInsurance extends CustomPanel {
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(bilEier, gbc);
+        add(carOwner, gbc);
         
         gbc.gridy++;
         add(regNr, gbc);
@@ -109,16 +108,16 @@ public class NewCarInsurance extends CustomPanel {
         
         gbc.gridy++;
         gbc.gridwidth = 1;
-        add(modell, gbc);
+        add(model, gbc);
         
         gbc.gridy++;
-        add(effekt, gbc);
+        add(horsepower, gbc);
         
         gbc.gridy++;
-        add(regAar, gbc);
+        add(regYear, gbc);
         
         gbc.gridy++;
-        add(kmPerAar, gbc);
+        add(kmPerYear, gbc);
         
         gbc.gridy++;
         add(submit, gbc);
@@ -129,28 +128,28 @@ public class NewCarInsurance extends CustomPanel {
         add(endreEier, gbc);
     }
 
-    public String getBilEier() {
-        return bilEier.getText();
+    public String getCarOwner() {
+        return carOwner.getText();
     }
 
     public String getRegNr() {
         return regNr.getText();
     }
 
-    public String getModell() {
-        return modell.getText();
+    public String getModel() {
+        return model.getText();
     }
 
-    public String getEffekt() {
-        return effekt.getText();
+    public String getHorsepower() {
+        return horsepower.getText();
     }
 
-    public String getRegAar() {
-        return regAar.getText();
+    public String getRegYear() {
+        return regYear.getText();
     }
 
-    public String getKmPerAar() {
-        return kmPerAar.getText();
+    public String getKmPerYear() {
+        return kmPerYear.getText();
     }
 
     public String getCarType() {
@@ -162,18 +161,18 @@ public class NewCarInsurance extends CustomPanel {
     public void test() {
         
         if(!check) {
-            bilEier.setEditable(true);
+            carOwner.setEditable(true);
             check = true;
         }
         else {
-            bilEier.setEditable(false);
-            bilEier.setText("Satt til valgt kunde");
+            carOwner.setEditable(false);
+            carOwner.setText("Satt til valgt kunde");
             check = false;
         }
     }
 
    
     public boolean addController(Controller c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 }

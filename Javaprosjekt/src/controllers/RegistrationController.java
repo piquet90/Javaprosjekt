@@ -53,11 +53,11 @@ public class RegistrationController implements CustomListener{
         String s = "";
         
         
-        String fornavn = regCustomerView.getFornavn();
-        String etternavn = regCustomerView.getEtternavn();
-        String adresse = regCustomerView.getAdresse();
-        String poststed = regCustomerView.getPostSted();
-        String postnr = regCustomerView.getPostNr();
+        String fornavn = regCustomerView.getFirstName();
+        String etternavn = regCustomerView.getLastName();
+        String adresse = regCustomerView.getAdress();
+        String poststed = regCustomerView.getCity();
+        String postnr = regCustomerView.getZip();
         
 
         // field validation

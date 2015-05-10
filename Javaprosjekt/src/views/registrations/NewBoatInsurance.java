@@ -26,7 +26,7 @@ import javax.swing.JComboBox;
 
 public class NewBoatInsurance extends CustomPanel {
     
-    private CustomTextField baatEier, regNr, modell, lengde, regAar, motorType, effekt;
+    private CustomTextField boatOwner, regNr, model, length, regYear, engineType, horsepower;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 endreEier;
@@ -42,15 +42,15 @@ public class NewBoatInsurance extends CustomPanel {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
-        baatEier = new CustomTextField(17);
-        baatEier.setEditable(false);
-        baatEier.setText("Satt til valgt kunde");
+        boatOwner = new CustomTextField(17);
+        boatOwner.setEditable(false);
+        boatOwner.setText("Satt til valgt kunde");
         regNr = new CustomTextField(9);
-        modell = new CustomTextField(17);
-        regAar = new CustomTextField(6);
-        motorType = new CustomTextField(10);
-        effekt = new CustomTextField(6);
-        lengde = new CustomTextField(6);
+        model = new CustomTextField(17);
+        regYear = new CustomTextField(6);
+        engineType = new CustomTextField(10);
+        horsepower = new CustomTextField(6);
+        length = new CustomTextField(6);
         
         endreEier = new CustomButton2("Endre");
         
@@ -107,7 +107,7 @@ public class NewBoatInsurance extends CustomPanel {
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(baatEier, gbc);
+        add(boatOwner, gbc);
         
         gbc.gridy++;
         add(regNr, gbc);
@@ -116,19 +116,19 @@ public class NewBoatInsurance extends CustomPanel {
         add(type, gbc);
         
         gbc.gridy++;
-        add(modell, gbc);
+        add(model, gbc);
         
         gbc.gridy++;
-        add(regAar, gbc);
+        add(regYear, gbc);
         
         gbc.gridy++;
-        add(motorType, gbc);
+        add(engineType, gbc);
         
         gbc.gridy++;
-        add(effekt, gbc);
+        add(horsepower, gbc);
         
         gbc.gridy++;
-        add(lengde, gbc);
+        add(length, gbc);
         
         gbc.gridy++;
         add(submit, gbc);
@@ -141,32 +141,32 @@ public class NewBoatInsurance extends CustomPanel {
     
     
 
-    public String getBaatEier() {
-        return baatEier.getText();
+    public String getBoatOwner() {
+        return boatOwner.getText();
     }
 
     public String getRegNr() {
         return regNr.getText();
     }
 
-    public String getModell() {
-        return modell.getText();
+    public String getModel() {
+        return model.getText();
     }
 
-    public String getLengde() {
-        return lengde.getText();
+    public String getLength() {
+        return length.getText();
     }
 
-    public String getRegAar() {
-        return regAar.getText();
+    public String getRegYear() {
+        return regYear.getText();
     }
 
-    public String getMotorType() {
-        return motorType.getText();
+    public String getEngineType() {
+        return engineType.getText();
     }
 
-    public String getEffekt() {
-        return effekt.getText();
+    public String getHorsepower() {
+        return horsepower.getText();
     }
 
     public String getType() {
@@ -178,12 +178,12 @@ public class NewBoatInsurance extends CustomPanel {
     public void change() {
         
         if(!check) {
-            baatEier.setEditable(true);
+            boatOwner.setEditable(true);
             check = true;
         }
         else {
-            baatEier.setEditable(false);
-            baatEier.setText("Satt til valgt kunde");
+            boatOwner.setEditable(false);
+            boatOwner.setText("Satt til valgt kunde");
             check = false;
         }
     }
@@ -194,15 +194,3 @@ public class NewBoatInsurance extends CustomPanel {
         return true;
     }
 }
-
-
-
-/* For båtforsikringer skal det i tillegg registreres
-
-    eier (kan være forskjellig fra forsikringskunde)
-    registreringsnummer (hvis det foreligger)
-    båttype og modell
-    lengde i fot
-    årsmodell
-    motortype og motorstyrke HK
-    annet?*/

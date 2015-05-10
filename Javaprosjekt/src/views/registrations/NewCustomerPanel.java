@@ -23,7 +23,7 @@ import views.CustomListener;
 
 public class NewCustomerPanel extends CustomPanel implements ActionListener{
     
-    private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
+    private CustomTextField firstName, lastName, adress, city, zip;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomListener listener;
@@ -34,11 +34,11 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener{
      */
     public NewCustomerPanel()
     {
-        fNavn = new CustomTextField(15);
-        eNavn = new CustomTextField(15);
-        adresse = new CustomTextField(20);
-        postSted = new CustomTextField(15);
-        postNr = new CustomTextField(6);
+        firstName = new CustomTextField(15);
+        lastName = new CustomTextField(15);
+        adress = new CustomTextField(20);
+        city = new CustomTextField(15);
+        zip = new CustomTextField(6);
         
         submit = new CustomButton("Registrer");
         submit.addActionListener(this);
@@ -79,52 +79,51 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener{
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 0, 5);
-        add(fNavn, gbc);
+        add(firstName, gbc);
         
         gbc.gridy++;
-        add(eNavn, gbc);
+        add(lastName, gbc);
         
         gbc.gridy++;
-        add(adresse, gbc);
+        add(adress, gbc);
         
         gbc.gridy++;
-        add(postNr, gbc);
+        add(zip, gbc);
         
         gbc.gridy++;
-        add(postSted, gbc);
+        add(city, gbc);
         
         gbc.gridy++;
         add(submit, gbc);
     }
 
-    public String getFornavn() {
-        return fNavn.getText();
+    public String getFirstName() {
+        return firstName.getText();
     }
 
-    public String getEtternavn() {
-        return eNavn.getText();
+    public String getLastName() {
+        return lastName.getText();
     }
 
-    public String getAdresse() {
-        return adresse.getText();
+    public String getAdress() {
+        return adress.getText();
     }
 
-    public String getPostSted() {
-        return postSted.getText();
+    public String getCity() {
+        return city.getText();
     }
 
-    public String getPostNr() {
-        return postNr.getText();
+    public String getZip() {
+        return zip.getText();
     }
     
     public void clearAll()
     {
-        fNavn.setText("");
-        eNavn.setText("");
-        adresse.setText("");
-        postSted.setText("");
-        postNr.setText("");
-        
+        firstName.setText("");
+        lastName.setText("");
+        adress.setText("");
+        city.setText("");
+        zip.setText("");
     }
     /**
      * 

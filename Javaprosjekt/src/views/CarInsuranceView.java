@@ -5,7 +5,6 @@
  */
 package views;
 
-import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
@@ -19,33 +18,30 @@ import java.awt.Insets;
  */
 public class CarInsuranceView extends CustomPanel {
     
-    private CustomTextField bilEier, type, regNr, modell, effekt, regAar, kmPerAar;
-    private CustomButton2 endre;
+    private CustomTextField carOwner, type, regNr, model, horsepower, regYear, kmPerYear;
     private GridBagConstraints gbc;
     
-    private boolean check = false;
     
     public CarInsuranceView()
     {
         this.setLayout(new GridBagLayout());
         
         
-        bilEier = new CustomTextField(17);
-        bilEier.setEditable(false);
+        carOwner = new CustomTextField(17);
+        carOwner.setEditable(false);
         type = new CustomTextField(15);
         type.setEditable(false);
         regNr = new CustomTextField(9);
         regNr.setEditable(false);
-        modell = new CustomTextField(17);
-        modell.setEditable(false);
-        effekt = new CustomTextField(6);
-        effekt.setEditable(false);
-        regAar = new CustomTextField(6);
-        regAar.setEditable(false);
-        kmPerAar = new CustomTextField(9);
-        kmPerAar.setEditable(false);
+        model = new CustomTextField(17);
+        model.setEditable(false);
+        horsepower = new CustomTextField(6);
+        horsepower.setEditable(false);
+        regYear = new CustomTextField(6);
+        regYear.setEditable(false);
+        kmPerYear = new CustomTextField(9);
+        kmPerYear.setEditable(false);
         
-        endre = new CustomButton2("Endre");
  
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -80,7 +76,7 @@ public class CarInsuranceView extends CustomPanel {
         
         gbc.gridx = 1;
         gbc.gridy = 0;
-        this.add(bilEier, gbc);
+        this.add(carOwner, gbc);
         
         gbc.gridy++;
         this.add(regNr, gbc);
@@ -91,47 +87,47 @@ public class CarInsuranceView extends CustomPanel {
         
         gbc.gridy++;
         gbc.gridwidth = 1;
-        this.add(modell, gbc);
+        this.add(model, gbc);
         
         gbc.gridy++;
-        this.add(effekt, gbc);
+        this.add(horsepower, gbc);
         
         gbc.gridy++;
-        this.add(regAar, gbc);
+        this.add(regYear, gbc);
         
         gbc.gridy++;
-        this.add(kmPerAar, gbc);
+        this.add(kmPerYear, gbc);
 
         
     }
     
     
 
-    public void setBilEier(String e) {
-        bilEier.setText(e);
+    public void setCarOwner(String co) {
+        carOwner.setText(co);
     }
 
-    public void setCarType(String t) {
+    public void setType(String t) {
         type.setText(t);
     }
 
-    public void setRegNr(String rnr) {
-        regNr.setText(rnr);
+    public void setRegNr(String rn) {
+        regNr.setText(rn);
     }
 
-    public void setModell(String mo) {
-        modell.setText(mo);
+    public void setModel(String m) {
+        model.setText(m);
     }
 
-    public void setEffekt(String ef) {
-        effekt.setText(ef);
+    public void setHorsepower(String hp) {
+        horsepower.setText(hp);
     }
 
-    public void setRegAar(String aar) {
-        regAar.setText(aar);
+    public void setRegYear(String y) {
+        regYear.setText(y);
     }
 
-    public void setKmPerAar(String km) {
-        kmPerAar.setText(km);
+    public void setKmPerYear(String km) {
+        kmPerYear.setText(km);
     }
 }

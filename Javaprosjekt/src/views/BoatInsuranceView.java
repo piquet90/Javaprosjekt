@@ -18,7 +18,7 @@ import java.awt.Insets;
  */
 public class BoatInsuranceView extends CustomPanel{
     
-    private CustomTextField baatEier, type, regNr, modell, lengde, regAar, motorType, effekt;
+    private CustomTextField boatOwner, type, regNr, model, length, regYear, engineType, horsepower;
     private GridBagConstraints gbc;
     
     
@@ -26,22 +26,22 @@ public class BoatInsuranceView extends CustomPanel{
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
         
-        baatEier = new CustomTextField(17);
-        baatEier.setEditable(false);
+        boatOwner = new CustomTextField(17);
+        boatOwner.setEditable(false);
         type = new CustomTextField(15);
         type.setEditable(false);
         regNr = new CustomTextField(9);
         regNr.setEditable(false);
-        modell = new CustomTextField(17);
-        modell.setEditable(false);
-        regAar = new CustomTextField(6);
-        regAar.setEditable(false);
-        motorType = new CustomTextField(10);
-        motorType.setEditable(false);
-        effekt = new CustomTextField(6);
-        effekt.setEditable(false);
-        lengde = new CustomTextField(6);
-        lengde.setEditable(false);
+        model = new CustomTextField(17);
+        model.setEditable(false);
+        regYear = new CustomTextField(6);
+        regYear.setEditable(false);
+        engineType = new CustomTextField(10);
+        engineType.setEditable(false);
+        horsepower = new CustomTextField(6);
+        horsepower.setEditable(false);
+        length = new CustomTextField(6);
+        length.setEditable(false);
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -82,7 +82,7 @@ public class BoatInsuranceView extends CustomPanel{
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(baatEier, gbc);
+        add(boatOwner, gbc);
         
         gbc.gridy++;
         add(regNr, gbc);
@@ -91,24 +91,24 @@ public class BoatInsuranceView extends CustomPanel{
         add(type, gbc);
         
         gbc.gridy++;
-        add(modell, gbc);
+        add(model, gbc);
         
         gbc.gridy++;
-        add(regAar, gbc);
+        add(regYear, gbc);
         
         gbc.gridy++;
-        add(motorType, gbc);
+        add(engineType, gbc);
         
         gbc.gridy++;
-        add(effekt, gbc);
+        add(horsepower, gbc);
         
         gbc.gridy++;
-        add(lengde, gbc);
+        add(length, gbc);
 
     }
 
-    public void setBaatEier(String be) {
-        baatEier.setText(be);
+    public void setBoatOwner(String bo) {
+        boatOwner.setText(bo);
     }
 
     public void setType(String t) {
@@ -119,23 +119,23 @@ public class BoatInsuranceView extends CustomPanel{
         regNr.setText(rn);
     }
 
-    public void setModell(String m) {
-        modell.setText(m);
+    public void setModel(String m) {
+        model.setText(m);
     }
 
-    public void setLengde(String l) {
-        lengde.setText(l);
+    public void setLength(String l) {
+        length.setText(l);
     }
 
-    public void setRegAar(String aar) {
-        regAar.setText(aar);
+    public void setRegYear(String y) {
+        regYear.setText(y);
     }
 
-    public void setMotorType(String mt) {
-        motorType.setText(mt);
+    public void setEngineType(String et) {
+        engineType.setText(et);
     }
 
-    public void setEffekt(String e) {
-        effekt.setText(e);
+    public void setHorsePower(String hp) {
+        horsepower.setText(hp);
     }
 }
