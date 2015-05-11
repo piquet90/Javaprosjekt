@@ -14,6 +14,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTabbedPane;
@@ -33,12 +36,12 @@ public class AdvancedSearchPanel extends CustomPanel {
     private CustomButton srcBtn, clrBtn;
     private JCheckBox showInactiveCustomers;
     private JComboBox<String> insType, repType;
+    private SimpleDateFormat sdf;
     
     public AdvancedSearchPanel()
     {
         this.setLayout(new GridBagLayout());
-        
-        
+        sdf = new SimpleDateFormat("dd.MM.yyyy");
         
         
         //Customer search tab/////////////////////////////////////////////////
@@ -63,7 +66,7 @@ public class AdvancedSearchPanel extends CustomPanel {
         gbcCus.gridy = 0;
         customerSrc.add(new CustomLabel("Kundenavn / -nummer: "), gbcCus);
         gbcCus.gridy++;
-        customerSrc.add(new CustomLabel("Vis kunder med en gitt forsikringsstype: "), gbcCus);
+        customerSrc.add(new CustomLabel("Vis kunder med en gitt forsikringstype: "), gbcCus);
         
         
         gbcCus.anchor = GridBagConstraints.LINE_START;
@@ -171,18 +174,19 @@ public class AdvancedSearchPanel extends CustomPanel {
 
         
         
-        //panel init
+        //Initalizing the main panel
         
         tabs = new JTabbedPane();
         resultInfo = new JTextArea(2, 50);
-        resultInfo.setText("Fant 10 treff på søkeord");
         resultInfo.setEditable(false);
         
         srcBtn = new CustomButton("Søk");
-        clrBtn = new CustomButton("Tøm felter");
+        srcBtn.addActionListener((e) -> customerSearch());
+        clrBtn = new CustomButton("Nullstill felter");
+        clrBtn.addActionListener((e) -> clearFields());
         
         tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundesøk</body></html>", customerSrc);
-        tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringssøk</body></html>", insuranceSrc);
+        tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringsøk</body></html>", insuranceSrc);
         tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldingsøk</body></html>", reportSrc);
         
         gbc = new GridBagConstraints();
@@ -210,24 +214,177 @@ public class AdvancedSearchPanel extends CustomPanel {
         
     }
     
+    public void setResultInfo(String src, int ant)
+    {
+        resultInfo.setText("Viser " + ant + " treff på søkeord " + src);
+    }
+    
     
     
     public void customerSearch()
     {
-        String insuranceType = (String) insType.getSelectedItem();
+        
+        int srcType = tabs.getSelectedIndex();
+        
+        if(srcType == 0)
+        {
+            System.out.println("Kundesøk");
+            String src = customerSrcField.getText();
+            int type = insType.getSelectedIndex();
+            boolean in = showInactiveCustomers.isSelected();
+            
+            
+            if(src.equals("") && type != 0)
+            {
+                //søk som viser alle kunder med en gitt type forsikring
+                
+                System.out.println("Søkt etter kunder med forsikringstype " + type + "\nViser inaktive kunder: " + in);
+                
+            }
+            else if(!src.equals("") && type != 0)
+            {
+                //Søk som viser alle kunder med gitt type forsikring og som treffer på søkeord
+                
+                System.out.println("Søkt etter søkeord " + src + " med type forsikring " + type+ "\nViser inaktive kunder: " + in);
+            }
+            else if(!src.equals("") && type == 0)
+            {
+                //vanlig søk der brukeren skriver inn søkeord i søkefeltet
+                
+                System.out.println("Søkt etter søkeord " + src+ "\nViser inaktive kunder: " + in);
+                
+            }
+            else
+            {
+                //brukeren har ikke skrevet inn noe i søkefeltet og heller ikke valgt type
+                System.out.println("ugyldig søk");
+                
+            }
+            
+            
+            
+        }
+        else if(srcType == 1)
+        {
+            System.out.println("Forsikringsøk");
+            
+            String src = insuranceSrcField.getText();
+            boolean date = true;
+            
+            String d1 = insDate1.getText();
+            String d2 = insDate2.getText();
+            
+            Calendar startDate = Calendar.getInstance();
+            Calendar endDate = Calendar.getInstance();
+            
+            try
+            {
+                startDate.setTime(sdf.parse(d1));
+                endDate.setTime(sdf.parse(d2));
+            }
+            catch(ParseException pe)
+            {
+                date = false;
+            }
+            
+            if(src.equals("") && date)
+            {
+                //viser resultater mellom start dato og slutt dato
+                
+                System.out.println("Søkt etter forsikringer registrert mellom " + sdf.format(startDate.getTime())+ " og " + sdf.format(endDate.getTime()));
+                
+            }
+            else if(!src.equals("") && date)
+            {
+                //viser resultater mellom start dato og slutt dato OG med søkeord
+                
+                System.out.println("Søkt etter forsikringer med søkeord " + src
+                        + " som er registrert mellom " + sdf.format(startDate.getTime())+ " og " + sdf.format(endDate.getTime()));
+                
+            }
+            else if(src.equals("") && !date)
+            {
+                //feil i dato eller ikke skrevet søkeord
+                
+                System.out.println("ingen søk");
+            }
+            else
+            {
+                
+                //viser resultater på søkeord
+                System.out.println("Søker etter søkeord " + src);
+                
+            }
+            
+        }
+        else
+        {
+            System.out.println("Skademeldingsøk");
+            
+            int type = repType.getSelectedIndex();
+            String src = reportSrcField.getText();
+            boolean date = true;
+            
+            String d1 = reportDate1.getText();
+            String d2 = reportDate2.getText();
+            
+            Calendar startDate = Calendar.getInstance();
+            Calendar endDate = Calendar.getInstance();
+            
+            try
+            {
+                startDate.setTime(sdf.parse(d1));
+                endDate.setTime(sdf.parse(d2));
+            }
+            catch(ParseException pe)
+            {
+                date = false;
+            }
+            
+            
+            if(src.equals("") && type != 0)
+            {
+                //søk som viser skader med en gitt skadetype
+                
+                System.out.println("Søkt etter skade med skadetype " + type);
+                
+            }
+            else if(!src.equals(""))
+            {
+                //vanlig søk der brukeren skriver inn søkeord i søkefeltet
+                
+                System.out.println("Søkt etter søkeord " + src);
+            }
+            else
+            {
+                System.out.println("ugyldig søk");
+                //brukeren har ikke skrevet inn noe i søkefeltet og heller ikke valgt type
+            }
+            
+            /* TODO:
+               if else der man bare søker på dato
+               if else der man søker på dato OG skadetype
+            */
+        }
         
     }
     
-    public void insuranceSearch()
-    {
-        
-        
-    }
+
+
     
-    public void reportSearch()
+    public void clearFields()
     {
-        String reportType = (String) repType.getSelectedItem();
-        
+        resultInfo.setText("");
+        customerSrcField.setText("");
+        reportSrcField.setText("");
+        insuranceSrcField.setText("");
+        reportDate1.setText("");
+        reportDate2.setText("");
+        insDate1.setText("");
+        insDate2.setText("");
+        insType.setSelectedIndex(0);
+        repType.setSelectedIndex(0);
+        showInactiveCustomers.setSelected(false);
     }
     
     
