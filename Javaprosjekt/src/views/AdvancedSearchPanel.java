@@ -28,9 +28,9 @@ public class AdvancedSearchPanel extends CustomPanel {
     private JTabbedPane tabs;
     private CustomPanel customerSrc, insuranceSrc, reportSrc;
     private JTextArea resultInfo;
-    private GridBagConstraints gbc, gbc2, gbcRep;
-    private CustomTextField customerSrcField, reportSrcField, reportDate1, reportDate2;
-    private CustomButton cusSrc, insSrc, repSrc;
+    private GridBagConstraints gbc, gbcCus, gbcRep, gbcIns;
+    private CustomTextField customerSrcField, reportSrcField, insuranceSrcField, reportDate1, reportDate2, insDate1, insDate2;
+    private CustomButton srcBtn, clrBtn;
     private JCheckBox showInactiveCustomers;
     private JComboBox<String> insType, repType;
     
@@ -46,53 +46,79 @@ public class AdvancedSearchPanel extends CustomPanel {
         customerSrc.setLayout(new GridBagLayout());
         customerSrc.setPreferredSize(new Dimension(800, 200));
         
-        cusSrc = new CustomButton("Kundesøk-");
-        cusSrc.addActionListener((e) -> customerSearch());
-        
         customerSrcField = new CustomTextField(22);
         showInactiveCustomers = new JCheckBox();
         
         String[] t = {"Velg forsikringstype", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring", "Fritidshusforsikring", "Reiseforsikring"};
         insType = new JComboBox<>(t);
         
-        gbc2 = new GridBagConstraints();
-        gbc2.anchor = GridBagConstraints.LINE_END;
-        gbc2.insets = new Insets(10, 5, 10, 5);
-        gbc2.ipadx = 2;
-        gbc2.ipady = 3;
+        gbcCus = new GridBagConstraints();
+        gbcCus.anchor = GridBagConstraints.LINE_END;
+        gbcCus.insets = new Insets(10, 5, 10, 5);
+        gbcCus.ipadx = 2;
+        gbcCus.ipady = 3;
         
         
-        gbc2.gridx = 0;
-        gbc2.gridy = 0;
-        customerSrc.add(new CustomLabel("Kundenavn / -nummer: "), gbc2);
-        gbc2.gridy++;
-        customerSrc.add(new CustomLabel("Vis kunder med en gitt forsikringsstype: "), gbc2);
+        gbcCus.gridx = 0;
+        gbcCus.gridy = 0;
+        customerSrc.add(new CustomLabel("Kundenavn / -nummer: "), gbcCus);
+        gbcCus.gridy++;
+        customerSrc.add(new CustomLabel("Vis kunder med en gitt forsikringsstype: "), gbcCus);
         
         
-        gbc2.anchor = GridBagConstraints.LINE_START;
-        gbc2.gridx = 1;
-        gbc2.gridy = 0;
-        customerSrc.add(customerSrcField, gbc2);
+        gbcCus.anchor = GridBagConstraints.LINE_START;
+        gbcCus.gridx = 1;
+        gbcCus.gridy = 0;
+        customerSrc.add(customerSrcField, gbcCus);
 
-        gbc2.gridy++;
-        customerSrc.add(insType, gbc2);
+        gbcCus.gridy++;
+        customerSrc.add(insType, gbcCus);
         
-        gbc2.gridx = 2;
-        gbc2.gridy = 0;
-        customerSrc.add(new CustomLabel("Vis inaktive kunder: "), gbc2);
+        gbcCus.gridx = 2;
+        gbcCus.gridy = 0;
+        customerSrc.add(new CustomLabel("Vis inaktive kunder: "), gbcCus);
         
-        gbc2.gridx++;
-        customerSrc.add(showInactiveCustomers, gbc2);
+        gbcCus.gridx++;
+        customerSrc.add(showInactiveCustomers, gbcCus);
         
-        gbc2.gridx = 2;
-        gbc2.gridy = 2;
-        customerSrc.add(cusSrc, gbc2);
         
         
         
         //Insurance search tab/////////////////////////////////////////////////
 
         insuranceSrc = new CustomPanel();
+        insuranceSrc.setLayout(new GridBagLayout());
+        
+        insuranceSrcField = new CustomTextField(5);
+        insDate1 = new CustomTextField(8);
+        insDate2 = new CustomTextField(8);
+        
+        gbcIns = new GridBagConstraints();
+        gbcIns.anchor = GridBagConstraints.LINE_END;
+        gbcIns.insets = new Insets(10, 5, 10, 5);
+        gbcIns.ipadx = 2;
+        gbcIns.ipady = 3;
+        
+        gbcIns.gridx = 0;
+        gbcIns.gridy = 0;
+        insuranceSrc.add(new CustomLabel("Søk med forsikringsnummer: "), gbcIns);
+        
+        gbcIns.gridy++;
+        insuranceSrc.add(new CustomLabel("Vis forsikringer registrert i perioden: "), gbcIns);
+        
+        gbcIns.anchor = GridBagConstraints.LINE_START;
+        gbcIns.gridx = 1;
+        gbcIns.gridy = 0;
+        insuranceSrc.add(insuranceSrcField, gbcIns);
+        
+        gbcIns.gridy++;
+        insuranceSrc.add(insDate1, gbcIns);
+        
+        gbcIns.gridx++;
+        insuranceSrc.add(new CustomLabel(" - "), gbcIns);
+        
+        gbcIns.gridx++;
+        insuranceSrc.add(insDate2, gbcIns);
         
         
         //Report search tab////////////////////////////////////////////////////
@@ -100,9 +126,7 @@ public class AdvancedSearchPanel extends CustomPanel {
         reportSrc = new CustomPanel();
         reportSrc.setLayout(new GridBagLayout());
         reportSrc.setPreferredSize(new Dimension(800, 200));
-        
-        
-        
+       
         reportSrcField = new CustomTextField(5);
         reportDate1 = new CustomTextField(8);
         reportDate2 = new CustomTextField(8);
@@ -126,6 +150,7 @@ public class AdvancedSearchPanel extends CustomPanel {
         gbcRep.gridy++;
         reportSrc.add(new CustomLabel("Vis skader av en gitt type: "), gbcRep);
         
+        
         gbcRep.gridx = 1;
         gbcRep.gridy = 0;
         gbcRep.anchor = GridBagConstraints.LINE_START;
@@ -135,16 +160,15 @@ public class AdvancedSearchPanel extends CustomPanel {
         reportSrc.add(reportDate1, gbcRep);
         
         gbcRep.gridx++;
-        reportSrc.add(new CustomLabel(" og "), gbcRep);
+        reportSrc.add(new CustomLabel(" - "), gbcRep);
+        
         gbcRep.gridx++;
         reportSrc.add(reportDate2, gbcRep);
         
         gbcRep.gridx = 1;
         gbcRep.gridy++;
         reportSrc.add(repType, gbcRep);
-        
-        
-        
+
         
         
         //panel init
@@ -154,19 +178,34 @@ public class AdvancedSearchPanel extends CustomPanel {
         resultInfo.setText("Fant 10 treff på søkeord");
         resultInfo.setEditable(false);
         
+        srcBtn = new CustomButton("Søk");
+        clrBtn = new CustomButton("Tøm felter");
         
-        tabs.add("Kundesøk", customerSrc);
-        tabs.add("Forsikringssøk", insuranceSrc);
-        tabs.add("Skademeldingsøk", reportSrc);
+        tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundesøk</body></html>", customerSrc);
+        tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringssøk</body></html>", insuranceSrc);
+        tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldingsøk</body></html>", reportSrc);
         
         gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(5, 10, 5, 5);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        
+        gbc.gridwidth = 3;
+        gbc.weighty = 1;
         this.add(tabs, gbc);
         
         gbc.gridy++;
+        gbc.gridwidth = 1;
+        gbc.weighty = 0.5;
+        this.add(srcBtn, gbc);
+        
+        gbc.gridx++;
+        this.add(clrBtn, gbc);
+        
+        gbc.gridx = 0;     
+        gbc.gridwidth = 2;
+        gbc.gridy++;
+        gbc.weighty = 1;
         this.add(resultInfo, gbc);
         
     }

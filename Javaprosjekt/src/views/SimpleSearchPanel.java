@@ -6,6 +6,7 @@
 package views;
 
 import CustomSwing.CustomButton;
+import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import java.awt.Font;
@@ -62,6 +63,9 @@ public class SimpleSearchPanel extends CustomPanel {
         
         gbc.gridy = 0;
         gbc.gridx = 0;
+        this.add(new CustomLabel("Søkeord: "), gbc);
+        
+        gbc.gridx++;
         this.add(srcField, gbc);
         
         gbc.gridx++;
