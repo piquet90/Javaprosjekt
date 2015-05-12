@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
@@ -65,26 +66,25 @@ public class AdvancedSearchPanel extends CustomPanel {
         gbcCus.gridx = 0;
         gbcCus.gridy = 0;
         customerSrc.add(new CustomLabel("Kundenavn / -nummer: "), gbcCus);
+        
+        gbcCus.gridy++;
+        customerSrc.add(new CustomLabel("Vis inaktive kunder: "), gbcCus);
+        
         gbcCus.gridy++;
         customerSrc.add(new CustomLabel("Vis kunder med en gitt forsikringstype: "), gbcCus);
         
-        
+
         gbcCus.anchor = GridBagConstraints.LINE_START;
         gbcCus.gridx = 1;
         gbcCus.gridy = 0;
         customerSrc.add(customerSrcField, gbcCus);
+        
+        gbcCus.gridy++;
+        customerSrc.add(showInactiveCustomers, gbcCus);
 
         gbcCus.gridy++;
         customerSrc.add(insType, gbcCus);
-        
-        gbcCus.gridx = 2;
-        gbcCus.gridy = 0;
-        customerSrc.add(new CustomLabel("Vis inaktive kunder: "), gbcCus);
-        
-        gbcCus.gridx++;
-        customerSrc.add(showInactiveCustomers, gbcCus);
-        
-        
+
         
         
         //Insurance search tab/////////////////////////////////////////////////
@@ -216,7 +216,7 @@ public class AdvancedSearchPanel extends CustomPanel {
     
     public void setResultInfo(String src, int ant)
     {
-        resultInfo.setText("Viser " + ant + " treff på søkeord " + src);
+        resultInfo.setText("Viser " + ant + " treff på " + src);
     }
     
     
@@ -231,34 +231,32 @@ public class AdvancedSearchPanel extends CustomPanel {
             System.out.println("Kundesøk");
             String src = customerSrcField.getText();
             int type = insType.getSelectedIndex();
+            String t = insType.getItemAt(type);
             boolean in = showInactiveCustomers.isSelected();
             
             
             if(src.equals("") && type != 0)
             {
                 //søk som viser alle kunder med en gitt type forsikring
-                
-                System.out.println("Søkt etter kunder med forsikringstype " + type + "\nViser inaktive kunder: " + in);
+                setResultInfo("søk etter kunder med forsikringstype " + t + "\nViser inaktive kunder: " + in, 1);
                 
             }
             else if(!src.equals("") && type != 0)
             {
                 //Søk som viser alle kunder med gitt type forsikring og som treffer på søkeord
-                
-                System.out.println("Søkt etter søkeord " + src + " med type forsikring " + type+ "\nViser inaktive kunder: " + in);
+                setResultInfo("søk etter kunde " + src + " med forsikringstype " + t + "\nViser inaktive kunder: " + in, 1);
             }
             else if(!src.equals("") && type == 0)
             {
                 //vanlig søk der brukeren skriver inn søkeord i søkefeltet
-                
-                System.out.println("Søkt etter søkeord " + src+ "\nViser inaktive kunder: " + in);
+                setResultInfo("søk etter kunde " + src + "\nViser inaktive kunder: " + in, 1);
                 
             }
             else
             {
                 //brukeren har ikke skrevet inn noe i søkefeltet og heller ikke valgt type
-                System.out.println("ugyldig søk");
-                
+                setResultInfo("", 0);
+   
             }
             
             
@@ -290,29 +288,19 @@ public class AdvancedSearchPanel extends CustomPanel {
             if(src.equals("") && date)
             {
                 //viser resultater mellom start dato og slutt dato
-                
-                System.out.println("Søkt etter forsikringer registrert mellom " + sdf.format(startDate.getTime())+ " og " + sdf.format(endDate.getTime()));
-                
-            }
-            else if(!src.equals("") && date)
-            {
-                //viser resultater mellom start dato og slutt dato OG med søkeord
-                
-                System.out.println("Søkt etter forsikringer med søkeord " + src
-                        + " som er registrert mellom " + sdf.format(startDate.getTime())+ " og " + sdf.format(endDate.getTime()));
+                setResultInfo("søk etter forsikringer registrert mellom " + sdf.format(startDate.getTime())+ " og " + sdf.format(endDate.getTime()), 1);
                 
             }
             else if(src.equals("") && !date)
             {
                 //feil i dato eller ikke skrevet søkeord
-                
-                System.out.println("ingen søk");
+                setResultInfo("", 0);
             }
             else
             {
                 
                 //viser resultater på søkeord
-                System.out.println("Søker etter søkeord " + src);
+                setResultInfo("søk etter " + src, 1);
                 
             }
             
@@ -322,6 +310,7 @@ public class AdvancedSearchPanel extends CustomPanel {
             System.out.println("Skademeldingsøk");
             
             int type = repType.getSelectedIndex();
+            String t = repType.getItemAt(type);
             String src = reportSrcField.getText();
             boolean date = true;
             
@@ -342,31 +331,39 @@ public class AdvancedSearchPanel extends CustomPanel {
             }
             
             
-            if(src.equals("") && type != 0)
+            if(type != 0 && !date)
             {
                 //søk som viser skader med en gitt skadetype
                 
-                System.out.println("Søkt etter skade med skadetype " + type);
+                setResultInfo("søk etter skadetype " + t, 1);
                 
             }
             else if(!src.equals(""))
             {
                 //vanlig søk der brukeren skriver inn søkeord i søkefeltet
                 
-                System.out.println("Søkt etter søkeord " + src);
+                setResultInfo(src, 1);
+            }
+            else if(type == 0 && date)
+            {
+                //Søk som viser alle skader registrert iløpet av innskrevet periode
+                
+                setResultInfo("søk etter skader registrert mellom " + sdf.format(startDate.getTime()) + " og " + sdf.format(endDate.getTime()), 1);
+            }
+            else if(type != 0 && date)
+            {
+                //Søk som viser alle skader av en gitt type som er registrert iløpet av innskrevet periode
+                
+                setResultInfo("søk etter skader registrert mellom " + sdf.format(startDate.getTime()) + " og " + sdf.format(endDate.getTime()) + " av type " + t, 1);
             }
             else
             {
-                System.out.println("ugyldig søk");
                 //brukeren har ikke skrevet inn noe i søkefeltet og heller ikke valgt type
+                
+                setResultInfo("", 0);
+                
             }
-            
-            /* TODO:
-               if else der man bare søker på dato
-               if else der man søker på dato OG skadetype
-            */
         }
-        
     }
     
 
