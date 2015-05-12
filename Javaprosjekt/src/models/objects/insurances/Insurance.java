@@ -46,18 +46,8 @@ public abstract class Insurance implements Serializable{
      */
     public Insurance()
     {
-        
-    }
-    
-    public Insurance(int id, int price, double coverage, String conditions, String other, Calendar dateofcreation) {
-        this.ownerid = id;
-        this.price = price;
-        this.coverage = coverage;
-        this.conditions = conditions;
-        this.other = other;
-        this.dateofcreation = dateofcreation;
-        
-        this.id = next++;
+        id = next++;
+        dateofcreation = Calendar.getInstance();
         
     }
     

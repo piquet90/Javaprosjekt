@@ -45,7 +45,7 @@ public class InsuranceTable extends AbstractTableModel{
                 Insurance ins = iter.next();
                 celler[i][0] = ins.getId();
                 celler[i][1] = ins.getType();
-                celler[i][2] = ins.getDateofcreation();
+                celler[i][2] = format1.format(ins.getDateofcreation().getTime());
                 celler[i][3] = "HER ER JEG";
             }
         }

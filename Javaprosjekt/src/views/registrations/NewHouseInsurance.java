@@ -14,6 +14,7 @@ import controllers.CustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import views.CustomListener;
 
 /**
  *
@@ -29,6 +30,7 @@ public class NewHouseInsurance extends CustomPanel {
     private CustomerController controller;
     private boolean check = false;
     
+    private CustomListener listener;
     
     
     public NewHouseInsurance() {
@@ -166,6 +168,11 @@ public class NewHouseInsurance extends CustomPanel {
             adress.setText("Satt til kundens adresse");
             check = false;
         }
+    }
+    
+    public void addCustomListener(CustomListener l)
+    {
+        this.listener = l;
     }
     
 }

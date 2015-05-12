@@ -14,15 +14,6 @@ import java.util.Calendar;
  */
 public class LeisureHouseInsurance extends PropertyInsurance{
 
-    /**
-     * Constructor for LeisureHouseInsurance
-     * Is the same as PropertyInsurance
-     * @see PropertyInsurance
-     * 
-     */
-    public LeisureHouseInsurance(int id,String address, String type, String construtionmaterial, String standard, int squaremeter, int yearofconstruction, double buildingcoverage, double contentscoverage, int price, String conditions, String other, Calendar dateofcreation) {
-        super(id, address, type, construtionmaterial, standard, squaremeter, yearofconstruction, buildingcoverage, contentscoverage, price, conditions, other, dateofcreation);
-    }
 
 
     public String getType()

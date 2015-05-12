@@ -14,6 +14,7 @@ import controllers.CustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import views.CustomListener;
 
 /**
  *
@@ -27,6 +28,8 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     private CustomButton submit;
     private CustomCheckBox lease;
     private CustomerController controller;
+    
+    private CustomListener listener;
     
     public void initComponents() {
         
@@ -152,6 +155,11 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     
     public NewLeisureHouseInsurance() {
         
+    }
+    
+    public void addCustomListener(CustomListener l)
+    {
+        this.listener = l;
     }
  
 }

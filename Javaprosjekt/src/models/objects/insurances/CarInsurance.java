@@ -17,22 +17,33 @@ import java.util.Calendar;
  */
 public class CarInsurance extends VehicleInsurance{
     
-    /**
-     * TODO: Comment and refactor
-     * @param price
-     * @param coverage
-     * @param conditions
-     * @param other
-     * @param dateofcreation
-     * @param viechleOwner
-     * @param registrationNumber
-     * @param type
-     * @param model
-     * @param power
-     */
-    public CarInsurance(int id, int price, int coverage, String conditions, String other, Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power) {
-        super(id, price, coverage, conditions, other, dateofcreation, viechleOwner, registrationNumber, type, model, power);
-        
+    
+    private int registrationYear;
+    private int kmDriven;
+    private int bonus;
+
+    public int getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+
+    public int getKmDriven() {
+        return kmDriven;
+    }
+
+    public void setKmDriven(int kmDriven) {
+        this.kmDriven = kmDriven;
+    }
+
+    public int getRegistrationYear() {
+        return registrationYear;
+    }
+
+    public void setRegistrationYear(int registrationYear) {
+        this.registrationYear = registrationYear;
     }
     
     public CarInsurance()

@@ -23,52 +23,6 @@ public abstract class PropertyInsurance extends Insurance {
     private int yearofconstruction;
     private double buildingcoverage;
     private double contentscoverage;
-
-    /**
-     * Construct for a propertyinsurance.
-     * 
-     * Takes all the information required by a propertyinsurance.
-     *
-     * @param address The Address of the property that is covered by this insurance
-     * @param type The main type of building that is insured
-     * @param construtionmaterial The main construction material of the building
-     * @param standard The standard of the building
-     * @param squaremeter The size of the building in squaremeters
-     * @param yearofconstruction The year of construction
-     * @param buildingcoverage How much the insurance covers on incidents to the building
-     * @param contentscoverage How much the insurance covers on incidents to the contents of the building
-     * @param price the price of the insurance per year
-     * @param conditions The terms and conditions of the insurance
-     * @param other String containing "other"-info about the insurance
-     * @param dateofcreation Date-object with info about when the insurance was created
-     * 
-     * @see Insurance
-     */
-    public PropertyInsurance(
-            int id,
-            String address, 
-            String type, 
-            String construtionmaterial, 
-            String standard, 
-            int squaremeter, 
-            int yearofconstruction, 
-            double buildingcoverage, 
-            double contentscoverage, 
-            int price, 
-            String conditions, 
-            String other, 
-            Calendar dateofcreation)
-    {
-        super(id, price, (buildingcoverage+buildingcoverage), conditions, other, dateofcreation);
-        this.address = address;
-        this.type = type;
-        this.construtionmaterial = construtionmaterial;
-        this.standard = standard;
-        this.squaremeter = squaremeter;
-        this.yearofconstruction = yearofconstruction;
-        this.buildingcoverage = buildingcoverage;
-        this.contentscoverage = contentscoverage;
-    }
     
     
     @Override

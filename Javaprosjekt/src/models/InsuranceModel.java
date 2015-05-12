@@ -36,6 +36,21 @@ public class InsuranceModel {
         return null;
     }
     
+    public HashSet<Insurance> findByOwnerId(int id)
+    {
+        Iterator<Insurance> i = insurances.iterator();
+        HashSet<Insurance> result = new HashSet<>();
+        while(i.hasNext())
+        {
+            Insurance obj = i.next();
+            if(obj.getOwnerId()==id)
+                result.add(obj);
+        }
+        
+        return result;
+        
+    }
+    
     public void addInsurance(Insurance i)
     {
         insurances.add(i);

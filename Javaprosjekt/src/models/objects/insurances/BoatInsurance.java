@@ -17,22 +17,6 @@ import java.util.Calendar;
  */
 public class BoatInsurance extends VehicleInsurance{
 
-    /**
-     * TODO: Comment and refactor
-     * @param price
-     * @param coverage
-     * @param conditions
-     * @param other
-     * @param dateofcreation
-     * @param viechleOwner
-     * @param registrationNumber
-     * @param type
-     * @param model
-     * @param power
-     */
-    public BoatInsurance(int id, int price, int coverage, String conditions, String other, Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power) {
-        super(id, price, coverage, conditions, other, dateofcreation, viechleOwner, registrationNumber, type, model, power);
-    }
     
     public String getType()
     {

@@ -14,6 +14,7 @@ import CustomSwing.CustomTextField;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import views.CustomListener;
 
 /**
  *
@@ -27,6 +28,8 @@ public class NewTravelInsurance extends CustomPanel {
     private CustomButton2 changeTaker;
     private GridBagConstraints g;
     private boolean check = false;
+    
+    private CustomListener listener;
     
     public NewTravelInsurance() {
         setLayout(new GridBagLayout());
@@ -146,6 +149,11 @@ public class NewTravelInsurance extends CustomPanel {
             insTaker.setText("Satt til kunde");
             check = false;
         }
+    }
+    
+    public void addCustomListener(CustomListener l)
+    {
+        this.listener = l;
     }
     
 }

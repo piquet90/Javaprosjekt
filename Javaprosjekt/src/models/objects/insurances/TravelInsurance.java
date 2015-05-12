@@ -17,19 +17,6 @@ public class TravelInsurance extends Insurance{
     
     private String area;
 
-    /**
-     * Constructor for TravelInsurance
-     * 
-     * Also takes an Area String
-     * 
-     * 
-     * @param area The area of which the insurance covers
-     * @see Insurance
-     */
-    public TravelInsurance(int id, String area, int price, double coverage, String conditions, String other, Calendar dateofcreation) {
-        super(id, price, coverage, conditions, other, dateofcreation);
-        this.area = area;
-    }
 
     /**
      * Returns a String with the area the insurance covers
