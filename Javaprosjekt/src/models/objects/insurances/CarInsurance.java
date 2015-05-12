@@ -34,6 +34,11 @@ public class CarInsurance extends VehicleInsurance{
         super(id, price, coverage, conditions, other, dateofcreation, viechleOwner, registrationNumber, type, model, power);
         
     }
+    
+    public CarInsurance()
+    {
+        
+    }
 
     public String getType()
     {

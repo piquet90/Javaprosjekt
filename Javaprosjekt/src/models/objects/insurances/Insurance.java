@@ -44,6 +44,11 @@ public abstract class Insurance implements Serializable{
      * @param other String containing "other"-info about the insurance
      * @param dateofcreation Date-object with info about when the insurance was created
      */
+    public Insurance()
+    {
+        
+    }
+    
     public Insurance(int id, int price, double coverage, String conditions, String other, Calendar dateofcreation) {
         this.ownerid = id;
         this.price = price;

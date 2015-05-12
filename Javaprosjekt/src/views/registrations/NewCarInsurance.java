@@ -11,7 +11,6 @@ import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import controllers.Controller;
-import controllers.CustomerController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;

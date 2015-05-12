@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.regex.Pattern;
 import models.CustomerModel;
 import models.Customer;
+import models.objects.insurances.CarInsurance;
 import models.objects.insurances.Insurance;
 import views.CustomerView;
 import views.CustomEvent;
@@ -126,7 +127,18 @@ public class CustomerController extends Controller implements CustomListener{
         if(i.getAction()==Constants.NEW_CUSTOMER)
             save();
         if(i.getAction()==Constants.NEW_INSURANCE)
-            newInsurance();
+        {
+            if(i.getValue()==Constants.BOAT_INSURANCE_INT)
+                mc.insController.newBoatInsurance();
+            if(i.getValue()==Constants.CAR_INSURANCE_INT)
+                mc.insController.newCarInsurance();
+            if(i.getValue()==Constants.HOUSE_INSURANCE_INT)
+                mc.insController.newHouseInsurance();
+            if(i.getValue()==Constants.LEISUREHOUSE_INSURANCE_INT)
+                mc.insController.newLeisureHouseInsurance();
+            if(i.getValue()==Constants.TRAVEL_INSURANCE_INT)
+                mc.insController.newTravelInsurance();
+        }
         if(i.getAction()==Constants.NEW_REPORT)
             newReport();
     }

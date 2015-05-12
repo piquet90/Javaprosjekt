@@ -43,6 +43,11 @@ public class VehicleInsurance extends Insurance{
         this.model = model;
         this.power = power;
     }
+    
+    public VehicleInsurance()
+    {
+        
+    }
 
     /**
      * @return the viechleOwner
