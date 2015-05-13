@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.regex.Pattern;
 import models.CustomerModel;
 import models.Customer;
+import models.InsuranceModel;
+import models.objects.insurances.CarInsurance;
 import models.objects.insurances.Insurance;
 import views.CustomerView;
 import views.CustomEvent;
@@ -36,8 +38,11 @@ public class CustomerController extends Controller implements CustomListener{
     
     // model 
     private CustomerModel m;
+    private InsuranceModel i;
     
     private Customer customer;
+    
+    private ViewTable viewTable;
     
     
     // constructor
@@ -46,6 +51,7 @@ public class CustomerController extends Controller implements CustomListener{
         this.registries = r;
         this.mc = m;
         this.m = new CustomerModel(r);
+        this.i = new InsuranceModel(r);
     }
     
     public void viewCustomer(int i)
@@ -65,9 +71,9 @@ public class CustomerController extends Controller implements CustomListener{
         cus.setPostSted(customer.getCity());
         
         // fill insurances
-        HashSet<Insurance> set = m.findInsuranceByUserId(i);
+        HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
         InsuranceTable table = new InsuranceTable(set);
-        ViewTable viewTable = new ViewTable(table);
+        viewTable = new ViewTable(table);
         cus.addTable("Forsikringer", viewTable);
         
         // show view
@@ -75,6 +81,10 @@ public class CustomerController extends Controller implements CustomListener{
         
     }// end of viewCustomer
     
+    public void refresh()
+    {
+        HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
+    }
     public void newInsurance()
     {
         mc.regController.newInsurance(customer.getId());
@@ -104,7 +114,7 @@ public class CustomerController extends Controller implements CustomListener{
         if(adresse.equals(""))
             s += "Adresse \n";
         if(!Pattern.matches(Constants.AREA_CODE, postnr)) // validation of areacode makes sense.
-            s += "Poststed \n";
+            s += "Postnummer \n";
         if(poststed.equals(""))
             s += "Poststed \n";
         if(!s.equals(""))
@@ -126,7 +136,18 @@ public class CustomerController extends Controller implements CustomListener{
         if(i.getAction()==Constants.NEW_CUSTOMER)
             save();
         if(i.getAction()==Constants.NEW_INSURANCE)
-            newInsurance();
+        {
+            if(i.getValue()==Constants.BOAT_INSURANCE_INT)
+                mc.insController.newBoatInsurance(customer.getId());
+            if(i.getValue()==Constants.CAR_INSURANCE_INT)
+                mc.insController.newCarInsurance(customer.getId());
+            if(i.getValue()==Constants.HOUSE_INSURANCE_INT)
+                mc.insController.newHouseInsurance(customer.getId());
+            if(i.getValue()==Constants.LEISUREHOUSE_INSURANCE_INT)
+                mc.insController.newLeisureHouseInsurance(customer.getId());
+            if(i.getValue()==Constants.TRAVEL_INSURANCE_INT)
+                mc.insController.newTravelInsurance(customer.getId());
+        }
         if(i.getAction()==Constants.NEW_REPORT)
             newReport();
     }

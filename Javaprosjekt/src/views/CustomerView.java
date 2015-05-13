@@ -331,25 +331,24 @@ public class CustomerView extends JTabbedPane implements ActionListener{
                 endre();
             else
                 listener.customActionPerformed(new CustomEvent(Constants.NEW_CUSTOMER));
-        
- 
-                switch (e.getActionCommand()) {
-                    case "Båtforsikring":
-                        System.out.println("Du valgte båtforsikring");
-                        break;
-                    case "Bilforsikring":
-                        System.out.println("Du valgte bilforsikring");
-                        break;
-                    case "Hus- /innboforsikring":
-                        System.out.println("Du valgte hus- / innboforsikring");
-                        break;
-                    case "Fritidsboligforsikring":
-                        System.out.println("Du valgte fritidsboligforsikring");
-                        break;
-                    case "Reiseforsikring":
-                        System.out.println("Du valgte reiseforsikring");
-                        break;
-                }
+
+            switch (e.getActionCommand()) {
+                case "Båtforsikring":
+                    listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE, Constants.BOAT_INSURANCE_INT));
+                    break;
+                case "Bilforsikring":
+                    listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE, Constants.CAR_INSURANCE_INT));
+                    break;
+                case "Hus- /innboforsikring":
+                    listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE, Constants.HOUSE_INSURANCE_INT));
+                    break;
+                case "Fritidsboligforsikring":
+                    listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE, Constants.LEISUREHOUSE_INSURANCE_INT));
+                    break;
+                case "Reiseforsikring":
+                    listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE, Constants.TRAVEL_INSURANCE_INT));
+                    break;
+            }
         
         
         

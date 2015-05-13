@@ -33,6 +33,7 @@ public class MainController extends Controller{
     public CustomerController ncController;
     public ReportController rController;
     public RegistrationController regController;
+    public InsuranceController insController;
     
     /**
      * MainController
@@ -64,6 +65,7 @@ public class MainController extends Controller{
         ncController = new CustomerController(r, this);
         rController = new ReportController(r, this);
         regController = new RegistrationController(r, this);
+        insController = new InsuranceController(r, this);
         
         // start with ViewCustomerController
         vcController.showAllCustomers();

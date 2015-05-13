@@ -20,28 +20,10 @@ public class VehicleInsurance extends Insurance{
     private String model;
     private int power;
     
-    /**
-     *
-     * @param price the value of price
-     * @param coverage the value of coverage
-     * @param conditions the value of conditions
-     * @param other the value of other
-     * @param dateofcreation the value of dateofcreation
-     * @param viechleOwner
-     * @param registrationNumber TODO: finnish commenting
-     * @param type
-     * @param power
-     * @param model
-     */
-    public VehicleInsurance(int id, int price, double coverage, String conditions, String other, 
-            Calendar dateofcreation, String viechleOwner, String registrationNumber, String type, String model, int power)
+    
+    public VehicleInsurance()
     {
-        super(id, price, coverage, conditions, other, dateofcreation);
-        this.viechleOwner = viechleOwner;
-        this.registrationNumber = registrationNumber;
-        this.type = type;
-        this.model = model;
-        this.power = power;
+        
     }
 
     /**

@@ -18,6 +18,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JComboBox;
+import views.CustomListener;
 
 /**
  *
@@ -34,6 +35,8 @@ public class NewBoatInsurance extends CustomPanel {
     private CustomerController controller;
     private boolean check = false;
     private int n = 0;
+    
+    private CustomListener listener;
     
     /**
      * NyBilforsikring constructor
@@ -188,9 +191,8 @@ public class NewBoatInsurance extends CustomPanel {
         }
     }
 
-   
-    public boolean addController(Controller c) {
-        
-        return true;
-    }
+   public void addCustomListener(CustomListener l)
+   {
+       this.listener = l;
+   }
 }

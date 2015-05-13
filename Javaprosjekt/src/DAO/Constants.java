@@ -45,12 +45,18 @@ public class Constants {
     public static final String LEISUREHOUSE_INSURANCE = "Fritidsboligforsikring";
     public static final String TRAVEL_INSURANCE = "ReiseForsikring";
     
-            
+    public static final int BOAT_INSURANCE_INT = 22;
+    public static final int CAR_INSURANCE_INT = 23;
+    public static final int HOUSE_INSURANCE_INT = 24;
+    public static final int LEISUREHOUSE_INSURANCE_INT = 25;
+    public static final int TRAVEL_INSURANCE_INT = 26;
+    
             
     
     // regexs
     
     public static final String ONLY_ALPHABETIC = "^[Ê¯Â∆ÿ≈a-zA-Z]+$";
+    public static final String ONLY_NUMBERS = "^[0-9]+$";
     public static final String AREA_CODE = "^[0-9]{4}$";
 
     
