@@ -41,11 +41,11 @@ public class Customer implements Serializable{
     
     /**
      *
-     * @param firstname
-     * @param lastname
-     * @param addressStreet
-     * @param city
-     * @param areacode
+     * @param firstname The customers first name
+     * @param lastname The customers last  name
+     * @param addressStreet The customers current street adress
+     * @param city The customers current city
+     * @param areacode The customers current zip code
      */
     public Customer(String firstname, String lastname, String addressStreet, String city, String areacode) {
         
@@ -60,7 +60,8 @@ public class Customer implements Serializable{
     
 
     /**
-     * @return the registered
+     * Method that returns the current date the customer is registered
+     * @return a calendar object when the customer is registered
      */
     public Calendar getRegistered() {
         return registered;

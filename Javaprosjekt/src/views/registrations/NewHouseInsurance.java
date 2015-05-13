@@ -17,7 +17,9 @@ import java.awt.Insets;
 import views.CustomListener;
 
 /**
- *
+ * Panel for registering a house insurance
+ * @see CustomPanel
+ * 
  * @author Audun
  */
 
@@ -32,10 +34,12 @@ public class NewHouseInsurance extends CustomPanel {
     
     private CustomListener listener;
     
+    /**
+     * Method that initializes the GUI components
+     */
     
-    public NewHouseInsurance() {
-        setLayout(new GridBagLayout());
-        
+    public void initComponents()
+    {
         adress = new CustomTextField(17);
         adress.setEditable(false);
         adress.setText("Satt til kundens adresse");
@@ -45,16 +49,25 @@ public class NewHouseInsurance extends CustomPanel {
         standard = new CustomTextField(10);
         houseSize = new CustomTextField(5);
         amountBuilding = new CustomTextField(5);
-        amountBuilding.setToolTipText("Forsikringsbeløp til bygg og tomt");
         amountContents = new CustomTextField(5);
-        amountContents.setToolTipText("Forsikringsbeløp til husets innbo");
 
         submit = new CustomButton("Registrer");
         changeAdress = new CustomButton2("Endre");
         changeAdress.addActionListener((e) -> change());
+    }
+    
+    
+    /**
+     * NewHouseInsurance constructor
+     */
+    
+    public NewHouseInsurance()
+    {
+        setLayout(new GridBagLayout());
+        initComponents();
         
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.insets = new Insets(15, 5, 0, 5);
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
@@ -80,10 +93,10 @@ public class NewHouseInsurance extends CustomPanel {
         add(new CustomLabel("Størrelse: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Beløp, bygg: "), gbc);
+        add(new CustomLabel("Forsikringsbeløp, bygg: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Beløp, innbo: "), gbc);
+        add(new CustomLabel("Forsikringsbeløp, innbo: "), gbc);
         
 
         gbc.anchor = GridBagConstraints.LINE_START;    
@@ -116,48 +129,86 @@ public class NewHouseInsurance extends CustomPanel {
         gbc.gridy++;
         add(submit, gbc);
         
-        //Knapp som gjør eier-felt editable/uneditable
         gbc.gridx = 2;
         gbc.gridy = 1;
         add(changeAdress, gbc);
     }
     
     
-    
-
+    /**
+     * Returns the text the user has written in the adress-field
+     * @return adress to the house the insurance will be registered to
+     */
     public String getAdress() {
         return adress.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the year built-field
+     * @return year of construction
+     */
     public String getYearBuilt() {
         return yearBuilt.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the house type-field
+     * @return house type (e.g. apartment, terraced house etc)
+     */
     public String getType() {
         return type.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the house material-field
+     * @return house build material (e.g. wood, brick etc)
+     */
     public String getMaterial() {
         return material.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the standard-field
+     * @return house standard (e.g. refurbished, needs refurbishing etc)
+     */
     public String getStandard() {
         return standard.getText();
     }
-
+    
+    /**
+     * Returns the text the user has written in the house size-field
+     * @return the size of the house in square metres
+     */
     public String getHouseSize() {
         return houseSize.getText();
     }
     
+    
+    /**
+     * Returns the text the user has written in the insurance amount, building-field
+     * @return amount in NOK the house should be insured for
+     */
     public String getAmountBuilding() {
         return amountBuilding.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the insurance amount, contents-field
+     * @return amount in NOK the house-contents should be insured for
+     */
     public String getAmountContents() {
         return amountContents.getText();
     }
     
     
+    /**
+     * Method that makes the adress-field editable or uneditable by the click of a button
+     */
     public void change() {
         if(!check) {
             adress.setEditable(true);
@@ -170,6 +221,10 @@ public class NewHouseInsurance extends CustomPanel {
         }
     }
     
+    /**
+     * Method that connect controllers listener to this panel
+     * @param l Custom listener
+     */
     public void addCustomListener(CustomListener l)
     {
         this.listener = l;
