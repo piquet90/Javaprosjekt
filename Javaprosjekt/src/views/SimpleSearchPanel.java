@@ -18,7 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Panel for simple search
  * @author Audun
  */
 public class SimpleSearchPanel extends CustomPanel {
@@ -30,18 +30,11 @@ public class SimpleSearchPanel extends CustomPanel {
     private JCheckBox showInactive;
     
     
-    public SimpleSearchPanel() 
-    {
-        initComponents();
-    }
-    
     /**
-     * TODO: BUTTON GROUP WITH SIMPLE SEARCH OPTIONS
+     * Method that initalizes the GUI components
      */
-    
     public void initComponents()
     {
-        this.setLayout(new GridBagLayout());
         srcField = new CustomTextField(20);
         srcField.setFont(new Font("Arial", Font.PLAIN, 22));
         String[] t = {"Velg søktype...", "Kunder", "Forsikringer", "Skademeldinger"};
@@ -51,8 +44,16 @@ public class SimpleSearchPanel extends CustomPanel {
         srcBtn = new CustomButton("Søk");
         srcBtn.addActionListener((e) -> search());
         
-        showInactive = new JCheckBox("Vis inaktive kunder");
-        
+        showInactive = new JCheckBox("Vis inaktive kunder");  
+    }
+    
+    /**
+     * SimpleSearchPanel constructor
+     */
+    public SimpleSearchPanel() 
+    {
+        initComponents();
+        setLayout(new GridBagLayout());
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(25, 15, 25, 5);
@@ -63,23 +64,25 @@ public class SimpleSearchPanel extends CustomPanel {
         
         gbc.gridy = 0;
         gbc.gridx = 0;
-        this.add(new CustomLabel("Søkeord: "), gbc);
+        add(new CustomLabel("Søkeord: "), gbc);
         
         gbc.gridx++;
-        this.add(srcField, gbc);
+        add(srcField, gbc);
         
         gbc.gridx++;
-        this.add(srcType, gbc);
+        add(srcType, gbc);
         
         gbc.gridx++;
         gbc.insets = new Insets(0, 15, 0, 5);
-        this.add(showInactive, gbc);
+        add(showInactive, gbc);
         
         gbc.gridx++;
-        this.add(srcBtn, gbc);
-        
+        add(srcBtn, gbc);
     }
     
+    /**
+     * Method calls the controller and recieves the search results
+     */
     public void search()
     {
         String type = String.valueOf(srcType.getSelectedItem());
@@ -91,14 +94,12 @@ public class SimpleSearchPanel extends CustomPanel {
         }
         else if(type.equals("Velg søktype..."))
         {
-            JOptionPane.showMessageDialog(null, "velg søktyppe plz");
+            JOptionPane.showMessageDialog(null, "Velg søktype");
         }
         else 
         {
-            JOptionPane.showMessageDialog(null, "fyll felter plz");
+            JOptionPane.showMessageDialog(null, "Vennligst fyll inn alle felter");
         }
-        
-        
         
     }
     

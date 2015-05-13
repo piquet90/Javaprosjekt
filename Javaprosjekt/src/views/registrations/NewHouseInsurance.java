@@ -6,11 +6,9 @@
 package views.registrations;
 
 import CustomSwing.CustomButton;
-import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
-import controllers.CustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,31 +16,23 @@ import views.CustomListener;
 
 /**
  * Panel for registering a house insurance
- * @see CustomPanel
- * 
  * @author Audun
  */
 
 public class NewHouseInsurance extends CustomPanel {
     
-    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents;
+    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions;
     private GridBagConstraints gbc;
     private CustomButton submit;
-    private CustomButton2 changeAdress;
-    private CustomerController controller;
-    private boolean check = false;
     
     private CustomListener listener;
     
     /**
      * Method that initializes the GUI components
      */
-    
     public void initComponents()
     {
         adress = new CustomTextField(17);
-        adress.setEditable(false);
-        adress.setText("Satt til kundens adresse");
         yearBuilt = new CustomTextField(5);
         type = new CustomTextField(15);
         material = new CustomTextField(10);
@@ -50,17 +40,16 @@ public class NewHouseInsurance extends CustomPanel {
         houseSize = new CustomTextField(5);
         amountBuilding = new CustomTextField(5);
         amountContents = new CustomTextField(5);
+        premium = new CustomTextField(5);
+        conditions = new CustomTextField(18);
 
         submit = new CustomButton("Registrer");
-        changeAdress = new CustomButton2("Endre");
-        changeAdress.addActionListener((e) -> change());
     }
     
     
     /**
      * NewHouseInsurance constructor
      */
-    
     public NewHouseInsurance()
     {
         setLayout(new GridBagLayout());
@@ -91,13 +80,18 @@ public class NewHouseInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(new CustomLabel("Størrelse: "), gbc);
-        
+
         gbc.gridy++;
         add(new CustomLabel("Forsikringsbeløp, bygg: "), gbc);
         
         gbc.gridy++;
         add(new CustomLabel("Forsikringsbeløp, innbo: "), gbc);
         
+        gbc.gridy++;
+        add(new CustomLabel("Forsikringspremie: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Betingelser: "), gbc);
 
         gbc.anchor = GridBagConstraints.LINE_START;    
         
@@ -119,7 +113,7 @@ public class NewHouseInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(houseSize, gbc);
-        
+
         gbc.gridy++;
         add(amountBuilding, gbc);
         
@@ -127,13 +121,24 @@ public class NewHouseInsurance extends CustomPanel {
         add(amountContents, gbc);
         
         gbc.gridy++;
-        add(submit, gbc);
+        add(premium, gbc);
         
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        add(changeAdress, gbc);
+        gbc.gridy++;
+        add(conditions, gbc);
+        
+        gbc.gridy++;
+        add(submit, gbc);
+
     }
     
+    /**
+     * Method that sets the customers adress as default
+     * @param a customers adress
+     */
+    public void setAdress(String a)
+    {
+        adress.setText(a);
+    }
     
     /**
      * Returns the text the user has written in the adress-field
@@ -205,24 +210,24 @@ public class NewHouseInsurance extends CustomPanel {
         return amountContents.getText();
     }
     
-    
     /**
-     * Method that makes the adress-field editable or uneditable by the click of a button
+     * Returns the text the user has written in the yearly premium-field
+     * @return amount in NOK the yearly premium
      */
-    public void change() {
-        if(!check) {
-            adress.setEditable(true);
-            check = true;
-        }
-        else {
-            adress.setEditable(false);
-            adress.setText("Satt til kundens adresse");
-            check = false;
-        }
+    public String getPremium() {
+        return premium.getText();
     }
     
     /**
-     * Method that connect controllers listener to this panel
+     * Returns the text the user has written in the conditions-field
+     * @return conditions for the insurance
+     */
+    public String getConditions() {
+        return conditions.getText();
+    }
+    
+    /**
+     * Method that connect controllers listener to the panel
      * @param l Custom listener
      */
     public void addCustomListener(CustomListener l)

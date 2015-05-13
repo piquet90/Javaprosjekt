@@ -17,13 +17,13 @@ import java.awt.Insets;
 import views.CustomListener;
 
 /**
- *
+ * Panel for registering a boat insurance
  * @author Audun
  */
 
 public class NewLeisureHouseInsurance extends CustomPanel {
     
-    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents;
+    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomCheckBox lease;
@@ -31,10 +31,11 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     
     private CustomListener listener;
     
-    public void initComponents() {
-        
-        setLayout(new GridBagLayout());
-        
+    /**
+     * Method that initalizes the GUI components
+     */
+    public void initComponents()
+    {
         adress = new CustomTextField(15);
         yearBuilt = new CustomTextField(5);
         type = new CustomTextField(15);
@@ -43,14 +44,25 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         houseSize = new CustomTextField(4);
         amountBuilding = new CustomTextField(6);
         amountContents = new CustomTextField(6);
+        premium = new CustomTextField(5);
+        conditions = new CustomTextField(15);
         
         lease = new CustomCheckBox("");
         
         submit = new CustomButton("Registrer");
         submit.addActionListener((e) -> System.out.println("s"));
-        
+    }
+    
+    /**
+     * NewLeisureHouseInsurance constructor
+     */
+    public NewLeisureHouseInsurance()
+    {
+        initComponents();
+        setLayout(new GridBagLayout());
+
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.insets = new Insets(15, 5, 0, 5);
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
@@ -76,10 +88,16 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         add(new CustomLabel("Størrelse: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Beløp, bygg: "), gbc);
+        add(new CustomLabel("Forsikringsbeløp, bygg: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Beløp, innbo: "), gbc);
+        add(new CustomLabel("Forsikringsbeløp, innbo: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Forsikringspremie: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Betingelser: "), gbc);
         
         gbc.gridy++;
         add(new CustomLabel("Utleie: "), gbc);
@@ -113,6 +131,12 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         add(amountContents, gbc);
         
         gbc.gridy++;
+        add(premium, gbc);
+        
+        gbc.gridy++;
+        add(conditions, gbc);
+        
+        gbc.gridy++;
         add(lease, gbc);
         
         gbc.gridy++;
@@ -120,43 +144,104 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         
     }
 
+    /**
+     * Returns the text the user has written in the adress-field
+     * @return adress to the house the insurance will be registered to
+     */
     public String getAdress() {
         return adress.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the year built-field
+     * @return year of construction
+     */
     public String getYearBuilt() {
         return yearBuilt.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the house type-field
+     * @return house type (e.g. apartment, terraced house etc)
+     */
     public String getType() {
         return type.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the house material-field
+     * @return house build material (e.g. wood, brick etc)
+     */
     public String getMaterial() {
         return material.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the standard-field
+     * @return house standard (e.g. refurbished, needs refurbishing etc)
+     */
     public String getStandard() {
         return standard.getText();
     }
-
+    
+    /**
+     * Returns the text the user has written in the house size-field
+     * @return the size of the house in square metres
+     */
     public String getHouseSize() {
         return houseSize.getText();
     }
-
+    
+    
+    /**
+     * Returns the text the user has written in the insurance amount, building-field
+     * @return amount in NOK the house should be insured for
+     */
+    public String getAmountBuilding() {
+        return amountBuilding.getText();
+    }
+    
+    
+    /**
+     * Returns the text the user has written in the insurance amount, contents-field
+     * @return amount in NOK the house-contents should be insured for
+     */
     public String getAmountContents() {
         return amountContents.getText();
     }
-
+    
+    /**
+     * Returns the text the user has written in the yearly premium-field
+     * @return amount in NOK the yearly premium
+     */
+    public String getPremium() {
+        return premium.getText();
+    }
+    
+    /**
+     * Returns the text the user has written in the conditions-field
+     * @return conditions for the insurance
+     */
+    public String getConditions() {
+        return conditions.getText();
+    }
+    
+    /**
+     * Returns if the leisure house will be rented out
+     * @return true for lease, false if not
+     */
     public boolean getLease() {
         return lease.isSelected();
     }
     
-    
-    public NewLeisureHouseInsurance() {
-        
-    }
-    
+    /**
+     * Method that connect controllers listener to the panel
+     * @param l Custom listener
+     */
     public void addCustomListener(CustomListener l)
     {
         this.listener = l;

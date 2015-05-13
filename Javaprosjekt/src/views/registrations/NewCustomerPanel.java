@@ -20,8 +20,12 @@ import javax.swing.JOptionPane;
 import views.CustomEvent;
 import views.CustomListener;
 
+/**
+ * Panel for registering new customers
+ * @author Audun
+ */
 
-public class NewCustomerPanel extends CustomPanel implements ActionListener{
+public class NewCustomerPanel extends CustomPanel implements ActionListener {
     
     private CustomTextField firstName, lastName, adress, city, zip;
     private GridBagConstraints gbc;
@@ -30,9 +34,9 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener{
 
     
     /**
-     * NyBrukerPanel constructor
+     * Method that initalizes the GUI components
      */
-    public NewCustomerPanel()
+    public void initComponents()
     {
         firstName = new CustomTextField(15);
         lastName = new CustomTextField(15);
@@ -42,9 +46,15 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener{
         
         submit = new CustomButton("Registrer");
         submit.addActionListener(this);
-        
-        this.setLayout(new GridBagLayout());
-        this.setSize(getPreferredSize());
+    }
+    
+    /**
+     * NyCustomerPanel constructor
+     */
+    public NewCustomerPanel()
+    {
+        initComponents();
+        setLayout(new GridBagLayout());
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -97,26 +107,49 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener{
         add(submit, gbc);
     }
 
+    /**
+     * Returns what the user has written in the first name-field
+     * @return the customers first name
+     */
     public String getFirstName() {
         return firstName.getText();
     }
 
+    /**
+     * Returns what the user has written in the last name-field
+     * @return the customers last name
+     */
     public String getLastName() {
         return lastName.getText();
     }
 
+    /**
+     * Returns what the user has written in the adress-field
+     * @return the customers adress
+     */
     public String getAdress() {
         return adress.getText();
     }
 
+    /**
+     * Returns what the user has written in the city-field
+     * @return the customers current city
+     */
     public String getCity() {
         return city.getText();
     }
 
+    /**
+     * Returns what the user has written in the zip-field
+     * @return the customers zip number
+     */
     public String getZip() {
         return zip.getText();
     }
     
+    /**
+     * Method that clear all fields
+     */
     public void clearAll()
     {
         firstName.setText("");
@@ -125,17 +158,20 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener{
         city.setText("");
         zip.setText("");
     }
-    /**
-     * 
-     * @param error Recieves error message from controller and displays it to user
-     */
     
+    /**
+     * Method that recieves and displays an error message 
+     * @param error error message from controller
+     */
     public void showError(String error)
     {
         JOptionPane.showMessageDialog(this, error);
     }
     
-
+    /**
+     * NewCustomerPanels ActionListener
+     * @param e ActionEvent
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==submit)

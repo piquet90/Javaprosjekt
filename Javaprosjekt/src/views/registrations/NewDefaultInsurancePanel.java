@@ -2,7 +2,6 @@
  * Made by
  * Rudi Yu s231776
  * Audun Brustad s236341
- */
 package views.registrations;
 
 import CustomSwing.CustomLabel;
@@ -23,7 +22,7 @@ import javax.swing.JScrollPane;
 /**
  *
  * @author Audun
- */
+
 
 public class NewDefaultInsurancePanel extends CustomPanel {
     
@@ -36,7 +35,7 @@ public class NewDefaultInsurancePanel extends CustomPanel {
 
     /**
      * NyBilforsikring constructor
-     */
+     
     public NewDefaultInsurancePanel() {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
@@ -139,3 +138,4 @@ public class NewDefaultInsurancePanel extends CustomPanel {
         JOptionPane.showMessageDialog(this, s);
     }
 }
+*/

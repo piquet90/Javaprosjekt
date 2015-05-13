@@ -6,7 +6,6 @@
 package views.registrations;
 
 import CustomSwing.CustomButton;
-import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
@@ -21,28 +20,24 @@ import views.CustomEvent;
 import views.CustomListener;
 
 /**
- *
+ * Panel for registering a car insurance
  * @author Audun
  */
 
 public class NewCarInsurance extends CustomPanel {
     
-    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, bonus;
+    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus;
     private JComboBox<String> carType;
     private GridBagConstraints gbc;
     private CustomButton submit;
-    private CustomButton2 endreEier;
-    private boolean check = false;
     private int n = 0;
     private CustomListener listener;
     
     /**
-     * NyBilforsikring constructor
+     * Method that initalizes the GUI components
      */
-    public NewCarInsurance() {
-        setLayout(new GridBagLayout());
-        setSize(getPreferredSize());
-        
+    public void initComponents()
+    {
         carOwner = new CustomTextField(17);
         regNr = new CustomTextField(9);
         model = new CustomTextField(17);
@@ -50,6 +45,9 @@ public class NewCarInsurance extends CustomPanel {
         regYear = new CustomTextField(6);
         kmPerYear = new CustomTextField(9);
         pricePerKm = new CustomTextField(6);
+        premium = new CustomTextField(5);
+        amount = new CustomTextField(5);
+        conditions = new CustomTextField(15);
         bonus = new CustomTextField(6);
         
         String[] t = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
@@ -59,15 +57,23 @@ public class NewCarInsurance extends CustomPanel {
         carType.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
         carType.addActionListener((e)-> n = carType.getSelectedIndex());
         carType.setBackground(new Color(250, 250, 250));
-
-        endreEier = new CustomButton2("Endre");
         
         
         submit = new CustomButton("Registrer");
         submit.addActionListener((e) ->{listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));});
-        
+    }
+    
+    
+    /**
+     * NyBilforsikring constructor
+     */
+    public NewCarInsurance()
+    {
+        initComponents();
+        setLayout(new GridBagLayout());
+
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.insets = new Insets(15, 5, 0, 5);
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
@@ -97,6 +103,15 @@ public class NewCarInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(new CustomLabel("Pris pr. Km.: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Forsikringspremie: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Forsikringsbeløp: "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Betingelser: "), gbc);
         
         gbc.gridy++;
         add(new CustomLabel("Bonus: "), gbc);
@@ -131,89 +146,134 @@ public class NewCarInsurance extends CustomPanel {
         add(pricePerKm, gbc);
         
         gbc.gridy++;
+        add(premium, gbc);
+        
+        gbc.gridy++;
+        add(amount, gbc);
+        
+        gbc.gridy++;
+        add(conditions, gbc);
+        
+        gbc.gridy++;
         add(bonus, gbc);
         
         gbc.gridy++;
         add(submit, gbc);
         
-        //Knapp som gjør eier-felt editable/uneditable
-        /*
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        add(endreEier, gbc);
-        */
     }
     
+    /**
+     * Method that sets the owner-field with the customers name as a default
+     * @param s customers name
+     */
     public void setCarOwner(String s)
     {
         carOwner.setText(s);
     }
+    
+    /**
+     * Returns the car owners name the user has written in the name-field
+     * @return the car owners name
+     */
     public String getCarOwner() {
         return carOwner.getText();
     }
 
+    /**
+     * Returns the registration number the user has written in registration number-field
+     * @return the cars registration number
+     */
     public String getRegNr() {
         return regNr.getText();
     }
-    public void setRegNr(String s)
-    {
-        regNr.setText(s);
-    }
-
+    
+    
+    /**
+     * Returns the model the user has written in model-field
+     * @return the boats brand and model
+     */
     public String getModel() {
         return model.getText();
     }
 
+    /**
+     * Returns the power the user has written in the engine-power field
+     * @return amount of horsepower the car has
+     */
     public String getHorsepower() {
         return horsepower.getText();
     }
 
+    /**
+     * Returns the registration year the user has written in register year-field
+     * @return the year the car was registered
+     */
     public String getRegYear() {
         return regYear.getText();
     }
 
+    /**
+     * Returns the amount the user has written in the km per year-field
+     * @return the number of kilometers the car gets driven per year
+     */
     public String getKmPerYear() {
         return kmPerYear.getText();
     }
     
+    /**
+     * Returns the amount the user has written in the price per km-field
+     * @return the price per kilometer in NOK
+     */
     public String getPricePerKm()
     {
         return pricePerKm.getText();
     }
     
-    public void setPricePerKm(String s)
-    {
-        pricePerKm.setText(s);
-    }
-
+    /**
+     * Returns the type of car the user has chosen from the dropdown menu
+     * @return a car type
+     */
     public String getCarType() {
         return carType.getItemAt(n);
     }
     
+    /**
+     * Returns the text the user has written in the bonus-field
+     * @return the customers insurance bonus
+     */
     public String getBonus()
     {
         return bonus.getText();
     }
     
-    public void setBonus(String s)
-    {
-        bonus.setText(s);
+    /**
+     * Returns the text the user has written in the yearly premium-field
+     * @return amount in NOK the yearly premium
+     */
+    public String getPremium() {
+        return premium.getText();
     }
     
-    
-    public void test() {
-        
-        if(!check) {
-            carOwner.setEditable(true);
-            check = true;
-        }
-        else {
-            carOwner.setEditable(false);
-            carOwner.setText("Satt til valgt kunde");
-            check = false;
-        }
+    /**
+     * Returns the text the user has written in the insurance amount-field
+     * @return the amount the car should be insured for
+     */
+    public String getAmount() {
+        return amount.getText();
     }
     
+    /**
+     * Returns the text the user has written in the conditions-field
+     * @return conditions for the insurance
+     */
+    public String getConditions() {
+        return conditions.getText();
+    }
+    
+    /**
+     * Method that connect controllers listener to the panel
+     * @param l Custom listener
+     */
     public void addCustomListener(CustomListener l)
     {
         this.listener = l;

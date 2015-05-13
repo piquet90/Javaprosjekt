@@ -3,7 +3,7 @@
  * Rudi Yu s231776
  * Audun Brustad s236341
  */
-package registrations;
+package views;
 
 import CustomSwing.CustomButton2;
 import CustomSwing.CustomTextField;
@@ -20,31 +20,30 @@ import java.awt.Insets;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-
+/**
+ * ReportView panel
+ * @author Audun
+ */
 public class ReportView extends JTabbedPane {
     
-    private CustomTextField dato, taksering, utbetalt, type,
+    private CustomTextField date, estimation, paid, type,
             vitneFornavn, vitneEtternavn, vitneAdresse, vitneBy, vitnePnr, vitneTlf;
-    private CustomTextArea beskrivelse;
+
+    private CustomTextArea description;
     private JScrollPane bScroll;
     private GridBagConstraints gbc, gbc2, gbc3;
     private CustomPanel txtTab, ulTab, wiTab;
-    private CustomButton2 endreInfo, endreVitne;
+    private CustomButton2 changeInfo, endreVitne;
     private ReportController controller;
     private boolean edit = false;
     private boolean edit2 = false;
     
     
     /**
-     * Initializes the GUI components
-    */
+     * Method that initalizes the GUI components
+     */
     public void initComponents()
     {
-        this.setBackground(new Color(159, 196, 232));
-        this.setFont(new Font("Arial", Font.BOLD, 18));
-        
-        // GUI Components
-        
         txtTab = new CustomPanel();
         txtTab.setLayout(new GridBagLayout());
         ulTab = new CustomPanel();
@@ -52,36 +51,51 @@ public class ReportView extends JTabbedPane {
         wiTab = new CustomPanel();
         wiTab.setLayout(new GridBagLayout());
         
-        endreInfo = new CustomButton2("Endre");
-        endreInfo.addActionListener((e) -> endreInfo());
+        changeInfo = new CustomButton2("Endre");
+        changeInfo.addActionListener((e) -> endreInfo());
         
         endreVitne = new CustomButton2("Endre");
         endreVitne.addActionListener((e) -> endreVitne());
         
-        
-        
-        
+        description = new CustomTextArea(8, 22);
+        description.setEditable(false);
+        bScroll = new JScrollPane(description);
+        bScroll.setPreferredSize(description.getPreferredSize());
 
-        
-        // txtTab - tab for basic injury information ///////////////////////////
-        beskrivelse = new CustomTextArea(8, 22);
-        beskrivelse.setEditable(false);
-        bScroll = new JScrollPane(beskrivelse);
-        bScroll.setPreferredSize(beskrivelse.getPreferredSize());
-
-        
-        dato = new CustomTextField(10);
-        dato.setEditable(false);
+        date = new CustomTextField(10);
+        date.setEditable(false);
         type = new CustomTextField(10);
         type.setEditable(false);
-        taksering = new CustomTextField(6);
-        taksering.setEditable(false);
-        utbetalt = new CustomTextField(6);
-        utbetalt.setEditable(false);
+        estimation = new CustomTextField(6);
+        estimation.setEditable(false);
+        paid = new CustomTextField(6);
+        paid.setEditable(false);
+        
+        vitneFornavn = new CustomTextField(15);
+        vitneEtternavn = new CustomTextField(15);
+        vitneAdresse = new CustomTextField(20);
+        vitneBy = new CustomTextField(15);
+        vitnePnr = new CustomTextField(6);
+        vitneTlf = new CustomTextField(10);
+        vitneFornavn.setEditable(false);
+        vitneEtternavn.setEditable(false);
+        vitneAdresse.setEditable(false);
+        vitneBy.setEditable(false);
+        vitnePnr.setEditable(false);
+        vitneTlf.setEditable(false);
+    }
+    
+    
+    /**
+     * ReportViews constructor
+    */
+    public ReportView()
+    {
+        setBackground(new Color(159, 196, 232));
+        setFont(new Font("Arial", Font.BOLD, 18));
         
         
-        
-        
+        // txtTab - tab for basic injury information ///////////////////////////
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
         gbc.ipadx = 2;
@@ -116,7 +130,7 @@ public class ReportView extends JTabbedPane {
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 0, 55);
-        txtTab.add(dato, gbc);
+        txtTab.add(date, gbc);
         
         gbc.gridy++;
         txtTab.add(type, gbc);
@@ -127,23 +141,18 @@ public class ReportView extends JTabbedPane {
         
         gbc.gridy++;
         gbc.gridwidth = 1;
-        txtTab.add(taksering, gbc);
+        txtTab.add(estimation, gbc);
         
         gbc.gridy++;
-        txtTab.add(utbetalt, gbc);
+        txtTab.add(paid, gbc);
         
         gbc.gridy++;
         gbc.insets = new Insets(15, 0, 25, 5);
-        txtTab.add(endreInfo, gbc);
+        txtTab.add(changeInfo, gbc);
         
         
         
         // ulTab - tab for uploading images and injury report //////////////////
-
-        
-        
-        
-        
         gbc2 = new GridBagConstraints();
         gbc2.insets = new Insets(15, 0, 0, 5);
         gbc2.ipadx = 2;
@@ -172,20 +181,6 @@ public class ReportView extends JTabbedPane {
         
         
         // wiTab - tab for witness contact information /////////////////////////
-        
-        vitneFornavn = new CustomTextField(15);
-        vitneEtternavn = new CustomTextField(15);
-        vitneAdresse = new CustomTextField(20);
-        vitneBy = new CustomTextField(15);
-        vitnePnr = new CustomTextField(6);
-        vitneTlf = new CustomTextField(10);
-        vitneFornavn.setEditable(false);
-        vitneEtternavn.setEditable(false);
-        vitneAdresse.setEditable(false);
-        vitneBy.setEditable(false);
-        vitnePnr.setEditable(false);
-        vitneTlf.setEditable(false);
-        
         wiTab.add(new CustomLabelHeader("Kontaktinformasjon"));
         
         gbc3 = new GridBagConstraints();
@@ -240,80 +235,122 @@ public class ReportView extends JTabbedPane {
         wiTab.add(endreVitne, gbc3);
         
         //Adding tabs
-
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Informasjon</body></html>", txtTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Opplastninger</body></html>", ulTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Vitner</body></html>", wiTab);
-        
-        
-        setFelter();
+    
     }
     
-
-
-    public String getBeskrivelse() {
-        return beskrivelse.getText();
+    /**
+     * Sets the date the damage report was registered in the date-field
+     * @param d date
+     */
+    public void setDate(String d) {
+        date.setText(d);
     }
 
-    public String getTaksering() {
-        return taksering.getText();
+    /**
+     * Sets the damage value estimation in the damage value-field
+     * @param d damage value in NOK
+     */
+    public void setEstimation(String d) {
+        estimation.setText(d);
     }
 
-    public String getUtbetalt() {
-        return utbetalt.getText();
+    /**
+     * Sets the amount the customer was paid in the paid-field
+     * @param p paid amount in NOK
+     */
+    public void setPaid(String p) {
+        paid.setText(p);
+    }
+
+    /**
+     * Sets the type of damage in the damage type-field
+     * @param t damage type
+     */
+    public void setType(String t) {
+        type.setText(t);
     }
     
-    public void setFelter()
-    {
-        dato.setText("06.05.2015");
-        type.setText("Bil");
-        beskrivelse.setText("Beskrivelse av skaden");
-        taksering.setText("68 000");
-        utbetalt.setText("61 518");
-        
-        vitneFornavn.setText("Jørgen");
-        vitneEtternavn.setText("Jørgensen");
-        vitneAdresse.setText("Jørgenveien 12 jørgen");
-        vitneBy.setText("Jørgem");
-        vitnePnr.setText("11");
-        vitneTlf.setText("22Jørgen");
+    /**
+     * Sets the damage descripton in the description-field
+     * @param d damage description
+     */
+    public void setDescription(String d) {
+        description.setText(d);
     }
     
+    
+
+    public void setVitneFornavn(String vf) {
+        vitneFornavn.setText(vf);
+    }
+
+    public void setVitneEtternavn(String ve) {
+        vitneEtternavn.setText(ve);
+    }
+
+    public void setVitneAdresse(String va) {
+        vitneAdresse.setText(va);
+    }
+
+    public void setVitneBy(String vb) {
+        vitneBy.setText(vb);
+    }
+
+    public void setVitnePnr(String vp) {
+        vitnePnr.setText(vp);
+    }
+
+    public void setVitneTlf(String vt) {
+        vitneTlf.setText(vt);
+    }
+
+    
+
+    
+    
+    /**
+     * Method that makes damage report-fields editable and saves changes
+     */
     public void endreInfo()
     {
         if(!edit) {
-            dato.setEditable(true);
+            date.setEditable(true);
  
-            beskrivelse.setEditable(true);
-            taksering.setEditable(true);
-            utbetalt.setEditable(true);
+            description.setEditable(true);
+            estimation.setEditable(true);
+            paid.setEditable(true);
 
-            endreInfo.setText("Lagre");
+            changeInfo.setText("Lagre");
             
             edit = true;
         }
         else {
-            String d = dato.getText();
+            String d = date.getText();
             String t = type.getText();
-            String bes = beskrivelse.getText();
-            String ps = taksering.getText();
-            String pn = utbetalt.getText();
+            String bes = description.getText();
+            String ps = estimation.getText();
+            String pn = paid.getText();
             
             //controller.endre(f, e, a, ps, pn);
 
-            dato.setEditable(false);
-            beskrivelse.setEditable(false);
-            taksering.setEditable(false);
-            utbetalt.setEditable(false);
+            date.setEditable(false);
+            description.setEditable(false);
+            estimation.setEditable(false);
+            paid.setEditable(false);
             
-            endreInfo.setText("Endre");
+            changeInfo.setText("Endre");
             
             edit = false;
         }
-
-        
     }
     
+    
+    /**
+     * Method that makes witness fields editable and saves changes
+     */
     public void endreVitne()
     {
         if(!edit2) {
@@ -348,13 +385,6 @@ public class ReportView extends JTabbedPane {
         }
     }
  
-    
-
-    
-    public ReportView()
-    {
-
-    }
 
     public boolean addController(ReportController c) {
         this.controller = c;
