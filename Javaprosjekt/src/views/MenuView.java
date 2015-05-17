@@ -18,14 +18,16 @@ import views.registrations.NewReportPanel;
  */
 public class MenuView extends JMenuBar{
 
-    JMenu customer, insurance, report;
-    JMenuItem newCustomer, viewCustomer;
-    JMenuItem newInsurance, viewInsurance;
-    JMenuItem newReport, viewReport;
-     
-    
+    private JMenu customer, insurance, report;
+    private JMenuItem newCustomer, viewCustomer;
+    private JMenuItem newInsurance, viewInsurance;
+    private JMenuItem newReport, viewReport;
     private MainController controller;
     
+    /**
+     * MenuViews contstructor
+     * @param c controller
+     */
     public MenuView(MainController c)
     {
         super();

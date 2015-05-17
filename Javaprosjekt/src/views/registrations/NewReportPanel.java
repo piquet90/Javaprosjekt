@@ -6,7 +6,7 @@
 package views.registrations;
 
 import CustomSwing.CustomButton;
-import CustomSwing.CustomButton3;
+import CustomSwing.CustomButton2;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
@@ -35,7 +35,7 @@ public class NewReportPanel extends JTabbedPane {
     private JScrollPane bScroll, fcScroll;
     private GridBagConstraints gbc, gbc2, gbc3;
     private CustomButton submit;
-    private CustomButton3 bButton, sButton;
+    private CustomButton2 bButton, sButton;
     private CustomPanel txtTab, ulTab, wiTab;
     private JComboBox<String> type;
     private ReportController controller;
@@ -54,8 +54,8 @@ public class NewReportPanel extends JTabbedPane {
         wiTab.setLayout(new GridBagLayout());
         
 
-        bButton = new CustomButton3("Last opp bilder");
-        sButton = new CustomButton3("Last opp fil");
+        bButton = new CustomButton2("Last opp bilder");
+        sButton = new CustomButton2("Last opp fil");
         
         submit = new CustomButton("Registrer");
         submit.addActionListener((e) -> {});

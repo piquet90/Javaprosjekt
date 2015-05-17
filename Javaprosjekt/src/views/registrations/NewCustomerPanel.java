@@ -148,7 +148,7 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener {
     }
     
     /**
-     * Method that clear all fields
+     * Clears all fields
      */
     public void clearAll()
     {

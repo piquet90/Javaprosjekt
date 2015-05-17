@@ -64,11 +64,11 @@ public class CustomerController extends Controller implements CustomListener{
         cus.addCustomListener(this);
         this.view = cus;
         // fill Customer info
-        cus.setfNavn(customer.getFirstname());
-        cus.seteNavn(customer.getLastname());
-        cus.setAdresse(customer.getAddressStreet());
-        cus.setPostNr(customer.getAreacode());
-        cus.setPostSted(customer.getCity());
+        cus.setFName(customer.getFirstname());
+        cus.setLName(customer.getLastname());
+        cus.setAdress(customer.getAddressStreet());
+        cus.setZip(customer.getAreacode());
+        cus.setCity(customer.getCity());
         
         // fill insurances
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
@@ -99,36 +99,36 @@ public class CustomerController extends Controller implements CustomListener{
         String s = "";
         
         
-        String fornavn = view.getfNavn();
-        String etternavn = view.geteNavn();
-        String adresse = view.getAdresse();
-        String poststed = view.getPostSted();
-        String postnr = view.getPostNr();
+        String firstName = view.getFName();
+        String lastName = view.getLName();
+        String adress = view.getAdress();
+        String city = view.getCity();
+        String zip = view.getZip();
         
 
         // field validation
-        if(fornavn.equals("")) // validation of names is silly
+        if(firstName.equals("")) // validation of names is silly
             s += "Fornavn \n";          
-        if(etternavn.equals(""))
+        if(lastName.equals(""))
             s += "Etternavn \n";
-        if(adresse.equals(""))
+        if(adress.equals(""))
             s += "Adresse \n";
-        if(!Pattern.matches(Constants.AREA_CODE, postnr)) // validation of areacode makes sense.
+        if(!Pattern.matches(Constants.AREA_CODE, zip)) // validation of areacode makes sense.
             s += "Postnummer \n";
-        if(poststed.equals(""))
+        if(city.equals(""))
             s += "Poststed \n";
         if(!s.equals(""))
         {
             view.showError("Manglende felter: \n\n"+s+"\nVennligst fyll inn alle felter");
         }
         else {
-            customer.setFirstName(fornavn);
-            customer.setLastName(etternavn);
-            customer.setAddressStreet(adresse);
-            customer.setAreacode(postnr);
-            customer.setCity(poststed);
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setAddressStreet(adress);
+            customer.setAreacode(zip);
+            customer.setCity(city);
             mc.vcController.update();
-            view.endre();
+            view.change();
         }
     }
     @Override

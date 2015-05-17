@@ -6,7 +6,6 @@
 package views;
 
 import CustomSwing.CustomButton2;
-import CustomSwing.CustomButton3;
 import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
@@ -19,82 +18,46 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 public class CustomerView extends JTabbedPane implements ActionListener{
     
-    private CustomTextField fNavn, eNavn, adresse, postSted, postNr;
-
-    
+    private CustomTextField fName, lName, adress, city, zip;
     private CustomPanel cusTab, repTab;
     private GridBagConstraints gbc;
-    private CustomButton2 endre;
-    private CustomButton3 newIns, newRep;
+    private CustomButton2 endre, newIns, newRep;
     private JPopupMenu insPopup, repPopup;
-    
-    
     private boolean edit = false;
-    
     private CustomListener listener;
     
-    
-    
-    
     /**
-     * Constructor that recieves the customer information and sets the textfields
-     * @param fn Fornavn
-     * @param en Etternavn
-     * @param adr Adresse
-     * @param ps Poststed
-     * @param pnr Postnummer
+     * Initalizes the GUI components
      */
-    public CustomerView()
+    public void initComponents()
     {
-        this.setBackground(new Color(159, 196, 232));
-        this.setFont(new Font("Arial", Font.BOLD, 18));
+        fName = new CustomTextField(12);
+        fName.setEditable(false);
+        lName = new CustomTextField(12);
+        lName.setEditable(false);
+        adress = new CustomTextField(15);
+        adress.setEditable(false);
+        city = new CustomTextField(12);
+        city.setEditable(false);
+        zip = new CustomTextField(5);
+        zip.setEditable(false);
         
-        cusTab = new CustomPanel();
-        // insTab = new CustomPanel();
-        // insTab.setPreferredSize(new Dimension(600, 400));
-        repTab = new CustomPanel();
-        
-        
-
-  
-        
-        
-        
-        //cusTab components
-        fNavn = new CustomTextField(12);
-        fNavn.setEditable(false);
-        eNavn = new CustomTextField(12);
-        eNavn.setEditable(false);
-        adresse = new CustomTextField(15);
-        adresse.setEditable(false);
-        postSted = new CustomTextField(12);
-        postSted.setEditable(false);
-        postNr = new CustomTextField(5);
-        postNr.setEditable(false);
-        
-        
-        // Buttons
         endre = new CustomButton2("Endre");
-        newIns = new CustomButton3("Opprett ny forsikring");       
-        newRep = new CustomButton3("Opprett ny skademelding");
+        newIns = new CustomButton2("Opprett ny forsikring");       
+        newRep = new CustomButton2("Opprett ny skademelding");
         
         endre.addActionListener(this);
         newIns.addActionListener(this);
         newRep.addActionListener(this);
         
-        // end of buttons
-        
-        //init of popups
         String[] insType = {"Bilforsikring", "Båtforsikring", "Hus- /innboforsikring", "Fritidsboligforsikring", "Reiseforsikring"};
         insPopup = new JPopupMenu();
         
@@ -111,9 +74,6 @@ public class CustomerView extends JTabbedPane implements ActionListener{
             insPopup.show(newIns, 0, 0 + newIns.getHeight());
         });
         
-        
-        
-        
         String[] repType = {"Bilskade", "Båtskade", "Hus- /innboskade", "Fritidsboligskade", "Reiseskade"};
         repPopup = new JPopupMenu();
         
@@ -129,8 +89,20 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         newRep.addActionListener((ActionEvent ev) -> {
             repPopup.show(newRep, 0, 0 + newRep.getHeight());
         });
+    }
+    
+    
+    /**
+     * CustomerViews constructor
+     */
+    public CustomerView()
+    {
+        initComponents();
+        setBackground(new Color(159, 196, 232));
+        setFont(new Font("Arial", Font.BOLD, 18));
         
-        //end of popups
+        cusTab = new CustomPanel();
+        repTab = new CustomPanel();
         
         //cusTab Layout initalizing
         cusTab.setLayout(new GridBagLayout());
@@ -165,19 +137,19 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 0, 10);
         gbc.gridwidth = 2;
-        cusTab.add(fNavn, gbc);
+        cusTab.add(fName, gbc);
         
         gbc.gridy++;
-        cusTab.add(eNavn, gbc);
+        cusTab.add(lName, gbc);
         
         gbc.gridy++;
-        cusTab.add(adresse, gbc);
+        cusTab.add(adress, gbc);
         
         gbc.gridy++;
-        cusTab.add(postNr, gbc);
+        cusTab.add(zip, gbc);
         
         gbc.gridy++;
-        cusTab.add(postSted, gbc);
+        cusTab.add(city, gbc);
         
         gbc.gridy++;
         cusTab.add(new CustomLabel(""), gbc);
@@ -186,8 +158,7 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         gbc.gridwidth = 1;
         cusTab.add(endre, gbc);
         
-        
-        
+
         CustomPanel p = new CustomPanel();
         p.setLayout(new GridBagLayout());
         GridBagConstraints g = new GridBagConstraints();
@@ -210,7 +181,7 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
-        // this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
+        //this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
 
     }
@@ -218,104 +189,137 @@ public class CustomerView extends JTabbedPane implements ActionListener{
     /**
      * Method makes textfields editable and passes the changed information to registry
      */
-    public void endre()
+    public void change()
     {
         if(!edit) {
-            fNavn.setEditable(true);
-            eNavn.setEditable(true);
-            adresse.setEditable(true);
-            postSted.setEditable(true);
-            postNr.setEditable(true);
+            fName.setEditable(true);
+            lName.setEditable(true);
+            adress.setEditable(true);
+            city.setEditable(true);
+            zip.setEditable(true);
             
             endre.setText("Lagre");
             
             edit = true;  
         }
         else {
-            String f = fNavn.getText();
-            String e = eNavn.getText();
-            String a = adresse.getText();
-            String ps = postSted.getText();
-            String pn = postNr.getText();
+            String f = fName.getText();
+            String e = lName.getText();
+            String a = adress.getText();
+            String ps = city.getText();
+            String pn = zip.getText();
             
             //controller.endre(f, e, a, ps, pn);
 
-            fNavn.setEditable(false);
-            eNavn.setEditable(false);
-            adresse.setEditable(false);
-            postSted.setEditable(false);
-            postNr.setEditable(false);
+            fName.setEditable(false);
+            lName.setEditable(false);
+            adress.setEditable(false);
+            city.setEditable(false);
+            zip.setEditable(false);
             
             endre.setText("Endre");
             
             edit = false;
-        }
+        } 
+    }
 
-        
+    /**
+     * Sets first name in the first name-field
+     * @param fn customers first name
+     */
+    public void setFName(String fn) {
+        fName.setText(fn);
     }
     
-    public boolean isEditable()
-    {
-        return edit;
+    /**
+     * Returns the text in the first name-field
+     * @return customers first name
+     */
+    public String getFName() {
+        return fName.getText();
+    }
+
+    /**
+     * Sets last name in the last name-field
+     * @param ln customers last name
+     */
+    public void setLName(String ln) {
+        lName.setText(ln);
     }
     
-    public String getfNavn() {
-        return fNavn.getText();
+    /**
+     * Returns the text in the last name-field
+     * @return customers last name
+     */
+    public String getLName() {
+        return lName.getText();
     }
 
-    public void setfNavn(String fNavn) {
-        this.fNavn.setText(fNavn);
+    /**
+     * Sets adress in the adress-field
+     * @param a customers adress
+     */
+    public void setAdress(String a) {
+        adress.setText(a);
+    }
+    
+    /**
+     * Returns the text in the adress-field
+     * @return customers adress
+     */
+    public String getAdress() {
+        return adress.getText();
     }
 
-    public String geteNavn() {
-        return eNavn.getText();
+    /**
+     * Sets city in the city-field
+     * @param c customers city
+     */
+    public void setCity(String c) {
+        city.setText(c);
+    }
+    
+    /**
+     * Returns the text in the city-field
+     * @return customers city
+     */
+    public String getCity() {
+        return city.getText();
     }
 
-    public void seteNavn(String eNavn) {
-        this.eNavn.setText(eNavn);
+    /**
+     * Sets zip number in the zip number-field
+     * @param z customers zip number
+     */
+    public void setZip(String z) {
+        zip.setText(z);
     }
-
-    public String getAdresse() {
-        return adresse.getText();
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse.setText(adresse);
-    }
-
-    public String getPostSted() {
-        return postSted.getText();
-    }
-
-    public void setPostSted(String postSted) {
-        this.postSted.setText(postSted);
-    }
-
-    public String getPostNr() {
-        return postNr.getText();
-    }
-
-    public void setPostNr(String postNr) {
-        this.postNr.setText(postNr);
+    
+    /**
+     * Returns the text in the zip-field
+     * @return customers zip number
+     */
+    public String getZip() {
+        return zip.getText();
     }
  
     /**
-     * 
-     * @param error Recieves error message from controller and displays it to user
+     * Recieves error message from controller and displays it to user
+     * @param error error message
      */
     public void showError(String error)
     {
         JOptionPane.showMessageDialog(this, error);
     }
     
+    /**
+     * Method that adds a tab with a table to the window
+     * @param s Tab title
+     * @param v table
+     */
     public void addTable(String s, ViewTable v)
     {
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(v));
-    }
-    
-    public void setEditable(Boolean b)
-    {
-        this.edit = b;
     }
     
     public void addCustomListener(CustomListener e)
@@ -328,7 +332,7 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         
         if(e.getSource()==endre)// tillate endring av felt
             if(!edit)
-                endre();
+                change();
             else
                 listener.customActionPerformed(new CustomEvent(Constants.NEW_CUSTOMER));
 

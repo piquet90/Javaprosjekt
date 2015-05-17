@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
@@ -39,29 +38,58 @@ public class AdvancedSearchPanel extends CustomPanel {
     private JComboBox<String> insType, repType;
     private SimpleDateFormat sdf;
     
-    public AdvancedSearchPanel()
+    /**
+     * Method that initalizes the GUI components
+     */
+    public void initComponents()
     {
-        this.setLayout(new GridBagLayout());
         sdf = new SimpleDateFormat("dd.MM.yyyy");
-        
-        
-        //Customer search tab/////////////////////////////////////////////////
-        customerSrc = new CustomPanel();
-        customerSrc.setLayout(new GridBagLayout());
-        customerSrc.setPreferredSize(new Dimension(800, 200));
-        
         customerSrcField = new CustomTextField(22);
         showInactiveCustomers = new JCheckBox();
         
         String[] t = {"Velg forsikringstype", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring", "Fritidshusforsikring", "Reiseforsikring"};
         insType = new JComboBox<>(t);
         
+        insuranceSrcField = new CustomTextField(5);
+        insDate1 = new CustomTextField(8);
+        insDate2 = new CustomTextField(8);
+        
+        reportSrcField = new CustomTextField(5);
+        reportDate1 = new CustomTextField(8);
+        reportDate2 = new CustomTextField(8);
+        
+        String[] r = {"Velg skadetype", "Bilskade", "Båtskade", "Hus-/ innboskade", "Fritidshusskade", "Reiseskade"};
+        repType = new JComboBox<>(r);
+        
+        resultInfo = new JTextArea(2, 50);
+        resultInfo.setEditable(false);
+        
+        srcBtn = new CustomButton("Søk");
+        srcBtn.addActionListener((e) -> customerSearch());
+        clrBtn = new CustomButton("Nullstill felter");
+        clrBtn.addActionListener((e) -> clearFields());
+    }
+    
+    
+    /**
+     * AdvancedSearchPanels constructor
+     */
+    public AdvancedSearchPanel()
+    {
+        initComponents();
+        setLayout(new GridBagLayout());
+        
+ 
+        //Customer search tab/////////////////////////////////////////////////
+        customerSrc = new CustomPanel();
+        customerSrc.setLayout(new GridBagLayout());
+        customerSrc.setPreferredSize(new Dimension(800, 200));
+   
         gbcCus = new GridBagConstraints();
         gbcCus.anchor = GridBagConstraints.LINE_END;
         gbcCus.insets = new Insets(10, 5, 10, 5);
         gbcCus.ipadx = 2;
         gbcCus.ipady = 3;
-        
         
         gbcCus.gridx = 0;
         gbcCus.gridy = 0;
@@ -91,10 +119,6 @@ public class AdvancedSearchPanel extends CustomPanel {
 
         insuranceSrc = new CustomPanel();
         insuranceSrc.setLayout(new GridBagLayout());
-        
-        insuranceSrcField = new CustomTextField(5);
-        insDate1 = new CustomTextField(8);
-        insDate2 = new CustomTextField(8);
         
         gbcIns = new GridBagConstraints();
         gbcIns.anchor = GridBagConstraints.LINE_END;
@@ -130,13 +154,6 @@ public class AdvancedSearchPanel extends CustomPanel {
         reportSrc.setLayout(new GridBagLayout());
         reportSrc.setPreferredSize(new Dimension(800, 200));
        
-        reportSrcField = new CustomTextField(5);
-        reportDate1 = new CustomTextField(8);
-        reportDate2 = new CustomTextField(8);
-        
-        String[] r = {"Velg skadetype", "Bilskade", "Båtskade", "Hus-/ innboskade", "Fritidshusskade", "Reiseskade"};
-        repType = new JComboBox<>(r);
-        
         gbcRep = new GridBagConstraints();
         gbcRep.anchor = GridBagConstraints.LINE_END;
         gbcRep.insets = new Insets(10, 5, 10, 5);
@@ -171,20 +188,12 @@ public class AdvancedSearchPanel extends CustomPanel {
         gbcRep.gridx = 1;
         gbcRep.gridy++;
         reportSrc.add(repType, gbcRep);
-
         
         
         //Initalizing the main panel
         
         tabs = new JTabbedPane();
-        resultInfo = new JTextArea(2, 50);
-        resultInfo.setEditable(false);
-        
-        srcBtn = new CustomButton("Søk");
-        srcBtn.addActionListener((e) -> customerSearch());
-        clrBtn = new CustomButton("Nullstill felter");
-        clrBtn.addActionListener((e) -> clearFields());
-        
+
         tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundesøk</body></html>", customerSrc);
         tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringsøk</body></html>", insuranceSrc);
         tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldingsøk</body></html>", reportSrc);
@@ -214,13 +223,20 @@ public class AdvancedSearchPanel extends CustomPanel {
         
     }
     
-    public void setResultInfo(String src, int ant)
+    /**
+     * Displays search results in resultInfo text area
+     * @param src search word
+     * @param n number of hits on search word
+     */
+    public void setResultInfo(String src, int n)
     {
-        resultInfo.setText("Viser " + ant + " treff på " + src);
+        resultInfo.setText("Viser " + n + " treff på " + src);
     }
     
     
-    
+    /**
+     * Method that finds the correct search criteria for a search
+     */
     public void customerSearch()
     {
         
@@ -367,8 +383,9 @@ public class AdvancedSearchPanel extends CustomPanel {
     }
     
 
-
-    
+    /**
+     * Method that clears all fields and combo-boxes when called
+     */
     public void clearFields()
     {
         resultInfo.setText("");
@@ -384,5 +401,5 @@ public class AdvancedSearchPanel extends CustomPanel {
         showInactiveCustomers.setSelected(false);
     }
     
-    
+
 }

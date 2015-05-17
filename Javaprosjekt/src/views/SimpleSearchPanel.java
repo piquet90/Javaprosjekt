@@ -94,13 +94,20 @@ public class SimpleSearchPanel extends CustomPanel {
         }
         else if(type.equals("Velg søktype..."))
         {
-            JOptionPane.showMessageDialog(null, "Velg søktype");
+            showError("Velg søktype");
         }
         else 
         {
-            JOptionPane.showMessageDialog(null, "Vennligst fyll inn alle felter");
+            showError("Vennligst fyll inn alle felter");
         }
-        
+    }
+    
+    /**
+     * Method that recieves an error message and displays it to the user
+     * @param error error message
+     */
+    public void showError(String error) {
+        JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
 }

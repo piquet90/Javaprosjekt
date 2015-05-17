@@ -2,7 +2,6 @@
  * Made by
  * Rudi Yu s231776
  * Audun Brustad s236341
- */
 package views;
 
 import CustomSwing.CustomLabel;
@@ -17,7 +16,7 @@ import javax.swing.JScrollPane;
 /**
  *
  * @author Audun
- */
+
 public class InsuranceView extends CustomPanel {
     
     private CustomPanel defaultIns;
@@ -129,3 +128,4 @@ public class InsuranceView extends CustomPanel {
         conditions.setText(cond);
     }
 }
+*/

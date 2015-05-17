@@ -5,6 +5,7 @@
  */
 package views;
 
+import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextArea;
@@ -24,8 +25,13 @@ public class TravelInsuranceView extends CustomPanel {
     private CustomTextArea valid;
     private JScrollPane scroll;
     private GridBagConstraints gbc;
-    private boolean check = false;
+    private CustomButton2 change;
+    private boolean edit = false;
     
+    
+    /**
+     * Initializes the GUI components
+     */
     public void initComponents()
     {
         insTaker = new CustomTextField(15);
@@ -39,7 +45,11 @@ public class TravelInsuranceView extends CustomPanel {
         valid = new CustomTextArea(15, 15);
         valid.setEditable(false);
         scroll = new JScrollPane(valid);
+        
+        change = new CustomButton2("Endre");
+        change.addActionListener((e) -> change());
     }
+    
     /**
      * TravelInsuranceViews constructor
      */
@@ -130,4 +140,38 @@ public class TravelInsuranceView extends CustomPanel {
         valid.setText(v);
     }
 
+    /**
+     * Method makes textfields editable and passes the changed information to registry
+     */
+    public void change()
+    {
+        if(!edit) {
+            insTaker.setEditable(true);
+            amount.setEditable(true);
+            premium.setEditable(true);
+            conditions.setEditable(true);
+            valid.setEditable(true);
+            
+            change.setText("Lagre");
+            
+            edit = true;  
+        }
+        else {
+            String it = insTaker.getText();
+            String a = amount.getText();
+            String p = premium.getText();
+            String c = conditions.getText();
+            String v = valid.getText();
+
+            insTaker.setEditable(false);
+            amount.setEditable(false);
+            premium.setEditable(false);
+            conditions.setEditable(false);
+            valid.setEditable(false);
+            
+            change.setText("Endre");
+            
+            edit = false;
+        } 
+    }
 }

@@ -14,6 +14,6 @@ public class CustomLabel extends JLabel{
     public CustomLabel(String tekst)
     {
         super(tekst);
-        setFont(new Font("DejaVu Sans", Font.BOLD, 15));
+        setFont(new Font("Arial", Font.BOLD, 15));
     }
 }

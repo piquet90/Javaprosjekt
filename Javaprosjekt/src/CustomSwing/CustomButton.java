@@ -5,11 +5,9 @@
  */
 package CustomSwing;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.Graphics;
 import javax.swing.JButton;
 
 /**
@@ -36,10 +34,9 @@ public class CustomButton extends JButton {
      * @param s Mottar teksten som skal være på knappen og finner bredden av stringen i piksler
      * @return Vidden av stringen pluss ekstra tomrom, som gjør at alle knappene får en vidde tilpasset lengden av teksten på knappen
      */
-    public int getStringWidth(Font f, String s) {
-        
+    public int getStringWidth(Font f, String s)
+    {
         Font font = f;
-        
         FontMetrics m = getFontMetrics(font);
         return m.stringWidth(s) + 55;
     }
@@ -49,35 +46,11 @@ public class CustomButton extends JButton {
      * @param s Mottar teksten som skal være på knappen og finner bredden av stringen i piksler
      * @return Vidden av stringen pluss ekstra tomrom, som gjør at alle knappene får en vidde tilpasset lengden av teksten på knappen
      */
-    public int getStringHeight(String s) {
-        Font font = new Font("DejaVu Sans", Font.BOLD, 17);
-        
+    public int getStringHeight(String s)
+    {
+        Font font = new Font("Arial", Font.BOLD, 17);
         FontMetrics m = getFontMetrics(font);
         return m.stringWidth(s) + 70;
     }
     
-    /**
-     * Metode som tegner knappen og endrer bakgrunns-/forgrunnsfarge etter hvilken "state" knappen er
-     * @param g Grafikk/farger knappen
-     */
-    protected void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        
-        if(getModel().isRollover())
-        {
-            setBackground(new Color(115, 175, 220));
-        }
-        else
-        {
-            setBackground(new Color(90, 140, 170));
-            setForeground(Color.BLACK);
-        }
-        if(getModel().isPressed())
-        {
-            setBackground(new Color(115, 175, 220));
-            setForeground(new Color(50, 90, 100));
-        }
-    }
-
 }

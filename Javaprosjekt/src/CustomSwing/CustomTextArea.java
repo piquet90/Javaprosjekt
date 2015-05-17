@@ -18,7 +18,7 @@ public class CustomTextArea extends JTextArea {
     
     public CustomTextArea(int h, int w) {
         super(h, w);
-        setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
+        setFont(new Font("Arial", Font.PLAIN, 15));
         setLineWrap(true);
         setWrapStyleWord(true);
     }

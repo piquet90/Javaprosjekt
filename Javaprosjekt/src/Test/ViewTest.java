@@ -11,7 +11,6 @@ import views.AdvancedSearchPanel;
 import views.BoatInsuranceView;
 import views.CarInsuranceView;
 import views.HouseInsuranceView;
-import views.InsuranceView;
 import views.LeisurehouseInsuranceView;
 import views.MainView;
 import views.SimpleSearchPanel;

@@ -15,7 +15,7 @@ public class CustomLabelHeader extends CustomLabel {
 
     public CustomLabelHeader(String tekst) {
         super(tekst);
-        setFont(new Font("DejaVu Sans", Font.BOLD, 21));
+        setFont(new Font("Arial", Font.BOLD, 21));
     }
     
 }

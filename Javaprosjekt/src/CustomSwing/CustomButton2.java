@@ -10,10 +10,8 @@ package CustomSwing;
  * @author Audun
  */
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 
 /**
  *
@@ -33,29 +31,4 @@ public class CustomButton2 extends CustomButton {
         
         setFont(f);
     }
-    
-    /**
-     * Metode som tegner knappen og endrer bakgrunns-/forgrunnsfarge etter hvilken "state" knappen er
-     * @param g Grafikk/farger knappen
-     */
-    
-    protected void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        
-        if(getModel().isRollover())
-        {
-            setBackground(Color.LIGHT_GRAY);
-        }
-        else
-        {
-          setBackground(Color.LIGHT_GRAY);
-          setForeground(Color.BLACK);
-        }
-        if(getModel().isPressed())
-        {
-          setForeground(new Color(50, 90, 100));
-        }
-    }
-
 }

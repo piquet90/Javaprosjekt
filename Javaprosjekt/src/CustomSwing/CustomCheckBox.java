@@ -16,6 +16,6 @@ public class CustomCheckBox extends JCheckBox {
     
     public CustomCheckBox(String s) {
         super(s);
-        setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
+        setFont(new Font("Arial", Font.PLAIN, 15));
     }
 }
