@@ -70,9 +70,11 @@ public class MainView extends JFrame implements View{
     
     public void addCenter(Component tpanel)
     {
+        
         JTable t = (JTable) tpanel;
         JTableHeader tableHeader = t.getTableHeader();
         tableHeader.setReorderingAllowed(false);
+        t.setAutoCreateRowSorter(true);
         
         JScrollPane panel = new JScrollPane(tpanel);
         Container c = getContentPane();

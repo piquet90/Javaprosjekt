@@ -323,6 +323,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         JTable table = v;
         JTableHeader tableHeader = v.getTableHeader();
         tableHeader.setReorderingAllowed(false);
+        table.setAutoCreateRowSorter(true);
         
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(table));
     }
