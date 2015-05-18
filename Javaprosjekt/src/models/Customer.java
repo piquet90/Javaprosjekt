@@ -13,7 +13,7 @@ import java.util.Calendar;
  *
  * @author rudiwyu
  */
-public class Customer implements Serializable{
+public class Customer implements Serializable {
 
     // Static variables
     private static int next = Constants.CUSTOMER_NEXT_START_NUMBER;
@@ -40,7 +40,7 @@ public class Customer implements Serializable{
     
     
     /**
-     *
+     * Customer constructor
      * @param firstname The customers first name
      * @param lastname The customers last  name
      * @param addressStreet The customers current street adress
@@ -60,14 +60,15 @@ public class Customer implements Serializable{
     
 
     /**
-     * Method that returns the current date the customer is registered
-     * @return a calendar object when the customer is registered
+     * Returns register date
+     * @return calendar object of registering date
      */
     public Calendar getRegistered() {
         return registered;
     }
 
     /**
+     * Sets the register date
      * @param registered the registered to set
      */
     public void setRegistered(Calendar registered) {
@@ -87,13 +88,28 @@ public class Customer implements Serializable{
     public void setFirstName(String name) {
         this.firstname = name;
     }
+    
+    /**
+     * 
+     * @param name 
+     */
     public void setLastName(String name) {
         this.lastname = name;
     }
+    
+    /**
+     * 
+     * @return 
+     */
     public String getFirstname()
     {
         return this.firstname;
     }
+    
+    /**
+     * 
+     * @return 
+     */
     public String getLastname()
     {
         return this.lastname;

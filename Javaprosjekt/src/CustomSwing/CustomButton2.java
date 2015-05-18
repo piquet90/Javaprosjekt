@@ -5,11 +5,6 @@
  */
 package CustomSwing;
 
-/**
- *
- * @author Audun
- */
-
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -20,14 +15,14 @@ import java.awt.Font;
 public class CustomButton2 extends CustomButton {
     
     /**
-     * Konstruktør som kaller opp og sender med knapp-teksten til konstruktøren til JButton
-     * @param tekst Teksten som vises på knappen
+     * Constructor passes button text to super
+     * @param text button text
      */
-    public CustomButton2(String tekst)
+    public CustomButton2(String text)
     {
-        super(tekst);
+        super(text);
         Font f = new Font("Arial", Font.PLAIN, 12);
-        setPreferredSize(new Dimension(super.getStringWidth(f, tekst), 22));
+        setPreferredSize(new Dimension(super.getStringWidth(f, text), 22));
         
         setFont(f);
     }

@@ -8,12 +8,19 @@ package CustomSwing;
 import java.awt.Font;
 import javax.swing.JLabel;
 
-
-public class CustomLabel extends JLabel{
+/**
+ * Custom label
+ * @author Audun
+ */
+public class CustomLabel extends JLabel {
     
-    public CustomLabel(String tekst)
+    /**
+     * Constructor passes the label text to super
+     * @param text 
+     */
+    public CustomLabel(String text)
     {
-        super(tekst);
+        super(text);
         setFont(new Font("Arial", Font.BOLD, 15));
     }
 }

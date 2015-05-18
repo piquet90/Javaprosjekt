@@ -8,13 +8,17 @@ package CustomSwing;
 import java.awt.Font;
 
 /**
- *
+ * Custom label for headers
  * @author Audun
  */
 public class CustomLabelHeader extends CustomLabel {
 
-    public CustomLabelHeader(String tekst) {
-        super(tekst);
+    /**
+     * Constructor passes the label text to super
+     * @param text label text
+     */
+    public CustomLabelHeader(String text) {
+        super(text);
         setFont(new Font("Arial", Font.BOLD, 21));
     }
     
