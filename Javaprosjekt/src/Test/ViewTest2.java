@@ -7,7 +7,6 @@ package Test;
 
 import CustomSwing.CustomPanel;
 import javax.swing.JOptionPane;
-import views.ReportView;
 import views.StatisticsView;
 
 
@@ -21,6 +20,11 @@ public class ViewTest2 {
     public static void main(String[] args) {
         
         
-        JOptionPane.showMessageDialog(null, new StatisticsView());       
+        StatisticsView s = new StatisticsView();
+        s.setInsurances(15, 3, 38, 3237, 18);
+        CustomPanel p = new CustomPanel();
+        p.add(s);
+        
+        JOptionPane.showMessageDialog(null, p);       
     }
 }

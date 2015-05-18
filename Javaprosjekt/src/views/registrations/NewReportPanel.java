@@ -11,7 +11,6 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
-import CustomSwing.CustomTextArea;
 import controllers.ReportController;
 import java.awt.Color;
 import java.awt.Font;
@@ -24,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class NewReportPanel extends JTabbedPane {
@@ -31,7 +31,7 @@ public class NewReportPanel extends JTabbedPane {
     private CustomTextField date, estimation, paid, mPath,
             vitneFornavn, vitneEtternavn, vitneAdresse, vitneBy, vitnePnr, vitneTlf;
     private JFileChooser imageChooser, fileChooser;
-    private CustomTextArea description, links;
+    private JTextArea description, links;
     private JScrollPane bScroll, fcScroll;
     private GridBagConstraints gbc, gbc2, gbc3;
     private CustomButton submit;
@@ -89,7 +89,7 @@ public class NewReportPanel extends JTabbedPane {
                 }});
  
         
-        description = new CustomTextArea(8, 22);
+        description = new JTextArea(8, 22);
         bScroll = new JScrollPane(description);
         bScroll.setPreferredSize(description.getPreferredSize());
 
@@ -108,7 +108,7 @@ public class NewReportPanel extends JTabbedPane {
         mPath.setBackground(Color.WHITE);
         
    
-        links = new CustomTextArea(5, 40);
+        links = new JTextArea(5, 40);
         links.setBorder(BorderFactory.createTitledBorder(null, "Valgte bilder"));
         links.setFont(new Font("Arial", Font.PLAIN, 10));
         links.setEditable(false);

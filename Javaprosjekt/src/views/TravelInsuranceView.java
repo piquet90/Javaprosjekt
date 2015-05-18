@@ -8,12 +8,12 @@ package views;
 import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
-import CustomSwing.CustomTextArea;
 import CustomSwing.CustomTextField;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  * Panel for viewing a travel insurance
@@ -22,7 +22,7 @@ import javax.swing.JScrollPane;
 public class TravelInsuranceView extends CustomPanel {
     
     private CustomTextField insTaker, amount, premium, conditions;
-    private CustomTextArea valid;
+    private JTextArea valid;
     private JScrollPane scroll;
     private GridBagConstraints gbc;
     private CustomButton2 change;
@@ -42,7 +42,7 @@ public class TravelInsuranceView extends CustomPanel {
         premium.setEditable(false);
         conditions = new CustomTextField(15);
         conditions.setEditable(false);
-        valid = new CustomTextArea(15, 15);
+        valid = new JTextArea(15, 15);
         valid.setEditable(false);
         scroll = new JScrollPane(valid);
         

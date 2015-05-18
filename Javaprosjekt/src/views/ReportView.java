@@ -10,7 +10,6 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
-import CustomSwing.CustomTextArea;
 import controllers.ReportController;
 import java.awt.Color;
 import java.awt.Font;
@@ -21,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 
 /**
  * ReportView panel
@@ -30,8 +30,7 @@ public class ReportView extends JTabbedPane {
     
     private CustomTextField reportNo, date, estimation, paid, type,
             witFn, witLn, witAdr, witCity, witZip, witPhone;
-
-    private CustomTextArea description;
+    private JTextArea description;
     private JScrollPane bScroll;
     private GridBagConstraints gbc, gbc2, gbc3;
     private CustomPanel txtTab, ulTab, wiTab, imgPanel;
@@ -60,7 +59,10 @@ public class ReportView extends JTabbedPane {
         changeWitness = new CustomButton2("Endre");
         changeWitness.addActionListener((e) -> changeWitness());
         
-        description = new CustomTextArea(8, 22);
+        description = new JTextArea(8, 22);
+        description.setLineWrap(true);
+        description.setWrapStyleWord(true);
+        description.setFont(new Font("Arial", Font.PLAIN, 15));
         description.setEditable(false);
         bScroll = new JScrollPane(description);
         bScroll.setPreferredSize(description.getPreferredSize());

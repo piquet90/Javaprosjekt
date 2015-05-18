@@ -24,7 +24,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-public class CustomerView extends JTabbedPane implements ActionListener{
+public class CustomerView extends JTabbedPane implements ActionListener {
     
     private CustomTextField fName, lName, adress, city, zip;
     private CustomPanel cusTab, repTab;
@@ -181,7 +181,6 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
-        //this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
 
     }
