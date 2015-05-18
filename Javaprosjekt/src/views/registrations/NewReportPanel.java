@@ -71,7 +71,7 @@ public class NewReportPanel extends JTabbedPane {
 
         String[] t = {"Velg type...", "Bil", "Hus/innbo", "Fritidshus", "Båt"};
         type = new JComboBox<>(t);
-        type.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
+        type.setFont(new Font("Arial", Font.PLAIN, 15));
         
         date = new CustomTextField(10);
         estimation = new CustomTextField(6);
@@ -153,7 +153,7 @@ public class NewReportPanel extends JTabbedPane {
         
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(15, 15, 15, 5);
+        gbc.insets = new Insets(15, 15, 0, 5);
         txtTab.add(new CustomLabelHeader("Opprett ny skademelding"), gbc);
         
         gbc.anchor = GridBagConstraints.LINE_END;

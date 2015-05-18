@@ -10,6 +10,7 @@ import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -64,10 +65,12 @@ public class StatisticsView extends JTabbedPane {
         
         String[] dType = {"Alle skader", "Bilskader", "Båtskader", "Hus- / innboskader", "Fritidsboligskader", "Reiseskader"};
         damageType = new JComboBox<>(dType);
+        damageType.setFont(new Font("Arial", Font.PLAIN, 15));
         damageType.addActionListener((e) -> reportSearch());
         
         String[] iType = {"Alle forsikringer", "Bilforsikring", "Båtforsikring", "Hus- og innboforsikring", "Fritidsboligforsikring", "Reiseforsikring"};
         insuranceType = new JComboBox<>(iType);
+        insuranceType.setFont(new Font("Arial", Font.PLAIN, 15));
         insuranceType.addActionListener((e) -> insuranceSearch());
     }
     
@@ -78,6 +81,7 @@ public class StatisticsView extends JTabbedPane {
     public StatisticsView()
     {
         initComponents();
+        setFont(new Font("Arial", Font.BOLD, 18));
         
         //// Customer tab /////////////////////////////////////////////////////
         gbcCus = new GridBagConstraints();
@@ -100,22 +104,17 @@ public class StatisticsView extends JTabbedPane {
         gbcCus.gridwidth = 1;
         cusPanel.add(amountCus, gbcCus);
         
-        gbcCus.gridy++;
-        gbcCus.gridx = 0;
-        gbcCus.gridwidth = 2;
-        cusPanel.add(new CustomLabel("Antall aktive kunder: "), gbcCus);
         
-        gbcCus.gridx = 2;
+        gbcCus.gridx++;
+        cusPanel.add(new CustomLabel("Antall aktive: "), gbcCus);
+        
+        gbcCus.gridx++;
         gbcCus.gridwidth = 1;
         cusPanel.add(amountActiveCus, gbcCus);
         
         
-        
-        
-        
+
         //// Insurance tab ////////////////////////////////////////////////////
-        
-        
         gbcIns = new GridBagConstraints();
         gbcIns.ipadx = 2;
         gbcIns.ipady = 2;

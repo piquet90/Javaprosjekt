@@ -18,10 +18,8 @@ import views.registrations.NewReportPanel;
  */
 public class MenuView extends JMenuBar{
 
-    private JMenu customer, insurance, report;
-    private JMenuItem newCustomer, viewCustomer;
-    private JMenuItem newInsurance, viewInsurance;
-    private JMenuItem newReport, viewReport;
+    private JMenu customer, statistics, search, report;
+    private JMenuItem newCustomer, viewCustomer, newReport, viewReport, showStats, advancedSearch;
     private MainController controller;
     
     /**
@@ -31,51 +29,45 @@ public class MenuView extends JMenuBar{
     public MenuView(MainController c)
     {
         super();
-        Font f = new Font("Arial", Font.PLAIN, 16);
+        Font f = new Font("Arial", Font.PLAIN, 14);
         UIManager.put("Menu.font", f);
         controller = c;
         
         
         customer = new JMenu("Kunder");
-        insurance = new JMenu("Forsikringer");
+        statistics = new JMenu("Statistikk");
+        search = new JMenu("Søk");
         report = new JMenu("Skademelding");
+        
         
         newCustomer = new JMenuItem("Ny kunde");
         viewCustomer = new JMenuItem("Vis alle kunder");
-        
         customer.add(newCustomer);
         customer.add(viewCustomer);
         
-        newInsurance = new JMenuItem("Ny forsikring");
-        viewInsurance = new JMenuItem("Vis alle forsikringer");
-        
-        insurance.add(newInsurance);
-        insurance.add(viewInsurance);
-        
         newReport = new JMenuItem("Ny skademelding");
         viewReport = new JMenuItem("Vis alle skademeldinger");
-        
         report.add(newReport);
         report.add(viewReport);
         
-        //TODO: remove before production bugbug
+        showStats = new JMenuItem("Vis statistikk");
+        statistics.add(showStats);
         
-        JMenu test = new JMenu("Testing");
-        JMenuItem refresh = new JMenuItem("ViewAllMembers");
-        
-        test.add(refresh);
-        refresh.addActionListener((e)->{controller.vcController.showAllCustomers();});
-        
-        
+        advancedSearch = new JMenuItem("Avansert søk");
+        search.add(advancedSearch);
         
         
         this.add(customer);
-        this.add(insurance);
+        this.add(search);
+        this.add(statistics);
         this.add(report);
-        this.add(test);
+        
+        
         
         newReport.addActionListener((e)->{controller.rController.newReport();});
         newCustomer.addActionListener((e)->{controller.regController.newUser();});
+        showStats.addActionListener((e) -> c.popUp(new StatisticsView()));
+        advancedSearch.addActionListener((e) -> c.popUp(new AdvancedSearchPanel()));
     }
     
 }

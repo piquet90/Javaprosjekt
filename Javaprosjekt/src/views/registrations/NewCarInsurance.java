@@ -54,9 +54,8 @@ public class NewCarInsurance extends CustomPanel {
                       "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
         
         carType = new JComboBox<>(t);
-        carType.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
+        carType.setFont(new Font("Arial", Font.PLAIN, 15));
         carType.addActionListener((e)-> n = carType.getSelectedIndex());
-        carType.setBackground(new Color(250, 250, 250));
         
         
         submit = new CustomButton("Registrer");

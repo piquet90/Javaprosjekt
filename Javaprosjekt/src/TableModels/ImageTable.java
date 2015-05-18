@@ -45,10 +45,7 @@ public class ImageTable extends AbstractTableModel{
                 celler[i][0] = i+1;
                 celler[i][1] = f;
             }
-        }
-        
-        
-        
+        }  
     }
     @Override
     public int getRowCount() {

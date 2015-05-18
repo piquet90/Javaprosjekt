@@ -11,6 +11,7 @@ import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -63,6 +64,8 @@ public class AdvancedSearchPanel extends CustomPanel {
         
         resultInfo = new JTextArea(2, 50);
         resultInfo.setEditable(false);
+        resultInfo.setBackground(null);
+        resultInfo.setFont(new Font("Arial", Font.PLAIN, 12));
         
         srcBtn = new CustomButton("Søk");
         srcBtn.addActionListener((e) -> customerSearch());
@@ -193,6 +196,7 @@ public class AdvancedSearchPanel extends CustomPanel {
         //Initalizing the main panel
         
         tabs = new JTabbedPane();
+        tabs.setFont(new Font("Arial", Font.BOLD, 18));
 
         tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundesøk</body></html>", customerSrc);
         tabs.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringsøk</body></html>", insuranceSrc);
@@ -375,13 +379,10 @@ public class AdvancedSearchPanel extends CustomPanel {
             else
             {
                 //brukeren har ikke skrevet inn noe i søkefeltet og heller ikke valgt type
-                
-                setResultInfo("", 0);
-                
+                setResultInfo("", 0); 
             }
         }
     }
-    
 
     /**
      * Method that clears all fields and combo-boxes when called
@@ -400,6 +401,5 @@ public class AdvancedSearchPanel extends CustomPanel {
         repType.setSelectedIndex(0);
         showInactiveCustomers.setSelected(false);
     }
-    
 
 }

@@ -100,7 +100,6 @@ public class CustomerView extends JTabbedPane implements ActionListener {
     public CustomerView()
     {
         initComponents();
-        setBackground(new Color(159, 196, 232));
         setFont(new Font("Arial", Font.BOLD, 18));
         
         cusTab = new CustomPanel();

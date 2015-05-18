@@ -56,7 +56,7 @@ public class NewBoatInsurance extends CustomPanel {
                        "Seilbåt", "Motorseiler", "Speedbåt", "Trebåt", "Vannscooter", "Yacht", "Yrkesbåt" };
         
         type = new JComboBox<>(t);
-        type.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
+        type.setFont(new Font("Arial", Font.PLAIN, 15));
         type.addActionListener((e)-> n = type.getSelectedIndex());
         type.setBackground(new Color(250, 250, 250));
     }
