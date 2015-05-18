@@ -23,6 +23,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
 
 public class CustomerView extends JTabbedPane implements ActionListener {
     
@@ -318,7 +320,11 @@ public class CustomerView extends JTabbedPane implements ActionListener {
      */
     public void addTable(String s, ViewTable v)
     {
-        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(v));
+        JTable table = v;
+        JTableHeader tableHeader = v.getTableHeader();
+        tableHeader.setReorderingAllowed(false);
+        
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(table));
     }
     
     public void addCustomListener(CustomListener e)

@@ -24,8 +24,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+/**
+ * New report panel
+ * @author Audun
+ */
 
 public class NewReportPanel extends JTabbedPane {
     
@@ -80,10 +84,6 @@ public class NewReportPanel extends JTabbedPane {
         vitneBy = new CustomTextField(15);
         vitnePnr = new CustomTextField(6);
         vitneTlf = new CustomTextField(10);
-        
-        
-        
-        
         
         // Filechoosers settings ///////////////////////////////////////////////
         imageChooser = new JFileChooser();

@@ -9,13 +9,15 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import models.Customer;
 
 /**
  *
  * @author rudiwyu
  */
-public class CustomerTable extends AbstractTableModel{
+public class CustomerTable extends AbstractTableModel {
     
     private Object[] kolonnenavn = 
     {
@@ -83,5 +85,6 @@ public class CustomerTable extends AbstractTableModel{
     {
         return (String)kolonnenavn[ kolonne];
     }
+    
      
 }
