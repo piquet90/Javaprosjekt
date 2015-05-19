@@ -157,11 +157,23 @@ public class NewBoatInsurance extends CustomPanel {
         gbc.gridx++;
         add(delete, gbc);
         
-        submit.addActionListener((e) ->{
-            if(viewMode)
-                change();
-            else
-                listener.customActionPerformed(new CustomEvent(Constants.BOAT_INSURANCE_INT));});
+        submit = new CustomButton("Registrer");
+        submit.addActionListener((e) -> {
+                if(!viewMode)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+                }
+                else if(edit)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+                    change();
+                }
+                else {
+                    change();
+                }
+
+                
+        });
  
             
             

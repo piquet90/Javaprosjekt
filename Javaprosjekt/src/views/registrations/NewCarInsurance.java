@@ -26,14 +26,14 @@ import views.CustomListener;
 
 public class NewCarInsurance extends CustomPanel {
     
-    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus, ctype;
+    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus, carTypeField;
 
 
     private String[] carTypes = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
                       "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
     private JComboBox<String> carType;
     private GridBagConstraints gbc;
-    private CustomButton SEbtn;
+    private CustomButton submit;
     private CustomButton2 delete;
     private int n = 0;
     private boolean edit = false;
@@ -58,8 +58,8 @@ public class NewCarInsurance extends CustomPanel {
         conditions = new CustomTextField(15);
         bonus = new CustomTextField(6);
         
-        ctype = new CustomTextField(15);
-        ctype.setVisible(false);
+        carTypeField = new CustomTextField(15);
+        carTypeField.setVisible(false);
         
         
         
@@ -68,8 +68,8 @@ public class NewCarInsurance extends CustomPanel {
         carType.addActionListener((e)-> n = carType.getSelectedIndex());
         
         
-        SEbtn = new CustomButton("Registrer");
-        SEbtn.addActionListener((e) -> {
+        submit = new CustomButton("Registrer");
+        submit.addActionListener((e) -> {
                 if(!viewMode)
                 {
                     listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
@@ -151,7 +151,7 @@ public class NewCarInsurance extends CustomPanel {
         gbc.gridy++;
         gbc.gridwidth = 2;
         add(carType, gbc);
-        add(ctype, gbc);
+        add(carTypeField, gbc);
         
         gbc.gridy++;
         gbc.gridwidth = 1;
@@ -182,7 +182,7 @@ public class NewCarInsurance extends CustomPanel {
         add(bonus, gbc);
         
         gbc.gridy++;
-        add(SEbtn, gbc);
+        add(submit, gbc);
         
         gbc.gridx++;
         add(delete, gbc);
@@ -196,7 +196,7 @@ public class NewCarInsurance extends CustomPanel {
     {
         carOwner.setEditable(false);
         regNr.setEditable(false);
-        ctype.setEditable(false);
+        carTypeField.setEditable(false);
         model.setEditable(false);
         horsepower.setEditable(false);
         regYear.setEditable(false);
@@ -207,10 +207,10 @@ public class NewCarInsurance extends CustomPanel {
         conditions.setEditable(false);
         bonus.setEditable(false);
         
-        SEbtn.setText("Endre");
+        submit.setText("Endre");
         delete.setVisible(true);
         carType.setVisible(false);
-        ctype.setVisible(true);
+        carTypeField.setVisible(true);
         
         viewMode = true;
         
@@ -222,7 +222,7 @@ public class NewCarInsurance extends CustomPanel {
      */
     public void setCarType(String t)
     {
-        ctype.setText(t);
+        carTypeField.setText(t);
     }
     
     /**
@@ -373,7 +373,7 @@ public class NewCarInsurance extends CustomPanel {
      */
     public String getCarType() {
         if(viewMode)
-            return ctype.getText();
+            return carTypeField.getText();
         else
             return carType.getItemAt(n);
     }
@@ -437,6 +437,7 @@ public class NewCarInsurance extends CustomPanel {
         pricePerKm.setText("");
         premium.setText("");
         conditions.setText("");
+        amount.setText("");
         bonus.setText("");
    
     }
@@ -455,13 +456,13 @@ public class NewCarInsurance extends CustomPanel {
             pricePerKm.setEditable(true);
             bonus.setEditable(true);
             
-            SEbtn.setText("Lagre");
+            submit.setText("Lagre");
             
             edit = true;  
         }
         else {
             carOwner.setEditable(false);
-            ctype.setEditable(false);
+            carTypeField.setEditable(false);
             kmPerYear.setEditable(false);
             pricePerKm.setEditable(false);
             premium.setEditable(false);
@@ -469,7 +470,7 @@ public class NewCarInsurance extends CustomPanel {
             conditions.setEditable(false);
             bonus.setEditable(false);
             
-            SEbtn.setText("Endre");
+            submit.setText("Endre");
             
             edit = false;
         } 
