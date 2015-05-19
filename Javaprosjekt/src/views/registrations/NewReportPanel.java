@@ -11,7 +11,6 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
-import CustomSwing.CustomTextArea;
 import controllers.ReportController;
 import java.awt.Color;
 import java.awt.Font;
@@ -24,18 +23,24 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+/**
+ * New report panel
+ * @author Audun
+ */
 
 public class NewReportPanel extends JTabbedPane {
     
-    private CustomTextField date, estimation, paid, mPath,
+    private CustomTextField date, estimation, paid, fileURL,
             vitneFornavn, vitneEtternavn, vitneAdresse, vitneBy, vitnePnr, vitneTlf;
     private JFileChooser imageChooser, fileChooser;
-    private CustomTextArea description, links;
-    private JScrollPane bScroll, fcScroll;
+    private JTextArea description, imageURL;
+    private JScrollPane descriptionScroll, imageURLScroll;
     private GridBagConstraints gbc, gbc2, gbc3;
     private CustomButton submit;
-    private CustomButton2 bButton, sButton;
+    private CustomButton2 imagesButton, fileButton;
     private CustomPanel txtTab, ulTab, wiTab;
     private JComboBox<String> type;
     private ReportController controller;
@@ -53,12 +58,32 @@ public class NewReportPanel extends JTabbedPane {
         wiTab = new CustomPanel();
         wiTab.setLayout(new GridBagLayout());
         
-
-        bButton = new CustomButton2("Last opp bilder");
-        sButton = new CustomButton2("Last opp fil");
+        imagesButton = new CustomButton2("Last opp bilder");
+        fileButton = new CustomButton2("Last opp fil");
         
         submit = new CustomButton("Registrer");
         submit.addActionListener((e) -> {});
+        
+        
+        description = new JTextArea(8, 22);
+        descriptionScroll = new JScrollPane(description);
+        descriptionScroll.setPreferredSize(description.getPreferredSize());
+
+        String[] t = {"Velg type...", "Bil", "Hus/innbo", "Fritidshus", "Båt"};
+        type = new JComboBox<>(t);
+        type.setFont(new Font("Arial", Font.PLAIN, 15));
+        
+        date = new CustomTextField(10);
+        estimation = new CustomTextField(6);
+        paid = new CustomTextField(6);
+        
+        
+        vitneFornavn = new CustomTextField(15);
+        vitneEtternavn = new CustomTextField(15);
+        vitneAdresse = new CustomTextField(20);
+        vitneBy = new CustomTextField(15);
+        vitnePnr = new CustomTextField(6);
+        vitneTlf = new CustomTextField(10);
         
         // Filechoosers settings ///////////////////////////////////////////////
         imageChooser = new JFileChooser();
@@ -68,7 +93,7 @@ public class NewReportPanel extends JTabbedPane {
         imageChooser.setDialogTitle("Velg bilder");
         imageChooser.setApproveButtonText("Velg");
         
-        bButton.addActionListener((e) -> { int returnVal = imageChooser.showOpenDialog(null);
+        imagesButton.addActionListener((e) -> { int returnVal = imageChooser.showOpenDialog(null);
                 if(returnVal == JFileChooser.APPROVE_OPTION)
                 {
                     File[] f = imageChooser.getSelectedFiles();
@@ -81,46 +106,15 @@ public class NewReportPanel extends JTabbedPane {
         fileChooser.setFileFilter(filter2);
         fileChooser.setMultiSelectionEnabled(false);
         
-        sButton.addActionListener((e) -> { int returnVal = fileChooser.showOpenDialog(null);
+        fileButton.addActionListener((e) -> { int returnVal = fileChooser.showOpenDialog(null);
                 if(returnVal == JFileChooser.APPROVE_OPTION)
                 {
                     File f = fileChooser.getSelectedFile();
                     saveFile(f);
                 }});
- 
         
-        description = new CustomTextArea(8, 22);
-        bScroll = new JScrollPane(description);
-        bScroll.setPreferredSize(description.getPreferredSize());
 
-        String[] t = {"Velg type...", "Bil", "Hus/innbo", "Fritidshus", "Båt"};
-        type = new JComboBox<>(t);
-        type.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
         
-        date = new CustomTextField(10);
-        estimation = new CustomTextField(6);
-        paid = new CustomTextField(6);
-        
-        mPath = new CustomTextField(40);
-        mPath.setBorder(BorderFactory.createTitledBorder(null, "Valgt fil"));
-        mPath.setFont(new Font("Arial", Font.PLAIN, 10));
-        mPath.setEditable(false);
-        mPath.setBackground(Color.WHITE);
-        
-   
-        links = new CustomTextArea(5, 40);
-        links.setBorder(BorderFactory.createTitledBorder(null, "Valgte bilder"));
-        links.setFont(new Font("Arial", Font.PLAIN, 10));
-        links.setEditable(false);
-        fcScroll = new JScrollPane(links);
-        fcScroll.setPreferredSize(links.getPreferredSize());
-        
-        vitneFornavn = new CustomTextField(15);
-        vitneEtternavn = new CustomTextField(15);
-        vitneAdresse = new CustomTextField(20);
-        vitneBy = new CustomTextField(15);
-        vitnePnr = new CustomTextField(6);
-        vitneTlf = new CustomTextField(10);
         
     }
     
@@ -133,6 +127,22 @@ public class NewReportPanel extends JTabbedPane {
         initComponents();
         setBackground(new Color(159, 196, 232));
         setFont(new Font("Arial", Font.BOLD, 18));
+
+        imageURL = new JTextArea(5, 40);
+        imageURL.setBorder(BorderFactory.createTitledBorder(null, "Valgte bilder"));
+        imageURL.setFont(new Font("Arial", Font.PLAIN, 10));
+        imageURL.setEditable(false);
+        imageURLScroll = new JScrollPane(imageURL);
+        imageURLScroll.setPreferredSize(imageURL.getPreferredSize());
+        
+        fileURL = new CustomTextField(40);
+        fileURL.setBorder(BorderFactory.createTitledBorder(null, "Valgt fil"));
+        fileURL.setFont(new Font("Arial", Font.PLAIN, 10));
+        fileURL.setEditable(false);
+        fileURL.setBackground(Color.WHITE);
+        
+        
+        
         
         // txtTab - tab for basic injury information ///////////////////////////
         gbc = new GridBagConstraints();
@@ -140,10 +150,15 @@ public class NewReportPanel extends JTabbedPane {
         gbc.ipadx = 2;
         gbc.ipady = 5;
         gbc.weighty = 1;
-        gbc.anchor = GridBagConstraints.LINE_END;
         
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(15, 15, 0, 5);
+        txtTab.add(new CustomLabelHeader("Opprett ny skademelding"), gbc);
+        
+        gbc.anchor = GridBagConstraints.LINE_END;
+        
+        gbc.gridy++;
         txtTab.add(new CustomLabel("Hendelsesdato: "), gbc);
         
         gbc.gridy++;
@@ -157,17 +172,11 @@ public class NewReportPanel extends JTabbedPane {
         
         gbc.gridy++;
         txtTab.add(new CustomLabel("Utbetalt: "), gbc);
-  
-        gbc.anchor = GridBagConstraints.LINE_START;    
-        
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(15, 0, 15, 5);
-        txtTab.add(new CustomLabelHeader("Opprett ny skademelding"));
-        
+
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(15, 0, 0, 55);
+        gbc.anchor = GridBagConstraints.LINE_START;
         txtTab.add(date, gbc);
         
         gbc.gridy++;
@@ -175,7 +184,7 @@ public class NewReportPanel extends JTabbedPane {
         
         gbc.gridy++;
         gbc.gridwidth = 3;
-        txtTab.add(bScroll, gbc);
+        txtTab.add(descriptionScroll, gbc);
         
         gbc.gridy++;
         gbc.gridwidth = 1;
@@ -193,7 +202,7 @@ public class NewReportPanel extends JTabbedPane {
         // ulTab - tab for uploading images and injury report //////////////////
 
         gbc2 = new GridBagConstraints();
-        gbc2.insets = new Insets(15, 0, 0, 5);
+        gbc2.insets = new Insets(15, 15, 15, 5);
         gbc2.ipadx = 2;
         gbc2.ipady = 5;
 
@@ -204,7 +213,7 @@ public class NewReportPanel extends JTabbedPane {
         
         gbc2.anchor = GridBagConstraints.LINE_END;
         gbc2.gridy++;
-        ulTab.add(bButton, gbc2);
+        ulTab.add(imagesButton, gbc2);
         
         gbc2.anchor = GridBagConstraints.LINE_START;
         gbc2.gridy++;
@@ -215,19 +224,19 @@ public class NewReportPanel extends JTabbedPane {
         gbc2.anchor = GridBagConstraints.LINE_END;
         gbc2.gridy++;
         gbc2.gridwidth = 1;
-        ulTab.add(sButton, gbc2);
+        ulTab.add(fileButton, gbc2);
        
         gbc2.gridy = 1;
         gbc2.gridx++;
         gbc2.gridwidth = 2;
         gbc2.gridheight = 2;
-        ulTab.add(fcScroll, gbc2);
+        ulTab.add(imageURLScroll, gbc2);
         
         gbc2.gridy = 4;
         gbc2.gridwidth = 2;
         gbc2.gridheight = 2;
         gbc2.anchor = GridBagConstraints.LINE_START;
-        ulTab.add(mPath, gbc2);
+        ulTab.add(fileURL, gbc2);
 
         
         
@@ -295,13 +304,12 @@ public class NewReportPanel extends JTabbedPane {
     public void saveImages(File[] f)
     {
         File[] files = f;
-        links.setText("");
         
-        for(int i = 0; i < f.length; i++)
-        {
-            if(f[i] != null)
-            {
-                links.append(f[i].getAbsolutePath() + "\n");
+        imageURL.setText("");
+        
+        for (File f1 : f) {
+            if (f1 != null) {
+                imageURL.append(f1.getAbsolutePath() + "\n");
             }
         }
     }
@@ -315,7 +323,7 @@ public class NewReportPanel extends JTabbedPane {
         File file = f;
         
         if(f != null)
-            mPath.setText(f.getAbsolutePath());
+            fileURL.setText(f.getAbsolutePath());
     }
 
 

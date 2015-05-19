@@ -15,7 +15,7 @@ import models.Customer;
  *
  * @author rudiwyu
  */
-public class CustomerTable extends AbstractTableModel{
+public class CustomerTable extends AbstractTableModel {
     
     private Object[] kolonnenavn = 
     {
@@ -51,9 +51,6 @@ public class CustomerTable extends AbstractTableModel{
                 celler[i][5] = format1.format(user.getRegistered().getTime());
             }
         }
-        
-        
-        
     }
             
     @Override
@@ -83,5 +80,6 @@ public class CustomerTable extends AbstractTableModel{
     {
         return (String)kolonnenavn[ kolonne];
     }
+    
      
 }

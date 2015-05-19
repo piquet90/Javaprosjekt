@@ -1,20 +1,26 @@
+package views.registrations;
+
+import CustomSwing.CustomLabel;
+import CustomSwing.CustomLabelHeader;
+import CustomSwing.CustomPanel;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+
 /*
  * Made by
  * Rudi Yu s231776
  * Audun Brustad s236341
- */
-package views.registrations;
+*/
 
-import CustomSwing.*;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+
 /**
  *
  * @author Audun
  */
 
-public class NewInsurancePanel extends CustomPanel{
+public class NewInsurancePanel extends CustomPanel {
     
     private GridBagConstraints g;
     private String insuranceType;

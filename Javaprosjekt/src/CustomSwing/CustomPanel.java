@@ -13,6 +13,9 @@ import javax.swing.JPanel;
  */
 public class CustomPanel extends JPanel {
     
+    /**
+     * CustomPanels constructor
+     */
     public CustomPanel() {
         super();
     }

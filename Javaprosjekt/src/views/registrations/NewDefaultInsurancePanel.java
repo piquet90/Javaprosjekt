@@ -2,14 +2,12 @@
  * Made by
  * Rudi Yu s231776
  * Audun Brustad s236341
-
+*/
 package views.registrations;
 
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
-import CustomSwing.CustomTextArea;
 import CustomSwing.CustomTextField;
-import controllers.Controller;
 import controllers.CustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,24 +17,22 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author Audun
+*/
 
-
-public class fgvjchnvdxfgcvbnxfgnxfgvhnxfghn extends CustomPanel {
+public class NewDefaultInsurancePanel extends CustomPanel {
     
     private CustomTextField date, customer, price, coverage, other;
     private JScrollPane cScroll;
-    private CustomTextArea conditions;
+    private JTextArea conditions;
     private GridBagConstraints gbc;
     private CustomerController controller;
     
 
-    /**
-     * NyBilforsikring constructor
-     
     public NewDefaultInsurancePanel() {
         setLayout(new GridBagLayout());
         setSize(getPreferredSize());
@@ -50,7 +46,7 @@ public class fgvjchnvdxfgcvbnxfgnxfgvhnxfghn extends CustomPanel {
         coverage = new CustomTextField(10);
         other = new CustomTextField(20);
         
-        conditions = new CustomTextArea(10, 20);
+        conditions = new JTextArea(10, 20);
         cScroll = new JScrollPane(conditions);
 
         //få dato fra controller?
@@ -139,5 +135,3 @@ public class fgvjchnvdxfgcvbnxfgnxfgvhnxfghn extends CustomPanel {
         JOptionPane.showMessageDialog(this, s);
     }
 }
-
-*/

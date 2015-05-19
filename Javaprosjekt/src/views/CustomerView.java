@@ -23,8 +23,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
 
-public class CustomerView extends JTabbedPane implements ActionListener{
+public class CustomerView extends JTabbedPane implements ActionListener {
     
     private CustomTextField fName, lName, adress, city, zip;
     private CustomPanel cusTab, repTab;
@@ -98,7 +100,6 @@ public class CustomerView extends JTabbedPane implements ActionListener{
     public CustomerView()
     {
         initComponents();
-        setBackground(new Color(159, 196, 232));
         setFont(new Font("Arial", Font.BOLD, 18));
         
         cusTab = new CustomPanel();
@@ -181,7 +182,6 @@ public class CustomerView extends JTabbedPane implements ActionListener{
         cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
-        //this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Forsikringer</body></html>", insTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
 
     }
@@ -319,7 +319,12 @@ public class CustomerView extends JTabbedPane implements ActionListener{
      */
     public void addTable(String s, ViewTable v)
     {
-        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(v));
+        JTable table = v;
+        JTableHeader tableHeader = v.getTableHeader();
+        tableHeader.setReorderingAllowed(false);
+        table.setAutoCreateRowSorter(true);
+        
+        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(table));
     }
     
     public void addCustomListener(CustomListener e)

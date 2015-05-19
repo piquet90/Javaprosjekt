@@ -14,6 +14,10 @@ import javax.swing.JCheckBox;
  */
 public class CustomCheckBox extends JCheckBox {
     
+    /**
+     * Constructor passes the checkbox text to super
+     * @param s checkbox text
+     */
     public CustomCheckBox(String s) {
         super(s);
         setFont(new Font("Arial", Font.PLAIN, 15));
