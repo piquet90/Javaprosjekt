@@ -6,6 +6,7 @@
 package views.registrations;
 
 import CustomSwing.CustomButton;
+import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
@@ -26,11 +27,14 @@ import views.CustomListener;
 
 public class NewBoatInsurance extends CustomPanel {
     
-    private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions;
+    private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions, btype;
     private GridBagConstraints gbc;
     private CustomButton submit;
+    private CustomButton2 delete;
     private JComboBox<String> type;
     private int n = 0;
+    private boolean edit = false;
+    private boolean viewMode = false;
     private CustomListener listener;
 
     
@@ -49,8 +53,12 @@ public class NewBoatInsurance extends CustomPanel {
         amount = new CustomTextField(5);
         conditions = new CustomTextField(15);
         modelYear = new CustomTextField(5);
+        btype = new CustomTextField(15);
+        btype.setVisible(false);
         
         submit = new CustomButton("Registrer");
+        delete = new CustomButton2("Slett forsikring");
+        delete.setVisible(false);
         
         String[] t = {"Velg type...", "Cabincruiser", "Daycruiser", "RIB", "Jolle","Landstedsbåt ",
                        "Seilbåt", "Motorseiler", "Speedbåt", "Trebåt", "Vannscooter", "Yacht", "Yrkesbåt" };
@@ -117,6 +125,7 @@ public class NewBoatInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(type, gbc);
+        add(btype, gbc);
         
         gbc.gridy++;
         add(model, gbc);
@@ -145,8 +154,45 @@ public class NewBoatInsurance extends CustomPanel {
         gbc.gridy++;
         add(submit, gbc);
         
-        submit.addActionListener((e) ->{listener.customActionPerformed(new CustomEvent(Constants.BOAT_INSURANCE_INT));});
+        gbc.gridx++;
+        add(delete, gbc);
         
+        submit.addActionListener((e) ->{
+            if(viewMode)
+                change();
+            else
+                listener.customActionPerformed(new CustomEvent(Constants.BOAT_INSURANCE_INT));});
+ 
+            
+            
+            
+        delete.addActionListener((e) ->{System.out.println("slett");});
+        
+    }
+    
+    /**
+     * Changes text-fields to uneditable if panel is used for viewing
+     */
+    public void setViewMode()
+    {
+        boatOwner.setEditable(false);
+        regNr.setEditable(false);
+        btype.setEditable(false);
+        model.setEditable(false);
+        horsepower.setEditable(false);
+        modelYear.setEditable(false);
+        length.setEditable(false);
+        engineType.setEditable(false);
+        premium.setEditable(false);
+        amount.setEditable(false);
+        conditions.setEditable(false);
+        
+        submit.setText("Endre");
+        delete.setVisible(true);
+        type.setVisible(false);
+        btype.setVisible(true);
+        
+        viewMode = true;
     }
     
     /**
@@ -242,6 +288,116 @@ public class NewBoatInsurance extends CustomPanel {
      */
     public String getConditions() {
         return conditions.getText();
+    }
+    
+
+    /**
+     * Sets boat type in the boat type-field
+     * @param t boat type
+     */
+    public void setType(String t) {
+        btype.setText(t);
+    }
+
+    /**
+     * Sets the boats register number in the register number-field
+     * @param rn boats register number
+     */
+    public void setRegNr(String rn) {
+        regNr.setText(rn);
+    }
+
+    /**
+     * Sets the boats model in the boat model-field
+     * @param m boats model
+     */
+    public void setModel(String m) {
+        model.setText(m);
+    }
+
+    /**
+     * Sets the boats length in the boat length-field
+     * @param l boats length in feet
+     */
+    public void setLength(String l) {
+        length.setText(l);
+    }
+
+    /**
+     * Sets the year model in the year model-field
+     * @param y boats year model
+     */
+    public void setRegYear(String y) {
+        modelYear.setText(y);
+    }
+
+    /**
+     * Sets the boats engine type in the engine type-field
+     * @param et boats engine type
+     */
+    public void setEngineType(String et) {
+        engineType.setText(et);
+    }
+
+    /**
+     * Sets the boats horsepower in the horsepower-field
+     * @param hp boats horsepower
+     */
+    public void setHorsePower(String hp) {
+        horsepower.setText(hp);
+    }
+    
+    /**
+     * Sets the insurance premium amount in the premium-field
+     * @param p insurance premium in NOK
+     */
+    public void setPremium(String p) {
+        premium.setText(p);
+    }
+    
+    /**
+     * Sets the insurance amount in the amount-field
+     * @param a insurance amount
+     */
+    public void setAmount(String a)
+    {
+        amount.setText(a);
+    }
+    
+    /**
+     * Sets the insurance conditions in the conditions-field
+     * @param c insurance conditions
+     */
+    public void setConditions(String c)
+    {
+        conditions.setText(c);
+    }
+    
+    /**
+     * Method makes textfields editable and passes the changed information to registry
+     */
+    public void change()
+    {
+        if(!edit) {
+            boatOwner.setEditable(true);
+            premium.setEditable(true);
+            amount.setEditable(true);
+            conditions.setEditable(true);
+            
+            submit.setText("Lagre");
+            
+            edit = true;  
+        }
+        else {
+            boatOwner.setEditable(false);
+            premium.setEditable(false);
+            amount.setEditable(false);
+            conditions.setEditable(false);
+            
+            submit.setText("Endre");
+            
+            edit = false;
+        } 
     }
     
     public void clearFields()

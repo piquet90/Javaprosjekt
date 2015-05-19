@@ -15,6 +15,7 @@ import views.LeisurehouseInsuranceView;
 import views.MainView;
 import views.SimpleSearchPanel;
 import views.TravelInsuranceView;
+import views.registrations.NewBoatInsurance;
 import views.registrations.NewCarInsurance;
 
 
@@ -31,9 +32,8 @@ public class ViewTest {
         //JOptionPane.showMessageDialog(null, new TravelInsuranceView());
         //JOptionPane.showMessageDialog(null, new AdvancedSearchPanel());
         
-        NewCarInsurance c = new NewCarInsurance();
+        NewBoatInsurance c = new NewBoatInsurance();
         c.setViewMode();
-        c.setCarType("aaa");
         
         JOptionPane.showMessageDialog(null, c);
         

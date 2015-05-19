@@ -11,7 +11,6 @@ import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import DAO.Constants;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -40,7 +39,7 @@ public class NewCarInsurance extends CustomPanel {
     private CustomListener listener;
     
     /**
-     * NyBilforsikring constructor
+     * NewCarInsurances constructor
      */
     public NewCarInsurance()
     {
