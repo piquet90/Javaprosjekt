@@ -47,7 +47,6 @@ public class NewInsurancePanel extends CustomPanel {
         house = new NewHouseInsurance();
         
         leisureHouse = new NewLeisureHouseInsurance();
-        leisureHouse.initComponents();
         
         travel = new NewTravelInsurance();
         

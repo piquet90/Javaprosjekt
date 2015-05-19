@@ -7,11 +7,19 @@ package controllers;
 
 import DAO.Constants;
 import DAO.Registries;
+import java.awt.Window;
+import java.awt.event.WindowEvent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import models.CustomerModel;
 import models.InsuranceModel;
 import models.objects.insurances.BoatInsurance;
 import models.objects.insurances.CarInsurance;
+import models.objects.insurances.HouseInsurance;
+import models.objects.insurances.LeisureHouseInsurance;
+import models.objects.insurances.TravelInsurance;
 import views.CustomEvent;
 import views.CustomListener;
 import views.registrations.*;
@@ -23,9 +31,8 @@ import views.registrations.*;
 public class InsuranceController implements CustomListener{
     
     private MainController mc;
-    private Registries registries;
     private InsuranceModel imodel;
-    private CustomerModel mModel;
+    private CustomerModel cModel;
     
     private NewBoatInsurance boatInsurance;
     private NewCarInsurance carInsurance;
@@ -39,10 +46,8 @@ public class InsuranceController implements CustomListener{
     public InsuranceController(Registries r, MainController c)
     {
         this.mc = c;
-        this.registries = r;
-        
         imodel = new InsuranceModel(r);
-        mModel = new CustomerModel(r);
+        cModel = new CustomerModel(r);
     }
     
     public void newCarInsurance(int id)
@@ -51,7 +56,7 @@ public class InsuranceController implements CustomListener{
         
         carInsurance = new NewCarInsurance();
         carInsurance.addCustomListener(this);
-        String s = this.mModel.findById(id).getName();
+        String s = this.cModel.findById(id).getName();
         carInsurance.setCarOwner(s);
         mc.popUp(carInsurance);
     }
@@ -67,14 +72,17 @@ public class InsuranceController implements CustomListener{
         this.id = id;
         boatInsurance = new NewBoatInsurance();
         boatInsurance.addCustomListener(this);
-        String s = this.mModel.findById(id).getName();
+        String s = this.cModel.findById(id).getName();
         boatInsurance.setBoatOwner(s);
         mc.popUp(boatInsurance);
     }
     public void newTravelInsurance(int id)
     {
         this.id = id;
+        
         travelInsurance = new NewTravelInsurance();
+        String s = this.cModel.findById(id).getName();
+        travelInsurance.setInsTaker(s);
         travelInsurance.addCustomListener(this);
         mc.popUp(travelInsurance);
     }
@@ -123,7 +131,8 @@ public class InsuranceController implements CustomListener{
             insurance.setBonus(Integer.parseInt(carInsurance.getBonus())); // done
 
             imodel.addInsurance(insurance);
-            JOptionPane.showMessageDialog(null, "CarInsurance Registered.");
+            mc.ncController.refresh();
+            success();
         }
     }
     
@@ -171,16 +180,143 @@ public class InsuranceController implements CustomListener{
             insurance.setModelYear(Integer.parseInt(boatInsurance.getModelYear()));
             insurance.setCoverage(Double.parseDouble(boatInsurance.getPremium()));
             insurance.setPrice(Double.parseDouble(boatInsurance.getAmount()));
+            insurance.setConditions(boatInsurance.getConditions());
             
-            
+            imodel.addInsurance(insurance);
+            boatInsurance.clearFields();
+            mc.ncController.refresh();
+            success();
         }
+    }// end of newBoat()
+    
+    public void registerTravel()
+    {
+        String s = "";
+        if(travelInsurance.getInsTaker().equals(""))
+            s+="Forsikringstaker\n";
+        if(travelInsurance.getAmount().equals("")||!travelInsurance.getAmount().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringsbeløp\n";
+        if(travelInsurance.getPremium().equals("")||!travelInsurance.getPremium().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringspremie\n";
+        if(travelInsurance.getArea().equals(""))
+            s+="Gyldige områder\n";
         
+        if(!s.equals(""))
+            JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
+        else {
+            TravelInsurance insurance = new TravelInsurance();
+            insurance.setOwnerId(id);
+            insurance.setCoverage(Double.parseDouble(travelInsurance.getPremium()));
+            insurance.setPrice(Double.parseDouble(travelInsurance.getAmount()));
+            
+            imodel.addInsurance(insurance);
+            mc.ncController.refresh();
+            
+            travelInsurance.clearFields();
+            success();
+        }
+    }// end of registerTravel()
+    public void registerHouse()
+    {
+          // Validation
+        String s = "";
         
-                
-        //motorstyrke done
-        //annet?
+        if(houseInsurance.getAdress().equals(""))
+            s+="Adresse\n";
+        if(houseInsurance.getYearBuilt().equals("")||!houseInsurance.getYearBuilt().matches(Constants.ONLY_NUMBERS))
+            s+="Byggeår\n";
+        if(houseInsurance.getType().equals(""))
+            s+="Hustype\n";
+        if(houseInsurance.getMaterial().equals(""))
+            s+="Materiale\n";
+        if(houseInsurance.getStandard().equals(""))
+            s+="Standard\n";
+        if(houseInsurance.getHouseSize().equals("")||!houseInsurance.getHouseSize().matches(Constants.ONLY_NUMBERS))
+            s+="Størrelse\n";
+        if(houseInsurance.getAmountBuilding().equals("")||!houseInsurance.getAmountBuilding().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringsbeløp, bygg\n";
+        if(houseInsurance.getAmountContents().equals("")||!houseInsurance.getAmountContents().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringsbeløp, innbo\n";
+        if(houseInsurance.getPremium().equals("")||!houseInsurance.getPremium().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringspremie\n";
+        if(houseInsurance.getConditions().equals(""))
+            s+="Betingelser\n";
         
+        if(!s.equals(""))
+            JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
+        else {
+            HouseInsurance insurance = new HouseInsurance();
+            
+            insurance.setOwnerId(id);
+            insurance.setAddress(houseInsurance.getAdress());
+            insurance.setYearofconstruction(Integer.parseInt(houseInsurance.getYearBuilt()));
+            insurance.setBuildingType(houseInsurance.getType());
+            insurance.setConstrutionmaterial(houseInsurance.getMaterial());
+            insurance.setStandard(houseInsurance.getStandard());
+            insurance.setSquaremeter(Integer.parseInt(houseInsurance.getHouseSize()));
+            insurance.setBuildingcoverage(Double.parseDouble(houseInsurance.getAmountBuilding()));
+            insurance.setContentscoverage(Double.parseDouble(houseInsurance.getAmountContents()));
+            insurance.setPrice(Double.parseDouble(houseInsurance.getPremium()));
+            insurance.setConditions(houseInsurance.getConditions());
+            
+            imodel.addInsurance(insurance);
+            success();
+        }
     }
+    public void registerLeisure()
+    {   
+              
+        // Validation
+        String s = "";
+        
+        if(leisureHouseInsurance.getAdress().equals(""))
+            s+="Adresse\n";
+        if(leisureHouseInsurance.getYearBuilt().equals("")||!leisureHouseInsurance.getYearBuilt().matches(Constants.ONLY_NUMBERS))
+            s+="Byggeår\n";
+        if(leisureHouseInsurance.getType().equals(""))
+            s+="Hustype\n";
+        if(leisureHouseInsurance.getMaterial().equals(""))
+            s+="Materiale\n";
+        if(leisureHouseInsurance.getStandard().equals(""))
+            s+="Standard\n";
+        if(leisureHouseInsurance.getHouseSize().equals("")||!leisureHouseInsurance.getHouseSize().matches(Constants.ONLY_NUMBERS))
+            s+="Størrelse\n";
+        if(leisureHouseInsurance.getAmountBuilding().equals("")||!leisureHouseInsurance.getAmountBuilding().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringsbeløp, bygg\n";
+        if(leisureHouseInsurance.getAmountContents().equals("")||!leisureHouseInsurance.getAmountContents().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringsbeløp, innbo\n";
+        if(leisureHouseInsurance.getPremium().equals("")||!leisureHouseInsurance.getPremium().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringspremie\n";
+        if(leisureHouseInsurance.getConditions().equals(""))
+            s+="Betingelser\n";
+        
+        if(!s.equals(""))
+            JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
+        else {
+            LeisureHouseInsurance insurance = new LeisureHouseInsurance();
+            insurance.setOwnerId(id);
+            insurance.setAddress(leisureHouseInsurance.getAdress());
+            insurance.setYearofconstruction(Integer.parseInt(leisureHouseInsurance.getYearBuilt()));
+            insurance.setBuildingType(leisureHouseInsurance.getType());
+            insurance.setConstrutionmaterial(leisureHouseInsurance.getMaterial());
+            insurance.setStandard(leisureHouseInsurance.getStandard());
+            insurance.setSquaremeter(Integer.parseInt(leisureHouseInsurance.getHouseSize()));
+            insurance.setBuildingcoverage(Double.parseDouble(leisureHouseInsurance.getAmountBuilding()));
+            insurance.setContentscoverage(Double.parseDouble(leisureHouseInsurance.getAmountContents()));
+            insurance.setPrice(Double.parseDouble(leisureHouseInsurance.getPremium()));
+            insurance.setConditions(leisureHouseInsurance.getConditions());
+            insurance.setIsForRent(leisureHouseInsurance.getLease());
+            
+            imodel.addInsurance(insurance);
+            success();
+        }
+    }
+    
+    private void success()
+    {
+        JOptionPane.showMessageDialog(mc.view, "Forsikring registrert!");
+    }
+    
     
     @Override
     public void customActionPerformed(CustomEvent i) {
@@ -188,7 +324,13 @@ public class InsuranceController implements CustomListener{
             registerCar();
         if(i.getAction()==Constants.BOAT_INSURANCE_INT)
             registerBoat();
+        if(i.getAction()==Constants.HOUSE_INSURANCE_INT)
+            registerHouse();
+        if(i.getAction()==Constants.LEISUREHOUSE_INSURANCE_INT)
+            registerLeisure();
+        if(i.getAction()==Constants.TRAVEL_INSURANCE_INT)
+            registerTravel();
         
-    }
+    }// end of customActionPerformed
     
-}
+}// end of class

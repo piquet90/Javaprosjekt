@@ -10,9 +10,11 @@ import CustomSwing.CustomCheckBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
+import DAO.Constants;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import views.CustomEvent;
 import views.CustomListener;
 
 /**
@@ -34,6 +36,14 @@ public class NewTravelInsurance extends CustomPanel {
      */
     public void initComponents()
     {
+
+    }
+    
+    /**
+     * NewTravelInsurance constructor
+     */
+    public NewTravelInsurance()
+    {
         insTaker = new CustomTextField(16);
         premium = new CustomTextField(5);
         amount = new CustomTextField(5);
@@ -47,14 +57,6 @@ public class NewTravelInsurance extends CustomPanel {
         oceania = new CustomCheckBox("Oseania");
         
         submit = new CustomButton("Registrer");
-    }
-    
-    /**
-     * NewTravelInsurance constructor
-     */
-    public NewTravelInsurance()
-    {
-        initComponents();
         setLayout(new GridBagLayout());
         
         g = new GridBagConstraints();
@@ -119,6 +121,8 @@ public class NewTravelInsurance extends CustomPanel {
         
         g.gridy++;
         add(submit, g);
+        
+        submit.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.TRAVEL_INSURANCE_INT));});
         
         
     }
@@ -186,6 +190,20 @@ public class NewTravelInsurance extends CustomPanel {
 
         return area;
     }
+    
+    public void clearFields()
+    {
+        insTaker.setText("");
+        amount.setText("");
+        premium.setText("");
+        conditions.setText("");
+        asia.setContentAreaFilled(false);
+        africa.setContentAreaFilled(false);
+        europe.setContentAreaFilled(false);
+        nAmerica.setContentAreaFilled(false);
+        sAmerica.setContentAreaFilled(false);
+        oceania.setContentAreaFilled(false);
+    } // end of clearfields
     
     /**
      * Method that connect controllers listener to the panel

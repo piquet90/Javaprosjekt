@@ -74,13 +74,13 @@ public class MainController extends Controller {
     public void popUp(Object v)
     {
         
-        JOptionPane.showOptionDialog(null, v, Constants.APP_NAME, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+        popUp("", v);
     
     }
     public void popUp(String title,Object v)
     {
         
-        JOptionPane.showOptionDialog(null, v, Constants.APP_NAME+" - "+title, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+        JOptionPane.showOptionDialog(view, v, Constants.APP_NAME+" - "+title, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
     
     }
     
