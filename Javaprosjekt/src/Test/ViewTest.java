@@ -15,6 +15,7 @@ import views.LeisurehouseInsuranceView;
 import views.MainView;
 import views.SimpleSearchPanel;
 import views.TravelInsuranceView;
+import views.registrations.NewCarInsurance;
 
 
 /**
@@ -30,19 +31,23 @@ public class ViewTest {
         //JOptionPane.showMessageDialog(null, new TravelInsuranceView());
         //JOptionPane.showMessageDialog(null, new AdvancedSearchPanel());
         
-        JOptionPane.showMessageDialog(null, new SimpleSearchPanel());
+        NewCarInsurance c = new NewCarInsurance();
+        c.setViewMode();
+        c.setCarType("aaa");
+        
+        JOptionPane.showMessageDialog(null, c);
         
         
 
         
-        AdvancedSearchPanel asp = new AdvancedSearchPanel();
+        //AdvancedSearchPanel asp = new AdvancedSearchPanel();
         
-        JOptionPane pane = new JOptionPane(asp, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null);
+        /*JOptionPane pane = new JOptionPane(asp, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null);
         JDialog dialog = pane.createDialog(null, "tittel");
         dialog.setContentPane(pane);
         dialog.setDefaultCloseOperation(dialog.DISPOSE_ON_CLOSE);
         dialog.setModal(false); // this says not to block background components
-        dialog.setVisible(true);
+        dialog.setVisible(true);*/
         
       
         

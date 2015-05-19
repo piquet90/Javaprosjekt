@@ -25,8 +25,13 @@ public class CarInsuranceView extends CustomPanel {
     private boolean edit = false;
     
     
-    public void initComponents()
+   /**
+    * CarInsuranceViews constructor
+    */
+    public CarInsuranceView()
     {
+        setLayout(new GridBagLayout());
+        
         carOwner = new CustomTextField(17);
         carOwner.setEditable(false);
         type = new CustomTextField(15);
@@ -50,12 +55,6 @@ public class CarInsuranceView extends CustomPanel {
         
         change = new CustomButton2("Endre");
         change.addActionListener((e) -> change());
-    }
-    
-    public CarInsuranceView()
-    {
-        initComponents();
-        setLayout(new GridBagLayout());
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -90,7 +89,7 @@ public class CarInsuranceView extends CustomPanel {
         add(new CustomLabel("Forsikringspremie: "), gbc);
 
         gbc.gridy++;
-        add(new CustomLabel("Forsikringsbeløp: "), gbc);        
+        add(new CustomLabel("Forsikringsbeløp: "), gbc);
 
         gbc.gridy++;
         add(new CustomLabel("Betingelser: "), gbc);
