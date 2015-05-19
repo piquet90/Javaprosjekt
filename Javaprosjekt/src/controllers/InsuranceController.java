@@ -7,12 +7,7 @@ package controllers;
 
 import DAO.Constants;
 import DAO.Registries;
-import java.awt.Window;
-import java.awt.event.WindowEvent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import models.CustomerModel;
 import models.InsuranceModel;
 import models.objects.insurances.BoatInsurance;
@@ -21,7 +16,6 @@ import models.objects.insurances.HouseInsurance;
 import models.objects.insurances.Insurance;
 import models.objects.insurances.LeisureHouseInsurance;
 import models.objects.insurances.TravelInsurance;
-import views.CarInsuranceView;
 import views.CustomEvent;
 import views.CustomListener;
 import views.registrations.*;
@@ -44,7 +38,7 @@ public class InsuranceController implements CustomListener{
     
     
     
-    private int id;
+    private int id, insuranceId;
     
     
     public InsuranceController(Registries r, MainController c)
@@ -170,18 +164,14 @@ public class InsuranceController implements CustomListener{
             s+="Modell\n";
         if(boatInsurance.getEngineType().equals(""))
             s+="Motortype\n";
-        if(boatInsurance.getHorsepower().equals("")||!boatInsurance.getHorsepower().matches(Constants.ONLY_NUMBERS))
-            s+="Effekt(HK)\n";
-        if(boatInsurance.getLength().equals("")||!boatInsurance.getLength().matches(Constants.ONLY_NUMBERS)) 
-            s+="Lengde\n";
-        if(boatInsurance.getModelYear().equals("")||!boatInsurance.getModelYear().matches(Constants.ONLY_NUMBERS))
-            s+="Årsmodell\n";
+        s += validateInt(boatInsurance.getHorsepower(), "Effekt(HK)\n");
+        s += validateInt(boatInsurance.getLength(), "Lengde\n");
         
-        if(boatInsurance.getPremium().equals("")||!boatInsurance.getPremium().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringspremie\n";
+        s += validateDouble(boatInsurance.getAmount(), "Forsikringsbeløp\n");
+        s += validateDouble(boatInsurance.getPremium(), "Pris pr. år\n");
+        s += validateInt(boatInsurance.getModelYear(), "Årsmodell\n");
+
         
-        if(boatInsurance.getAmount().equals("")||!boatInsurance.getAmount().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringsbeløp\n";
         if(boatInsurance.getConditions().equals(""))
             s+="Betingelser\n";
         
@@ -193,16 +183,25 @@ public class InsuranceController implements CustomListener{
             insurance.setOwnerId(id);
             insurance.setViechleOwner(boatInsurance.getBoatOwner());
             insurance.setRegistrationNumber(boatInsurance.getRegNr());
-            insurance.setType(boatInsurance.getType());
+            insurance.setViechleType(boatInsurance.getType());
             insurance.setModel(boatInsurance.getModel());
             insurance.setEngineType(boatInsurance.getEngineType());
             insurance.setPower(Integer.parseInt(boatInsurance.getHorsepower()));
             insurance.setLength(Integer.parseInt(boatInsurance.getLength()));
             insurance.setModelYear(Integer.parseInt(boatInsurance.getModelYear()));
-            insurance.setCoverage(Double.parseDouble(boatInsurance.getPremium()));
-            insurance.setPrice(Double.parseDouble(boatInsurance.getAmount()));
+            insurance.setCoverage(Double.parseDouble(boatInsurance.getAmount()));
+            insurance.setPrice(Double.parseDouble(boatInsurance.getPremium()));
             insurance.setConditions(boatInsurance.getConditions());
             
+            if(boatInsurance.isViewMode())
+            {
+                insurance.setId(id);
+                int next = Insurance.getNext() - 1;
+                Insurance.setNext(next);
+            }
+            else {
+                boatInsurance.clearFields();
+            }
             imodel.addInsurance(insurance);
             boatInsurance.clearFields();
             mc.ncController.refresh();
@@ -338,21 +337,7 @@ public class InsuranceController implements CustomListener{
         JOptionPane.showMessageDialog(mc.view, "Forsikring registrert!");
     }
     
-    
-    @Override
-    public void customActionPerformed(CustomEvent i) {
-        if(i.getAction()==Constants.CAR_INSURANCE_INT)
-            registerCar();
-        if(i.getAction()==Constants.BOAT_INSURANCE_INT)
-            registerBoat();
-        if(i.getAction()==Constants.HOUSE_INSURANCE_INT)
-            registerHouse();
-        if(i.getAction()==Constants.LEISUREHOUSE_INSURANCE_INT)
-            registerLeisure();
-        if(i.getAction()==Constants.TRAVEL_INSURANCE_INT)
-            registerTravel();
-        
-    }// end of customActionPerformed
+   
     
     private String validateInt(String s, String err)
     {
@@ -403,18 +388,96 @@ public class InsuranceController implements CustomListener{
         mc.popUp("CarInsurance", carInsurance);
     }
     
+    private void viewBoatInsurance(BoatInsurance ins)
+    {
+        boatInsurance = new NewBoatInsurance();
+        boatInsurance.addCustomListener(this);
+        
+        boatInsurance.setViewMode();
+        
+        boatInsurance.setBoatOwner(ins.getViechleOwner());
+        boatInsurance.setRegNr(ins.getRegistrationNumber());
+        boatInsurance.setType(ins.getViechleType());
+        boatInsurance.setModel(ins.getModel());
+        boatInsurance.setEngineType(ins.getEngineType());
+        boatInsurance.setHorsePower(Integer.toString(ins.getPower()));
+        boatInsurance.setLength(Integer.toString(ins.getLength()));
+        boatInsurance.setModelYear(Integer.toString(ins.getModelYear()));
+        boatInsurance.setAmount(Double.toString(ins.getCoverage()));
+        boatInsurance.setPremium(Double.toString(ins.getPrice()));
+        boatInsurance.setConditions(ins.getConditions());
+        
+        
+        
+        
+        mc.popUp("BoatInsurance", boatInsurance);
+        
+        
+    }
+    
+    private void viewLeisureHouseInsurance(LeisureHouseInsurance ins)
+    {
+        
+    }
+    private void viewHouseInsurance(HouseInsurance ins)
+    {
+        
+    }
+    private void viewTravelInsurance(TravelInsurance ins)
+    {
+        
+    }
     
     
     public void viewInsurance(int id) {
         Insurance ins = imodel.findById(id);
         
+        this.insuranceId = ins.getId();
+        
         if(ins!=null)
         {
-            if(ins instanceof CarInsurance)
-            {
+            if(ins instanceof CarInsurance)           
                 viewCarInsurance((CarInsurance)ins);
-            }
+            if(ins instanceof BoatInsurance)
+                viewBoatInsurance((BoatInsurance)ins);
+            if(ins instanceof LeisureHouseInsurance)
+                viewLeisureHouseInsurance((LeisureHouseInsurance)ins);
+            if(ins instanceof HouseInsurance)
+                viewHouseInsurance((HouseInsurance)ins);
+            if(ins instanceof TravelInsurance)
+                viewTravelInsurance((TravelInsurance)ins);
+            
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, Constants.GENERAL_ERROR_MESSAGE);
         }
     }
+    
+    public void deleteInsurance()
+    {
+        if(this.insuranceId!=0)
+        {
+            Insurance ins = imodel.findById(insuranceId);
+            JOptionPane.showConfirmDialog(mc.view, "Er du sikker på at du vil avslutte denne forsikringen?")
+            ins.delete();
+        }
+    }
+    @Override
+    public void customActionPerformed(CustomEvent i) {
+        if(i.getAction()==Constants.CAR_INSURANCE_INT)
+            registerCar();
+        if(i.getAction()==Constants.BOAT_INSURANCE_INT)
+            registerBoat();
+        if(i.getAction()==Constants.HOUSE_INSURANCE_INT)
+            registerHouse();
+        if(i.getAction()==Constants.LEISUREHOUSE_INSURANCE_INT)
+            registerLeisure();
+        if(i.getAction()==Constants.TRAVEL_INSURANCE_INT)
+            registerTravel();
+        if(i.getAction()==Constants.DELETE_INSURANCE)
+            deleteInsurance();
+        
+    }// end of customAc
     
 }// end of class

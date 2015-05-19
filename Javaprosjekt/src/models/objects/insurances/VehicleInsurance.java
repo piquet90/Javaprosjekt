@@ -57,14 +57,14 @@ public class VehicleInsurance extends Insurance{
     /**
      * @return the type
      */
-    public String getType() {
+    public String getViechleType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(String type) {
+    public void setViechleType(String type) {
         this.type = type;
     }
 

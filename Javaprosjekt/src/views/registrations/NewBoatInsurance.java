@@ -57,8 +57,9 @@ public class NewBoatInsurance extends CustomPanel {
         btype.setVisible(false);
         
         submit = new CustomButton("Registrer");
-        delete = new CustomButton2("Slett forsikring");
+        delete = new CustomButton2("Avslutt forsikring");
         delete.setVisible(false);
+
         
         String[] t = {"Velg type...", "Cabincruiser", "Daycruiser", "RIB", "Jolle","Landstedsbåt ",
                        "Seilbåt", "Motorseiler", "Speedbåt", "Trebåt", "Vannscooter", "Yacht", "Yrkesbåt" };
@@ -159,8 +160,9 @@ public class NewBoatInsurance extends CustomPanel {
         gbc.gridx++;
         add(delete, gbc);
         
-        submit = new CustomButton("Registrer");
+        
         submit.addActionListener((e) -> {
+                System.out.println("test");
                 if(!viewMode)
                 {
                     listener.customActionPerformed(new CustomEvent(Constants.BOAT_INSURANCE_INT));
@@ -180,7 +182,7 @@ public class NewBoatInsurance extends CustomPanel {
             
             
             
-        delete.addActionListener((e) ->{System.out.println("slett båtforsikring");});
+        delete.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.DELETE_INSURANCE));});
         
     }
     
@@ -460,4 +462,8 @@ public class NewBoatInsurance extends CustomPanel {
    {
        this.listener = l;
    }
+
+    public void setModelYear(String toString) {
+        modelYear.setText(toString);
+    }
 }

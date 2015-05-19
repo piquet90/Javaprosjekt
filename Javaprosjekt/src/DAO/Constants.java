@@ -45,6 +45,8 @@ public class Constants {
     public static final int NEW_INSURANCE = 87654321;
     public static final int NEW_REPORT = 11223344;
     
+    public static final int DELETE_INSURANCE = 43892738;
+    
     
     public static final String BOAT_INSURANCE = "Båtforsikring";
     public static final String CAR_INSURANCE = "Bilforsikring";

@@ -224,6 +224,11 @@ public abstract class Insurance implements Serializable{
         this.ownerid = ownerid;
     }
     
+    public void delete()
+    {
+        if(this.endDate!=null)
+            this.endDate = Calendar.getInstance();
+    }
     
     
 }

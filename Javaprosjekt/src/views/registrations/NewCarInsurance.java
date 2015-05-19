@@ -189,7 +189,7 @@ public class NewCarInsurance extends CustomPanel {
         });
         
         
-        delete.addActionListener((e) -> System.out.println("slett bilforsikring"));
+        delete.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.DELETE_INSURANCE));});
         
     }
     
