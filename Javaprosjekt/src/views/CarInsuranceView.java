@@ -25,6 +25,8 @@ public class CarInsuranceView extends CustomPanel {
     private boolean edit = false;
     
     
+    private CustomListener listener;
+    
     public void initComponents()
     {
         carOwner = new CustomTextField(17);
@@ -263,5 +265,15 @@ public class CarInsuranceView extends CustomPanel {
             
             edit = false;
         } 
+    }
+    
+    /**
+     * Add a CustomListener
+     * 
+     * @param listener
+     */
+    public void addCustomListener(CustomListener listener)
+    {
+        this.listener = listener;
     }
 }

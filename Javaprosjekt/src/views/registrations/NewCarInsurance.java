@@ -269,6 +269,22 @@ public class NewCarInsurance extends CustomPanel {
         return conditions.getText();
     }
     
+    
+    public void clearFields()
+    {
+        
+        carOwner.setText("");
+        regNr.setText("");
+        model.setText("");
+        horsepower.setText("");
+        regYear.setText("");
+        kmPerYear.setText("");
+        pricePerKm.setText("");
+        premium.setText("");
+        conditions.setText("");
+        bonus.setText("");
+   
+    }
     /**
      * Method that connect controllers listener to the panel
      * @param l Custom listener

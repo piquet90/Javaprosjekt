@@ -38,6 +38,7 @@ public class Customer implements Serializable {
     private String areacode;
     private int id;
     
+    private boolean totalCustomer;
     
     /**
      * Customer constructor
@@ -56,6 +57,7 @@ public class Customer implements Serializable {
         this.city = city;
         this.areacode = areacode;
         this.id = next++;
+        this.totalCustomer = false;
     }
     
 
@@ -165,6 +167,14 @@ public class Customer implements Serializable {
      */
     public int getId() {
         return id;
+    }
+
+    public boolean isTotalCustomer() {
+        return totalCustomer;
+    }
+
+    public void setTotalCustomer(boolean totalCustomer) {
+        this.totalCustomer = totalCustomer;
     }
    
 }
