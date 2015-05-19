@@ -15,10 +15,20 @@ import java.util.Calendar;
 public class LeisureHouseInsurance extends PropertyInsurance{
 
 
-
+    private boolean isForRent;
     public String getType()
     {
         return Constants.LEISUREHOUSE_INSURANCE;
+    }
+    
+    public void setIsForRent(boolean status)
+    {
+        this.isForRent = status;
+    }
+    
+    public boolean getIsForRent()
+    {
+        return isForRent;
     }
 
     

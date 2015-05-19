@@ -10,10 +10,12 @@ import CustomSwing.CustomCheckBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
+import DAO.Constants;
 import controllers.CustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import views.CustomEvent;
 import views.CustomListener;
 
 /**
@@ -31,11 +33,12 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     
     private CustomListener listener;
     
+    
     /**
-     * Method that initalizes the GUI components
+     * NewLeisureHouseInsurance constructor
      */
-    public void initComponents()
-    {
+    public NewLeisureHouseInsurance()
+    {   
         adress = new CustomTextField(15);
         yearBuilt = new CustomTextField(5);
         type = new CustomTextField(15);
@@ -50,15 +53,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         lease = new CustomCheckBox("");
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> System.out.println("s"));
-    }
-    
-    /**
-     * NewLeisureHouseInsurance constructor
-     */
-    public NewLeisureHouseInsurance()
-    {
-        initComponents();
+        submit.addActionListener((e) -> {listener.customActionPerformed(new CustomEvent(Constants.LEISUREHOUSE_INSURANCE_INT));});
         setLayout(new GridBagLayout());
 
         gbc = new GridBagConstraints();

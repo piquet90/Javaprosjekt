@@ -43,7 +43,7 @@ public class Constants {
     public static final String CAR_INSURANCE = "Bilforsikring";
     public static final String HOUSE_INSURANCE = "Hus og innboforsikring";
     public static final String LEISUREHOUSE_INSURANCE = "Fritidsboligforsikring";
-    public static final String TRAVEL_INSURANCE = "ReiseForsikring";
+    public static final String TRAVEL_INSURANCE = "Reiseforsikring";
     
     public static final int BOAT_INSURANCE_INT = 22;
     public static final int CAR_INSURANCE_INT = 23;

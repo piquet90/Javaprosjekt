@@ -244,6 +244,21 @@ public class NewBoatInsurance extends CustomPanel {
         return conditions.getText();
     }
     
+    public void clearFields()
+    {
+        boatOwner.setText("");
+        regNr.setText("");
+        modelYear.setText("");
+        model.setText("");
+        length.setText("");
+        engineType.setText("");
+        horsepower.setText("");
+        premium.setText("");
+        amount.setText("");
+        conditions.setText("");
+    }
+    
+    
     /**
      * Method that connect controllers listener to the panel
      * @param l CustomListener

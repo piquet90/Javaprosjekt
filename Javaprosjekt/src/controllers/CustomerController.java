@@ -12,12 +12,10 @@ import java.util.regex.Pattern;
 import models.CustomerModel;
 import models.Customer;
 import models.InsuranceModel;
-import models.objects.insurances.CarInsurance;
 import models.objects.insurances.Insurance;
 import views.CustomerView;
 import views.CustomEvent;
 import views.CustomListener;
-import views.registrations.NewCustomerPanel;
 import views.ViewTable;
 
 /**
@@ -29,9 +27,8 @@ import views.ViewTable;
 public class CustomerController extends Controller implements CustomListener{
     
     
-    // Maincontroller & registries
+    // Maincontroller
     private MainController mc;
-    private Registries registries;
     
     // Views
     private CustomerView view;
@@ -48,7 +45,7 @@ public class CustomerController extends Controller implements CustomListener{
     // constructor
     public CustomerController(Registries r, MainController m)
     {
-        this.registries = r;
+
         this.mc = m;
         this.m = new CustomerModel(r);
         this.i = new InsuranceModel(r);
@@ -84,6 +81,9 @@ public class CustomerController extends Controller implements CustomListener{
     public void refresh()
     {
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
+        viewTable.setModel(new InsuranceTable(set));
+        view.revalidate();
+        view.repaint();
     }
     public void newInsurance()
     {

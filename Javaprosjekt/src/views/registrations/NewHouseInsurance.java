@@ -9,9 +9,11 @@ import CustomSwing.CustomButton;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
+import DAO.Constants;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import views.CustomEvent;
 import views.CustomListener;
 
 /**
@@ -28,10 +30,11 @@ public class NewHouseInsurance extends CustomPanel {
     private CustomListener listener;
     
     /**
-     * Method that initializes the GUI components
+     * NewHouseInsurance constructor
      */
-    public void initComponents()
+    public NewHouseInsurance()
     {
+        setLayout(new GridBagLayout());
         adress = new CustomTextField(17);
         yearBuilt = new CustomTextField(5);
         type = new CustomTextField(15);
@@ -44,16 +47,6 @@ public class NewHouseInsurance extends CustomPanel {
         conditions = new CustomTextField(18);
 
         submit = new CustomButton("Registrer");
-    }
-    
-    
-    /**
-     * NewHouseInsurance constructor
-     */
-    public NewHouseInsurance()
-    {
-        setLayout(new GridBagLayout());
-        initComponents();
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 5, 0, 5);
@@ -128,6 +121,9 @@ public class NewHouseInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(submit, gbc);
+        
+        
+        submit.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.HOUSE_INSURANCE_INT));});
 
     }
     

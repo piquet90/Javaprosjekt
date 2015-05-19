@@ -56,7 +56,7 @@ public abstract class PropertyInsurance extends Insurance {
      * 
      * @return PropertyType
      */
-    public String getType() {
+    public String getBuildingType() {
         return type;
     }
 
@@ -65,7 +65,7 @@ public abstract class PropertyInsurance extends Insurance {
      * 
      * @param type Type of property
      */
-    public void setType(String type) {
+    public void setBuildingType(String type) {
         this.type = type;
     }
 
