@@ -190,6 +190,14 @@ public class CarInsuranceView extends CustomPanel {
     }
     
     /**
+     * Sets the price per kilometer in the price pr km-field
+     * @param ppkm price in NOK per kilometer driven
+     */
+    public void setPricePerKm(String ppkm) {
+        kmPerYear.setText(ppkm);
+    }
+    
+    /**
      * Sets the insurance premium amount in the premium-field
      * @param p insurance premium in NOK
      */
