@@ -459,7 +459,7 @@ public class InsuranceController implements CustomListener{
         if(this.insuranceId!=0)
         {
             Insurance ins = imodel.findById(insuranceId);
-            JOptionPane.showConfirmDialog(mc.view, "Er du sikker på at du vil avslutte denne forsikringen?")
+            JOptionPane.showConfirmDialog(mc.view, "Er du sikker på at du vil avslutte denne forsikringen?");
             ins.delete();
         }
     }
