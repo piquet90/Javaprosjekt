@@ -10,6 +10,7 @@ import DAO.Registries;
 import javax.swing.JOptionPane;
 import models.CustomerModel;
 import models.InsuranceModel;
+import models.objects.insurances.BoatInsurance;
 import models.objects.insurances.CarInsurance;
 import views.CustomEvent;
 import views.CustomListener;
@@ -24,6 +25,7 @@ public class InsuranceController implements CustomListener{
     private MainController mc;
     private Registries registries;
     private InsuranceModel imodel;
+    private CustomerModel mModel;
     
     private NewBoatInsurance boatInsurance;
     private NewCarInsurance carInsurance;
@@ -40,6 +42,7 @@ public class InsuranceController implements CustomListener{
         this.registries = r;
         
         imodel = new InsuranceModel(r);
+        mModel = new CustomerModel(r);
     }
     
     public void newCarInsurance(int id)
@@ -48,6 +51,8 @@ public class InsuranceController implements CustomListener{
         
         carInsurance = new NewCarInsurance();
         carInsurance.addCustomListener(this);
+        String s = this.mModel.findById(id).getName();
+        carInsurance.setCarOwner(s);
         mc.popUp(carInsurance);
     }
     public void newHouseInsurance(int id)
@@ -62,6 +67,8 @@ public class InsuranceController implements CustomListener{
         this.id = id;
         boatInsurance = new NewBoatInsurance();
         boatInsurance.addCustomListener(this);
+        String s = this.mModel.findById(id).getName();
+        boatInsurance.setBoatOwner(s);
         mc.popUp(boatInsurance);
     }
     public void newTravelInsurance(int id)
@@ -81,11 +88,10 @@ public class InsuranceController implements CustomListener{
     
     public void registerCar()
     {
-        CarInsurance insurance = new CarInsurance();
         
         String s = "";
         
-        if(!carInsurance.getCarOwner().matches(Constants.ONLY_ALPHABETIC)||carInsurance.getCarOwner().equals(""))
+        if(carInsurance.getCarOwner().equals(""))
             s+="Bileier\n";
         if(carInsurance.getRegNr().equals(""))
             s+="Registreringsnummer\n";
@@ -105,6 +111,7 @@ public class InsuranceController implements CustomListener{
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
         else
         {
+            CarInsurance insurance = new CarInsurance();
             insurance.setOwnerId(id);
             insurance.setViechleOwner(carInsurance.getCarOwner());//done
             insurance.setRegistrationNumber(carInsurance.getRegNr());//done
@@ -120,10 +127,68 @@ public class InsuranceController implements CustomListener{
         }
     }
     
+    public void registerBoat()
+    {
+        String s = "";
+        if(boatInsurance.getBoatOwner().equals(""))
+            s+="Båteier\n";
+        if(boatInsurance.getRegNr().equals(""))
+            s+="Registreringsnummer\n";
+        if(boatInsurance.getType().equals("Velg type..."))
+            s+="Båttype\n";
+        if(boatInsurance.getModel().equals(""))
+            s+="Modell\n";
+        if(boatInsurance.getEngineType().equals(""))
+            s+="Motortype\n";
+        if(boatInsurance.getHorsepower().equals("")||!boatInsurance.getHorsepower().matches(Constants.ONLY_NUMBERS))
+            s+="Effekt(HK)\n";
+        if(boatInsurance.getLength().equals("")||!boatInsurance.getLength().matches(Constants.ONLY_NUMBERS)) 
+            s+="Lengde\n";
+        if(boatInsurance.getModelYear().equals("")||!boatInsurance.getModelYear().matches(Constants.ONLY_NUMBERS))
+            s+="Årsmodell\n";
+        
+        if(boatInsurance.getPremium().equals("")||!boatInsurance.getPremium().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringspremie\n";
+        
+        if(boatInsurance.getAmount().equals("")||!boatInsurance.getAmount().matches(Constants.ONLY_NUMBERS))
+            s+="Forsikringsbeløp\n";
+        if(boatInsurance.getConditions().equals(""))
+            s+="Betingelser\n";
+        
+        if(!s.equals(""))
+            JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
+        else {
+            BoatInsurance insurance = new BoatInsurance();
+            
+            insurance.setOwnerId(id);
+            insurance.setViechleOwner(boatInsurance.getBoatOwner());
+            insurance.setRegistrationNumber(boatInsurance.getRegNr());
+            insurance.setType(boatInsurance.getType());
+            insurance.setModel(boatInsurance.getModel());
+            insurance.setEngineType(boatInsurance.getEngineType());
+            insurance.setPower(Integer.parseInt(boatInsurance.getHorsepower()));
+            insurance.setLength(Integer.parseInt(boatInsurance.getLength()));
+            insurance.setModelYear(Integer.parseInt(boatInsurance.getModelYear()));
+            insurance.setCoverage(Double.parseDouble(boatInsurance.getPremium()));
+            insurance.setPrice(Double.parseDouble(boatInsurance.getAmount()));
+            
+            
+        }
+        
+        
+                
+        //motorstyrke done
+        //annet?
+        
+    }
+    
     @Override
     public void customActionPerformed(CustomEvent i) {
         if(i.getAction()==Constants.CAR_INSURANCE_INT)
             registerCar();
+        if(i.getAction()==Constants.BOAT_INSURANCE_INT)
+            registerBoat();
+        
     }
     
 }

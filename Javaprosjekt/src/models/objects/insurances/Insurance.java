@@ -24,8 +24,7 @@ public abstract class Insurance implements Serializable{
     // Instance variables
     private int id;
     private int ownerid;
-    private int price;
-    private double coverage;
+    private double coverage, price;
     private String conditions;
     private String other;
     private Calendar dateofcreation;
@@ -70,7 +69,7 @@ public abstract class Insurance implements Serializable{
      * @author Rudi Yu
      * @return the price
      */
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -80,7 +79,7 @@ public abstract class Insurance implements Serializable{
      * @author Rudi Yu
      * @param price the price to set
      */
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

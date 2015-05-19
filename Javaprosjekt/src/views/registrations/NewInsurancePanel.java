@@ -23,7 +23,7 @@ public class NewInsurancePanel extends CustomPanel{
     
     private NewCarInsurance bil;
     private NewBoatInsurance boat;
-    private NewDefaultInsurancePanel defaultPanel;
+    //private NewDefaultInsurancePanel defaultPanel;
     private NewHouseInsurance house;
     private NewLeisureHouseInsurance leisureHouse;
     private NewTravelInsurance travel;
@@ -32,7 +32,7 @@ public class NewInsurancePanel extends CustomPanel{
     public NewInsurancePanel() {
         setLayout(new GridBagLayout());
         
-        defaultPanel = new NewDefaultInsurancePanel();
+        //defaultPanel = new NewDefaultInsurancePanel();
         
         bil = new NewCarInsurance();
         
@@ -66,7 +66,7 @@ public class NewInsurancePanel extends CustomPanel{
         
         g.gridy++;
         g.weighty = 1;
-        add(defaultPanel, g);
+        //add(defaultPanel, g);
         
         ////////////////////
         

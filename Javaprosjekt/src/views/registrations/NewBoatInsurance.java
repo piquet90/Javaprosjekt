@@ -9,12 +9,14 @@ import CustomSwing.CustomButton;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
+import DAO.Constants;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JComboBox;
+import views.CustomEvent;
 import views.CustomListener;
 
 /**
@@ -24,31 +26,29 @@ import views.CustomListener;
 
 public class NewBoatInsurance extends CustomPanel {
     
-    private CustomTextField boatOwner, regNr, model, length, regYear, engineType, horsepower, premium, amount, conditions;
+    private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private JComboBox<String> type;
     private int n = 0;
     private CustomListener listener;
-    
+
     
     /**
-     * Method that initializes the GUI components
+     * NewBoatInsurance constructor
      */
-    public void initComponents()
+    public NewBoatInsurance()
     {
         boatOwner = new CustomTextField(17);
-        boatOwner.setEditable(false);
-        boatOwner.setText("Satt til valgt kunde");
         regNr = new CustomTextField(9);
         model = new CustomTextField(17);
-        regYear = new CustomTextField(6);
         engineType = new CustomTextField(10);
         horsepower = new CustomTextField(6);
         length = new CustomTextField(6);
         premium = new CustomTextField(5);
         amount = new CustomTextField(5);
         conditions = new CustomTextField(15);
+        modelYear = new CustomTextField(5);
         
         submit = new CustomButton("Registrer");
         
@@ -59,14 +59,8 @@ public class NewBoatInsurance extends CustomPanel {
         type.setFont(new Font("DejaVu Sans", Font.PLAIN, 15));
         type.addActionListener((e)-> n = type.getSelectedIndex());
         type.setBackground(new Color(250, 250, 250));
-    }
-    
-    /**
-     * NewBoatInsurance constructor
-     */
-    public NewBoatInsurance()
-    {
-        initComponents();
+        
+        
         setLayout(new GridBagLayout());
         
         gbc = new GridBagConstraints();
@@ -90,9 +84,6 @@ public class NewBoatInsurance extends CustomPanel {
         add(new CustomLabel("Modell: "), gbc);
         
         gbc.gridy++;
-        add(new CustomLabel("Reg. år: "), gbc);
-        
-        gbc.gridy++;
         add(new CustomLabel("Motortype: "), gbc);
         
         gbc.gridy++;
@@ -100,6 +91,9 @@ public class NewBoatInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(new CustomLabel("Lengde (i fot): "), gbc);
+        
+        gbc.gridy++;
+        add(new CustomLabel("Årsmodell:"), gbc);
         
         gbc.gridy++;
         add(new CustomLabel("Forsikringspremie: "), gbc);
@@ -128,9 +122,6 @@ public class NewBoatInsurance extends CustomPanel {
         add(model, gbc);
         
         gbc.gridy++;
-        add(regYear, gbc);
-        
-        gbc.gridy++;
         add(engineType, gbc);
         
         gbc.gridy++;
@@ -138,6 +129,9 @@ public class NewBoatInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(length, gbc);
+        
+        gbc.gridy++;
+        add(modelYear, gbc);
         
         gbc.gridy++;
         add(premium, gbc);
@@ -150,6 +144,8 @@ public class NewBoatInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(submit, gbc);
+        
+        submit.addActionListener((e) ->{listener.customActionPerformed(new CustomEvent(Constants.BOAT_INSURANCE_INT));});
         
     }
     
@@ -195,14 +191,10 @@ public class NewBoatInsurance extends CustomPanel {
         return length.getText();
     }
 
-    /**
-     * Returns the registration year the user has written in register year-field
-     * @return the year the boat was registered
-     */
-    public String getRegYear() {
-        return regYear.getText();
+    public String getModelYear()
+    {
+        return modelYear.getText();
     }
-
     /**
      * Returns the engine type the user has written in engine type-field
      * @return a boat engine type

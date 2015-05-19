@@ -17,11 +17,39 @@ import java.util.Calendar;
  */
 public class BoatInsurance extends VehicleInsurance{
 
+    private String engineType;
+    private int modelYear, length;
+
+    public int getModelYear() {
+        return modelYear;
+    }
+
+    public void setModelYear(int modelYear) {
+        this.modelYear = modelYear;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public String getEngineType() {
+        return engineType;
+    }
+
+    public void setEngineType(String engineType) {
+        this.engineType = engineType;
+    }
     
     public String getType()
     {
         return Constants.BOAT_INSURANCE;
     }
+    
+    
 
 
     

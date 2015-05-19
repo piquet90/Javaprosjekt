@@ -77,22 +77,15 @@ public class RegistrationController implements CustomListener{
             
             Customer c = new Customer(fornavn, etternavn, adresse, poststed, postnr);
             m = new CustomerModel(registries);
-            if(m.newCustomer(c))
-            {
-                mc.vcController.update();
-                regCustomerView.clearAll();
-                regCustomerView.showError("Bruker registert. \n\n"+
-                        "Fornavn: "+fornavn+"\n"+
-                        "Etternavn: "+etternavn+"\n"+
-                        "Adresse: "+adresse+"\n"+
-                        "Poststed: "+poststed+"\n"+
-                        "Postnummer: "+postnr);
-                
-            }
-            else
-                regCustomerView.showError(Constants.GENERAL_ERROR_MESSAGE);
-            
-            
+            mc.vcController.update();
+            regCustomerView.clearAll();
+            regCustomerView.showError("Bruker registert. \n\n"+
+                    "Fornavn: "+fornavn+"\n"+
+                    "Etternavn: "+etternavn+"\n"+
+                    "Adresse: "+adresse+"\n"+
+                    "Poststed: "+poststed+"\n"+
+                    "Postnummer: "+postnr);
+  
         }
     }  // end of register()
     

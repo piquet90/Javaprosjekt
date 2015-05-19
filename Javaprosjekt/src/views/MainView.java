@@ -42,7 +42,7 @@ public class MainView extends JFrame implements View{
     
     public MainView() 
     {
-        super("Insurance Co. ver=Alpha");
+        super(Constants.APP_NAME);
         
         setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         setVisible(true);
