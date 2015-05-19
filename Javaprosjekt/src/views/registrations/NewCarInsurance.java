@@ -66,7 +66,7 @@ public class NewCarInsurance extends CustomPanel {
         
         
         submit = new CustomButton("Registrer");
-        delete = new CustomButton2("Slett forsikring");
+        delete = new CustomButton2("Avslutt forsikring");
         delete.setVisible(false);
         
         

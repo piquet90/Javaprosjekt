@@ -56,7 +56,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         
         lease = new CustomCheckBox("");
         
-        delete = new CustomButton2("Slett forsikring");
+        delete = new CustomButton2("Avslutt forsikring");
         submit = new CustomButton("Registrer");
         
         setLayout(new GridBagLayout());

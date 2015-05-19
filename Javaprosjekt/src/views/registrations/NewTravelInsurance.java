@@ -60,7 +60,7 @@ public class NewTravelInsurance extends CustomPanel {
         
         
         submit = new CustomButton("Registrer");
-        delete = new CustomButton2("Slett forsikring");
+        delete = new CustomButton2("Avslutt forsikring");
         delete.setVisible(false);
         
         setLayout(new GridBagLayout());

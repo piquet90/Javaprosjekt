@@ -50,7 +50,7 @@ public class NewHouseInsurance extends CustomPanel {
         premium = new CustomTextField(5);
         conditions = new CustomTextField(18);
 
-        delete = new CustomButton2("Slett forsikring");
+        delete = new CustomButton2("Avslutt forsikring");
         delete.setVisible(false);
         submit = new CustomButton("Registrer");
         
