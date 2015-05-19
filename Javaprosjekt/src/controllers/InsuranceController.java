@@ -122,7 +122,11 @@ public class InsuranceController implements CustomListener{
         if(!carInsurance.getBonus().matches(Constants.ONLY_NUMBERS)||Integer.parseInt(carInsurance.getBonus())>75)
             s+="Bonus";
         if(!s.equals(""))
+        {
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
+            return;
+        }
+            
         else
         {
             CarInsurance insurance = new CarInsurance();
@@ -146,9 +150,12 @@ public class InsuranceController implements CustomListener{
                 int next = Insurance.getNext() - 1;
                 Insurance.setNext(next);
             }
+            else {
+                carInsurance.clearFields();
+            }
                 
             imodel.addInsurance(insurance);
-            carInsurance.clearFields();
+            
             mc.ncController.refresh();
             success();
         }
@@ -365,8 +372,10 @@ public class InsuranceController implements CustomListener{
         carInsurance.setHorsepower(Integer.toString(ins.getPower()));
         carInsurance.setRegYear(Integer.toString(ins.getRegistrationYear()));
         carInsurance.setKmPerYear(Integer.toString(ins.getKmPerYear()));
+        carInsurance.setPricePerKm(Double.toString(ins.getPricePrKm()));
         carInsurance.setPremium(Double.toString(ins.getPrice()));
         carInsurance.setConditions(ins.getConditions());
+        carInsurance.setBonus(Integer.toString(ins.getBonus()));
         carInsurance.setAmount(Double.toString(ins.getCoverage()));
         
         

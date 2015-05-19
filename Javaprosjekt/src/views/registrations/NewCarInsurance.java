@@ -27,6 +27,8 @@ import views.CustomListener;
 public class NewCarInsurance extends CustomPanel {
     
     private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus, ctype;
+
+
     private String[] carTypes = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
                       "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
     private JComboBox<String> carType;
@@ -68,10 +70,20 @@ public class NewCarInsurance extends CustomPanel {
         
         SEbtn = new CustomButton("Registrer");
         SEbtn.addActionListener((e) -> {
-                if(edit)           
+                if(!viewMode)
+                {
                     listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+                }
+                else if(edit)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+                    change();
+                }
+                else {
+                    change();
+                }
 
-                change();
+                
         });
         
         delete = new CustomButton2("Slett forsikring");
@@ -284,7 +296,7 @@ public class NewCarInsurance extends CustomPanel {
      * @param ppkm price in NOK per kilometer driven
      */
     public void setPricePerKm(String ppkm) {
-        kmPerYear.setText(ppkm);
+        pricePerKm.setText(ppkm);
     }
     
     /**
@@ -397,6 +409,16 @@ public class NewCarInsurance extends CustomPanel {
      */
     public String getConditions() {
         return conditions.getText();
+    }
+    
+    
+    
+    /**
+     * Sets insurance bonus textfield
+     * @param bonus String to be inserted
+     */
+    public void setBonus(String bonus) {
+        this.bonus.setText(bonus);
     }
 
     
