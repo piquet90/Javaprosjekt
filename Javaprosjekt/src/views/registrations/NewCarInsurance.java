@@ -360,7 +360,10 @@ public class NewCarInsurance extends CustomPanel {
      * @return a car type
      */
     public String getCarType() {
-        return carType.getItemAt(n);
+        if(viewMode)
+            return ctype.getText();
+        else
+            return carType.getItemAt(n);
     }
     
     /**
@@ -395,6 +398,7 @@ public class NewCarInsurance extends CustomPanel {
     public String getConditions() {
         return conditions.getText();
     }
+
     
     /**
      * Clears all fields
