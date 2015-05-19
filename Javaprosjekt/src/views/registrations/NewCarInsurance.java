@@ -428,7 +428,7 @@ public class NewCarInsurance extends CustomPanel {
             premium.setEditable(true);
             amount.setEditable(true);
             conditions.setEditable(true);
-            kmPerYear.setEditable(true);
+            pricePerKm.setEditable(true);
             bonus.setEditable(true);
             
             SEbtn.setText("Lagre");
@@ -439,6 +439,7 @@ public class NewCarInsurance extends CustomPanel {
             carOwner.setEditable(false);
             ctype.setEditable(false);
             kmPerYear.setEditable(false);
+            pricePerKm.setEditable(false);
             premium.setEditable(false);
             amount.setEditable(false);
             conditions.setEditable(false);

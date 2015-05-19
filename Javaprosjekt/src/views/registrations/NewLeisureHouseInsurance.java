@@ -6,12 +6,12 @@
 package views.registrations;
 
 import CustomSwing.CustomButton;
+import CustomSwing.CustomButton2;
 import CustomSwing.CustomCheckBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import DAO.Constants;
-import controllers.CustomerController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -25,12 +25,13 @@ import views.CustomListener;
 
 public class NewLeisureHouseInsurance extends CustomPanel {
     
-    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions;
+    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions, leaseb;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomCheckBox lease;
-    private CustomerController controller;
-    
+    private CustomButton2 delete;
+    private boolean viewMode = false;
+    private boolean edit = false;
     private CustomListener listener;
     
     
@@ -50,10 +51,14 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         premium = new CustomTextField(5);
         conditions = new CustomTextField(15);
         
+        leaseb = new CustomTextField(5);
+        leaseb.setVisible(false);
+        
         lease = new CustomCheckBox("");
         
+        delete = new CustomButton2("Slett forsikring");
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> {listener.customActionPerformed(new CustomEvent(Constants.LEISUREHOUSE_INSURANCE_INT));});
+        
         setLayout(new GridBagLayout());
 
         gbc = new GridBagConstraints();
@@ -133,10 +138,42 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(lease, gbc);
+        add(leaseb, gbc);
         
         gbc.gridy++;
         add(submit, gbc);
         
+        
+        submit.addActionListener((e) -> {listener.customActionPerformed(new CustomEvent(Constants.LEISUREHOUSE_INSURANCE_INT));});
+        delete.addActionListener((e) -> System.out.println("Slett"));
+        
+    }
+    
+    /**
+     * Changes text-fields to uneditable if panel is used for viewing
+     */
+    public void setViewMode()
+    {
+        adress.setEditable(false);
+        yearBuilt.setEditable(false);
+        type.setEditable(false);
+        material.setEditable(false);
+        standard.setEditable(false);
+        houseSize.setEditable(false);
+        amountBuilding.setEditable(false);
+        amountContents.setEditable(false);
+        premium.setEditable(false);
+        conditions.setEditable(false);
+        leaseb.setEditable(false);
+        
+        lease.setVisible(false);
+        leaseb.setVisible(true);
+        
+        
+        submit.setText("Endre");
+        delete.setVisible(true);
+        
+        viewMode = true;
     }
 
     /**
@@ -231,6 +268,136 @@ public class NewLeisureHouseInsurance extends CustomPanel {
      */
     public boolean getLease() {
         return lease.isSelected();
+    }
+    
+    /**
+     * Sets the house adress in the adress-field
+     * @param a house adress
+     */
+    public void setAdress(String a) {
+        adress.setText(a);
+    }
+
+    /**
+     * Sets the houses year of construction in the construction year-field
+     * @param y house year of construction
+     */
+    public void setYearBuilt(String y) {
+        yearBuilt.setText(y);
+    }
+
+    /**
+     * Sets the house type in the type-field
+     * @param t house type
+     */
+    public void setType(String t) {
+        type.setText(t);
+    }
+
+    /**
+     * Sets the house building material in the material-field
+     * @param m house material
+     */
+    public void setMaterial(String m) {
+        material.setText(m);
+    }
+
+    /**
+     * Set the house standard in the standard-field
+     * @param s house standard
+     */
+    public void setStandard(String s) {
+        standard.setText(s);
+    }
+
+    /**
+     * Sets the house size in the size-field
+     * @param hs house size in square meters
+     */
+    public void setHouseSize(String hs) {
+        houseSize.setText(hs);
+    }
+
+    /**
+     * Sets the insurance amount for the building in the amount building-field
+     * @param ab insurance amount in NOK for the construction
+     */
+    public void setAmountBuilding(String ab) {
+        amountBuilding.setText(ab);
+    }
+
+    /**
+     * Sets the insurance amount for the contents in the amount contents-field
+     * @param ac insurance amount in NOK for the house contents
+     */
+    public void setAmountContents(String ac) {
+        amountContents.setText(ac);
+    }
+    
+    /**
+     * Sets the lease-status in the lease-field
+     * @param l lease (true/false)
+     */
+    public void setLease(String l) {
+        lease.setText(l);
+    }
+    
+    /**
+     * Sets the insurance premium amount in the premium-field
+     * @param p insurance premium in NOK
+     */
+    public void setPremium(String p) {
+        premium.setText(p);
+    }
+    
+    /**
+     * Sets the insurance conditions in the conditions-field
+     * @param c insurance conditions
+     */
+    public void setConditions(String c)
+    {
+        conditions.setText(c);
+    }
+    
+    /**
+     * Method makes textfields editable and passes the changed information to registry
+     */
+    public void change()
+    {
+        if(!edit) {
+            adress.setEditable(true);
+            yearBuilt.setEditable(true);
+            type.setEditable(true);
+            material.setEditable(true);
+            standard.setEditable(true);
+            houseSize.setEditable(true);
+            amountBuilding.setEditable(true);
+            amountContents.setEditable(true);
+            premium.setEditable(true);
+            conditions.setEditable(true);
+            leaseb.setEditable(true);
+            
+            submit.setText("Lagre");
+            
+            edit = true;  
+        }
+        else {
+            adress.setEditable(false);
+            yearBuilt.setEditable(false);
+            type.setEditable(false);
+            material.setEditable(false);
+            standard.setEditable(false);
+            houseSize.setEditable(false);
+            amountBuilding.setEditable(false);
+            amountContents.setEditable(false);
+            premium.setEditable(false);
+            conditions.setEditable(false);
+            leaseb.setEditable(false);
+            
+            submit.setText("Endre");
+            
+            edit = false;
+        } 
     }
     
     /**
