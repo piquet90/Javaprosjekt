@@ -48,7 +48,6 @@ public class MainController extends Controller {
         // init main view and controller
         
         view = f;
-        view.initComponents();
         view.addController(this);
         
         

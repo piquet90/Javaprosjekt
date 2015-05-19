@@ -20,7 +20,7 @@ import java.awt.Component;
 import java.awt.Container;
 import javax.swing.table.JTableHeader;
 
-public class MainView extends JFrame implements View{
+public class MainView extends JFrame{
     
     private JScrollPane scroll;
     
@@ -33,12 +33,7 @@ public class MainView extends JFrame implements View{
     /**
      * Initalizes components
      */
-    public void initComponents()
-    {    
-        Container c = getContentPane();
-        c.setLayout(new BorderLayout());
-        c.setVisible(true);
-    }
+
     
     /**
      * MainViews constructor
