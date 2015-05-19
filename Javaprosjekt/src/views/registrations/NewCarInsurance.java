@@ -32,7 +32,6 @@ public class NewCarInsurance extends CustomPanel {
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 delete;
-    private int n = 0;
     private boolean edit = false;
     private boolean viewMode = false;
     private CustomListener listener;
@@ -64,7 +63,6 @@ public class NewCarInsurance extends CustomPanel {
         
         carType = new JComboBox<>(carTypes);
         carType.setFont(new Font("Arial", Font.PLAIN, 15));
-        carType.addActionListener((e)-> n = carType.getSelectedIndex());
         
         
         submit = new CustomButton("Registrer");
@@ -390,14 +388,16 @@ public class NewCarInsurance extends CustomPanel {
     }
     
     /**
-     * Returns the type of car the user has chosen from the dropdown menu
+     * Returns the type of car the user has chosen from the dropdown menu or from the text-field if the panel is in viewmode
      * @return a car type
      */
     public String getCarType() {
         if(viewMode)
             return carTypeField.getText();
         else
-            return carType.getItemAt(n);
+        {
+            return carType.getItemAt(carType.getSelectedIndex());
+        }   
     }
     
     /**
