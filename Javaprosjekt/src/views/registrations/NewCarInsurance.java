@@ -6,6 +6,7 @@
 package views.registrations;
 
 import CustomSwing.CustomButton;
+import CustomSwing.CustomButton2;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
@@ -26,20 +27,25 @@ import views.CustomListener;
 
 public class NewCarInsurance extends CustomPanel {
     
-    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus;
+    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus, ctype;
+    private String[] carTypes = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
+                      "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
     private JComboBox<String> carType;
     private GridBagConstraints gbc;
-    private CustomButton submit;
+    private CustomButton SEbtn;
+    private CustomButton2 delete;
     private int n = 0;
+    private boolean edit = false;
     private CustomListener listener;
     
     /**
-     * Method that initalizes the GUI components
+     * NyBilforsikring constructor
      */
-    public void initComponents()
+    public NewCarInsurance()
     {
         carOwner = new CustomTextField(17);
         regNr = new CustomTextField(9);
+        
         model = new CustomTextField(17);
         horsepower = new CustomTextField(6);
         regYear = new CustomTextField(6);
@@ -50,29 +56,30 @@ public class NewCarInsurance extends CustomPanel {
         conditions = new CustomTextField(15);
         bonus = new CustomTextField(6);
         
-        String[] t = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
-                      "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
+        ctype = new CustomTextField(15);
+        ctype.setVisible(false);
         
-        carType = new JComboBox<>(t);
+        
+        
+        carType = new JComboBox<>(carTypes);
         carType.setFont(new Font("Arial", Font.PLAIN, 15));
         carType.addActionListener((e)-> n = carType.getSelectedIndex());
         
         
-        submit = new CustomButton("Registrer");
-        submit.addActionListener((e) ->{listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));});
-    }
-    
-    
-    /**
-     * NyBilforsikring constructor
-     */
-    public NewCarInsurance()
-    {
-        initComponents();
+        SEbtn = new CustomButton("Registrer");
+        SEbtn.addActionListener((e) -> change());
+        
+        delete = new CustomButton2("Slett forsikring");
+        delete.setVisible(false);
+        delete.addActionListener((e) -> System.out.println("f"));
+        
+        
         setLayout(new GridBagLayout());
 
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 5, 0, 5);
+        gbc.weighty = 1;
+        gbc.weightx = 1;
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
@@ -127,6 +134,7 @@ public class NewCarInsurance extends CustomPanel {
         gbc.gridy++;
         gbc.gridwidth = 2;
         add(carType, gbc);
+        add(ctype, gbc);
         
         gbc.gridy++;
         gbc.gridwidth = 1;
@@ -157,8 +165,45 @@ public class NewCarInsurance extends CustomPanel {
         add(bonus, gbc);
         
         gbc.gridy++;
-        add(submit, gbc);
+        add(SEbtn, gbc);
         
+        gbc.gridx++;
+        add(delete, gbc);
+        
+    }
+    
+    /**
+     * Changes text-fields to uneditable if panel is used for viewing
+     */
+    public void setViewMode()
+    {
+        carOwner.setEditable(false);
+        regNr.setEditable(false);
+        ctype.setEditable(false);
+        model.setEditable(false);
+        horsepower.setEditable(false);
+        regYear.setEditable(false);
+        kmPerYear.setEditable(false);
+        pricePerKm.setEditable(false);
+        premium.setEditable(false);
+        amount.setEditable(false);
+        conditions.setEditable(false);
+        bonus.setEditable(false);
+        
+        SEbtn.setText("Endre");
+        delete.setVisible(true);
+        carType.setVisible(false);
+        ctype.setVisible(true);
+        
+    }
+    
+    /**
+     * Sets the car type in the car type-dropdown
+     * @param t car type
+     */
+    public void setCarType(String t)
+    {
+        ctype.setText(t);
     }
     
     /**
@@ -184,6 +229,81 @@ public class NewCarInsurance extends CustomPanel {
      */
     public String getRegNr() {
         return regNr.getText();
+    }
+    
+    /**
+     * Method that sets the registration number in the registration number-field
+     * @param nr cars registration number
+     */
+    public void setRegNr(String nr)
+    {
+        regNr.setText(nr);
+    }
+    
+    /**
+     * Sets the cars model in the car model-field
+     * @param m cars model
+     */
+    public void setModel(String m) {
+        model.setText(m);
+    }
+
+    /**
+     * Sets the cars horsepower in the horsepower-field
+     * @param hp cars horsepower
+     */
+    public void setHorsepower(String hp) {
+        horsepower.setText(hp);
+    }
+
+    /**
+     * Sets the cars registered year in the registered year-field
+     * @param y cars register year
+     */
+    public void setRegYear(String y) {
+        regYear.setText(y);
+    }
+
+    /**
+     * Sets the kilometer driven per year in the km per year-field
+     * @param km kilometer per year
+     */
+    public void setKmPerYear(String km) {
+        kmPerYear.setText(km);
+    }
+    
+    /**
+     * Sets the price per kilometer in the price pr km-field
+     * @param ppkm price in NOK per kilometer driven
+     */
+    public void setPricePerKm(String ppkm) {
+        kmPerYear.setText(ppkm);
+    }
+    
+    /**
+     * Sets the insurance premium amount in the premium-field
+     * @param p insurance premium in NOK
+     */
+    public void setPremium(String p) {
+        premium.setText(p);
+    }
+    
+    /**
+     * Sets the insurance amount in the amount-field
+     * @param a insurance amount
+     */
+    public void setAmount(String a)
+    {
+        amount.setText(a);
+    }
+    
+    /**
+     * Sets the insurance conditions in the conditions-field
+     * @param c insurance conditions
+     */
+    public void setConditions(String c)
+    {
+        conditions.setText(c);
     }
     
     
@@ -270,6 +390,7 @@ public class NewCarInsurance extends CustomPanel {
     }
     
     
+
     public void clearFields()
     {
         
@@ -285,6 +406,41 @@ public class NewCarInsurance extends CustomPanel {
         bonus.setText("");
    
     }
+
+    /**
+     * Method makes textfields editable and passes the changed information to registry
+     */
+    public void change()
+    {
+        if(!edit) {
+            carOwner.setEditable(true);
+            kmPerYear.setEditable(true);
+            premium.setEditable(true);
+            amount.setEditable(true);
+            conditions.setEditable(true);
+            kmPerYear.setEditable(true);
+            bonus.setEditable(true);
+            
+            SEbtn.setText("Lagre");
+            
+            edit = true;  
+        }
+        else {
+            carOwner.setEditable(false);
+            ctype.setEditable(false);
+            kmPerYear.setEditable(false);
+            premium.setEditable(false);
+            amount.setEditable(false);
+            conditions.setEditable(false);
+            bonus.setEditable(false);
+            
+            SEbtn.setText("Endre");
+            
+            edit = false;
+        } 
+    }
+    
+
     /**
      * Method that connect controllers listener to the panel
      * @param l Custom listener
