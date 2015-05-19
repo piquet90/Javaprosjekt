@@ -111,16 +111,12 @@ public class InsuranceController implements CustomListener{
             s+="Biltype\n";
         if(carInsurance.getModel().equals(""))
             s+="Modell\n";
-        if(!carInsurance.getHorsepower().matches(Constants.ONLY_NUMBERS))
-            s+="Effekt(i hk)\n";
-        if(!carInsurance.getRegYear().matches(Constants.ONLY_NUMBERS))
-            s+="Registreringsår\n";
-        if(!carInsurance.getKmPerYear().matches(Constants.ONLY_NUMBERS))
-            s+="Km. per år\n";
-        if(!carInsurance.getPricePerKm().matches(Constants.ONLY_NUMBERS))
-            s+="Pris pr. Km\n";
-        if(!carInsurance.getBonus().matches(Constants.ONLY_NUMBERS)||Integer.parseInt(carInsurance.getBonus())>75)
-            s+="Bonus";
+        s += validateInt(carInsurance.getHorsepower(), "Effekt(i hk)");
+        s += validateInt(carInsurance.getRegYear(), "Registreringsår\n");
+        s += validateDouble(carInsurance.getKmPerYear(), "Km. per år\n");
+        s += validateDouble(carInsurance.getPricePerKm(), "Pris pr. Km\n");
+        s += validateInt(carInsurance.getBonus(), "Bonus");
+                
         if(!s.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
@@ -358,6 +354,30 @@ public class InsuranceController implements CustomListener{
         
     }// end of customActionPerformed
     
+    private String validateInt(String s, String err)
+    {
+        try
+        {
+            Integer.parseInt(s);
+            return "";
+        }
+        catch(NumberFormatException e)
+        {
+            return err;
+        }
+    }
+    private String validateDouble(String s, String err)
+    {
+        try
+        {
+            Double.parseDouble(s);
+            return "";
+        }
+        catch(NumberFormatException e)
+        {
+            return err;
+        }
+    }
     private void viewCarInsurance(CarInsurance ins)
     {
         carInsurance = new NewCarInsurance();
