@@ -27,8 +27,16 @@ public class CarInsuranceView extends CustomPanel {
     
     private CustomListener listener;
     
-    public void initComponents()
+
+
+   /**
+    * CarInsuranceViews constructor
+    */
+    public CarInsuranceView()
+
     {
+        setLayout(new GridBagLayout());
+        
         carOwner = new CustomTextField(17);
         carOwner.setEditable(false);
         type = new CustomTextField(15);
@@ -52,12 +60,6 @@ public class CarInsuranceView extends CustomPanel {
         
         change = new CustomButton2("Endre");
         change.addActionListener((e) -> change());
-    }
-    
-    public CarInsuranceView()
-    {
-        initComponents();
-        setLayout(new GridBagLayout());
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
@@ -92,7 +94,7 @@ public class CarInsuranceView extends CustomPanel {
         add(new CustomLabel("Forsikringspremie: "), gbc);
 
         gbc.gridy++;
-        add(new CustomLabel("Forsikringsbeløp: "), gbc);        
+        add(new CustomLabel("Forsikringsbeløp: "), gbc);
 
         gbc.gridy++;
         add(new CustomLabel("Betingelser: "), gbc);
@@ -189,6 +191,14 @@ public class CarInsuranceView extends CustomPanel {
      */
     public void setKmPerYear(String km) {
         kmPerYear.setText(km);
+    }
+    
+    /**
+     * Sets the price per kilometer in the price pr km-field
+     * @param ppkm price in NOK per kilometer driven
+     */
+    public void setPricePerKm(String ppkm) {
+        kmPerYear.setText(ppkm);
     }
     
     /**
