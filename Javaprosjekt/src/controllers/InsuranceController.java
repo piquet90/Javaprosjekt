@@ -43,7 +43,6 @@ public class InsuranceController implements CustomListener{
     private NewTravelInsurance travelInsurance;
     
     
-    private CarInsuranceView carView;
     
     private int id;
     
@@ -140,7 +139,14 @@ public class InsuranceController implements CustomListener{
             insurance.setCoverage(Double.parseDouble(carInsurance.getAmount()));
             insurance.setBonus(Integer.parseInt(carInsurance.getBonus())); // done
             insurance.setConditions(carInsurance.getConditions());
-
+            
+            if(carInsurance.isViewMode())
+            {
+                insurance.setId(id);
+                int next = Insurance.getNext() - 1;
+                Insurance.setNext(next);
+            }
+                
             imodel.addInsurance(insurance);
             carInsurance.clearFields();
             mc.ncController.refresh();
@@ -347,24 +353,25 @@ public class InsuranceController implements CustomListener{
     
     private void viewCarInsurance(CarInsurance ins)
     {
-        carView = new CarInsuranceView();
-        carView.addCustomListener(this);
+        carInsurance = new NewCarInsurance();
+        carInsurance.addCustomListener(this);
         
-        carView.setCarOwner(ins.getViechleOwner());
-        carView.setRegNr(ins.getRegistrationNumber());
-        carView.setType(ins.getCarType());
-        carView.setModel(ins.getModel());
-        carView.setHorsepower(Integer.toString(ins.getPower()));
-        carView.setRegYear(Integer.toString(ins.getRegistrationYear()));
-        carView.setKmPerYear(Integer.toString(ins.getKmPerYear()));
-        carView.setPremium(Double.toString(ins.getPrice()));
-        carView.setConditions(ins.getConditions());
-        carView.setAmount(Double.toString(ins.getCoverage()));
+        carInsurance.setViewMode();
+        
+        carInsurance.setCarOwner(ins.getViechleOwner());
+        carInsurance.setRegNr(ins.getRegistrationNumber());
+        carInsurance.setCarType(ins.getCarType());
+        carInsurance.setModel(ins.getModel());
+        carInsurance.setHorsepower(Integer.toString(ins.getPower()));
+        carInsurance.setRegYear(Integer.toString(ins.getRegistrationYear()));
+        carInsurance.setKmPerYear(Integer.toString(ins.getKmPerYear()));
+        carInsurance.setPremium(Double.toString(ins.getPrice()));
+        carInsurance.setConditions(ins.getConditions());
+        carInsurance.setAmount(Double.toString(ins.getCoverage()));
         
         
         
-        
-        mc.popUp("CarInsurance", carView);
+        mc.popUp("CarInsurance", carInsurance);
     }
     
     

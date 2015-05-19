@@ -69,12 +69,10 @@ public class NewCarInsurance extends CustomPanel {
         
         SEbtn = new CustomButton("Registrer");
         SEbtn.addActionListener((e) -> {
-                
-            if(viewMode)
+                if(edit)           
+                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+
                 change();
-            else
-                listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
-        
         });
         
         delete = new CustomButton2("Slett forsikring");
@@ -459,5 +457,13 @@ public class NewCarInsurance extends CustomPanel {
     public void addCustomListener(CustomListener l)
     {
         this.listener = l;
+    }
+
+    public boolean isViewMode() {
+        return viewMode;
+    }
+
+    public void setViewMode(boolean viewMode) {
+        this.viewMode = viewMode;
     }
 }
