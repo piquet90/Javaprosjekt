@@ -11,6 +11,13 @@ package DAO;
  */
 public class Constants {
     
+    public static final int TOTALCUSTOMER_REQUIRMENT = 3;
+    
+    
+    
+    
+    
+    
     /**
      *
      */
@@ -56,7 +63,8 @@ public class Constants {
     // regexs
     
     public static final String ONLY_ALPHABETIC = "^[Ê¯Â∆ÿ≈a-zA-Z]+$";
-    public static final String ONLY_NUMBERS = "^[0-9]+$";
+
+    public static final String ONLY_NUMBERS = "^(0\\.[1-9]|[1-9][0-9]{0,2}(\\.[1-9])?)$";
     public static final String AREA_CODE = "^[0-9]{4}$";
 
     

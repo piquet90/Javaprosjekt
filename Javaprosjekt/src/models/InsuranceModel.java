@@ -6,6 +6,8 @@
 package models;
 
 import DAO.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import models.objects.insurances.*;
@@ -16,11 +18,13 @@ import models.objects.insurances.*;
 public class InsuranceModel {
     
     HashSet<Insurance> insurances;
+    CustomerModel customers;
     
     // todo: write comments
     public InsuranceModel(Registries r)
     {
         this.insurances = r.getInsurances();
+        this.customers = new CustomerModel(r);
     }
     
     public Insurance findById(int id)
@@ -53,6 +57,23 @@ public class InsuranceModel {
     
     public void addInsurance(Insurance i)
     {
+        HashSet<Insurance> ins = findByOwnerId(i.getOwnerId());
+        
+        Count<Object, Integer> result = new Count<>();
+        
+        Iterator<Insurance> it = ins.iterator();
+        
+        while(it.hasNext())
+        {
+            result.add(it.next().getType());
+        }
+        
+        if(result.size()>=Constants.TOTALCUSTOMER_REQUIRMENT)
+        {
+            Customer c = customers.findById(i.getOwnerId());
+            c.setTotalCustomer(true);
+        }
+      
         insurances.add(i);
     }
     
@@ -69,5 +90,11 @@ public class InsuranceModel {
             }
         }
         return  result;
+    }
+    private class Count<K, V> extends HashMap{
+        public void add(K o) {
+            int count = this.containsKey(o) ? ((Integer)this.get(o)).intValue() + 1 : 1;
+            super.put(o, (V) new Integer(count));
+        }
     }
 }

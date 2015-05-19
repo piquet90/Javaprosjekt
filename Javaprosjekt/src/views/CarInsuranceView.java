@@ -25,10 +25,15 @@ public class CarInsuranceView extends CustomPanel {
     private boolean edit = false;
     
     
+    private CustomListener listener;
+    
+
+
    /**
     * CarInsuranceViews constructor
     */
     public CarInsuranceView()
+
     {
         setLayout(new GridBagLayout());
         
@@ -270,5 +275,15 @@ public class CarInsuranceView extends CustomPanel {
             
             edit = false;
         } 
+    }
+    
+    /**
+     * Add a CustomListener
+     * 
+     * @param listener
+     */
+    public void addCustomListener(CustomListener listener)
+    {
+        this.listener = listener;
     }
 }

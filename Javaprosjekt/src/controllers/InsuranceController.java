@@ -18,8 +18,10 @@ import models.InsuranceModel;
 import models.objects.insurances.BoatInsurance;
 import models.objects.insurances.CarInsurance;
 import models.objects.insurances.HouseInsurance;
+import models.objects.insurances.Insurance;
 import models.objects.insurances.LeisureHouseInsurance;
 import models.objects.insurances.TravelInsurance;
+import views.CarInsuranceView;
 import views.CustomEvent;
 import views.CustomListener;
 import views.registrations.*;
@@ -39,6 +41,9 @@ public class InsuranceController implements CustomListener{
     private NewHouseInsurance houseInsurance;
     private NewLeisureHouseInsurance leisureHouseInsurance;
     private NewTravelInsurance travelInsurance;
+    
+    
+    private CarInsuranceView carView;
     
     private int id;
     
@@ -107,13 +112,15 @@ public class InsuranceController implements CustomListener{
             s+="Biltype\n";
         if(carInsurance.getModel().equals(""))
             s+="Modell\n";
+        if(!carInsurance.getHorsepower().matches(Constants.ONLY_NUMBERS))
+            s+="Effekt(i hk)\n";
         if(!carInsurance.getRegYear().matches(Constants.ONLY_NUMBERS))
             s+="Registreringsår\n";
         if(!carInsurance.getKmPerYear().matches(Constants.ONLY_NUMBERS))
             s+="Km. per år\n";
         if(!carInsurance.getPricePerKm().matches(Constants.ONLY_NUMBERS))
             s+="Pris pr. Km\n";
-        if(!carInsurance.getBonus().matches(Constants.ONLY_NUMBERS))
+        if(!carInsurance.getBonus().matches(Constants.ONLY_NUMBERS)||Integer.parseInt(carInsurance.getBonus())>75)
             s+="Bonus";
         if(!s.equals(""))
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
@@ -123,14 +130,19 @@ public class InsuranceController implements CustomListener{
             insurance.setOwnerId(id);
             insurance.setViechleOwner(carInsurance.getCarOwner());//done
             insurance.setRegistrationNumber(carInsurance.getRegNr());//done
-            insurance.setType(carInsurance.getCarType());//done
+            insurance.setCarType(carInsurance.getCarType());//done
             insurance.setModel(carInsurance.getModel());
+            insurance.setPower(Integer.parseInt(carInsurance.getHorsepower()));
             insurance.setRegistrationYear(Integer.parseInt(carInsurance.getRegYear()));//done
-            insurance.setKmDriven(Integer.parseInt(carInsurance.getKmPerYear()));//done
-            insurance.setPrice(Integer.parseInt(carInsurance.getPricePerKm()));//done
+            insurance.setKmPerYear(Integer.parseInt(carInsurance.getKmPerYear()));//done
+            insurance.setPricePrKm(Double.parseDouble(carInsurance.getPricePerKm()));//done
+            insurance.setPrice(Double.parseDouble(carInsurance.getPremium()));
+            insurance.setCoverage(Double.parseDouble(carInsurance.getAmount()));
             insurance.setBonus(Integer.parseInt(carInsurance.getBonus())); // done
+            insurance.setConditions(carInsurance.getConditions());
 
             imodel.addInsurance(insurance);
+            carInsurance.clearFields();
             mc.ncController.refresh();
             success();
         }
@@ -332,5 +344,41 @@ public class InsuranceController implements CustomListener{
             registerTravel();
         
     }// end of customActionPerformed
+    
+    private void viewCarInsurance(CarInsurance ins)
+    {
+        carView = new CarInsuranceView();
+        carView.addCustomListener(this);
+        
+        carView.setCarOwner(ins.getViechleOwner());
+        carView.setRegNr(ins.getRegistrationNumber());
+        carView.setType(ins.getCarType());
+        carView.setModel(ins.getModel());
+        carView.setHorsepower(Integer.toString(ins.getPower()));
+        carView.setRegYear(Integer.toString(ins.getRegistrationYear()));
+        carView.setKmPerYear(Integer.toString(ins.getKmPerYear()));
+        carView.setPremium(Double.toString(ins.getPrice()));
+        carView.setConditions(ins.getConditions());
+        carView.setAmount(Double.toString(ins.getCoverage()));
+        
+        
+        
+        
+        mc.popUp("CarInsurance", carView);
+    }
+    
+    
+    
+    public void viewInsurance(int id) {
+        Insurance ins = imodel.findById(id);
+        
+        if(ins!=null)
+        {
+            if(ins instanceof CarInsurance)
+            {
+                viewCarInsurance((CarInsurance)ins);
+            }
+        }
+    }
     
 }// end of class

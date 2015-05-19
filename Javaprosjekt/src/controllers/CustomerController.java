@@ -71,6 +71,7 @@ public class CustomerController extends Controller implements CustomListener{
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
         InsuranceTable table = new InsuranceTable(set);
         viewTable = new ViewTable(table);
+        viewTable.addCustomListener(this);
         cus.addTable("Forsikringer", viewTable);
         
         // show view
@@ -131,8 +132,16 @@ public class CustomerController extends Controller implements CustomListener{
             view.change();
         }
     }
+    
+    /**
+     *
+     * @param i
+     */
     @Override
     public void customActionPerformed(CustomEvent i) {
+        
+        if(i.getAction()==Constants.DOUBLECLICK)
+            mc.insController.viewInsurance(i.getValue());
         if(i.getAction()==Constants.NEW_CUSTOMER)
             save();
         if(i.getAction()==Constants.NEW_INSURANCE)

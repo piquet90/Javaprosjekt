@@ -19,8 +19,19 @@ public class CarInsurance extends VehicleInsurance{
     
     
     private int registrationYear;
+    private double pricePrKm;
+    private int kmPerYear;
     private int kmDriven;
     private int bonus;
+    private String carType;
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public void setCarType(String carType) {
+        this.carType = carType;
+    }
 
     public int getBonus() {
         return bonus;
@@ -54,6 +65,22 @@ public class CarInsurance extends VehicleInsurance{
     public String getType()
     {
         return Constants.CAR_INSURANCE;
+    }
+
+    public double getPricePrKm() {
+        return pricePrKm;
+    }
+
+    public void setPricePrKm(double pricePrKm) {
+        this.pricePrKm = pricePrKm;
+    }
+
+    public int getKmPerYear() {
+        return kmPerYear;
+    }
+
+    public void setKmPerYear(int kmPerYear) {
+        this.kmPerYear = kmPerYear;
     }
     
 }
