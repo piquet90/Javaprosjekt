@@ -6,6 +6,7 @@
 package views.registrations;
 
 import CustomSwing.CustomButton;
+import CustomSwing.CustomButton2;
 import CustomSwing.CustomCheckBox;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
@@ -14,6 +15,7 @@ import DAO.Constants;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.JTextArea;
 import views.CustomEvent;
 import views.CustomListener;
 
@@ -24,26 +26,22 @@ import views.CustomListener;
 public class NewTravelInsurance extends CustomPanel {
     
     private CustomTextField insTaker, amount, premium, conditions;
+    private JTextArea valid;
     private CustomCheckBox asia, africa, europe, nAmerica, sAmerica, oceania;
+    private CustomButton2 delete;
     private CustomButton submit;
-    private GridBagConstraints g;
-    
+    private GridBagConstraints gbc;
+    private boolean viewMode = false;
+    private boolean edit = false;
     private CustomListener listener;
     
-    
-    /**
-     * Method that initalizes the GUI components
-     */
-    public void initComponents()
-    {
-
-    }
     
     /**
      * NewTravelInsurance constructor
      */
     public NewTravelInsurance()
     {
+        
         insTaker = new CustomTextField(16);
         premium = new CustomTextField(5);
         amount = new CustomTextField(5);
@@ -56,76 +54,157 @@ public class NewTravelInsurance extends CustomPanel {
         sAmerica = new CustomCheckBox("Sør-Amerika");
         oceania = new CustomCheckBox("Oseania");
         
+        valid = new JTextArea(15, 15);
+        valid.setEditable(false);
+        valid.setVisible(false);
+        
+        
         submit = new CustomButton("Registrer");
+        delete = new CustomButton2("Slett forsikring");
+        delete.setVisible(false);
+        
         setLayout(new GridBagLayout());
         
-        g = new GridBagConstraints();
-        g.insets = new Insets(15, 0, 0, 5);
-        g.ipadx = 2;
-        g.ipady = 5;
-        g.anchor = GridBagConstraints.LINE_END;
+        gbc = new GridBagConstraints();
+        gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.weighty = 1;
+        gbc.weightx = 1;
+        gbc.ipadx = 2;
+        gbc.ipady = 5;
+        gbc.anchor = GridBagConstraints.LINE_END;
         
-        g.gridx = 0;
-        g.gridy = 0;
-        add(new CustomLabel("Forsikringstaker: "), g);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(new CustomLabel("Forsikringstaker: "), gbc);
         
-        g.gridy++;
-        add(new CustomLabel("Forsikringsbeløp: "), g);
+        gbc.gridy++;
+        add(new CustomLabel("Forsikringsbeløp: "), gbc);
         
-        g.gridy++;
-        add(new CustomLabel("Forsikringspremie: "), g);
+        gbc.gridy++;
+        add(new CustomLabel("Forsikringspremie: "), gbc);
         
-        g.gridy++;
-        add(new CustomLabel("Betingelser: "), g);
+        gbc.gridy++;
+        add(new CustomLabel("Betingelser: "), gbc);
 
-        g.gridy++;
-        add(new CustomLabel("Gyldig i: "), g);
+        gbc.gridy++;
+        add(new CustomLabel("Gyldig i: "), gbc);
         
         
-        g.anchor = GridBagConstraints.LINE_START;
+        gbc.anchor = GridBagConstraints.LINE_START;
         
-        g.gridx = 1;
-        g.gridy = 0;
-        add(insTaker, g);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        add(insTaker, gbc);
         
-        g.gridy++;
-        add(amount, g);
+        gbc.gridy++;
+        add(amount, gbc);
         
-        g.gridy++;
-        add(premium, g);
+        gbc.gridy++;
+        add(premium, gbc);
         
-        g.gridy++;
-        add(conditions, g);
+        gbc.gridy++;
+        add(conditions, gbc);
 
-        g.insets = new Insets(12, 5, 0, 5);
-        g.ipadx = 2;
-        g.ipady = 5;
+        gbc.insets = new Insets(12, 5, 0, 5);
+        gbc.ipadx = 2;
+        gbc.ipady = 5;
         
-        g.gridy++;
-        add(asia, g);
+        gbc.gridy++;
+        add(asia, gbc);
+        add(valid, gbc);
         
-        g.gridy++;
-        add(africa, g);
+        gbc.gridy++;
+        add(africa, gbc);
         
-        g.gridy++;
-        add(europe, g);
+        gbc.gridy++;
+        add(europe, gbc);
         
-        g.gridy++;
-        add(nAmerica, g);
+        gbc.gridy++;
+        add(nAmerica, gbc);
         
-        g.gridy++;
-        add(sAmerica, g);
+        gbc.gridy++;
+        add(sAmerica, gbc);
         
-        g.gridy++;
-        add(oceania, g);
+        gbc.gridy++;
+        add(oceania, gbc);
         
-        g.gridy++;
-        add(submit, g);
+        gbc.gridy++;
+        add(submit, gbc);
         
-        submit.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.TRAVEL_INSURANCE_INT));});
+        gbc.gridx++;
+        add(delete, gbc);
+        
+        
+        
+        submit.addActionListener((e) -> {
+                if(!viewMode)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.TRAVEL_INSURANCE_INT));
+                }
+                else if(edit)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.TRAVEL_INSURANCE_INT));
+                    change();
+                }
+                else {
+                    change();
+                }
+
+                
+        });
+        
+        
+        delete.addActionListener((e) -> System.out.println("slett reiseforsikring"));
         
         
     }
+    
+    
+    /**
+     * Changes text-fields to uneditable if panel is used for viewing
+     */
+    public void setViewMode()
+    {
+        asia.setVisible(false);
+        europe.setVisible(false);
+        oceania.setVisible(false);
+        nAmerica.setVisible(false);
+        sAmerica.setVisible(false);
+        africa.setVisible(false);
+        
+        valid.setVisible(true);
+        
+        insTaker.setEditable(false);
+        amount.setEditable(false);
+        premium.setEditable(false);
+        conditions.setEditable(false);
+        
+        
+        submit.setText("Endre");
+        delete.setVisible(true);
+        
+        viewMode = true;
+    }
+    
+    
+    /**
+     * Returns whether or not the panel is in viewmode
+     * @return boolean viewmode
+     */
+    public boolean isViewMode() {
+        return viewMode;
+    }
+
+    /**
+     * Sets the view mode
+     * @param vm true or false
+     */
+    public void setViewMode(boolean vm) {
+        viewMode = vm;
+    }
+    
+    
+    
     
     /**
      * Method that sets the insurance taker-field with the customers name as a standard
@@ -191,6 +270,45 @@ public class NewTravelInsurance extends CustomPanel {
         return area;
     }
     
+
+    /**
+     * Method that sets an amount in the insurance amount-field
+     * @param a insurance amount in NOK
+     */
+    public void setAmount(String a) {
+        amount.setText(a);
+    }
+    
+    /**
+     * Method that sets an amount in the yearly premium-field
+     * @param p yearly premium in NOK
+     */
+    public void setPremium(String p) {
+        premium.setText(p);
+    }
+    
+    /**
+     * Method that sets insurance conditions in the conditions-field
+     * @param c insurance conditions
+     */
+    public void setConditions(String c) {
+        conditions.setText(c);
+    }
+
+    /**
+     * Method that sets the insurance valid continents in the valid-field
+     * @param v valid continents
+     */
+    public void setValid(String v) {
+        valid.setText(v);
+    }
+    
+    
+    
+    
+    /**
+     * Clears all text fields
+     */
     public void clearFields()
     {
         insTaker.setText("");
@@ -203,7 +321,65 @@ public class NewTravelInsurance extends CustomPanel {
         nAmerica.setContentAreaFilled(false);
         sAmerica.setContentAreaFilled(false);
         oceania.setContentAreaFilled(false);
-    } // end of clearfields
+    }
+    
+    
+    /**
+     * Method makes textfields editable and passes the changed information to registry
+     */
+    public void change()
+    {
+        if(!edit) {
+            amount.setEditable(true);
+            premium.setEditable(true);
+            conditions.setEditable(true);
+            
+            asia.setVisible(true);
+            europe.setVisible(true);
+            oceania.setVisible(true);
+            nAmerica.setVisible(true);
+            sAmerica.setVisible(true);
+            africa.setVisible(true);
+        
+            valid.setVisible(false);
+            
+            submit.setText("Lagre");
+            
+            edit = true;  
+        }
+        else {
+            amount.setEditable(false);
+            premium.setEditable(false);
+            conditions.setEditable(false);
+            
+            asia.setVisible(false);
+            europe.setVisible(false);
+            oceania.setVisible(false);
+            nAmerica.setVisible(false);
+            sAmerica.setVisible(false);
+            africa.setVisible(false);
+        
+            valid.setVisible(true);
+            
+            submit.setText("Endre");
+            
+            edit = false;
+            /*asia.setSelected(true);
+            asia.setModel(new DefaultButtonModel() {
+
+            @Override
+            public boolean isSelected() {
+                return true;
+            }
+
+            @Override
+            public void setSelected(boolean b) {
+                // Stop events from being raised...
+            }
+
+        });*/
+        }
+    }
     
     /**
      * Method that connect controllers listener to the panel

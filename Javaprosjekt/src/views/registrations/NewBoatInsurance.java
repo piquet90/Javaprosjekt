@@ -73,6 +73,8 @@ public class NewBoatInsurance extends CustomPanel {
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 0, 5);
+        gbc.weighty = 1;
+        gbc.weightx = 1;
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
@@ -161,11 +163,11 @@ public class NewBoatInsurance extends CustomPanel {
         submit.addActionListener((e) -> {
                 if(!viewMode)
                 {
-                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+                    listener.customActionPerformed(new CustomEvent(Constants.BOAT_INSURANCE_INT));
                 }
                 else if(edit)
                 {
-                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+                    listener.customActionPerformed(new CustomEvent(Constants.BOAT_INSURANCE_INT));
                     change();
                 }
                 else {
@@ -178,9 +180,11 @@ public class NewBoatInsurance extends CustomPanel {
             
             
             
-        delete.addActionListener((e) ->{System.out.println("slett");});
+        delete.addActionListener((e) ->{System.out.println("slett båtforsikring");});
         
     }
+    
+    
     
     /**
      * Changes text-fields to uneditable if panel is used for viewing
@@ -206,6 +210,24 @@ public class NewBoatInsurance extends CustomPanel {
         
         viewMode = true;
     }
+    
+    
+    /**
+     * Returns whether or not the panel is in viewmode
+     * @return boolean viewmode
+     */
+    public boolean isViewMode() {
+        return viewMode;
+    }
+
+    /**
+     * Sets the view mode
+     * @param vm true or false
+     */
+    public void setViewMode(boolean vm) {
+        viewMode = vm;
+    }
+    
     
     /**
      * Method that sets the owner-field with the customers name as a default
@@ -412,6 +434,9 @@ public class NewBoatInsurance extends CustomPanel {
         } 
     }
     
+    /**
+     * Clears all text fields
+     */
     public void clearFields()
     {
         boatOwner.setText("");

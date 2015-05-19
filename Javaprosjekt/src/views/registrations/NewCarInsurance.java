@@ -28,9 +28,6 @@ public class NewCarInsurance extends CustomPanel {
     
     private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus, carTypeField;
 
-
-    private String[] carTypes = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
-                      "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
     private JComboBox<String> carType;
     private GridBagConstraints gbc;
     private CustomButton submit;
@@ -62,6 +59,8 @@ public class NewCarInsurance extends CustomPanel {
         carTypeField.setVisible(false);
         
         
+        String[] carTypes = {"Velg type...", "Stasjonsvogn ", "Kombi, 5-dørs", "SUV", "Sedan", "Kasse", "Flerbruk",
+                      "Coupe", "Kombi, 3-dørs", "Cabriolet", "Pickup", "Veteran", "Elektrisk", "Lastebil", "Sport", "Terreng"};
         
         carType = new JComboBox<>(carTypes);
         carType.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -69,26 +68,9 @@ public class NewCarInsurance extends CustomPanel {
         
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> {
-                if(!viewMode)
-                {
-                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
-                }
-                else if(edit)
-                {
-                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
-                    change();
-                }
-                else {
-                    change();
-                }
-
-                
-        });
-        
         delete = new CustomButton2("Slett forsikring");
         delete.setVisible(false);
-        delete.addActionListener((e) -> System.out.println("f"));
+        
         
         
         setLayout(new GridBagLayout());
@@ -187,6 +169,28 @@ public class NewCarInsurance extends CustomPanel {
         gbc.gridx++;
         add(delete, gbc);
         
+        
+        
+        submit.addActionListener((e) -> {
+                if(!viewMode)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+                }
+                else if(edit)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+                    change();
+                }
+                else {
+                    change();
+                }
+
+                
+        });
+        
+        
+        delete.addActionListener((e) -> System.out.println("slett bilforsikring"));
+        
     }
     
     /**
@@ -215,6 +219,24 @@ public class NewCarInsurance extends CustomPanel {
         viewMode = true;
         
     }
+    
+    
+    /**
+     * Returns whether or not the panel is in viewmode
+     * @return boolean viewmode
+     */
+    public boolean isViewMode() {
+        return viewMode;
+    }
+
+    /**
+     * Sets the view mode
+     * @param vm true or false
+     */
+    public void setViewMode(boolean vm) {
+        viewMode = vm;
+    }
+    
     
     /**
      * Sets the car type in the car type-dropdown
@@ -484,13 +506,5 @@ public class NewCarInsurance extends CustomPanel {
     public void addCustomListener(CustomListener l)
     {
         this.listener = l;
-    }
-
-    public boolean isViewMode() {
-        return viewMode;
-    }
-
-    public void setViewMode(boolean viewMode) {
-        this.viewMode = viewMode;
     }
 }

@@ -56,6 +56,8 @@ public class NewHouseInsurance extends CustomPanel {
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 5, 0, 5);
+        gbc.weighty = 1;
+        gbc.weightx = 1;
         gbc.ipadx = 2;
         gbc.ipady = 5;
         
@@ -128,11 +130,29 @@ public class NewHouseInsurance extends CustomPanel {
         gbc.gridy++;
         add(submit, gbc);
         
-        submit.addActionListener((e) ->{
-            if(viewMode)
-                change();
-            else
-                listener.customActionPerformed(new CustomEvent(Constants.HOUSE_INSURANCE_INT));});
+        
+        
+        
+        
+        submit.addActionListener((e) -> {
+                if(!viewMode)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.HOUSE_INSURANCE_INT));
+                }
+                else if(edit)
+                {
+                    listener.customActionPerformed(new CustomEvent(Constants.HOUSE_INSURANCE_INT));
+                    change();
+                }
+                else {
+                    change();
+                }
+
+                
+        });
+        
+        
+        delete.addActionListener((e) -> System.out.println("slett husforsikring"));
 
     }
     
@@ -158,7 +178,21 @@ public class NewHouseInsurance extends CustomPanel {
         viewMode = true;
     }
     
-    
+    /**
+     * Returns whether or not the panel is in viewmode
+     * @return boolean viewmode
+     */
+    public boolean isViewMode() {
+        return viewMode;
+    }
+
+    /**
+     * Sets the view mode
+     * @param vm true or false
+     */
+    public void setViewMode(boolean vm) {
+        viewMode = vm;
+    }
     
     
     
@@ -367,6 +401,23 @@ public class NewHouseInsurance extends CustomPanel {
             
             edit = false;
         } 
+    }
+    
+    /**
+     * Clears all text fields
+     */
+    public void clearFields()
+    {
+        adress.setText("");
+        yearBuilt.setText("");
+        type.setText("");
+        material.setText("");
+        standard.setText("");
+        houseSize.setText("");
+        amountBuilding.setText("");
+        amountContents.setText("");
+        premium.setText("");
+        conditions.setText("");
     }
     
     /**

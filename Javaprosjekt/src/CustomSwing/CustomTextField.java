@@ -26,5 +26,6 @@ public class CustomTextField extends JTextField {
         super(length);
         setFont(new Font("Arial", Font.PLAIN, 15));
         setBorder(BorderFactory.createEtchedBorder(new Color(222, 222, 222), new Color(150, 150, 150)));
+        setMinimumSize(this.getPreferredSize());
     }
 }
