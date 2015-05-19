@@ -46,7 +46,7 @@ public class InsuranceTable extends AbstractTableModel{
                 celler[i][0] = ins.getId();
                 celler[i][1] = ins.getType();
                 celler[i][2] = format1.format(ins.getDateofcreation().getTime());
-                celler[i][3] = "HER ER JEG";
+                celler[i][3] = (ins.getEndDate()==null)?"Aktiv":format1.format(ins.getEndDate().getTime());
             }
         }
         

@@ -27,10 +27,11 @@ public abstract class Insurance implements Serializable{
     private double coverage, price;
     private String conditions;
     private String other;
-    private Calendar dateofcreation;
-    
-    
-    
+    private Calendar dateofcreation, endDate;
+
+    public Calendar getEndDate() {
+        return endDate;
+    }
     
     /**
      * Constructor for Insurance.
@@ -47,6 +48,7 @@ public abstract class Insurance implements Serializable{
     {
         id = next++;
         dateofcreation = Calendar.getInstance();
+        endDate=null;
         
     }
     

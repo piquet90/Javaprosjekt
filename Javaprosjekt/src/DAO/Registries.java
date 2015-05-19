@@ -43,14 +43,10 @@ public class Registries implements Serializable{
 
             
         }
-        catch(FileNotFoundException e)
+        catch(Exception e)
         {
             this.insurances = new HashSet<>();
             this.customers = new HashSet<>();
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.toString());
         }
         
         
