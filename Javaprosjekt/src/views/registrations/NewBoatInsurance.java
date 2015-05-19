@@ -27,12 +27,11 @@ import views.CustomListener;
 
 public class NewBoatInsurance extends CustomPanel {
     
-    private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions, btype;
+    private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions, boatTypeField;
     private GridBagConstraints gbc;
     private CustomButton submit;
     private CustomButton2 delete;
-    private JComboBox<String> type;
-    private int n = 0;
+    private JComboBox<String> boatType;
     private boolean edit = false;
     private boolean viewMode = false;
     private CustomListener listener;
@@ -53,8 +52,8 @@ public class NewBoatInsurance extends CustomPanel {
         amount = new CustomTextField(5);
         conditions = new CustomTextField(15);
         modelYear = new CustomTextField(5);
-        btype = new CustomTextField(15);
-        btype.setVisible(false);
+        boatTypeField = new CustomTextField(15);
+        boatTypeField.setVisible(false);
         
         submit = new CustomButton("Registrer");
         delete = new CustomButton2("Slett forsikring");
@@ -63,10 +62,9 @@ public class NewBoatInsurance extends CustomPanel {
         String[] t = {"Velg type...", "Cabincruiser", "Daycruiser", "RIB", "Jolle","Landstedsbåt ",
                        "Seilbåt", "Motorseiler", "Speedbåt", "Trebåt", "Vannscooter", "Yacht", "Yrkesbåt" };
         
-        type = new JComboBox<>(t);
-        type.setFont(new Font("Arial", Font.PLAIN, 15));
-        type.addActionListener((e)-> n = type.getSelectedIndex());
-        type.setBackground(new Color(250, 250, 250));
+        boatType = new JComboBox<>(t);
+        boatType.setFont(new Font("Arial", Font.PLAIN, 15));
+        boatType.setBackground(new Color(250, 250, 250));
         
         
         setLayout(new GridBagLayout());
@@ -126,8 +124,8 @@ public class NewBoatInsurance extends CustomPanel {
         add(regNr, gbc);
         
         gbc.gridy++;
-        add(type, gbc);
-        add(btype, gbc);
+        add(boatType, gbc);
+        add(boatTypeField, gbc);
         
         gbc.gridy++;
         add(model, gbc);
@@ -193,7 +191,7 @@ public class NewBoatInsurance extends CustomPanel {
     {
         boatOwner.setEditable(false);
         regNr.setEditable(false);
-        btype.setEditable(false);
+        boatTypeField.setEditable(false);
         model.setEditable(false);
         horsepower.setEditable(false);
         modelYear.setEditable(false);
@@ -205,8 +203,8 @@ public class NewBoatInsurance extends CustomPanel {
         
         submit.setText("Endre");
         delete.setVisible(true);
-        type.setVisible(false);
-        btype.setVisible(true);
+        boatType.setVisible(false);
+        boatTypeField.setVisible(true);
         
         viewMode = true;
     }
@@ -276,8 +274,8 @@ public class NewBoatInsurance extends CustomPanel {
         return modelYear.getText();
     }
     /**
-     * Returns the engine type the user has written in engine type-field
-     * @return a boat engine type
+     * Returns the engine boatType the user has written in engine boatType-field
+     * @return a boat engine boatType
      */
     public String getEngineType() {
         return engineType.getText();
@@ -292,12 +290,17 @@ public class NewBoatInsurance extends CustomPanel {
     }
     
     
-    /**
-     * Returns the type of boat the user has chosen from the dropdown menu
-     * @return a boat type
+   /**
+     * Returns the boatType of boat the user has chosen from the dropdown menu or from the text-field if the panel is in viewmode
+     * @return a boat boatType
      */
     public String getType() {
-        return type.getItemAt(n);
+        if(viewMode)
+            return boatTypeField.getText();
+        else
+        {
+            return boatType.getItemAt(boatType.getSelectedIndex());
+        }   
     }
     
     /**
@@ -326,11 +329,11 @@ public class NewBoatInsurance extends CustomPanel {
     
 
     /**
-     * Sets boat type in the boat type-field
-     * @param t boat type
+     * Sets boat boatType in the boat boatType-field
+     * @param t boat boatType
      */
     public void setType(String t) {
-        btype.setText(t);
+        boatTypeField.setText(t);
     }
 
     /**
@@ -366,8 +369,8 @@ public class NewBoatInsurance extends CustomPanel {
     }
 
     /**
-     * Sets the boats engine type in the engine type-field
-     * @param et boats engine type
+     * Sets the boats engine boatType in the engine boatType-field
+     * @param et boats engine boatType
      */
     public void setEngineType(String et) {
         engineType.setText(et);
