@@ -36,6 +36,7 @@ public class NewCarInsurance extends CustomPanel {
     private CustomButton2 delete;
     private int n = 0;
     private boolean edit = false;
+    private boolean viewMode = false;
     private CustomListener listener;
     
     /**
@@ -67,7 +68,14 @@ public class NewCarInsurance extends CustomPanel {
         
         
         SEbtn = new CustomButton("Registrer");
-        SEbtn.addActionListener((e) -> change());
+        SEbtn.addActionListener((e) -> {
+                
+            if(viewMode)
+                change();
+            else
+                listener.customActionPerformed(new CustomEvent(Constants.CAR_INSURANCE_INT));
+        
+        });
         
         delete = new CustomButton2("Slett forsikring");
         delete.setVisible(false);
@@ -194,6 +202,8 @@ public class NewCarInsurance extends CustomPanel {
         delete.setVisible(true);
         carType.setVisible(false);
         ctype.setVisible(true);
+        
+        viewMode = true;
         
     }
     
@@ -389,8 +399,9 @@ public class NewCarInsurance extends CustomPanel {
         return conditions.getText();
     }
     
-    
-
+    /**
+     * Clears all fields
+     */
     public void clearFields()
     {
         
