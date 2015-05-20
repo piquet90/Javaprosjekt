@@ -21,7 +21,8 @@ import views.CustomListener;
 import views.registrations.*;
 
 /**
- *
+ * This class deals with editing and creating insurances.
+ * 
  * @author Rudi
  */
 public class InsuranceController implements CustomListener{
@@ -40,7 +41,11 @@ public class InsuranceController implements CustomListener{
     
     private int id, insuranceId;
     
-    
+    /**
+     * Creates a new InsuranceController
+     * @param r
+     * @param c
+     */
     public InsuranceController(Registries r, MainController c)
     {
         this.mc = c;
@@ -48,6 +53,10 @@ public class InsuranceController implements CustomListener{
         cModel = new CustomerModel(r);
     }
     
+    /**
+     * Opens a newCarInsuranceClass
+     * @param id CustomerId
+     */
     public void newCarInsurance(int id)
     {
         this.id = id;
@@ -58,6 +67,11 @@ public class InsuranceController implements CustomListener{
         carInsurance.setCarOwner(s);
         mc.popUp(carInsurance);
     }
+
+    /**
+     *
+     * @param id CustomerId
+     */
     public void newHouseInsurance(int id)
     {
         this.id = id;
@@ -65,6 +79,11 @@ public class InsuranceController implements CustomListener{
         houseInsurance.addCustomListener(this);
         mc.popUp(houseInsurance);
     }
+
+    /**
+     *
+     * @param id CustomerId
+     */
     public void newBoatInsurance(int id)
     {
         this.id = id;
@@ -74,6 +93,11 @@ public class InsuranceController implements CustomListener{
         boatInsurance.setBoatOwner(s);
         mc.popUp(boatInsurance);
     }
+
+    /**
+     *
+     * @param id CustomerId
+     */
     public void newTravelInsurance(int id)
     {
         this.id = id;
@@ -84,6 +108,11 @@ public class InsuranceController implements CustomListener{
         travelInsurance.addCustomListener(this);
         mc.popUp(travelInsurance);
     }
+
+    /**
+     *
+     * @param id CustomerId
+     */
     public void newLeisureHouseInsurance(int id)
     {
         this.id = id;
@@ -92,6 +121,9 @@ public class InsuranceController implements CustomListener{
         mc.popUp(leisureHouseInsurance);
     }
     
+    /**
+     * registers a start the correct kind of validation depending on if its a new registration or an edit.
+     */
     public void registerCar()
     {
         if(!carInsurance.isViewMode())
@@ -100,6 +132,11 @@ public class InsuranceController implements CustomListener{
             registerCar((CarInsurance)imodel.findById(insuranceId));
         }
     }
+
+    /**
+     * Validates fields and updates the provided object.
+     * @param in Object provided
+     */
     public void registerCar(CarInsurance in)
     {
         CarInsurance insurance = in;
@@ -128,8 +165,7 @@ public class InsuranceController implements CustomListener{
             
         else
         {
-            insurance.setOwnerId(id);
-            System.out.println(carInsurance.getConditions());
+            
             insurance.setViechleOwner(carInsurance.getCarOwner());//done
             insurance.setRegistrationNumber(carInsurance.getRegNr());//done
             insurance.setCarType(carInsurance.getCarType());//done
@@ -146,17 +182,37 @@ public class InsuranceController implements CustomListener{
             if(!carInsurance.isViewMode())
             {
                 carInsurance.clearFields();
+                insurance.setOwnerId(id);
                 imodel.addInsurance(insurance);
+                
             }
                          
-            
             mc.ncController.refresh();
             success();
         }
     }
     
+    /**
+     *
+     */
     public void registerBoat()
     {
+        if(!boatInsurance.isViewMode())
+            registerBoat(new BoatInsurance());
+        else {
+            registerBoat((BoatInsurance)imodel.findById(insuranceId));
+        }
+    }
+    
+    /**
+     * Validates fields and updates the provided object.
+     * @param in Object provided
+     */
+    public void registerBoat(BoatInsurance in)
+    {
+        BoatInsurance insurance = in;
+        
+        
         String s = "";
         if(boatInsurance.getBoatOwner().equals(""))
             s+="Båteier\n";
@@ -182,9 +238,8 @@ public class InsuranceController implements CustomListener{
         if(!s.equals(""))
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
         else {
-            BoatInsurance insurance = new BoatInsurance();
             
-            insurance.setOwnerId(id);
+            
             insurance.setViechleOwner(boatInsurance.getBoatOwner());
             insurance.setRegistrationNumber(boatInsurance.getRegNr());
             insurance.setViechleType(boatInsurance.getType());
@@ -197,65 +252,101 @@ public class InsuranceController implements CustomListener{
             insurance.setPrice(Double.parseDouble(boatInsurance.getPremium()));
             insurance.setConditions(boatInsurance.getConditions());
             
-            if(boatInsurance.isViewMode())
+            if(!boatInsurance.isViewMode())
             {
-                insurance.setId(insuranceId);
-                int next = Insurance.getNext() - 1;
-                Insurance.setNext(next);
-            }
-            else {
+                insurance.setOwnerId(id);
                 boatInsurance.clearFields();
+                imodel.addInsurance(insurance);
             }
-            imodel.addInsurance(insurance);
+            
             mc.ncController.refresh();
             success();
         }
     }// end of newBoat()
     
+    /**
+     *
+     */
     public void registerTravel()
     {
+        if(!travelInsurance.isViewMode())
+            registerTravel(new TravelInsurance());
+        else {
+            registerTravel((TravelInsurance)imodel.findById(insuranceId));
+        }
+    }
+
+    /**
+     * Validates fields and updates the provided object.
+     * @param in Object provided
+     */
+    public void registerTravel(TravelInsurance in)
+    {
+        
+        TravelInsurance insurance = in;
+        
+        
         String s = "";
         if(travelInsurance.getInsTaker().equals(""))
             s+="Forsikringstaker\n";
-        if(travelInsurance.getAmount().equals("")||!travelInsurance.getAmount().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringsbeløp\n";
-        if(travelInsurance.getPremium().equals("")||!travelInsurance.getPremium().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringspremie\n";
+        s+= validateDouble(travelInsurance.getAmount(), "Forsikringsbeløp\n" );
+        s+= validateDouble(travelInsurance.getPremium(), "Forsikringspremie\n" );
+       
         if(travelInsurance.getArea().equals(""))
             s+="Gyldige områder\n";
         
         if(!s.equals(""))
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
         else {
-            TravelInsurance insurance = new TravelInsurance();
-            insurance.setOwnerId(insuranceId);
+            insurance.setPersonInsured(travelInsurance.getInsTaker());
             insurance.setCoverage(Double.parseDouble(travelInsurance.getPremium()));
             insurance.setPrice(Double.parseDouble(travelInsurance.getAmount()));
+            insurance.setArea(travelInsurance.getArea());
             
-            imodel.addInsurance(insurance);
+            if(!travelInsurance.isViewMode())
+            {
+                insurance.setOwnerId(id);
+                travelInsurance.clearFields();
+                imodel.addInsurance(insurance);
+            }
+            
             mc.ncController.refresh();
-            
-            travelInsurance.clearFields();
             success();
         }
     }// end of registerTravel()
+    
+    /**
+     *
+     */
     public void registerHouse()
     {
+        if(!houseInsurance.isViewMode())
+            registerHouse(new HouseInsurance());
+        else {
+            registerHouse((HouseInsurance)imodel.findById(insuranceId));
+        }
+    }
+
+    /**
+     * Validates fields and updates the provided object.
+     * @param in Object provided
+     */
+    public void registerHouse(HouseInsurance in)
+    {
+        HouseInsurance insurance = in;
           // Validation
         String s = "";
         
         if(houseInsurance.getAdress().equals(""))
             s+="Adresse\n";
-        if(houseInsurance.getYearBuilt().equals("")||!houseInsurance.getYearBuilt().matches(Constants.ONLY_NUMBERS))
-            s+="Byggeår\n";
+        s += validateInt(houseInsurance.getYearBuilt(), "Byggeår\n");
         if(houseInsurance.getType().equals(""))
             s+="Hustype\n";
         if(houseInsurance.getMaterial().equals(""))
             s+="Materiale\n";
         if(houseInsurance.getStandard().equals(""))
             s+="Standard\n";
-        if(houseInsurance.getHouseSize().equals("")||!houseInsurance.getHouseSize().matches(Constants.ONLY_NUMBERS))
-            s+="Størrelse\n";
+        s += validateInt(houseInsurance.getHouseSize(), "Størrelse\n");
         s += validateDouble(houseInsurance.getAmountBuilding(), "Forsikringsbeløp, bygg\n");
         s += validateDouble(houseInsurance.getAmountContents(), "Forsikringsbeløp, innbo\n");
         s += validateDouble(houseInsurance.getPremium(), "Forsikringspremie\n");
@@ -266,9 +357,7 @@ public class InsuranceController implements CustomListener{
         if(!s.equals(""))
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
         else {
-            HouseInsurance insurance = new HouseInsurance();
             
-            insurance.setOwnerId(id);
             insurance.setAddress(houseInsurance.getAdress());
             insurance.setYearofconstruction(Integer.parseInt(houseInsurance.getYearBuilt()));
             insurance.setBuildingType(houseInsurance.getType());
@@ -280,52 +369,59 @@ public class InsuranceController implements CustomListener{
             insurance.setPrice(Double.parseDouble(houseInsurance.getPremium()));
             insurance.setConditions(houseInsurance.getConditions());
             
-            if(houseInsurance.isViewMode())
+            if(!houseInsurance.isViewMode())
             {
-                insurance.setId(insuranceId);
-                int next = Insurance.getNext() - 1;
-                Insurance.setNext(next);
-            }
-            else {
+                insurance.setOwnerId(id);
                 houseInsurance.clearFields();
+                imodel.addInsurance(insurance);
             }
-            imodel.addInsurance(insurance);
             mc.ncController.refresh();
             success();
         }
     }
+    
+    /**
+     *
+     */
     public void registerLeisure()
+    {
+        if(!leisureHouseInsurance.isViewMode())
+            registerLeisure(new LeisureHouseInsurance());
+        else {
+            registerLeisure((LeisureHouseInsurance)imodel.findById(insuranceId));
+        }
+    }
+
+    /**
+     * Validates fields and updates the provided object.
+     * @param in Object provided
+     */
+    public void registerLeisure(LeisureHouseInsurance in)
     {   
               
+        LeisureHouseInsurance insurance = in;
         // Validation
         String s = "";
         
         if(leisureHouseInsurance.getAdress().equals(""))
             s+="Adresse\n";
-        if(leisureHouseInsurance.getYearBuilt().equals("")||!leisureHouseInsurance.getYearBuilt().matches(Constants.ONLY_NUMBERS))
-            s+="Byggeår\n";
+        s += validateInt(leisureHouseInsurance.getYearBuilt(), "Byggeår\n");
         if(leisureHouseInsurance.getType().equals(""))
             s+="Hustype\n";
         if(leisureHouseInsurance.getMaterial().equals(""))
             s+="Materiale\n";
         if(leisureHouseInsurance.getStandard().equals(""))
             s+="Standard\n";
-        if(leisureHouseInsurance.getHouseSize().equals("")||!leisureHouseInsurance.getHouseSize().matches(Constants.ONLY_NUMBERS))
-            s+="Størrelse\n";
-        if(leisureHouseInsurance.getAmountBuilding().equals("")||!leisureHouseInsurance.getAmountBuilding().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringsbeløp, bygg\n";
-        if(leisureHouseInsurance.getAmountContents().equals("")||!leisureHouseInsurance.getAmountContents().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringsbeløp, innbo\n";
-        if(leisureHouseInsurance.getPremium().equals("")||!leisureHouseInsurance.getPremium().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringspremie\n";
+        s += validateInt(leisureHouseInsurance.getHouseSize(), "Størrelse\n");
+        s += validateDouble(leisureHouseInsurance.getAmountBuilding(), "Forsikringsbeløp, bygg\n");
+        s += validateDouble(leisureHouseInsurance.getAmountContents(), "Forsikringsbeløp, innbo\n");
+        s += validateDouble(leisureHouseInsurance.getPremium(), "Forsikringspremie\n");
         if(leisureHouseInsurance.getConditions().equals(""))
             s+="Betingelser\n";
         
         if(!s.equals(""))
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
         else {
-            LeisureHouseInsurance insurance = new LeisureHouseInsurance();
-            insurance.setOwnerId(id);
             insurance.setAddress(leisureHouseInsurance.getAdress());
             insurance.setYearofconstruction(Integer.parseInt(leisureHouseInsurance.getYearBuilt()));
             insurance.setBuildingType(leisureHouseInsurance.getType());
@@ -338,7 +434,13 @@ public class InsuranceController implements CustomListener{
             insurance.setConditions(leisureHouseInsurance.getConditions());
             insurance.setIsForRent(leisureHouseInsurance.getIsForRent());
             
-            imodel.addInsurance(insurance);
+            if(!leisureHouseInsurance.isViewMode())
+            {
+                insurance.setOwnerId(id);
+                leisureHouseInsurance.clearFields();
+                imodel.addInsurance(insurance);
+            }
+            mc.ncController.refresh();
             success();
         }
     }
@@ -430,7 +532,24 @@ public class InsuranceController implements CustomListener{
     
     private void viewLeisureHouseInsurance(LeisureHouseInsurance ins)
     {
+        leisureHouseInsurance = new NewLeisureHouseInsurance();
+        leisureHouseInsurance.addCustomListener(this);
         
+        leisureHouseInsurance.setViewMode();
+        
+        leisureHouseInsurance.setAdress(ins.getAddress());
+        leisureHouseInsurance.setYearBuilt(Integer.toString(ins.getYearofconstruction()));
+        leisureHouseInsurance.setType(ins.getBuildingType());
+        leisureHouseInsurance.setMaterial(ins.getConstrutionmaterial());
+        leisureHouseInsurance.setStandard(ins.getStandard());
+        leisureHouseInsurance.setHouseSize(Integer.toString(ins.getSquaremeter()));
+        leisureHouseInsurance.setAmountBuilding(Double.toString(ins.getBuildingcoverage()));
+        leisureHouseInsurance.setAmountContents(Double.toString(ins.getContentscoverage()));
+        leisureHouseInsurance.setPremium(Double.toString(ins.getPrice()));
+        leisureHouseInsurance.setConditions(ins.getConditions());
+        leisureHouseInsurance.setIsForRent(ins.getIsForRent());
+        
+        mc.popUp("Hus & Innboforsikring", leisureHouseInsurance);
     }
     private void viewHouseInsurance(HouseInsurance ins)
     {
@@ -456,10 +575,24 @@ public class InsuranceController implements CustomListener{
     }
     private void viewTravelInsurance(TravelInsurance ins)
     {
+        travelInsurance = new NewTravelInsurance();
+        travelInsurance.addCustomListener(this);
+        
+        travelInsurance.setViewMode();
+        
+        travelInsurance.setInsTaker(ins.getPersonInsured());
+        travelInsurance.setValid(ins.getArea());
+        travelInsurance.setAmount(Double.toString(ins.getCoverage()));
+        travelInsurance.setPremium(Double.toString(ins.getPrice()));
+        
+        mc.popUp("Reiseforsikring", travelInsurance);
         
     }
     
-    
+    /**
+     * find out what kind of insurance is provided and initiates the correct method according to insurance-type.
+     * @param id InsuranceId
+     */
     public void viewInsurance(int id) {
         Insurance ins = imodel.findById(id);
         
@@ -485,6 +618,9 @@ public class InsuranceController implements CustomListener{
         }
     }
     
+    /**
+     *
+     */
     public void deleteInsurance()
     {
         if(this.insuranceId!=0)
@@ -496,10 +632,15 @@ public class InsuranceController implements CustomListener{
             
         }
     }
+
+    /**
+     * CustomActionListener
+     * @param i actionevent provided by events thrown by objects with this customlistener
+     */
     @Override
     public void customActionPerformed(CustomEvent i) {
         if(i.getAction()==Constants.CAR_INSURANCE_INT)
-            registerCar(new CarInsurance());
+            registerCar();
         if(i.getAction()==Constants.BOAT_INSURANCE_INT)
             registerBoat();
         if(i.getAction()==Constants.HOUSE_INSURANCE_INT)

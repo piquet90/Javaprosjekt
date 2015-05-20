@@ -15,7 +15,8 @@ public class TravelInsurance extends Insurance{
 
 
     
-    private String area;
+    private String area, personInsured;
+    
 
 
     /**
@@ -40,5 +41,13 @@ public class TravelInsurance extends Insurance{
     public String getType()
     {
         return Constants.TRAVEL_INSURANCE;
+    }
+
+    public String getPersonInsured() {
+        return personInsured;
+    }
+
+    public void setPersonInsured(String personInsured) {
+        this.personInsured = personInsured;
     }
 }
