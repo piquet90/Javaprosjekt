@@ -59,6 +59,11 @@ public class ViewCustomerController extends Controller implements CustomListener
         view.setModel(table);
     }
     
+    public void update(CustomerTable tab)
+    {
+        view.setModel(tab);
+    }
+    
     
 
     @Override

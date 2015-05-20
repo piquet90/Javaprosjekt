@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 public class SimpleSearchPanel extends CustomPanel {
     
     private GridBagConstraints gbc;
-    private CustomTextField searchField, test;
+    private CustomTextField searchField;
     private CustomButton srcBtn;
     private JCheckBox showInactive;
     private CustomListener listener;
@@ -37,8 +37,6 @@ public class SimpleSearchPanel extends CustomPanel {
     public SimpleSearchPanel() 
     {
         searchField = new CustomTextField(20);
-        
-        test = new CustomTextField(5);
         
         searchField.setFont(new Font("Arial", Font.PLAIN, 22));
         
@@ -65,9 +63,6 @@ public class SimpleSearchPanel extends CustomPanel {
         add(searchField, gbc);
         
         gbc.gridx++;
-        add(test, gbc);
-        
-        gbc.gridx++;
         gbc.insets = new Insets(0, 15, 0, 5);
         add(showInactive, gbc);
         
@@ -76,6 +71,16 @@ public class SimpleSearchPanel extends CustomPanel {
         
         
         srcBtn.addActionListener((e) -> {listener.customActionPerformed(new CustomEvent(Constants.SEARCH_INSURANCE));});
+    }
+    
+    
+    /**
+     * Returns the search word
+     * @return search word
+     */
+    public String getSearch()
+    {
+        return searchField.getText();
     }
     
     /**
@@ -95,17 +100,7 @@ public class SimpleSearchPanel extends CustomPanel {
             showError("Vennligst fyll inn alle felter");
         }
     }
-   
-    
-    public void setSearch()
-    {
-        searchField.setText("fffff");
-    }
-    
-    public String getSearch()
-    {
-        return test.getText();
-    }
+  
     
     /**
      * Method that recieves an error message and displays it to the user
