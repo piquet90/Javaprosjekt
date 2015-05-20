@@ -165,11 +165,6 @@ public class InsuranceController implements CustomListener {
             
         else
         {
-            insurance.setOwnerId(id);
-            System.out.println(carInsurance.getConditions());
-            insurance.setVehicleOwner(carInsurance.getCarOwner());//done
-            insurance.setVehicleOwner(carInsurance.getCarOwner());//done
-            insurance.setVehicleOwner(carInsurance.getCarOwner());//done
             insurance.setVehicleOwner(carInsurance.getCarOwner());//done
             insurance.setRegistrationNumber(carInsurance.getRegNr());//done
             insurance.setCarType(carInsurance.getCarType());//done
@@ -242,15 +237,11 @@ public class InsuranceController implements CustomListener {
         if(!s.equals(""))
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
         else {
-            
-
-            insurance.setOwnerId(id);
-            insurance.setVehicleOwner(boatInsurance.getBoatOwner());
-            insurance.setVehicleOwner(boatInsurance.getBoatOwner());
-            insurance.setVehicleOwner(boatInsurance.getBoatOwner());
+                
             insurance.setVehicleOwner(boatInsurance.getBoatOwner());
             insurance.setRegistrationNumber(boatInsurance.getRegNr());
             insurance.setModel(boatInsurance.getModel());
+            insurance.setVehicleType(boatInsurance.getType());
             insurance.setEngineType(boatInsurance.getEngineType());
             insurance.setPower(Integer.parseInt(boatInsurance.getHorsepower()));
             insurance.setLength(Integer.parseInt(boatInsurance.getLength()));
@@ -308,7 +299,9 @@ public class InsuranceController implements CustomListener {
             insurance.setPersonInsured(travelInsurance.getInsTaker());
             insurance.setCoverage(Double.parseDouble(travelInsurance.getPremium()));
             insurance.setPrice(Double.parseDouble(travelInsurance.getAmount()));
+            insurance.setConditions(travelInsurance.getConditions());
             insurance.setArea(travelInsurance.getArea());
+            travelInsurance.setValid(travelInsurance.getArea());
             
             if(!travelInsurance.isViewMode())
             {
@@ -590,6 +583,7 @@ public class InsuranceController implements CustomListener {
         travelInsurance.setInsTaker(ins.getPersonInsured());
         travelInsurance.setValid(ins.getArea());
         travelInsurance.setAmount(Double.toString(ins.getCoverage()));
+        travelInsurance.setConditions(ins.getConditions());
         travelInsurance.setPremium(Double.toString(ins.getPrice()));
         
         mc.popUp("Reiseforsikring", travelInsurance);
