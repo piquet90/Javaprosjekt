@@ -11,6 +11,7 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
+import DAO.Constants;
 import TableModels.ImageTable;
 import TableModels.ReportTable;
 import controllers.ReportController;
@@ -31,6 +32,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import models.Report;
+import views.CustomEvent;
+import views.CustomListener;
 
 /**
  * New report panel
@@ -49,6 +52,7 @@ public class NewReportPanel extends JTabbedPane {
     private CustomPanel txtTab, ulTab, wiTab;
     private boolean edit = false;
     private boolean viewMode = false;
+    private CustomListener listener;
     
   
     
@@ -256,7 +260,7 @@ public class NewReportPanel extends JTabbedPane {
         gbc3.gridy++;
         wiTab.add(witPhone1, gbc3);
         
- 
+        submit.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));});
         
         //Adding the tabs
 
@@ -415,6 +419,16 @@ public class NewReportPanel extends JTabbedPane {
         JOptionPane.showMessageDialog(null, icon, imgName, JOptionPane.PLAIN_MESSAGE);
     }
     
+    public String getDate()
+    {
+        return this.date.getText();
+    }
+    
+    public void setDate(String s)
+    {
+        this.date.setText(s);
+    }
+    
   
     
     /**
@@ -446,6 +460,11 @@ public class NewReportPanel extends JTabbedPane {
             
             edit = false;
         } 
+    }
+    
+    public void addCustomListener(CustomListener l)
+    {
+        this.listener = l;
     }
 
   

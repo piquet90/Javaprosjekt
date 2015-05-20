@@ -195,7 +195,7 @@ public class NewCarInsurance extends CustomPanel {
         
         delete.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.DELETE_INSURANCE));});
         
-        report.addActionListener((e) -> System.out.println("FF"));
+        report.addActionListener((e) ->{listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));});
         
     }
     
