@@ -18,7 +18,7 @@ import views.registrations.NewReportPanel;
  */
 public class MenuView extends JMenuBar{
 
-    private JMenu customer, statistics, search, report;
+    private JMenu customer, statistics, search;
     private JMenuItem newCustomer, viewCustomer, newReport, viewReport, showStats, advancedSearch;
     private MainController controller;
     
@@ -37,7 +37,6 @@ public class MenuView extends JMenuBar{
         customer = new JMenu("Kunder");
         statistics = new JMenu("Statistikk");
         search = new JMenu("Søk");
-        report = new JMenu("Skademelding");
         
         
         newCustomer = new JMenuItem("Ny kunde");
@@ -45,10 +44,7 @@ public class MenuView extends JMenuBar{
         customer.add(newCustomer);
         customer.add(viewCustomer);
         
-        newReport = new JMenuItem("Ny skademelding");
-        viewReport = new JMenuItem("Vis alle skademeldinger");
-        report.add(newReport);
-        report.add(viewReport);
+        
         
         showStats = new JMenuItem("Vis statistikk");
         statistics.add(showStats);
@@ -56,16 +52,14 @@ public class MenuView extends JMenuBar{
         advancedSearch = new JMenuItem("Avansert søk");
         search.add(advancedSearch);
         
+        add(customer);
+        add(search);
+        add(statistics);
         
-        this.add(customer);
-        this.add(search);
-        this.add(statistics);
-        this.add(report);
-        
-        
-        
+
         newCustomer.addActionListener((e)->{controller.regController.newUser();});
-        showStats.addActionListener((e) -> c.popUp(new StatisticsView()));
+        viewCustomer.addActionListener((e) -> controller.vcController.update());
+        showStats.addActionListener((e) -> controller.statsController.startView());
         advancedSearch.addActionListener((e) -> c.popUp(new AdvancedSearchPanel()));
     }
     

@@ -14,7 +14,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
@@ -26,7 +25,7 @@ public class SimpleSearchPanel extends CustomPanel {
     
     private GridBagConstraints gbc;
     private CustomTextField searchField;
-    private CustomButton srcBtn;
+    private CustomButton srcBtn, showAll;
     private JCheckBox showInactive;
     private CustomListener listener;
     
@@ -41,8 +40,7 @@ public class SimpleSearchPanel extends CustomPanel {
         searchField.setFont(new Font("Arial", Font.PLAIN, 22));
         
         srcBtn = new CustomButton("Søk");
-        
-        
+        showAll = new CustomButton("Vis alle kunder");
         
         
         showInactive = new JCheckBox("Vis inaktive kunder");  
@@ -69,8 +67,12 @@ public class SimpleSearchPanel extends CustomPanel {
         gbc.gridx++;
         add(srcBtn, gbc);
         
+        gbc.gridx++;
+        add(showAll, gbc);
         
-        srcBtn.addActionListener((e) -> {listener.customActionPerformed(new CustomEvent(Constants.SEARCH_INSURANCE));});
+        
+        srcBtn.addActionListener((e) -> {listener.customActionPerformed(new CustomEvent(Constants.SEARCH_CUSTOMER));});
+        showAll.addActionListener((e) -> {listener.customActionPerformed(new CustomEvent(Constants.SHOW_ALL_CUSTOMERS));});
     }
     
     

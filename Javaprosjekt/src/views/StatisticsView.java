@@ -32,6 +32,7 @@ public class StatisticsView extends JTabbedPane {
     private CustomTextField amountCus, amountActiveCus, amountIns, amountRep, paidRep, premiumIncome;
     private JTextArea insurances;
     private JComboBox<String> damageType, insuranceType;
+    private CustomListener listener;
     
     /**
      * Initalizes the GUI components
@@ -304,7 +305,16 @@ public class StatisticsView extends JTabbedPane {
         }
         
         insurances.setText(print);
-    }  
+    } 
+    
+    /**
+     * Method that connect controllers listener to the panel
+     * @param l CustomListener
+     */
+    public void addCustomListener(CustomListener l)
+    {
+        this.listener = l;
+    }
 }
 
 

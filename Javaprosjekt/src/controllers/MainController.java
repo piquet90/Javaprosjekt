@@ -37,8 +37,7 @@ public class MainController extends Controller {
     public RegistrationController regController;
     public InsuranceController insController;
     public SearchController sController;
-    
-    private SimpleSearchPanel search;
+    public StatisticsController statsController;
     
     
     /**
@@ -72,6 +71,7 @@ public class MainController extends Controller {
         regController = new RegistrationController(r, this);
         insController = new InsuranceController(r, this);
         sController = new SearchController(r, this);
+        statsController = new StatisticsController(r, this);
         
         
         // start with ViewCustomerController
@@ -88,6 +88,10 @@ public class MainController extends Controller {
         view.addTop(c);
     }
     
+    /**
+     * Adds a component (JTable) to the center of the window
+     * @param t component
+     */
     public void addCenter(Component t)
     {
         view.addCenter(t);
