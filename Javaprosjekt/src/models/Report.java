@@ -3,6 +3,7 @@ package models;
 
 import DAO.Constants;
 import java.io.Serializable;
+import java.util.HashSet;
 
 /**
  * Report class (Skademelding)
@@ -16,6 +17,8 @@ public class Report implements Serializable{
     private int id, insuranceId, ownerId;
     private double paid, estimated;
     private String description, type, date, witnessName1, witnessPhone1;
+    
+    private HashSet<String> pictures;
     
 
     public double getPaid() {
@@ -37,6 +40,7 @@ public class Report implements Serializable{
     public Report()
     {
         id = next++;
+        this.pictures = new HashSet<>();
         
     }
 
@@ -111,6 +115,15 @@ public class Report implements Serializable{
 
     public void setWitnessPhone1(String witnessPhone1) {
         this.witnessPhone1 = witnessPhone1;
+    }
+    
+    public void addPicture(String p)
+    {
+        pictures.add(p);
+    }
+    public HashSet<String> getPictures()
+    {
+        return pictures;
     }
     
     
