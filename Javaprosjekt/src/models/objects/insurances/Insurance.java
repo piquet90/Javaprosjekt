@@ -189,7 +189,7 @@ public abstract class Insurance implements Serializable{
      */
     public void delete()
     {
-        if(this.endDate!=null)
+        if(this.endDate==null)
             this.endDate = Calendar.getInstance();
     }
     
