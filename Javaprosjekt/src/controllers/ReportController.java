@@ -37,8 +37,7 @@ public class ReportController {
     public void newReport()
     {
         this.view = new NewReportPanel();
-        view.addController(this);
-        view.initComponents();
+        //view.addController(this);
         mc.popUp(view);
     }
 }

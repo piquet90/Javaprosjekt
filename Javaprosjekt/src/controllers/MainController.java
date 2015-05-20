@@ -34,6 +34,9 @@ public class MainController extends Controller {
     public ReportController rController;
     public RegistrationController regController;
     public InsuranceController insController;
+    public SearchController sController;
+    
+    private SimpleSearchPanel search;
     
     /**
      * MainController
@@ -65,6 +68,12 @@ public class MainController extends Controller {
         rController = new ReportController(r, this);
         regController = new RegistrationController(r, this);
         insController = new InsuranceController(r, this);
+        sController = new SearchController(r, this);
+        
+        search = new SimpleSearchPanel();
+        search.addCustomListener((CustomListener)sController);
+        
+        view.addTop(search);
         
         // start with ViewCustomerController
         vcController.showAllCustomers();

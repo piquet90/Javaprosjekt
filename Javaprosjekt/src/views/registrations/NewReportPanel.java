@@ -11,6 +11,8 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomLabelHeader;
 import CustomSwing.CustomPanel;
+import TableModels.ImageTable;
+import TableModels.ReportTable;
 import controllers.ReportController;
 import java.awt.Color;
 import java.awt.Font;
@@ -18,13 +20,15 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.File;
+import java.util.HashSet;
 import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import models.Report;
 
 /**
  * New report panel
@@ -33,8 +37,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class NewReportPanel extends JTabbedPane {
     
-    private CustomTextField date, estimation, paid, fileURL,
-            vitneFornavn, vitneEtternavn, vitneAdresse, vitneBy, vitnePnr, vitneTlf;
+    private CustomTextField date, estimation, paid, fileURL, type, witName1, witPhone1;
     private JFileChooser imageChooser, fileChooser;
     private JTextArea description, imageURL;
     private JScrollPane descriptionScroll, imageURLScroll;
@@ -42,14 +45,15 @@ public class NewReportPanel extends JTabbedPane {
     private CustomButton submit;
     private CustomButton2 imagesButton, fileButton;
     private CustomPanel txtTab, ulTab, wiTab;
-    private JComboBox<String> type;
-    private ReportController controller;
+    private boolean edit = false;
+    private boolean viewMode = false;
     
+  
     
     /**
-     * Initializes the GUI components
-    */
-    public void initComponents()
+     * NewReportPanel constructor
+     */
+    public NewReportPanel()
     {
         txtTab = new CustomPanel();
         txtTab.setLayout(new GridBagLayout());
@@ -62,28 +66,21 @@ public class NewReportPanel extends JTabbedPane {
         fileButton = new CustomButton2("Last opp fil");
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> {});
+        submit.addActionListener((e) -> {change();});
         
         
         description = new JTextArea(8, 22);
         descriptionScroll = new JScrollPane(description);
         descriptionScroll.setPreferredSize(description.getPreferredSize());
-
-        String[] t = {"Velg type...", "Bil", "Hus/innbo", "Fritidshus", "Båt"};
-        type = new JComboBox<>(t);
-        type.setFont(new Font("Arial", Font.PLAIN, 15));
         
         date = new CustomTextField(10);
         estimation = new CustomTextField(6);
         paid = new CustomTextField(6);
+        type = new CustomTextField(15);
+        type.setEditable(false);
         
-        
-        vitneFornavn = new CustomTextField(15);
-        vitneEtternavn = new CustomTextField(15);
-        vitneAdresse = new CustomTextField(20);
-        vitneBy = new CustomTextField(15);
-        vitnePnr = new CustomTextField(6);
-        vitneTlf = new CustomTextField(10);
+        witName1 = new CustomTextField(15);
+        witPhone1 = new CustomTextField(10);
         
         // Filechoosers settings ///////////////////////////////////////////////
         imageChooser = new JFileChooser();
@@ -116,15 +113,6 @@ public class NewReportPanel extends JTabbedPane {
 
         
         
-    }
-    
-    
-    /**
-     * NewReportPanel constructor
-     */
-    public NewReportPanel()
-    {
-        initComponents();
         setBackground(new Color(159, 196, 232));
         setFont(new Font("Arial", Font.BOLD, 18));
 
@@ -214,6 +202,7 @@ public class NewReportPanel extends JTabbedPane {
         gbc2.anchor = GridBagConstraints.LINE_END;
         gbc2.gridy++;
         ulTab.add(imagesButton, gbc2);
+        ulTab.add(new CustomLabel("LEGG TIL ET JTABLE HER"), gbc);
         
         gbc2.anchor = GridBagConstraints.LINE_START;
         gbc2.gridy++;
@@ -252,49 +241,67 @@ public class NewReportPanel extends JTabbedPane {
         
         gbc3.gridx = 0;
         gbc3.gridy = 1;
-        wiTab.add(new CustomLabel("Fornavn: "), gbc3);
+        wiTab.add(new CustomLabel("1. vitne, navn: "), gbc3);
         
         gbc3.gridy++;
-        wiTab.add(new CustomLabel("Etternavn: "), gbc3);
-        
-        gbc3.gridy++;
-        wiTab.add(new CustomLabel("Adresse: "), gbc3);
-        
-        gbc3.gridy++;
-        wiTab.add(new CustomLabel("Poststed: "), gbc3);
-        
-        gbc3.gridy++;
-        wiTab.add(new CustomLabel("Postnummer: "), gbc3);
-        
-        gbc3.gridy++;
-        wiTab.add(new CustomLabel("Telefonnummer: "), gbc3);
-        
+        wiTab.add(new CustomLabel("1. vitne, telefonnummer: "), gbc3);        
         
         gbc3.gridx = 1;
         gbc3.gridy = 1;
         gbc3.anchor = GridBagConstraints.LINE_START;
-        wiTab.add(vitneFornavn, gbc3);
+        wiTab.add(witName1, gbc3);
         
         gbc3.gridy++;
-        wiTab.add(vitneEtternavn, gbc3);
+        wiTab.add(witPhone1, gbc3);
         
-        gbc3.gridy++;
-        wiTab.add(vitneAdresse, gbc3);
-        
-        gbc3.gridy++;
-        wiTab.add(vitneBy, gbc3);
-        
-        gbc3.gridy++;
-        wiTab.add(vitnePnr, gbc3);
-        
-        gbc3.gridy++;
-        wiTab.add(vitneTlf, gbc3);
+ 
         
         //Adding the tabs
 
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Informasjon</body></html>", txtTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Opplastninger</body></html>", ulTab);
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Vitner</body></html>", wiTab);
+    }
+    
+    /**
+     * Changes text-fields to uneditable if panel is used for viewing
+     */
+    public void setViewMode()
+    {
+        date.setEditable(false);
+        estimation.setEditable(false);
+        paid.setEditable(false);
+        witName1.setEditable(false);
+        witPhone1.setEditable(false);
+        description.setEditable(false);
+        
+        imageURL.setVisible(false);
+        imageURLScroll.setVisible(false);
+        imageChooser.setVisible(false);
+        fileChooser.setVisible(false);
+        fileURL.setVisible(false);
+        imagesButton.setVisible(false);
+        fileButton.setVisible(false);
+        
+        submit.setText("Endre");
+        
+        viewMode = true;
+    }
+    
+    /**
+     * Returns whether or not the panel is in viewmode
+     * @return boolean viewmode
+     */
+    public boolean isViewMode() {
+        return viewMode;
+    }
+
+    /**
+     * Sets the view mode
+     * @param vm true or false
+     */
+    public void setViewMode(boolean vm) {
+        viewMode = vm;
     }
     
     /**
@@ -350,14 +357,80 @@ public class NewReportPanel extends JTabbedPane {
     public String getPaid() {
         return paid.getText();
     }
-
+    
     /**
-     * 
-     * @param c Report Controller
-     * @return HOPPASALASIMIMA IMSDF M
+     * Returns the injury report-type
+     * @return injury type
      */
-    public boolean addController(ReportController c) {
-        this.controller = c;
-        return true;
+    public String getType() {
+        return type.getText();
     }
+    
+    
+    /**
+     * Sets the damage description in the description-field
+     * @param s 
+     */
+    public void setDescription(String s) {
+        description.setText(s);
+    }
+    
+    /**
+     * Sets the damage value estimation the estimation-field
+     * @param e damage value estimation in NOK
+     */
+    public void getEstimation(String e) {
+        estimation.setText(e);
+    }
+    
+    /**
+     * Sets the paid-amount in the paid-field
+     * @param p amount paid for damage in NOK
+     */
+    public void getPaid(String p) {
+        paid.setText(p);
+    }
+    
+    /**
+     * Sets the injury report type in the type-field
+     * @param t injury report type
+     */
+    public void setType(String t) {
+        type.setText(t);
+    }
+    
+  
+    
+    /**
+     * Method makes textfields editable and passes the changed information to registry
+     */
+    public void change()
+    {
+        if(!edit) {
+            estimation.setEditable(true);
+            paid.setEditable(true);
+            witName1.setEditable(true);
+            witPhone1.setEditable(true);
+            
+            
+            
+            submit.setText("Lagre");
+            
+            edit = true;  
+        }
+        else {
+            estimation.setEditable(false);
+            paid.setEditable(false);
+            witName1.setEditable(false);
+            witPhone1.setEditable(false);
+            
+            
+            
+            submit.setText("Endre");
+            
+            edit = false;
+        } 
+    }
+
+  
 }

@@ -14,6 +14,7 @@ import views.registrations.NewBoatInsurance;
 import views.registrations.NewCarInsurance;
 import views.registrations.NewHouseInsurance;
 import views.registrations.NewLeisureHouseInsurance;
+import views.registrations.NewReportPanel;
 import views.registrations.NewTravelInsurance;
 
 
@@ -30,7 +31,7 @@ public class ViewTest {
         //JOptionPane.showMessageDialog(null, new TravelInsuranceView());
         //JOptionPane.showMessageDialog(null, new AdvancedSearchPanel());
         
-        NewTravelInsurance c = new NewTravelInsurance();
+        NewReportPanel c = new NewReportPanel();
         c.setViewMode();
         //c.setIsForRent(false);
         
