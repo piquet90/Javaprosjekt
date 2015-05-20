@@ -14,6 +14,7 @@ import models.CustomerModel;
 import models.Customer;
 import models.InsuranceModel;
 import models.Report;
+import models.ReportModel;
 import models.objects.insurances.Insurance;
 import views.CustomerView;
 import views.CustomEvent;
@@ -38,6 +39,7 @@ public class CustomerController extends Controller implements CustomListener{
     // model 
     private CustomerModel m;
     private InsuranceModel i;
+    private ReportModel r;
     
     private Customer customer;
     
@@ -55,6 +57,7 @@ public class CustomerController extends Controller implements CustomListener{
         this.mc = m;
         this.m = new CustomerModel(r);
         this.i = new InsuranceModel(r);
+        this.r = new ReportModel(r);
     }
     
     /**
@@ -85,7 +88,7 @@ public class CustomerController extends Controller implements CustomListener{
         cus.addTable("Forsikringer", insuranceTable);
         
 
-        HashSet<Report> repSet = new HashSet<>();
+        HashSet<Report> repSet = this.r.getReportsByCustomerId(i);
         ReportTable repTable = new ReportTable(repSet);
         reportTable = new ViewTable(repTable);
         cus.addTable("Skademeldinger", reportTable);

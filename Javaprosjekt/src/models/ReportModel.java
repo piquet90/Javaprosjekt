@@ -7,6 +7,7 @@ package models;
 
 import DAO.*;
 import java.util.HashSet;
+import java.util.Iterator;
 import models.objects.insurances.Insurance;
 /**
  *
@@ -14,12 +15,44 @@ import models.objects.insurances.Insurance;
  */
 public class ReportModel {
     
-    HashSet<Insurance> insurances;
+    HashSet<Report> reports;
     
     // todo: write comments
     public ReportModel(Registries r)
     {
-        this.insurances = r.getInsurances();
+        this.reports = r.getReports();
+    }
+    
+    public void addReport(Report r)
+    {
+        reports.add(r);
+    }
+    
+    public Report findById(int id)
+    {
+        Iterator<Report> it = reports.iterator();
+        while(it.hasNext())
+        {
+            Report r = it.next();
+            if(r.getId()==id)
+                return r;
+        }
+        return null;
+    }
+    public HashSet<Report> getReportsByCustomerId(int id)
+    {
+        HashSet<Report> result = new HashSet<>();
+        Iterator<Report> it = reports.iterator();
+        
+        while(it.hasNext())
+        {
+            Report r = it.next();
+            if(r.getOwnerId()==id)
+                result.add(r);
+        }
+        
+        return result;
+        
     }
     
     

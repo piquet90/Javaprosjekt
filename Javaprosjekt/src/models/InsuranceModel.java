@@ -73,7 +73,7 @@ public class InsuranceModel {
      */
     public void addInsurance(Insurance i)
     {
-        /*
+        
         HashSet<Insurance> ins = findByOwnerId(i.getOwnerId());
         
         Count<Object, Integer> result = new Count<>();
@@ -90,7 +90,7 @@ public class InsuranceModel {
             Customer c = customers.findById(i.getOwnerId());
             c.setTotalCustomer(true);
         }
-        */
+        
         
         insurances.add(i);
     }

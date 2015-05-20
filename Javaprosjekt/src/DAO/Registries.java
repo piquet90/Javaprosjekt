@@ -84,6 +84,10 @@ public class Registries implements Serializable{
         
         }
     }
+
+    public HashSet<Report> getReports() {
+        return reports;
+    }
     
     
 }

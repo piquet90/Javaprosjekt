@@ -652,6 +652,9 @@ public class InsuranceController implements CustomListener {
             registerTravel();
         if(i.getAction()==Constants.DELETE_INSURANCE)
             deleteInsurance();
+        if(i.getAction()==Constants.NEW_REPORT)        
+            mc.rController.newReport(this.insuranceId);
+        
         
     }// end of customAc
     
