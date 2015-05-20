@@ -89,7 +89,9 @@ public class ReportController implements CustomListener{
             r.setType(view.getType());
             r.setInsuranceId(insuranceId);
             r.setDate(view.getDate());
-            r.setWitness1(view.get)
+            r.setWitnessName1(view.getWitName1());
+            r.setWitnessPhone1(view.getWitPhone1());
+            
             
             
             if(!view.isViewMode())
@@ -112,6 +114,11 @@ public class ReportController implements CustomListener{
         view = new NewReportPanel();
         view.setDate(r.getDate());
         view.setDescription(r.getDescription());
+        view.setType(r.getType());
+        view.setEstimation(Double.toString(r.getEstimated()));
+        view.setPaid(Double.toString(r.getPaid()));
+        view.setWitnessName1(r.getWitnessName1());
+        view.setWitnessPhone1(r.getWitnessPhone1());
         
         
     }

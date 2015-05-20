@@ -15,7 +15,8 @@ public class Report implements Serializable{
     
     private int id, insuranceId, ownerId;
     private double paid, estimated;
-    private String description, type, date;
+    private String description, type, date, witnessName1, witnessPhone1;
+    
 
     public double getPaid() {
         return paid;
@@ -94,6 +95,22 @@ public class Report implements Serializable{
     public String getDate()
     {
         return this.date;
+    }
+
+    public String getWitnessName1() {
+        return witnessName1;
+    }
+
+    public void setWitnessName1(String witnessName1) {
+        this.witnessName1 = witnessName1;
+    }
+
+    public String getWitnessPhone1() {
+        return witnessPhone1;
+    }
+
+    public void setWitnessPhone1(String witnessPhone1) {
+        this.witnessPhone1 = witnessPhone1;
     }
     
     

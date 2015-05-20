@@ -13,6 +13,26 @@ public class Constants {
     
     public static final int TOTALCUSTOMER_REQUIRMENT = 3;
     
+    public static final String STANDARD_CAR_AMOUNT = "500000.00";
+    public static final String STANDARD_CAR_PREMIUM = "20000.00";
+    public static final String STANDARD_CAR_PRICE_PER_KM = "0.50";
+    
+    public static final String STANDARD_BOAT_AMOUNT = "1000000.00";
+    public static final String STANDARD_BOAT_PREMIUM = "40000.00";
+    
+    public static final String STANDARD_HOUSE_BUILDING_AMOUNT = "7000000.00";
+    public static final String STANDARD_HOUSE_CONTENTS_AMOUNT = "1000000.00";
+    public static final String STANDARD_HOUSE_PREMIUM = "10000.00";
+    
+    public static final String STANDARD_LEISURE_BUILDING_AMOUNT = "3000000.00";
+    public static final String STANDARD_LEISURE_CONTENTS_AMOUNT = "900000.00";
+    public static final String STANDARD_LEISURE_PREMIUM = "3500.00";
+    
+    public static final String STANDARD_TRAVEL_AMOUNT = "1000000.00";
+    public static final String STANDARD_TRAVEL_PREMIUM = "1000";
+    
+    
+    
     
     
     
