@@ -73,10 +73,15 @@ public class MainView extends JFrame{
         
         JScrollPane panel = new JScrollPane(tpanel);
         Container c = getContentPane();
-        c.add(new SimpleSearchPanel(), BorderLayout.NORTH);
         c.add(panel, BorderLayout.CENTER);
         c.revalidate();
         c.repaint();
+    }
+    
+    public void addTop(CustomPanel tpanel)
+    {
+        Container c = getContentPane();
+        c.add(tpanel, BorderLayout.NORTH);
     }
     
     

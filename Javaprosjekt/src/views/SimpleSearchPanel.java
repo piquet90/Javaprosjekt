@@ -9,10 +9,12 @@ import CustomSwing.CustomButton;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
+import DAO.Constants;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -24,16 +26,17 @@ import javax.swing.JOptionPane;
 public class SimpleSearchPanel extends CustomPanel {
     
     private GridBagConstraints gbc;
-    private CustomTextField srcField;
+    public CustomTextField srcField;
     private JComboBox<String> srcType;
     private CustomButton srcBtn;
     private JCheckBox showInactive;
+    private CustomListener listener;
     
     
     /**
-     * Method that initalizes the GUI components
+     * SimpleSearchPanel constructor
      */
-    public void initComponents()
+    public SimpleSearchPanel() 
     {
         srcField = new CustomTextField(20);
         srcField.setFont(new Font("Arial", Font.PLAIN, 22));
@@ -42,17 +45,11 @@ public class SimpleSearchPanel extends CustomPanel {
         srcType.setFont(new Font("Arial", Font.PLAIN, 18));
         
         srcBtn = new CustomButton("Søk");
-        srcBtn.addActionListener((e) -> search());
+            srcBtn.addActionListener((e) -> listener.customActionPerformed(new CustomEvent(Constants.SEARCH_INSURANCES)));
+        
+        
         
         showInactive = new JCheckBox("Vis inaktive kunder");  
-    }
-    
-    /**
-     * SimpleSearchPanel constructor
-     */
-    public SimpleSearchPanel() 
-    {
-        initComponents();
         setLayout(new GridBagLayout());
         
         gbc = new GridBagConstraints();
@@ -102,12 +99,40 @@ public class SimpleSearchPanel extends CustomPanel {
         }
     }
     
+    
+    public int getSrcTest()
+    {
+        int i = Integer.parseInt(srcField.getText());
+        return 8;
+    }
+    
     /**
      * Method that recieves an error message and displays it to the user
      * @param error error message
      */
     public void showError(String error) {
         JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    /**
+     * NewCustomerPanels ActionListener
+     * @param e ActionEvent
+     */
+    
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==srcBtn)
+        {
+            listener.customActionPerformed(new CustomEvent(Constants.SEARCH_INSURANCES));
+        }
+    }
+    
+    /**
+     * Method that connect controllers listener to the panel
+     * @param l CustomListener
+     */
+    public void addCustomListener(CustomListener l)
+    {
+        this.listener = l;
     }
     
 }

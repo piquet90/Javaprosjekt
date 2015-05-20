@@ -466,7 +466,11 @@ public class NewBoatInsurance extends CustomPanel {
        this.listener = l;
    }
 
-    public void setModelYear(String toString) {
-        modelYear.setText(toString);
+   /**
+    * Sets model year
+    * @param my model year
+    */
+    public void setModelYear(String my) {
+        modelYear.setText(my);
     }
 }

@@ -42,7 +42,9 @@ public class ReportController implements CustomListener{
     {
         this.customerId = id;
         this.view = new NewReportPanel();
-        //view.addCustomListener(this);
+
+        // view.addCustomListener(this);
+
         mc.popUp(view);
     }
 

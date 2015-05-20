@@ -33,7 +33,6 @@ public class ImageTable extends AbstractTableModel{
      */
     public ImageTable(HashSet<File> images)     
     {
-        
         if(images.isEmpty())
         {
             
