@@ -35,14 +35,9 @@ public abstract class Insurance implements Serializable{
     
     /**
      * Constructor for Insurance.
-     * Creates an Insurance with the required fields
+     * Creates an Insurance
      * 
      * @author Rudi Yu
-     * @param price Integer with value of yearly insurance cost
-     * @param coverage Integer with value of coverage
-     * @param conditions String with terms and conditions of insurance
-     * @param other String containing "other"-info about the insurance
-     * @param dateofcreation Date-object with info about when the insurance was created
      */
     public Insurance()
     {
@@ -52,7 +47,7 @@ public abstract class Insurance implements Serializable{
         
     }
     
-    //TODO: add comments to the equals and hashCode functions
+   /* 
     public boolean equals(Object o)
     {
         Insurance a = (Insurance)o;
@@ -62,7 +57,7 @@ public abstract class Insurance implements Serializable{
     {
         return this.id;
     }
-    
+    */
 
 
     /**

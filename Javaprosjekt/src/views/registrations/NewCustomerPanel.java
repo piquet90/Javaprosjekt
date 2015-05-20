@@ -33,10 +33,12 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener {
     private CustomListener listener;
 
     
+
+    
     /**
-     * Method that initalizes the GUI components
+     * NyCustomerPanel constructor
      */
-    public void initComponents()
+    public NewCustomerPanel()
     {
         firstName = new CustomTextField(15);
         lastName = new CustomTextField(15);
@@ -46,14 +48,6 @@ public class NewCustomerPanel extends CustomPanel implements ActionListener {
         
         submit = new CustomButton("Registrer");
         submit.addActionListener(this);
-    }
-    
-    /**
-     * NyCustomerPanel constructor
-     */
-    public NewCustomerPanel()
-    {
-        initComponents();
         setLayout(new GridBagLayout());
         
         gbc = new GridBagConstraints();
