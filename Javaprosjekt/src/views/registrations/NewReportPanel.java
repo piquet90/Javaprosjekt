@@ -351,7 +351,7 @@ public class NewReportPanel extends JTabbedPane {
      * Returns insurance number
      * @return insurance number
      */
-    public String insNumber() {
+    public String getInsNumber() {
         return insNumber.getText();
     }
     
@@ -395,6 +395,24 @@ public class NewReportPanel extends JTabbedPane {
         return type.getText();
     }
     
+    /**
+     * Returns the first witness' name
+     * @return witness name 
+     */
+    public String getWitName1()
+    {
+        return witName1.getText();
+    }
+    
+    /**
+     * Returns the first witness' telephone number
+     * @return witness telephone number
+     */
+    public String getWitPhone1()
+    {
+        return witPhone1.getText();
+    }
+    
     
     /**
      * Sets the damage description in the description-field
@@ -408,7 +426,7 @@ public class NewReportPanel extends JTabbedPane {
      * Sets the damage value estimation the estimation-field
      * @param e damage value estimation in NOK
      */
-    public void getEstimation(String e) {
+    public void setEstimation(String e) {
         estimation.setText(e);
     }
     
@@ -416,7 +434,7 @@ public class NewReportPanel extends JTabbedPane {
      * Sets the paid-amount in the paid-field
      * @param p amount paid for damage in NOK
      */
-    public void getPaid(String p) {
+    public void setPaid(String p) {
         paid.setText(p);
     }
     
@@ -427,6 +445,24 @@ public class NewReportPanel extends JTabbedPane {
     public void setType(String t) {
         type.setText(t);
     }
+    
+    /**
+     * Sets the first witness' name in the first witness name text-field
+     * @param wn witness name
+     */
+    public void setWitnessName1(String wn) {
+        witName1.setText(wn);
+    }
+    
+    /**
+     * Sets the first witness' phone number in the first witness phone number text-field
+     * @param wp witness phone number
+     */
+    public void setWitnessPhone1(String wp) {
+        witName1.setText(wp);
+    }
+    
+   
     
     
     /**
@@ -454,7 +490,7 @@ public class NewReportPanel extends JTabbedPane {
     }
     
 
-    
+
     public void clearFields()
     {
         date.setText("");

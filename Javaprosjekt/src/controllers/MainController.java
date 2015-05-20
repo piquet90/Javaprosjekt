@@ -6,8 +6,10 @@
  */
 package controllers;
 
+import CustomSwing.CustomPanel;
 import DAO.Constants;
 import DAO.Registries;
+import java.awt.Component;
 import java.util.HashSet;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -71,14 +73,24 @@ public class MainController extends Controller {
         insController = new InsuranceController(r, this);
         sController = new SearchController(r, this);
         
-        search = new SimpleSearchPanel();
-        search.addCustomListener((CustomListener)sController);
-        
-        view.addTop(search);
         
         // start with ViewCustomerController
         vcController.showAllCustomers();
         
+    }
+    
+    /**
+     * Adds a panel to top in MainView
+     * @param c 
+     */
+    public void addTop(CustomPanel c)
+    {
+        view.addTop(c);
+    }
+    
+    public void addCenter(Component t)
+    {
+        view.addCenter(t);
     }
     
     

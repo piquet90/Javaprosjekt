@@ -30,10 +30,6 @@ public class MainView extends JFrame{
     CustomButton nybrukerpanel, nyforskerpanel, viewCustomers;
     JMenuBar menubar;
 
-    /**
-     * Initalizes components
-     */
-
     
     /**
      * MainViews constructor

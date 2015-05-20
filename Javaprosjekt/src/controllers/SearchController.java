@@ -7,13 +7,18 @@ package controllers;
 
 import DAO.Constants;
 import DAO.Registries;
+import TableModels.CustomerTable;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import models.Customer;
+import models.CustomerModel;
 import models.InsuranceModel;
 import models.objects.insurances.Insurance;
 import views.CustomEvent;
 import views.CustomListener;
 import views.SimpleSearchPanel;
+import views.ViewTable;
 
 /**
  *
@@ -22,8 +27,10 @@ import views.SimpleSearchPanel;
 public class SearchController implements CustomListener{
     
     private MainController mc;
-    private InsuranceModel i;
+    private CustomerModel i;
     private SimpleSearchPanel v;
+    private ViewTable view;
+    private CustomerTable table;
     
     /**
      * SearchControllers constructor
@@ -33,21 +40,37 @@ public class SearchController implements CustomListener{
     public SearchController(Registries r, MainController m)
     {
         mc = m;
-        i = new InsuranceModel(r);
+        i = new CustomerModel(r);
         v = new SimpleSearchPanel();
+        v.addCustomListener(this);
+        mc.addTop(v);
     }
     
-    public void findById()
+    public void findCustomer()
     {
-        //v.setSearch("f");
-        JOptionPane.showMessageDialog(null, v.getSearch());
-        /*int p = Integer.parseInt(v.getSearch());
-        Insurance in = i.findById(p);
+        String search = v.getSearch();
+        HashSet<Customer> r = new HashSet<>();
+        Customer c = null;
         
-        if(in == null)
-            JOptionPane.showMessageDialog(null, "Fant ingen treff");
-        else
-            JOptionPane.showMessageDialog(null, in.getType());*/
+        try
+        {
+            int id = Integer.parseInt(search);
+            c = i.findById(id);
+            r.add(c);
+            
+            
+        }
+        catch(NumberFormatException nfe)
+        {
+            r = i.searchName(search);
+        }
+        
+        if(r.size() != 0)
+            System.out.println("tttttttttttttttttt");
+        
+        table = new CustomerTable(r);
+        // view = new ViewTable(table);
+        mc.vcController.update(table);
         
     }
 
@@ -55,7 +78,7 @@ public class SearchController implements CustomListener{
     public void customActionPerformed(CustomEvent i) {
         if(i.getAction() == Constants.SEARCH_INSURANCE)
         {
-            findById();
+            findCustomer();
         }
             
     }
