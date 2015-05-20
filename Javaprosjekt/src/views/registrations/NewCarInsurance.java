@@ -449,8 +449,7 @@ public class NewCarInsurance extends CustomPanel {
      */
     public void clearFields()
     {
-        
-        carOwner.setText("");
+        carType.setSelectedIndex(0);
         regNr.setText("");
         model.setText("");
         horsepower.setText("");

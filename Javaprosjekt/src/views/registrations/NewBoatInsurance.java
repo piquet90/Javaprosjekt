@@ -444,7 +444,7 @@ public class NewBoatInsurance extends CustomPanel {
      */
     public void clearFields()
     {
-        boatOwner.setText("");
+        boatType.setSelectedIndex(0);
         regNr.setText("");
         modelYear.setText("");
         model.setText("");

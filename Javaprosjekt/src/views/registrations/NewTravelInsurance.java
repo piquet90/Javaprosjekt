@@ -311,16 +311,15 @@ public class NewTravelInsurance extends CustomPanel {
      */
     public void clearFields()
     {
-        insTaker.setText("");
         amount.setText("");
         premium.setText("");
         conditions.setText("");
-        asia.setContentAreaFilled(false);
-        africa.setContentAreaFilled(false);
-        europe.setContentAreaFilled(false);
-        nAmerica.setContentAreaFilled(false);
-        sAmerica.setContentAreaFilled(false);
-        oceania.setContentAreaFilled(false);
+        asia.setSelected(false);
+        africa.setSelected(false);
+        europe.setSelected(false);
+        nAmerica.setSelected(false);
+        sAmerica.setSelected(false);
+        oceania.setSelected(false);
     }
     
     
