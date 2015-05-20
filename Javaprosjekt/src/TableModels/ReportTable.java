@@ -46,7 +46,7 @@ public class ReportTable extends AbstractTableModel{
             for(int i = 0; iter.hasNext(); i++)
             {
                 Report rep = iter.next();
-                celler[i][0] = ""; //rep.getId();
+                celler[i][0] = rep.getId(); //rep.getId();
                 celler[i][1] = ""; //rep.getType();
                 celler[i][2] = ""; //format1.format(rep.getDateofcreation().getTime());S
             }

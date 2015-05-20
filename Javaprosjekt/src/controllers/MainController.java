@@ -35,6 +35,7 @@ public class MainController extends Controller {
     public RegistrationController regController;
     public InsuranceController insController;
     
+    
     /**
      * MainController
      * 

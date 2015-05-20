@@ -64,7 +64,6 @@ public class MenuView extends JMenuBar{
         
         
         
-        newReport.addActionListener((e)->{controller.rController.newReport();});
         newCustomer.addActionListener((e)->{controller.regController.newUser();});
         showStats.addActionListener((e) -> c.popUp(new StatisticsView()));
         advancedSearch.addActionListener((e) -> c.popUp(new AdvancedSearchPanel()));

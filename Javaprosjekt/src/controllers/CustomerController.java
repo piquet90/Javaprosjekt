@@ -41,7 +41,7 @@ public class CustomerController extends Controller implements CustomListener{
     
     private Customer customer;
     
-    private ViewTable viewTable;
+    private ViewTable insuranceTable, reportTable;
     
     
     /**
@@ -80,15 +80,15 @@ public class CustomerController extends Controller implements CustomListener{
         // fill insurances
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
         InsuranceTable table = new InsuranceTable(set);
-        viewTable = new ViewTable(table);
-        viewTable.addCustomListener(this);
-        cus.addTable("Forsikringer", viewTable);
+        insuranceTable = new ViewTable(table);
+        insuranceTable.addCustomListener(this);
+        cus.addTable("Forsikringer", insuranceTable);
         
-        // fill reports
-        /*HashSet<Report> repSet = new HashSet<>();
+
+        HashSet<Report> repSet = new HashSet<>();
         ReportTable repTable = new ReportTable(repSet);
-        viewTable = new ViewTable(repTable);
-        cus.addTable("Skademeldinger", viewTable);*/
+        reportTable = new ViewTable(repTable);
+        cus.addTable("Skademeldinger", reportTable);
         
         // show view
         mc.popUp(customer.getName(), cus);
@@ -102,7 +102,7 @@ public class CustomerController extends Controller implements CustomListener{
     public void refresh()
     {
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
-        viewTable.setModel(new InsuranceTable(set));
+        insuranceTable.setModel(new InsuranceTable(set));
         view.revalidate();
         view.repaint();
     }
@@ -114,15 +114,7 @@ public class CustomerController extends Controller implements CustomListener{
     {
         mc.regController.newInsurance();
     }
-    
-    /**
-     * Adds a new damage report to the customer
-     */
-    public void newReport()
-    {
-        System.out.println("new report for ID: "+customer.getId());
-    }
-    
+     
     /**
      * Saves the customer information
      */
@@ -190,6 +182,6 @@ public class CustomerController extends Controller implements CustomListener{
                 mc.insController.newTravelInsurance(customer.getId());
         }
         if(i.getAction()==Constants.NEW_REPORT)
-            newReport();
+            mc.rController.newReport(customer.getId());
     }
 }// end of class
