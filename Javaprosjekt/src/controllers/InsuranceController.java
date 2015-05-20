@@ -446,7 +446,7 @@ public class InsuranceController implements CustomListener{
         
         boatInsurance.setBoatOwner(ins.getViechleOwner());
         boatInsurance.setRegNr(ins.getRegistrationNumber());
-        boatInsurance.setType(ins.getVehicleType());
+        boatInsurance.setType(ins.getViechleType());
         boatInsurance.setModel(ins.getModel());
         boatInsurance.setEngineType(ins.getEngineType());
         boatInsurance.setHorsePower(Integer.toString(ins.getPower()));
