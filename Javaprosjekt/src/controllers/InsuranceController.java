@@ -94,6 +94,15 @@ public class InsuranceController implements CustomListener{
     
     public void registerCar()
     {
+        if(!carInsurance.isViewMode())
+            registerCar(new CarInsurance());
+        else {
+            registerCar((CarInsurance)imodel.findById(insuranceId));
+        }
+    }
+    public void registerCar(CarInsurance in)
+    {
+        CarInsurance insurance = in;
         
         String s = "";
         
@@ -119,8 +128,8 @@ public class InsuranceController implements CustomListener{
             
         else
         {
-            CarInsurance insurance = new CarInsurance();
             insurance.setOwnerId(id);
+            System.out.println(carInsurance.getConditions());
             insurance.setViechleOwner(carInsurance.getCarOwner());//done
             insurance.setRegistrationNumber(carInsurance.getRegNr());//done
             insurance.setCarType(carInsurance.getCarType());//done
@@ -134,17 +143,12 @@ public class InsuranceController implements CustomListener{
             insurance.setBonus(Integer.parseInt(carInsurance.getBonus())); // done
             insurance.setConditions(carInsurance.getConditions());
             
-            if(carInsurance.isViewMode())
+            if(!carInsurance.isViewMode())
             {
-                insurance.setId(id);
-                int next = Insurance.getNext() - 1;
-                Insurance.setNext(next);
-            }
-            else {
                 carInsurance.clearFields();
+                imodel.addInsurance(insurance);
             }
-                
-            imodel.addInsurance(insurance);
+                         
             
             mc.ncController.refresh();
             success();
@@ -195,7 +199,7 @@ public class InsuranceController implements CustomListener{
             
             if(boatInsurance.isViewMode())
             {
-                insurance.setId(id);
+                insurance.setId(insuranceId);
                 int next = Insurance.getNext() - 1;
                 Insurance.setNext(next);
             }
@@ -224,7 +228,7 @@ public class InsuranceController implements CustomListener{
             JOptionPane.showMessageDialog(null, "Vennligst korriger følgende felter:\n\n"+s);
         else {
             TravelInsurance insurance = new TravelInsurance();
-            insurance.setOwnerId(id);
+            insurance.setOwnerId(insuranceId);
             insurance.setCoverage(Double.parseDouble(travelInsurance.getPremium()));
             insurance.setPrice(Double.parseDouble(travelInsurance.getAmount()));
             
@@ -252,12 +256,10 @@ public class InsuranceController implements CustomListener{
             s+="Standard\n";
         if(houseInsurance.getHouseSize().equals("")||!houseInsurance.getHouseSize().matches(Constants.ONLY_NUMBERS))
             s+="Størrelse\n";
-        if(houseInsurance.getAmountBuilding().equals("")||!houseInsurance.getAmountBuilding().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringsbeløp, bygg\n";
-        if(houseInsurance.getAmountContents().equals("")||!houseInsurance.getAmountContents().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringsbeløp, innbo\n";
-        if(houseInsurance.getPremium().equals("")||!houseInsurance.getPremium().matches(Constants.ONLY_NUMBERS))
-            s+="Forsikringspremie\n";
+        s += validateDouble(houseInsurance.getAmountBuilding(), "Forsikringsbeløp, bygg\n");
+        s += validateDouble(houseInsurance.getAmountContents(), "Forsikringsbeløp, innbo\n");
+        s += validateDouble(houseInsurance.getPremium(), "Forsikringspremie\n");
+        
         if(houseInsurance.getConditions().equals(""))
             s+="Betingelser\n";
         
@@ -278,7 +280,17 @@ public class InsuranceController implements CustomListener{
             insurance.setPrice(Double.parseDouble(houseInsurance.getPremium()));
             insurance.setConditions(houseInsurance.getConditions());
             
+            if(houseInsurance.isViewMode())
+            {
+                insurance.setId(insuranceId);
+                int next = Insurance.getNext() - 1;
+                Insurance.setNext(next);
+            }
+            else {
+                houseInsurance.clearFields();
+            }
             imodel.addInsurance(insurance);
+            mc.ncController.refresh();
             success();
         }
     }
@@ -324,7 +336,7 @@ public class InsuranceController implements CustomListener{
             insurance.setContentscoverage(Double.parseDouble(leisureHouseInsurance.getAmountContents()));
             insurance.setPrice(Double.parseDouble(leisureHouseInsurance.getPremium()));
             insurance.setConditions(leisureHouseInsurance.getConditions());
-            insurance.setIsForRent(leisureHouseInsurance.getLease());
+            insurance.setIsForRent(leisureHouseInsurance.getIsForRent());
             
             imodel.addInsurance(insurance);
             success();
@@ -366,6 +378,8 @@ public class InsuranceController implements CustomListener{
     {
         carInsurance = new NewCarInsurance();
         carInsurance.addCustomListener(this);
+        
+
         
         carInsurance.setViewMode();
         
@@ -409,7 +423,7 @@ public class InsuranceController implements CustomListener{
         
         
         
-        mc.popUp("BoatInsurance", boatInsurance);
+        mc.popUp("Båtforsikring", boatInsurance);
         
         
     }
@@ -420,6 +434,24 @@ public class InsuranceController implements CustomListener{
     }
     private void viewHouseInsurance(HouseInsurance ins)
     {
+        System.out.println("test");
+        houseInsurance = new NewHouseInsurance();
+        houseInsurance.addCustomListener(this);
+        
+        houseInsurance.setViewMode();
+        
+        houseInsurance.setAdress(ins.getAddress());
+        houseInsurance.setYearBuilt(Integer.toString(ins.getYearofconstruction()));
+        houseInsurance.setType(ins.getBuildingType());
+        houseInsurance.setMaterial(ins.getConstrutionmaterial());
+        houseInsurance.setStandard(ins.getStandard());
+        houseInsurance.setHouseSize(Integer.toString(ins.getSquaremeter()));
+        houseInsurance.setAmountBuilding(Double.toString(ins.getBuildingcoverage()));
+        houseInsurance.setAmountContents(Double.toString(ins.getContentscoverage()));
+        houseInsurance.setPremium(Double.toString(ins.getPrice()));
+        houseInsurance.setConditions(ins.getConditions());
+        
+        mc.popUp("Hus & Innboforsikring", houseInsurance);
         
     }
     private void viewTravelInsurance(TravelInsurance ins)
@@ -467,7 +499,7 @@ public class InsuranceController implements CustomListener{
     @Override
     public void customActionPerformed(CustomEvent i) {
         if(i.getAction()==Constants.CAR_INSURANCE_INT)
-            registerCar();
+            registerCar(new CarInsurance());
         if(i.getAction()==Constants.BOAT_INSURANCE_INT)
             registerBoat();
         if(i.getAction()==Constants.HOUSE_INSURANCE_INT)
