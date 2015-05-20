@@ -89,9 +89,9 @@ public class ReportController implements CustomListener{
             r.setType(view.getType());
             r.setInsuranceId(insuranceId);
             r.setDate(view.getDate());
+
             r.setWitnessName1(view.getWitName1());
             r.setWitnessPhone1(view.getWitPhone1());
-            
             
             
             if(!view.isViewMode())

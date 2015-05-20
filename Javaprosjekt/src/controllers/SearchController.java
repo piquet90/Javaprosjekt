@@ -9,12 +9,8 @@ import DAO.Constants;
 import DAO.Registries;
 import TableModels.CustomerTable;
 import java.util.HashSet;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import models.Customer;
 import models.CustomerModel;
-import models.InsuranceModel;
-import models.objects.insurances.Insurance;
 import views.CustomEvent;
 import views.CustomListener;
 import views.SimpleSearchPanel;
@@ -46,39 +42,44 @@ public class SearchController implements CustomListener{
         mc.addTop(v);
     }
     
+    /**
+     * Method that finds out if search word is for customerID or customer name and finds matching
+     */
     public void findCustomer()
     {
         String search = v.getSearch();
         HashSet<Customer> r = new HashSet<>();
         Customer c = null;
         
-        try
+        if(!search.equals(""))
         {
-            int id = Integer.parseInt(search);
-            c = i.findById(id);
-            r.add(c);
+            try
+            {
+                int id = Integer.parseInt(search);
+                c = i.findById(id);
+                r.add(c);
+            }
+            catch(NumberFormatException nfe)
+            {
+                r = i.searchName(search);
+            }
             
-            
+            table = new CustomerTable(r);
+            mc.vcController.update(table);
         }
-        catch(NumberFormatException nfe)
-        {
-            r = i.searchName(search);
-        }
-        
-        if(r.size() != 0)
-            System.out.println("tttttttttttttttttt");
-        
-        table = new CustomerTable(r);
-        // view = new ViewTable(table);
-        mc.vcController.update(table);
-        
+        else
+            mc.popUp("Feltene er ikke fylt inn korrekt");
     }
 
     @Override
     public void customActionPerformed(CustomEvent i) {
-        if(i.getAction() == Constants.SEARCH_INSURANCE)
+        if(i.getAction() == Constants.SEARCH_CUSTOMER)
         {
             findCustomer();
+        }
+        else if(i.getAction() == Constants.SHOW_ALL_CUSTOMERS)
+        {
+            mc.vcController.update();
         }
             
     }
