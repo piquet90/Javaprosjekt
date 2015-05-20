@@ -27,7 +27,7 @@ import javax.swing.table.JTableHeader;
 
 public class CustomerView extends JTabbedPane implements ActionListener {
     
-    private CustomTextField fName, lName, adress, city, zip;
+    private CustomTextField fName, lName, adress, city, zip, totalCustomer;
     private CustomPanel cusTab, repTab;
     private GridBagConstraints gbc;
     private CustomButton2 endre, newIns, newRep;
@@ -51,6 +51,8 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         city.setEditable(false);
         zip = new CustomTextField(5);
         zip.setEditable(false);
+        totalCustomer = new CustomTextField(5);
+        totalCustomer.setEditable(false);
         
         endre = new CustomButton2("Endre");
         newIns = new CustomButton2("Opprett ny forsikring");       
@@ -109,6 +111,9 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         
         gbc.gridy++;
         cusTab.add(new CustomLabel("Poststed: "), gbc);
+        
+        gbc.gridy++;
+        cusTab.add(new CustomLabel("Totalkunde: "), gbc);
   
         gbc.anchor = GridBagConstraints.LINE_START;    
 
@@ -129,6 +134,9 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         
         gbc.gridy++;
         cusTab.add(city, gbc);
+        
+        gbc.gridy++;
+        cusTab.add(totalCustomer, gbc);
         
         gbc.gridy++;
         cusTab.add(new CustomLabel(""), gbc);
@@ -278,6 +286,22 @@ public class CustomerView extends JTabbedPane implements ActionListener {
      */
     public String getZip() {
         return zip.getText();
+    }
+    
+    /**
+     * Returns whether or not the customer is a total customer
+     * @return true for total customer, false if not
+     */
+    public String getTotalCustomer() {
+        return totalCustomer.getText();
+    }
+    
+    /**
+     * Sets total customer status in total customer field
+     * @param tc total customer
+     */
+    public void setTotalCustomer(String tc) {
+        totalCustomer.setText(tc);
     }
  
     /**

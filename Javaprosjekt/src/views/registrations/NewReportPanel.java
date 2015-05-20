@@ -42,7 +42,7 @@ import views.CustomListener;
 
 public class NewReportPanel extends JTabbedPane {
     
-    private CustomTextField date, estimation, paid, fileURL, type, witName1, witPhone1;
+    private CustomTextField date, estimation, paid, insNumber, fileURL, type, witName1, witPhone1;
     private JFileChooser imageChooser, fileChooser;
     private JTextArea description, imageURL;
     private JScrollPane descriptionScroll, imageURLScroll;
@@ -81,6 +81,7 @@ public class NewReportPanel extends JTabbedPane {
         
         date = new CustomTextField(10);
         estimation = new CustomTextField(6);
+        insNumber = new CustomTextField(5);
         paid = new CustomTextField(6);
         type = new CustomTextField(15);
         type.setEditable(false);
@@ -156,6 +157,9 @@ public class NewReportPanel extends JTabbedPane {
         txtTab.add(new CustomLabel("Hendelsesdato: "), gbc);
         
         gbc.gridy++;
+        txtTab.add(new CustomLabel("Forsikringsnr.: "), gbc);
+        
+        gbc.gridy++;
         txtTab.add(new CustomLabel("Type skade: "), gbc);
         
         gbc.gridy++;
@@ -172,6 +176,9 @@ public class NewReportPanel extends JTabbedPane {
         gbc.insets = new Insets(15, 0, 0, 55);
         gbc.anchor = GridBagConstraints.LINE_START;
         txtTab.add(date, gbc);
+        
+        gbc.gridy++;
+        txtTab.add(insNumber, gbc);
         
         gbc.gridy++;
         txtTab.add(type, gbc);
@@ -280,6 +287,7 @@ public class NewReportPanel extends JTabbedPane {
         witName1.setEditable(false);
         witPhone1.setEditable(false);
         description.setEditable(false);
+        insNumber.setEditable(false);
         
         imageURL.setVisible(false);
         imageURLScroll.setVisible(false);
@@ -339,6 +347,21 @@ public class NewReportPanel extends JTabbedPane {
             fileURL.setText(f.getAbsolutePath());
     }
 
+    /**
+     * Returns insurance number
+     * @return insurance number
+     */
+    public String insNumber() {
+        return insNumber.getText();
+    }
+    
+    /**
+     * Sets the parent insurance number in the insurance number field
+     * @param inr insurance number
+     */
+    public void setInsNumber(String inr) {
+        insNumber.setText(inr);
+    }
 
     /**
      * Returns the text the user has written in the damage description-field
@@ -419,6 +442,7 @@ public class NewReportPanel extends JTabbedPane {
         JOptionPane.showMessageDialog(null, icon, imgName, JOptionPane.PLAIN_MESSAGE);
     }
     
+<<<<<<< HEAD
     public String getDate()
     {
         return this.date.getText();
@@ -429,6 +453,17 @@ public class NewReportPanel extends JTabbedPane {
         this.date.setText(s);
     }
     
+=======
+    
+    public void clearFields()
+    {
+        date.setText("");
+        estimation.setText("");
+        paid.setText("");
+        witName1.setText("");
+        witPhone1.setText("");
+    }
+>>>>>>> 636cde6fa1cb467e18e34eb17a0a061669d3683a
   
     
     /**
@@ -441,7 +476,6 @@ public class NewReportPanel extends JTabbedPane {
             paid.setEditable(true);
             witName1.setEditable(true);
             witPhone1.setEditable(true);
-            
             
             
             submit.setText("Lagre");

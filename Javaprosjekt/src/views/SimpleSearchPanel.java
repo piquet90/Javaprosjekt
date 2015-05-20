@@ -16,7 +16,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,8 +25,7 @@ import javax.swing.JOptionPane;
 public class SimpleSearchPanel extends CustomPanel {
     
     private GridBagConstraints gbc;
-    public CustomTextField srcField;
-    private JComboBox<String> srcType;
+    private CustomTextField searchField, test;
     private CustomButton srcBtn;
     private JCheckBox showInactive;
     private CustomListener listener;
@@ -38,14 +36,14 @@ public class SimpleSearchPanel extends CustomPanel {
      */
     public SimpleSearchPanel() 
     {
-        srcField = new CustomTextField(20);
-        srcField.setFont(new Font("Arial", Font.PLAIN, 22));
-        String[] t = {"Velg søktype...", "Kunder", "Forsikringer", "Skademeldinger"};
-        srcType = new JComboBox<>(t);
-        srcType.setFont(new Font("Arial", Font.PLAIN, 18));
+        searchField = new CustomTextField(20);
+        
+        test = new CustomTextField(5);
+        
+        searchField.setFont(new Font("Arial", Font.PLAIN, 22));
         
         srcBtn = new CustomButton("Søk");
-            srcBtn.addActionListener((e) -> listener.customActionPerformed(new CustomEvent(Constants.SEARCH_INSURANCES)));
+        
         
         
         
@@ -64,10 +62,10 @@ public class SimpleSearchPanel extends CustomPanel {
         add(new CustomLabel("Søkeord: "), gbc);
         
         gbc.gridx++;
-        add(srcField, gbc);
+        add(searchField, gbc);
         
         gbc.gridx++;
-        add(srcType, gbc);
+        add(test, gbc);
         
         gbc.gridx++;
         gbc.insets = new Insets(0, 15, 0, 5);
@@ -75,6 +73,9 @@ public class SimpleSearchPanel extends CustomPanel {
         
         gbc.gridx++;
         add(srcBtn, gbc);
+        
+        
+        srcBtn.addActionListener((e) -> {listener.customActionPerformed(new CustomEvent(Constants.SEARCH_INSURANCE));});
     }
     
     /**
@@ -82,33 +83,28 @@ public class SimpleSearchPanel extends CustomPanel {
      */
     public void search()
     {
-        String type = String.valueOf(srcType.getSelectedItem());
+        
         boolean i = showInactive.isSelected();
         
-        if(!srcField.getText().equals(""))
+        if(!searchField.getText().equals(""))
         {
-            System.out.println("Søkt etter: " + srcField.getText() + "\nType: " + type + "\nVise inaktive kunder: " + i);
-        }
-        else if(type.equals("Velg søktype..."))
-        {
-            showError("Velg søktype");
+            System.out.println("Søkt etter: " + searchField.getText() + "\nVise inaktive kunder: " + i);
         }
         else 
         {
             showError("Vennligst fyll inn alle felter");
         }
     }
+   
     
-    
-    public boolean pølse()
+    public void setSearch()
     {
-        return true;
+        searchField.setText("fffff");
     }
-    
     
     public String getSearch()
     {
-        return srcField.getText();
+        return test.getText();
     }
     
     /**
@@ -119,17 +115,7 @@ public class SimpleSearchPanel extends CustomPanel {
         JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
-    /**
-     * NewCustomerPanels ActionListener
-     * @param e ActionEvent
-     */
     
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==srcBtn)
-        {
-            listener.customActionPerformed(new CustomEvent(Constants.SEARCH_INSURANCES));
-        }
-    }
     
     /**
      * Method that connect controllers listener to the panel
