@@ -47,8 +47,8 @@ public class NewTravelInsurance extends CustomPanel {
     {
         
         insTaker = new CustomTextField(16);
-        premium = new CustomTextField(5);
-        amount = new CustomTextField(5);
+        premium = new CustomTextField(8);
+        amount = new CustomTextField(8);
         conditions = new CustomTextField(15);
         
         asia = new CustomCheckBox("Asia");
