@@ -255,17 +255,17 @@ public class NewTravelInsurance extends CustomPanel {
         String area = "";
         
         if(asia.isSelected())
-            area += "Asia";
+            area += "Asia\n";
         if(africa.isSelected())
-            area += "Afrika";
+            area += "Afrika\n";
         if(europe.isSelected())
-            area += "Europa";
+            area += "Europa\n";
         if(nAmerica.isSelected())
-            area += "Nord-Amerika";
+            area += "Nord-Amerika\n";
         if(sAmerica.isSelected())
-            area += "Sør-Amerika";
+            area += "Sør-Amerika\n";
         if(oceania.isSelected())
-            area += "Oseania";
+            area += "Oseania\n";
 
         return area;
     }

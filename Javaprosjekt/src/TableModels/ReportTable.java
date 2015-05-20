@@ -28,7 +28,10 @@ public class ReportTable extends AbstractTableModel{
     };
 
     
-    
+    /**
+     * ReportTables constructor
+     * @param reports HashSet with reports to be added to JTable
+     */
     public ReportTable(HashSet<Report> reports)     
     {
         

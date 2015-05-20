@@ -16,6 +16,10 @@ import java.util.Calendar;
 public class HouseInsurance extends PropertyInsurance{
 
 
+    /**
+     * Returns the type of insurance
+     * @return house insurance
+     */
     public String getType()
     {
         return Constants.HOUSE_INSURANCE;

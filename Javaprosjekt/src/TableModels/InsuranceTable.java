@@ -28,7 +28,10 @@ public class InsuranceTable extends AbstractTableModel{
     };
 
     
-    
+    /**
+     * InsuranceTables constructor
+     * @param insurances HashSet with insurances to be added to JTable
+     */
     public InsuranceTable(HashSet<Insurance> insurances)     
     {
         

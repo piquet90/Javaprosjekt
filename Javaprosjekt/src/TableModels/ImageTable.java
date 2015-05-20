@@ -27,7 +27,10 @@ public class ImageTable extends AbstractTableModel{
     };
 
     
-    
+    /**
+     * ImagesTables constructor
+     * @param images HashSet with image urls to be added to JTable
+     */
     public ImageTable(HashSet<File> images)     
     {
         

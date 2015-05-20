@@ -28,7 +28,10 @@ public class CustomerTable extends AbstractTableModel {
     };
     
     
-
+    /**
+     * CustomerTables constructor
+     * @param users HashSet with customers to be added to JTable
+     */
     public CustomerTable(HashSet<Customer> users)     
     {
         

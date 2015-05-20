@@ -8,13 +8,8 @@ package Test;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import views.AdvancedSearchPanel;
-import views.BoatInsuranceView;
-import views.CarInsuranceView;
-import views.HouseInsuranceView;
-import views.LeisurehouseInsuranceView;
 import views.MainView;
 import views.SimpleSearchPanel;
-import views.TravelInsuranceView;
 import views.registrations.NewBoatInsurance;
 import views.registrations.NewCarInsurance;
 import views.registrations.NewHouseInsurance;
@@ -35,9 +30,9 @@ public class ViewTest {
         //JOptionPane.showMessageDialog(null, new TravelInsuranceView());
         //JOptionPane.showMessageDialog(null, new AdvancedSearchPanel());
         
-        NewLeisureHouseInsurance c = new NewLeisureHouseInsurance();
+        NewTravelInsurance c = new NewTravelInsurance();
         c.setViewMode();
-        c.setIsForRent(false);
+        //c.setIsForRent(false);
         
         JOptionPane.showMessageDialog(null, c);
         

@@ -6,7 +6,6 @@
 package models;
 
 import DAO.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -20,13 +19,21 @@ public class InsuranceModel {
     HashSet<Insurance> insurances;
     CustomerModel customers;
     
-    // todo: write comments
+    /**
+     * InsuranceModels constructor
+     * @param r registries
+     */
     public InsuranceModel(Registries r)
     {
         this.insurances = r.getInsurances();
         this.customers = new CustomerModel(r);
     }
     
+    /**
+     * Finds an insurance by insurance id
+     * @param id insurance id
+     * @return insurance matching the recieved id
+     */
     public Insurance findById(int id)
     {
         Iterator<Insurance> i = insurances.iterator();
@@ -40,6 +47,11 @@ public class InsuranceModel {
         return null;
     }
     
+    /**
+     * Finds all insurances registered to a customer
+     * @param id customer id
+     * @return the customers insurances
+     */
     public HashSet<Insurance> findByOwnerId(int id)
     {
         Iterator<Insurance> i = insurances.iterator();
@@ -55,6 +67,10 @@ public class InsuranceModel {
         
     }
     
+    /**
+     * Adds an insurance
+     * @param i insurance
+     */
     public void addInsurance(Insurance i)
     {
         /*
@@ -79,6 +95,10 @@ public class InsuranceModel {
         insurances.add(i);
     }
     
+    /**
+     * Returns all car insurances
+     * @return car insurances
+     */
     public HashSet<CarInsurance> getCarInsurances()
     {
         Iterator i = insurances.iterator();
@@ -91,9 +111,11 @@ public class InsuranceModel {
                 result.add((CarInsurance)obj);
             }
         }
-        return  result;
+        return result;
     }
-    private class Count<K, V> extends HashMap{
+    
+    
+    private class Count<K, V> extends HashMap {
         public void add(K o) {
             int count = this.containsKey(o) ? ((Integer)this.get(o)).intValue() + 1 : 1;
             super.put(o, (V) new Integer(count));

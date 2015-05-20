@@ -16,16 +16,29 @@ public class LeisureHouseInsurance extends PropertyInsurance{
 
 
     private boolean isForRent;
+    
+    /**
+     * Returns the insurance type
+     * @return leisure house
+     */
     public String getType()
     {
         return Constants.LEISUREHOUSE_INSURANCE;
     }
     
+    /**
+     * Sets the isForRent checkbox
+     * @param status true for is for rent, false if not
+     */
     public void setIsForRent(boolean status)
     {
         this.isForRent = status;
     }
     
+    /**
+     * Returns the status of the isForRent checkbox
+     * @return status true for is for rent, false if not
+     */
     public boolean getIsForRent()
     {
         return isForRent;

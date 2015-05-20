@@ -41,7 +41,7 @@ public class MainController extends Controller {
      * Has resposibility of creating and managing all other controllers.
      * This controller usually passes itself to all the controllers it creates.
      * 
-     * @param MainView The main-view class.
+     * @param f The main-view class.
      */
     public MainController(MainView f)
     {
@@ -71,12 +71,21 @@ public class MainController extends Controller {
         
     }
     
+    
+    /**
+     * Displays a given panel to the user, without title
+     * @param v a panel
+     */
     public void popUp(Object v)
     {
-        
         popUp("", v);
-    
     }
+    
+    /**
+     * Displayes a given panel to the user, with title
+     * @param title dialog title
+     * @param v a panel
+     */
     public void popUp(String title,Object v)
     {
         
@@ -84,8 +93,9 @@ public class MainController extends Controller {
     
     }
     
-    
-
+    /**
+     * Saves the data
+     */
     public void save()
     {
         r.save();

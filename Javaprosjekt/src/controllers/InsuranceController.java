@@ -40,7 +40,11 @@ public class InsuranceController implements CustomListener{
     
     private int id, insuranceId;
     
-    
+    /**
+     * InsuranceControllers constructor
+     * @param r registries
+     * @param c maincontroller
+     */
     public InsuranceController(Registries r, MainController c)
     {
         this.mc = c;
@@ -48,6 +52,10 @@ public class InsuranceController implements CustomListener{
         cModel = new CustomerModel(r);
     }
     
+    /**
+     * Opens the car insurance-form
+     * @param id customer id
+     */
     public void newCarInsurance(int id)
     {
         this.id = id;
@@ -58,6 +66,11 @@ public class InsuranceController implements CustomListener{
         carInsurance.setCarOwner(s);
         mc.popUp(carInsurance);
     }
+    
+    /**
+     * Opens the house insurance-form
+     * @param id customer id
+     */
     public void newHouseInsurance(int id)
     {
         this.id = id;
@@ -65,6 +78,11 @@ public class InsuranceController implements CustomListener{
         houseInsurance.addCustomListener(this);
         mc.popUp(houseInsurance);
     }
+    
+    /**
+     * Opens the boat insurance-form
+     * @param id customer id
+     */
     public void newBoatInsurance(int id)
     {
         this.id = id;
@@ -74,6 +92,11 @@ public class InsuranceController implements CustomListener{
         boatInsurance.setBoatOwner(s);
         mc.popUp(boatInsurance);
     }
+    
+    /**
+     * Opens the travel insurance-form
+     * @param id customer id
+     */
     public void newTravelInsurance(int id)
     {
         this.id = id;
@@ -84,6 +107,11 @@ public class InsuranceController implements CustomListener{
         travelInsurance.addCustomListener(this);
         mc.popUp(travelInsurance);
     }
+    
+    /**
+     * Opens the leisure house insurance-form
+     * @param id customer id
+     */
     public void newLeisureHouseInsurance(int id)
     {
         this.id = id;
@@ -92,6 +120,9 @@ public class InsuranceController implements CustomListener{
         mc.popUp(leisureHouseInsurance);
     }
     
+    /**
+     * Checks if a new insurance should be made or edit an existing one
+     */
     public void registerCar()
     {
         if(!carInsurance.isViewMode())
@@ -100,6 +131,11 @@ public class InsuranceController implements CustomListener{
             registerCar((CarInsurance)imodel.findById(insuranceId));
         }
     }
+    
+    /**
+     * Registries a new car insurance or edits ann existing one
+     * @param in car insurance object
+     */
     public void registerCar(CarInsurance in)
     {
         CarInsurance insurance = in;
@@ -187,7 +223,7 @@ public class InsuranceController implements CustomListener{
             insurance.setOwnerId(id);
             insurance.setViechleOwner(boatInsurance.getBoatOwner());
             insurance.setRegistrationNumber(boatInsurance.getRegNr());
-            insurance.setViechleType(boatInsurance.getType());
+            insurance.setVehicleType(boatInsurance.getType());
             insurance.setModel(boatInsurance.getModel());
             insurance.setEngineType(boatInsurance.getEngineType());
             insurance.setPower(Integer.parseInt(boatInsurance.getHorsepower()));
@@ -410,7 +446,7 @@ public class InsuranceController implements CustomListener{
         
         boatInsurance.setBoatOwner(ins.getViechleOwner());
         boatInsurance.setRegNr(ins.getRegistrationNumber());
-        boatInsurance.setType(ins.getViechleType());
+        boatInsurance.setType(ins.getVehicleType());
         boatInsurance.setModel(ins.getModel());
         boatInsurance.setEngineType(ins.getEngineType());
         boatInsurance.setHorsePower(Integer.toString(ins.getPower()));
