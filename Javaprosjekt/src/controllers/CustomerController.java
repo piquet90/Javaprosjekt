@@ -68,6 +68,7 @@ public class CustomerController extends Controller implements CustomListener{
      */
     public void viewCustomer(int i)
     {
+        System.out.println("win");
         // find customer
         customer = m.findById(i);
         
@@ -97,7 +98,9 @@ public class CustomerController extends Controller implements CustomListener{
 
         HashSet<Report> repSet = this.r.getReportsByCustomerId(i);
         ReportTable repTable = new ReportTable(repSet);
+        
         reportTable = new ViewTable(repTable);
+        reportTable.addCustomListener(this);
         cus.addTable("Skademeldinger", reportTable);
         
         // show view
@@ -180,6 +183,8 @@ public class CustomerController extends Controller implements CustomListener{
     @Override
     public void customActionPerformed(CustomEvent i) {
         
+        if(i.getAction()==Constants.DOUBLECLICK_REPORT)
+            mc.rController.viewReport(i.getValue());
         if(i.getAction()==Constants.DOUBLECLICK)
             mc.insController.viewInsurance(i.getValue());
         if(i.getAction()==Constants.NEW_CUSTOMER)

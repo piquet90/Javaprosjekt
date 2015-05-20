@@ -29,6 +29,10 @@ public class CustomEvent {
         this.value = v;
     }
     
+    public void setValue(int i)
+    {
+        this.value = i;
+    }
     public int getAction()
     {
         return action;

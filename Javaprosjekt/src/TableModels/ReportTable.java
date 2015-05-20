@@ -80,4 +80,6 @@ public class ReportTable extends AbstractTableModel{
     {
         return (String)kolonnenavn[kolonne];
     }
+    
+    
 }

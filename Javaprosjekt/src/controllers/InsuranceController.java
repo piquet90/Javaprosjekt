@@ -63,6 +63,9 @@ public class InsuranceController implements CustomListener {
         
         carInsurance = new NewCarInsurance();
         carInsurance.addCustomListener(this);
+        carInsurance.setAmount(Constants.STANDARD_CAR_AMOUNT);
+        carInsurance.setPremium(Constants.STANDARD_CAR_PREMIUM);
+        carInsurance.setPricePerKm(Constants.STANDARD_CAR_PRICE_PER_KM);
         String s = this.cModel.findById(id).getName();
         carInsurance.setCarOwner(s);
         mc.popUp(carInsurance);
@@ -77,6 +80,8 @@ public class InsuranceController implements CustomListener {
         this.id = id;
         houseInsurance = new NewHouseInsurance();
         houseInsurance.addCustomListener(this);
+        houseInsurance.setAmountBuilding(Constants.STANDARD_HOUSE_BUILDING_AMOUNT);
+        houseInsurance.setPremium(Constants.STANDARD_HOUSE_PREMIUM);
         mc.popUp(houseInsurance);
     }
 
@@ -89,6 +94,8 @@ public class InsuranceController implements CustomListener {
         this.id = id;
         boatInsurance = new NewBoatInsurance();
         boatInsurance.addCustomListener(this);
+        boatInsurance.setAmount(Constants.STANDARD_BOAT_AMOUNT);
+        boatInsurance.setPremium(Constants.STANDARD_BOAT_PREMIUM);
         String s = this.cModel.findById(id).getName();
         boatInsurance.setBoatOwner(s);
         mc.popUp(boatInsurance);
@@ -103,6 +110,8 @@ public class InsuranceController implements CustomListener {
         this.id = id;
         
         travelInsurance = new NewTravelInsurance();
+        travelInsurance.setAmount(Constants.STANDARD_TRAVEL_AMOUNT);
+        travelInsurance.setPremium(Constants.STANDARD_TRAVEL_PREMIUM);
         String s = this.cModel.findById(id).getName();
         travelInsurance.setInsTaker(s);
         travelInsurance.addCustomListener(this);
@@ -118,6 +127,9 @@ public class InsuranceController implements CustomListener {
         this.id = id;
         leisureHouseInsurance = new NewLeisureHouseInsurance();
         leisureHouseInsurance.addCustomListener(this);
+        leisureHouseInsurance.setAmountBuilding(Constants.STANDARD_LEISURE_BUILDING_AMOUNT);
+        leisureHouseInsurance.setAmountContents(Constants.STANDARD_LEISURE_CONTENTS_AMOUNT);
+        leisureHouseInsurance.setPremium(Constants.STANDARD_LEISURE_PREMIUM);
         mc.popUp(leisureHouseInsurance);
     }
     
@@ -629,7 +641,7 @@ public class InsuranceController implements CustomListener {
             Insurance ins = imodel.findById(insuranceId);
             int result = JOptionPane.showConfirmDialog(mc.view, "Er du sikker på at du vil avslutte denne forsikringen?", "Slette forsikring", JOptionPane.YES_NO_OPTION);
             if(result==JOptionPane.YES_OPTION)
-                ins.delete();System.out.println("lol");
+                ins.delete();
             
         }
     }
