@@ -9,6 +9,7 @@ import java.io.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import models.Customer;
+import models.Report;
 import models.objects.insurances.Insurance;
 
 /**
@@ -22,6 +23,7 @@ public class Registries implements Serializable{
     
     private HashSet<Insurance> insurances;
     private HashSet<Customer> customers;
+    private HashSet<Report> reports;
     
     public Registries()
     {
@@ -37,8 +39,10 @@ public class Registries implements Serializable{
             
             this.insurances = (HashSet<Insurance>) in.readObject();
             this.customers = (HashSet<Customer>) in.readObject();
+            this.reports = (HashSet<Report>) in.readObject();
             Customer.setNext(in.readInt());
             Insurance.setNext(in.readInt());
+            Report.setNext(in.readInt());
             in.close();
 
             
@@ -47,6 +51,7 @@ public class Registries implements Serializable{
         {
             this.insurances = new HashSet<>();
             this.customers = new HashSet<>();
+            this.reports = new HashSet<>();
         }
         
         
@@ -67,8 +72,10 @@ public class Registries implements Serializable{
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constants.FILE_SAVE_PATH));
             out.writeObject(this.insurances);
             out.writeObject(this.customers);
+            out.writeObject(this.reports);
             out.writeInt(Customer.getNext());
             out.writeInt(Insurance.getNext());
+            out.writeInt(Report.getNext());
             out.close();
         
         }catch(Exception e)

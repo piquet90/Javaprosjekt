@@ -31,6 +31,7 @@ public class Constants {
     
     public static final int INSURANCE_NEXT_START_NUMBER = 1;
     public static final int CUSTOMER_NEXT_START_NUMBER = 1;
+    public static final int REPORT_NEXT_START_NUMBER = 1;
     public static final int FRAME_WIDTH = 1100;
     public static final int FRAME_HEIGHT = 720;
     public static final int SCROLL_SPEED = 18;

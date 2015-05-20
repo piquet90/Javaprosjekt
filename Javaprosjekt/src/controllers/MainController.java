@@ -38,6 +38,7 @@ public class MainController extends Controller {
     
     private SimpleSearchPanel search;
     
+    
     /**
      * MainController
      * 

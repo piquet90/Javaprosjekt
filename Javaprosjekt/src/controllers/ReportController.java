@@ -6,6 +6,9 @@
 package controllers;
 
 import DAO.Registries;
+import views.CustomEvent;
+import views.CustomListener;
+
 import views.registrations.NewReportPanel;
 
 
@@ -13,11 +16,12 @@ import views.registrations.NewReportPanel;
  *
  * @author Rudi
  */
-public class ReportController {
+public class ReportController implements CustomListener{
     
     private Registries dataAccessObject;
     private NewReportPanel view;
     private MainController mc;
+    private int customerId;
     
     /**
      *
@@ -34,10 +38,18 @@ public class ReportController {
     /**
      *
      */
-    public void newReport()
+    public void newReport(int id)
     {
+        this.customerId = id;
         this.view = new NewReportPanel();
-        //view.addController(this);
+
+        // view.addCustomListener(this);
+
         mc.popUp(view);
+    }
+
+    @Override
+    public void customActionPerformed(CustomEvent i) {
+        
     }
 }

@@ -58,7 +58,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         
         endre.addActionListener(this);
         newIns.addActionListener(this);
-        newRep.addActionListener(this);
+        newRep.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));});
         
         String[] insType = {"Bilforsikring", "Båtforsikring", "Hus- /innboforsikring", "Fritidsboligforsikring", "Reiseforsikring"};
         insPopup = new JPopupMenu();
@@ -76,21 +76,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
             insPopup.show(newIns, 0, 0 + newIns.getHeight());
         });
         
-        String[] repType = {"Bilskade", "Båtskade", "Hus- /innboskade", "Fritidsboligskade", "Reiseskade"};
-        repPopup = new JPopupMenu();
-        
-        for(int i = 0; i < repType.length; i++)
-        {
-            String a = repType[i];
-            JMenuItem b = new JMenuItem(a);
-            b.addActionListener(this);
-            b.setName(a);
-            repPopup.add(b);
-        }
-        
-        newRep.addActionListener((ActionEvent ev) -> {
-            repPopup.show(newRep, 0, 0 + newRep.getHeight());
-        });
+
         
         setFont(new Font("Arial", Font.BOLD, 18));
         
@@ -353,6 +339,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
                     listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE, Constants.TRAVEL_INSURANCE_INT));
                     break;
             }
+        
     }
     
 
