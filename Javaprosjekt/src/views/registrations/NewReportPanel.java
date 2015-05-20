@@ -72,7 +72,6 @@ public class NewReportPanel extends JTabbedPane {
         fileButton = new CustomButton2("Last opp fil");
         
         submit = new CustomButton("Registrer");
-        submit.addActionListener((e) -> {change();});
         
         
         description = new JTextArea(8, 22);
@@ -267,7 +266,19 @@ public class NewReportPanel extends JTabbedPane {
         gbc3.gridy++;
         wiTab.add(witPhone1, gbc3);
         
-        submit.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));});
+        submit.addActionListener((e)->{
+            if(!viewMode){
+                listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));
+            }
+            else if(edit)
+            {
+                listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));
+                change();
+            }
+            else {
+                change();
+            }
+        });
         
         //Adding the tabs
 
@@ -298,7 +309,6 @@ public class NewReportPanel extends JTabbedPane {
         fileButton.setVisible(false);
         
         submit.setText("Endre");
-        
         viewMode = true;
     }
     

@@ -112,6 +112,10 @@ public class ReportController implements CustomListener{
         this.insuranceId = r.getInsuranceId();
         
         view = new NewReportPanel();
+        
+        view.addCustomListener(this);
+        
+        
         view.setDate(r.getDate());
         view.setDescription(r.getDescription());
         view.setType(r.getType());
@@ -119,6 +123,9 @@ public class ReportController implements CustomListener{
         view.setPaid(Double.toString(r.getPaid()));
         view.setWitnessName1(r.getWitnessName1());
         view.setWitnessPhone1(r.getWitnessPhone1());
+        view.setInsNumber(Integer.toString(r.getInsuranceId()));
+        view.setViewMode();
+        mc.popUp("Skademelding", view);
         
         
     }

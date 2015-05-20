@@ -55,10 +55,13 @@ public class Constants {
     public static final int FRAME_WIDTH = 1100;
     public static final int FRAME_HEIGHT = 720;
     public static final int SCROLL_SPEED = 18;
+    public static final int NULL = 0;
     
     
     // Action Commands
-    public static final int DOUBLECLICK = 22222222;
+    public static final int DOUBLECLICK = 22222223;
+    public static final int DOUBLECLICK_REPORT = 22222222;
+    public static final int DOUBLECLICK_INSURANCE = 22222221;
     public static final int REGISTER_BUTTON_PRESSED = 11111111;
     
     // Action preset values

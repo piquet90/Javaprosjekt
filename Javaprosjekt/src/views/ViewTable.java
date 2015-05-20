@@ -6,6 +6,10 @@
 package views;
 
 import DAO.Constants;
+import TableModels.CustomerTable;
+import TableModels.InsuranceTable;
+import TableModels.ReportTable;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -20,6 +24,7 @@ import javax.swing.table.AbstractTableModel;
 public class ViewTable extends JTable{
     
     private CustomListener listener;
+    private int ev;
     
     
     public ViewTable(AbstractTableModel table)
@@ -27,6 +32,9 @@ public class ViewTable extends JTable{
         super(table);
         this.setFont(new Font("Arial", Font.BOLD, 16));
         this.setRowHeight(40);
+        
+
+        
         
         this.addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent me) {
@@ -36,15 +44,26 @@ public class ViewTable extends JTable{
                 Point p = me.getPoint();
                 int row = table.rowAtPoint(p);
                 if (me.getClickCount() == 2) {
-                    int id = (int)table.getValueAt(row, 0);
-                    listener.customActionPerformed(new CustomEvent(Constants.DOUBLECLICK, id));
+                    int id = (int)table.getValueAt(row, 0);   
+                    mouse(table, id);
                     
                 }        
             }
         });
     }
     
-    
+    public void mouse(JTable c, int id)
+    {
+        if(c.getModel() instanceof CustomerTable)
+            listener.customActionPerformed(new CustomEvent(Constants.DOUBLECLICK, id));
+        else if(c.getModel() instanceof ReportTable)
+            listener.customActionPerformed(new CustomEvent(Constants.DOUBLECLICK_REPORT, id));
+        else if(c.getModel() instanceof InsuranceTable)
+            listener.customActionPerformed(new CustomEvent(Constants.DOUBLECLICK, id));
+        else {
+            listener.customActionPerformed(new CustomEvent(Constants.DOUBLECLICK, id));
+        }      
+    }
 
     public void addCustomListener(CustomListener l)
     {
