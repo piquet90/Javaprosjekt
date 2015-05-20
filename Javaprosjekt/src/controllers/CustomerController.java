@@ -7,11 +7,13 @@ package controllers;
 
 import DAO.*;
 import TableModels.InsuranceTable;
+import TableModels.ReportTable;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 import models.CustomerModel;
 import models.Customer;
 import models.InsuranceModel;
+import models.Report;
 import models.objects.insurances.Insurance;
 import views.CustomerView;
 import views.CustomEvent;
@@ -73,6 +75,12 @@ public class CustomerController extends Controller implements CustomListener{
         viewTable = new ViewTable(table);
         viewTable.addCustomListener(this);
         cus.addTable("Forsikringer", viewTable);
+        
+        // fill reports
+        HashSet<Report> repSet = new HashSet<>();
+        ReportTable repTable = new ReportTable(repSet);
+        viewTable = new ViewTable(repTable);
+        cus.addTable("Skademeldinger", viewTable);
         
         // show view
         mc.popUp(customer.getName(), cus);

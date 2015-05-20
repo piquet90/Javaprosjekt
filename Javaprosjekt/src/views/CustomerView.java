@@ -36,10 +36,11 @@ public class CustomerView extends JTabbedPane implements ActionListener {
     private boolean edit = false;
     private CustomListener listener;
     
+    
     /**
-     * Initalizes the GUI components
+     * CustomerViews constructor
      */
-    public void initComponents()
+    public CustomerView()
     {
         fName = new CustomTextField(12);
         fName.setEditable(false);
@@ -91,15 +92,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         newRep.addActionListener((ActionEvent ev) -> {
             repPopup.show(newRep, 0, 0 + newRep.getHeight());
         });
-    }
-    
-    
-    /**
-     * CustomerViews constructor
-     */
-    public CustomerView()
-    {
-        initComponents();
+        
         setFont(new Font("Arial", Font.BOLD, 18));
         
         cusTab = new CustomPanel();
@@ -182,8 +175,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
-        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
-
+ 
     }
     
     /**
