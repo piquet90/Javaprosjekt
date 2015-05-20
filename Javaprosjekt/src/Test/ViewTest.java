@@ -5,6 +5,8 @@
  */
 package Test;
 
+import controllers.MainController;
+import controllers.SearchController;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import views.AdvancedSearchPanel;
@@ -31,14 +33,16 @@ public class ViewTest {
         //JOptionPane.showMessageDialog(null, new TravelInsuranceView());
         //JOptionPane.showMessageDialog(null, new AdvancedSearchPanel());
         
-        NewCarInsurance c = new NewCarInsurance();
-        c.setViewMode();
+        //NewCarInsurance c = new NewCarInsurance();
+        //c.setViewMode();
+        
+        
         
         //SimpleSearchPanel c = new SimpleSearchPanel();
-        //
+        //c.addCustomListener(new SearchController());
         //c.setIsForRent(false);
         
-        JOptionPane.showMessageDialog(null, c);
+        //JOptionPane.showMessageDialog(null, c);
         
         
 

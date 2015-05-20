@@ -11,10 +11,13 @@ import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import DAO.Constants;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import views.CustomEvent;
 import views.CustomListener;
@@ -27,9 +30,9 @@ import views.CustomListener;
 public class NewCarInsurance extends CustomPanel {
     
     private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus, carTypeField;
-
+    private CustomPanel actions;
     private JComboBox<String> carType;
-    private GridBagConstraints gbc;
+    private GridBagConstraints gbc, gbc2;
     private CustomButton submit;
     private CustomButton2 delete, report;
     private boolean edit = false;
@@ -41,6 +44,10 @@ public class NewCarInsurance extends CustomPanel {
      */
     public NewCarInsurance()
     {
+        
+        
+        
+        
         carOwner = new CustomTextField(17);
         regNr = new CustomTextField(9);
         
@@ -67,16 +74,30 @@ public class NewCarInsurance extends CustomPanel {
         
         submit = new CustomButton("Registrer");
         delete = new CustomButton2("Avslutt forsikring");
-        delete.setVisible(false);
         report = new CustomButton2("Opprett skademelding");
-        report.setVisible(false);
         
+        
+        actions = new CustomPanel();
+        actions.setLayout(new GridBagLayout());
+        gbc2 = new GridBagConstraints();
+        gbc2.anchor = GridBagConstraints.LINE_START;
+        gbc2.insets = new Insets(15, 0, 0, 0);
+        actions.setBorder(BorderFactory.createTitledBorder("Handlinger"));
+        gbc2.weighty = 1;
+        gbc2.weightx = 1;
+        gbc2.gridx = 0;
+        gbc2.gridy = 0;
+        actions.add(report, gbc2);
+        gbc2.gridy++;
+        actions.add(delete, gbc2);
+        
+        actions.setVisible(false);
         
         
         setLayout(new GridBagLayout());
 
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 5, 0, 5);
+        gbc.insets = new Insets(15, 15, 0, 5);
         gbc.weighty = 1;
         gbc.weightx = 1;
         gbc.ipadx = 2;
@@ -162,16 +183,21 @@ public class NewCarInsurance extends CustomPanel {
         
         gbc.gridy++;
         add(bonus, gbc);
-        
+       
         gbc.gridy++;
-        gbc.gridx = 0;
-        add(report, gbc);
-        
-        gbc.gridx++;
         add(submit, gbc);
         
-        gbc.gridx++;
-        add(delete, gbc);
+        gbc.gridy = 0;
+        gbc.gridx = 2;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 3;
+        add(actions, gbc);
+        
+        
+        
+        
+        
+        
         
         
         
@@ -218,8 +244,7 @@ public class NewCarInsurance extends CustomPanel {
         bonus.setEditable(false);
         
         submit.setText("Endre");
-        delete.setVisible(true);
-        report.setVisible(true);
+        actions.setVisible(true);
         carType.setVisible(false);
         carTypeField.setVisible(true);
         

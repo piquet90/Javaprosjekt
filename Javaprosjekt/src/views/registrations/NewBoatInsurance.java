@@ -160,7 +160,7 @@ public class NewBoatInsurance extends CustomPanel {
         
         
         submit.addActionListener((e) -> {
-                System.out.println("test");
+                
                 if(!viewMode)
                 {
                     listener.customActionPerformed(new CustomEvent(Constants.BOAT_INSURANCE_INT));

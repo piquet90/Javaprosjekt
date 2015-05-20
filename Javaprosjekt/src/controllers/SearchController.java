@@ -7,6 +7,7 @@ package controllers;
 
 import DAO.Constants;
 import DAO.Registries;
+import javax.swing.JOptionPane;
 import models.Customer;
 import models.InsuranceModel;
 import models.objects.insurances.Insurance;
@@ -38,23 +39,21 @@ public class SearchController implements CustomListener{
     
     public void findById()
     {
-        System.out.println(v.pølse());
-        //int p = Integer.parseInt(v.getSearch());
-        //Insurance in = i.findById(8);
+        //v.setSearch("f");
+        JOptionPane.showMessageDialog(null, v.getSearch());
+        /*int p = Integer.parseInt(v.getSearch());
+        Insurance in = i.findById(p);
         
-        /*if(in == null)
-            mc.popUp("Error", "Fant ingen treff");
+        if(in == null)
+            JOptionPane.showMessageDialog(null, "Fant ingen treff");
         else
-            mc.popUp(in.getType());*/
-        
-        //(in.getConditions());
-        //
+            JOptionPane.showMessageDialog(null, in.getType());*/
         
     }
 
     @Override
     public void customActionPerformed(CustomEvent i) {
-        if(i.getAction() == Constants.SEARCH_INSURANCES)
+        if(i.getAction() == Constants.SEARCH_INSURANCE)
         {
             findById();
         }
