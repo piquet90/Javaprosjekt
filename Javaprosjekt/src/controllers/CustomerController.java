@@ -85,10 +85,10 @@ public class CustomerController extends Controller implements CustomListener{
         cus.addTable("Forsikringer", viewTable);
         
         // fill reports
-        HashSet<Report> repSet = new HashSet<>();
+        /*HashSet<Report> repSet = new HashSet<>();
         ReportTable repTable = new ReportTable(repSet);
         viewTable = new ViewTable(repTable);
-        cus.addTable("Skademeldinger", viewTable);
+        cus.addTable("Skademeldinger", viewTable);*/
         
         // show view
         mc.popUp(customer.getName(), cus);
