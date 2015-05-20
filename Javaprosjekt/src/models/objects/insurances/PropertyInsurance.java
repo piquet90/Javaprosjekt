@@ -32,9 +32,7 @@ public abstract class PropertyInsurance extends Insurance {
     }
 
     /**
-     * Get the insured address
-     * 
-     * @author Rudi Yu
+     * Returns the insured address
      * @return Address in String
      */
     public String getAddress() {
@@ -42,9 +40,7 @@ public abstract class PropertyInsurance extends Insurance {
     }
 
     /**
-     * Set the insured address.
-     * 
-     * @author Rudi Yu
+     * Sets the insured address
      * @param address the address to set
      */
     public void setAddress(String address) {
@@ -53,7 +49,6 @@ public abstract class PropertyInsurance extends Insurance {
 
     /**
      * Returns the type of property
-     * 
      * @return PropertyType
      */
     public String getBuildingType() {
@@ -62,7 +57,6 @@ public abstract class PropertyInsurance extends Insurance {
 
     /**
      * Sets the property type
-     * 
      * @param type Type of property
      */
     public void setBuildingType(String type) {
@@ -71,7 +65,6 @@ public abstract class PropertyInsurance extends Insurance {
 
     /**
      * Returns the main construction material for the property
-     * 
      * @return Main material in a string
      */
     public String getConstrutionmaterial() {
@@ -86,13 +79,15 @@ public abstract class PropertyInsurance extends Insurance {
     }
 
     /**
-     * @return the standard
+     * Returns the property standard
+     * @return property standard
      */
     public String getStandard() {
         return standard;
     }
 
     /**
+     * Sets the property standard
      * @param standard the standard to set
      */
     public void setStandard(String standard) {
@@ -100,27 +95,31 @@ public abstract class PropertyInsurance extends Insurance {
     }
 
     /**
-     * @return the squaremeter
+     * Returns the property size
+     * @return size in squaremeter
      */
     public int getSquaremeter() {
         return squaremeter;
     }
 
     /**
-     * @param squaremeter the squaremeter to set
+     * Sets the property size
+     * @param squaremeter property size
      */
     public void setSquaremeter(int squaremeter) {
         this.squaremeter = squaremeter;
     }
 
     /**
-     * @return the yearofconstruction
+     * Returns the properties year of construction
+     * @return the year of construction
      */
     public int getYearofconstruction() {
         return yearofconstruction;
     }
 
     /**
+     * Sets the year of construction
      * @param yearofconstruction the yearofconstruction to set
      */
     public void setYearofconstruction(int yearofconstruction) {
@@ -128,6 +127,7 @@ public abstract class PropertyInsurance extends Insurance {
     }
 
     /**
+     * Returns the buildings coverage amount
      * @return the buildingcoverage
      */
     public double getBuildingcoverage() {
@@ -135,6 +135,7 @@ public abstract class PropertyInsurance extends Insurance {
     }
 
     /**
+     * Sets the building coverage amount
      * @param buildingcoverage the buildingcoverage to set
      */
     public void setBuildingcoverage(double buildingcoverage) {
@@ -142,6 +143,7 @@ public abstract class PropertyInsurance extends Insurance {
     }
 
     /**
+     * Returns the contents coverage amount
      * @return the contentscoverage
      */
     public double getContentscoverage() {
@@ -149,6 +151,7 @@ public abstract class PropertyInsurance extends Insurance {
     }
 
     /**
+     * Sets the contents coverage amount
      * @param contentscoverage the contentscoverage to set
      */
     public void setContentscoverage(double contentscoverage) {

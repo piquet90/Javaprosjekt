@@ -6,7 +6,6 @@
 package models.objects.insurances;
 
 import models.objects.insurances.Insurance;
-import java.util.Calendar;
 
 /**
  *
@@ -14,33 +13,38 @@ import java.util.Calendar;
  */
 public class VehicleInsurance extends Insurance{
     
-    private String viechleOwner;
+    private String vehicleOwner;
     private String registrationNumber;
     private String type;
     private String model;
     private int power;
     
-    
+    /**
+     * VehicleInsurances constructor
+     */
     public VehicleInsurance()
     {
         
     }
 
     /**
-     * @return the viechleOwner
+     * Returns the vehicle owner
+     * @return vehicle owners name
      */
-    public String getViechleOwner() {
-        return viechleOwner;
+    public String getVehicleOwner() {
+        return vehicleOwner;
     }
 
     /**
-     * @param viechleOwner the viechleOwner to set
+     * Sets the
+     * @param vehicleOwner the vehicleOwner to set
      */
-    public void setViechleOwner(String viechleOwner) {
-        this.viechleOwner = viechleOwner;
+    public void setVehicleOwner(String vehicleOwner) {
+        this.vehicleOwner = vehicleOwner;
     }
 
     /**
+     * Returns the vehicles registration number
      * @return the registrationNumber
      */
     public String getRegistrationNumber() {
@@ -48,6 +52,7 @@ public class VehicleInsurance extends Insurance{
     }
 
     /**
+     * Sets the registration number
      * @param registrationNumber the registrationNumber to set
      */
     public void setRegistrationNumber(String registrationNumber) {
@@ -55,20 +60,23 @@ public class VehicleInsurance extends Insurance{
     }
 
     /**
+     * Returns the vehicle type
      * @return the type
      */
-    public String getViechleType() {
+    public String getVehicleType() {
         return type;
     }
 
     /**
+     * Sets the vehicle type
      * @param type the type to set
      */
-    public void setViechleType(String type) {
+    public void setVehicleType(String type) {
         this.type = type;
     }
 
     /**
+     * Returns the vehicles moel
      * @return the model
      */
     public String getModel() {
@@ -76,6 +84,7 @@ public class VehicleInsurance extends Insurance{
     }
 
     /**
+     * Sets the vehicles model
      * @param model the model to set
      */
     public void setModel(String model) {
@@ -83,14 +92,16 @@ public class VehicleInsurance extends Insurance{
     }
 
     /**
-     * @return the power
+     * Returns the vehicle power
+     * @return vehicles power in horsepower
      */
     public int getPower() {
         return power;
     }
 
     /**
-     * @param power the power to set
+     * Sets the vehicle power
+     * @param power vehicle power in horsepower
      */
     public void setPower(int power) {
         this.power = power;

@@ -5,50 +5,53 @@
  */
 package TableModels;
 
-import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.table.AbstractTableModel;
+import models.Report;
 
 /**
  *
  * @author Audun
  */
-public class ImageTable extends AbstractTableModel{
+public class ReportTable extends AbstractTableModel{
     
     private Object[] kolonnenavn = 
     {
-        "Bildenummer", "Bilde-URL"
+        "SkademeldingNummer", "Type", "Opprettet"
     };
     private Object[][] celler = {
         {
-            "##", "Ingen bilder lagt til"
+            "##", "Ingen opprettet", "##"
         }
     };
 
     
     /**
-     * ImagesTables constructor
-     * @param images HashSet with image urls to be added to JTable
+     * ReportTables constructor
+     * @param reports HashSet with reports to be added to JTable
      */
-    public ImageTable(HashSet<File> images)     
+    public ReportTable(HashSet<Report> reports)     
     {
         
-        if(images.isEmpty())
+        if(reports.isEmpty())
         {
             
         }
         else {
-            celler = new Object[images.size()][kolonnenavn.length];
-            Iterator<File> iter = images.iterator();
-            
+            celler = new Object[reports.size()][kolonnenavn.length];
+            Iterator<Report> iter = reports.iterator();
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
             for(int i = 0; iter.hasNext(); i++)
             {
-                File f = iter.next();
-                celler[i][0] = i+1;
-                celler[i][1] = f;
+                Report rep = iter.next();
+                celler[i][0] = ""; //rep.getId();
+                celler[i][1] = ""; //rep.getType();
+                celler[i][2] = ""; //format1.format(rep.getDateofcreation().getTime());S
             }
-        }  
+        }
+    
     }
     @Override
     public int getRowCount() {
@@ -75,6 +78,6 @@ public class ImageTable extends AbstractTableModel{
     @Override
     public String getColumnName(int kolonne)
     {
-        return (String)kolonnenavn[ kolonne];
+        return (String)kolonnenavn[kolonne];
     }
 }

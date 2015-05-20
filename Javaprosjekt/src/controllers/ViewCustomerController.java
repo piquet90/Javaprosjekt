@@ -27,7 +27,11 @@ public class ViewCustomerController extends Controller implements CustomListener
     private CustomerModel umodel;
     private CustomerTable table;
     
-    
+    /**
+     * ViewCustomerControllers constructor
+     * @param r registries
+     * @param c maincontroller
+     */
     public ViewCustomerController(Registries r, MainController c)
     {
         this.mc = c;
@@ -35,6 +39,9 @@ public class ViewCustomerController extends Controller implements CustomListener
         umodel = new CustomerModel(registries);
     }
     
+    /**
+     * Fills a table with all customers
+     */
     public void showAllCustomers()
     {
         table = new CustomerTable(umodel.getCustomers());
@@ -43,6 +50,9 @@ public class ViewCustomerController extends Controller implements CustomListener
         mc.view.addCenter(view);
     }
     
+    /**
+     * Refreshes the customer panel
+     */
     public void update()
     {
         table = new CustomerTable(umodel.getCustomers());

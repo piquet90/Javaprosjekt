@@ -7,11 +7,13 @@ package controllers;
 
 import DAO.*;
 import TableModels.InsuranceTable;
+import TableModels.ReportTable;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 import models.CustomerModel;
 import models.Customer;
 import models.InsuranceModel;
+import models.Report;
 import models.objects.insurances.Insurance;
 import views.CustomerView;
 import views.CustomEvent;
@@ -42,7 +44,11 @@ public class CustomerController extends Controller implements CustomListener{
     private ViewTable viewTable;
     
     
-    // constructor
+    /**
+     * CustomerControllers constructor
+     * @param r registries
+     * @param m maincontroller
+     */
     public CustomerController(Registries r, MainController m)
     {
 
@@ -51,6 +57,10 @@ public class CustomerController extends Controller implements CustomListener{
         this.i = new InsuranceModel(r);
     }
     
+    /**
+     * Finds a customer and the customers insurances and reports
+     * @param i customer id
+     */
     public void viewCustomer(int i)
     {
         // find customer
@@ -74,11 +84,21 @@ public class CustomerController extends Controller implements CustomListener{
         viewTable.addCustomListener(this);
         cus.addTable("Forsikringer", viewTable);
         
+        // fill reports
+        HashSet<Report> repSet = new HashSet<>();
+        ReportTable repTable = new ReportTable(repSet);
+        viewTable = new ViewTable(repTable);
+        cus.addTable("Skademeldinger", viewTable);
+        
         // show view
         mc.popUp(customer.getName(), cus);
         
     }// end of viewCustomer
     
+    
+    /**
+     * Updates the customers insurance table
+     */
     public void refresh()
     {
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
@@ -86,14 +106,26 @@ public class CustomerController extends Controller implements CustomListener{
         view.revalidate();
         view.repaint();
     }
+    
+    /**
+     * Adds a new insurance to the customer
+     */
     public void newInsurance()
     {
-        mc.regController.newInsurance(customer.getId());
+        mc.regController.newInsurance();
     }
+    
+    /**
+     * Adds a new damage report to the customer
+     */
     public void newReport()
     {
         System.out.println("new report for ID: "+customer.getId());
     }
+    
+    /**
+     * Saves the customer information
+     */
     public void save()
     {
         
@@ -134,8 +166,8 @@ public class CustomerController extends Controller implements CustomListener{
     }
     
     /**
-     *
-     * @param i
+     * ActionListener
+     * @param i CustomEvent
      */
     @Override
     public void customActionPerformed(CustomEvent i) {

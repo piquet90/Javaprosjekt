@@ -10,7 +10,6 @@ import CustomSwing.CustomTextField;
 import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import DAO.Constants;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -35,7 +34,6 @@ public class CustomerView extends JTabbedPane implements ActionListener {
     private JPopupMenu insPopup, repPopup;
     private boolean edit = false;
     private CustomListener listener;
-    
     
     
     /**
@@ -176,8 +174,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         cusTab.add(p, gbc);
         
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Kundeinformasjon</body></html>", cusTab);
-        this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>Skademeldinger</body></html>", repTab);
-
+ 
     }
     
     /**
@@ -321,6 +318,10 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         this.addTab("<html><body leftmargin=5 topmargin=8 marginwidth=5 marginheight=5>"+s+"</body></html>", new JScrollPane(table));
     }
     
+    /**
+     * Adds a listener to the panel
+     * @param e custom listener
+     */
     public void addCustomListener(CustomListener e)
     {
         this.listener = e;
@@ -352,15 +353,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
                     listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE, Constants.TRAVEL_INSURANCE_INT));
                     break;
             }
-        
-        
-        
-        
-        
-        /*if(e.getSource()==newIns)// ny forsikring
-            listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE));
-        if(e.getSource()==newRep)
-            listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));*/
+
     }
 
 }

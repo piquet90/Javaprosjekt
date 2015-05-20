@@ -27,25 +27,39 @@ public class RegistrationController implements CustomListener{
     private Registries registries;
     private CustomerModel m;
     
-    
+    /**
+     * RegistrationControllers constructor
+     * @param r registries
+     * @param m maincontroller
+     */
     public RegistrationController(Registries r, MainController m)
     {
         this.mc = m;
         this.registries = r;
     }
     
-    public void newInsurance(int id)
+    /**
+     * Calls maincontrollers popup and displays a new insurance form
+     */
+    public void newInsurance()
     {
         regInsuranceView = new NewInsurancePanel();
         mc.popUp(Constants.NEW_INSURANCE_TEXT, regInsuranceView);
     }
     
+    /**
+     * Calls maincontrollers popup and displays a new customer form
+     */
     public void newUser()
     {
         regCustomerView = new NewCustomerPanel();
         regCustomerView.addCustomListener(this);
         mc.popUp(Constants.NEW_CUSTOMER_TEXT, regCustomerView);
     }
+    
+    /**
+     * Validates customer fields when registering a customer, and saves it
+     */
     public void registerUser()
     {
         if(regCustomerView==null)
@@ -61,13 +75,13 @@ public class RegistrationController implements CustomListener{
         
 
         // field validation
-        if(fornavn.equals("")) // validation of names is silly
+        if(fornavn.equals(""))
             s += "Fornavn \n";          
         if(etternavn.equals(""))
             s += "Etternavn \n";
         if(adresse.equals(""))
             s += "Adresse \n";
-        if(!Pattern.matches(Constants.AREA_CODE, postnr)) // validation of areacode makes sense.
+        if(!Pattern.matches(Constants.AREA_CODE, postnr))
             s += "Poststed \n";
         if(!s.equals(""))
         {

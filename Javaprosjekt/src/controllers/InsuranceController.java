@@ -166,7 +166,7 @@ public class InsuranceController implements CustomListener{
         {
             insurance.setOwnerId(id);
             System.out.println(carInsurance.getConditions());
-            insurance.setViechleOwner(carInsurance.getCarOwner());//done
+            insurance.setVehicleOwner(carInsurance.getCarOwner());//done
             insurance.setRegistrationNumber(carInsurance.getRegNr());//done
             insurance.setCarType(carInsurance.getCarType());//done
             insurance.setModel(carInsurance.getModel());
@@ -221,7 +221,7 @@ public class InsuranceController implements CustomListener{
             BoatInsurance insurance = new BoatInsurance();
             
             insurance.setOwnerId(id);
-            insurance.setViechleOwner(boatInsurance.getBoatOwner());
+            insurance.setVehicleOwner(boatInsurance.getBoatOwner());
             insurance.setRegistrationNumber(boatInsurance.getRegNr());
             insurance.setVehicleType(boatInsurance.getType());
             insurance.setModel(boatInsurance.getModel());
@@ -419,7 +419,7 @@ public class InsuranceController implements CustomListener{
         
         carInsurance.setViewMode();
         
-        carInsurance.setCarOwner(ins.getViechleOwner());
+        carInsurance.setCarOwner(ins.getVehicleOwner());
         carInsurance.setRegNr(ins.getRegistrationNumber());
         carInsurance.setCarType(ins.getCarType());
         carInsurance.setModel(ins.getModel());
@@ -444,9 +444,9 @@ public class InsuranceController implements CustomListener{
         
         boatInsurance.setViewMode();
         
-        boatInsurance.setBoatOwner(ins.getViechleOwner());
+        boatInsurance.setBoatOwner(ins.getVehicleOwner());
         boatInsurance.setRegNr(ins.getRegistrationNumber());
-        boatInsurance.setType(ins.getViechleType());
+        boatInsurance.setType(ins.getVehicleType());
         boatInsurance.setModel(ins.getModel());
         boatInsurance.setEngineType(ins.getEngineType());
         boatInsurance.setHorsePower(Integer.toString(ins.getPower()));

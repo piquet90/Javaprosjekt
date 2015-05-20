@@ -21,8 +21,6 @@ public class TravelInsurance extends Insurance{
 
     /**
      * Returns a String with the area the insurance covers
-     * 
-     * 
      * @return String with the area
      */
     public String getArea() {
@@ -31,13 +29,16 @@ public class TravelInsurance extends Insurance{
 
     /**
      * Set the area which the insurance covers
-     * 
-     * 
      * @param area String containing the area
      */
     public void setArea(String area) {
         this.area = area;
     }
+    
+    /**
+     * Returns the insurance type
+     * @return travel insurance
+     */
     public String getType()
     {
         return Constants.TRAVEL_INSURANCE;

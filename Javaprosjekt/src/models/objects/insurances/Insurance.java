@@ -47,43 +47,27 @@ public abstract class Insurance implements Serializable{
         
     }
     
-   /* 
-    public boolean equals(Object o)
-    {
-        Insurance a = (Insurance)o;
-        return((o instanceof Insurance) && a.getId()==this.getId());
-    }
-    public int hashCode()
-    {
-        return this.id;
-    }
-    */
 
 
     /**
-     * Returns yearly price of insurance
-     * 
-     * @author Rudi Yu
-     * @return the price
+     * Returns yearly premium of insurance
+     * @return premium in NOK
      */
     public double getPrice() {
         return price;
     }
 
     /**
-     * Sets yearly price of insurance
-     * 
-     * @author Rudi Yu
-     * @param price the price to set
+     * Sets yearly premium of insurance
+     * @param yearly premium in NOK
      */
     public void setPrice(double price) {
         this.price = price;
     }
 
     /**
-     * 
-     * @author Rudi Yu
-     * @return the coverage
+     * Returns the coverage
+     * @return coverage in NOK
      */
     public double getCoverage() {
         return coverage;
@@ -91,9 +75,7 @@ public abstract class Insurance implements Serializable{
 
     /**
      * Sets how much the insurance covers.
-     * 
      * @see "forsikringsbeløp"
-     * @author Rudi Yu
      * @param coverage the coverage to set
      */
     public void setCoverage(double coverage) {
@@ -102,8 +84,6 @@ public abstract class Insurance implements Serializable{
 
     /**
      * Get the conditions String. Conditions contains the terms and conditions of the insurance.
-     * 
-     * @author Rudi Yu
      * @return the conditions
      */
     public String getConditions() {
@@ -112,8 +92,6 @@ public abstract class Insurance implements Serializable{
 
     /**
      * Sets the conditons String. Should containt full insurance-conditions
-     * 
-     * @author Rudi Yu
      * @param conditions The conditions for the insurance
      */
     public void setConditions(String conditions) {
@@ -121,9 +99,7 @@ public abstract class Insurance implements Serializable{
     }
 
     /**
-     * Returns "other"-info string. This String should containt information that doesnt fit anywhere else
-     * 
-     * @author Rudi Yu
+     * Returns "other"-info string
      * @return "other"-string
      */
     public String getOther() {
@@ -132,8 +108,6 @@ public abstract class Insurance implements Serializable{
 
     /**
      * Sets other-string. 
-     * 
-     * @author Rudi Yu
      * @param other A string containing "other"-info
      */
     public void setOther(String other) {
@@ -141,9 +115,7 @@ public abstract class Insurance implements Serializable{
     }
 
     /**
-     * Returns a Date-object with date of creation
-     * 
-     * @author Rudi Yu
+     * Returns a Date-object with date of creatio
      * @return Date-object with date of creation
      */
     public Calendar getDateofcreation() {
@@ -151,10 +123,7 @@ public abstract class Insurance implements Serializable{
     }
 
     /**
-     * 
      * Sets a Date-object with the date of creation
-     * 
-     * @author Rudi Yu
      * @param dateofcreation Date object with date of creation
      */
     public void setDateofcreation(Calendar dateofcreation) {
@@ -163,16 +132,14 @@ public abstract class Insurance implements Serializable{
 
     /**
      * Returns the ID of an insurance
-     * 
-     * @return The id of the insurance
+     * @return insurance id
      */
     public int getId() {
         return id;
     }
 
     /**
-     * sets the insurance ID
-     * 
+     * Sets the insurance ID
      * @param id the id to set
      */
     public void setId(int id) {
@@ -182,8 +149,6 @@ public abstract class Insurance implements Serializable{
     
     /**
      * Returns an int equal to the InsuranceNo counter.
-     * 
-     * @author Rudi Yu
      * @return The next number in the counter
      */
     public static int getNext() {
@@ -192,8 +157,6 @@ public abstract class Insurance implements Serializable{
 
     /**
      * Sets the InsuranceNoCounter to nextId
-     * 
-     * @author Rudi Yu
      * @param nextId Sets next ID for insurances
      */
     public static void setNext(int nextId) {
@@ -206,6 +169,7 @@ public abstract class Insurance implements Serializable{
     }
 
     /**
+     * Returns the insurance owners id
      * @return the ownerid
      */
     public int getOwnerId() {
@@ -213,12 +177,16 @@ public abstract class Insurance implements Serializable{
     }
 
     /**
-     * @param ownerid the ownerid to set
+     * Sets the insurance owners id
+     * @param ownerid the ownerid to be set
      */
     public void setOwnerId(int ownerid) {
         this.ownerid = ownerid;
     }
     
+    /**
+     * Deletes an insurance
+     */
     public void delete()
     {
         if(this.endDate!=null)
