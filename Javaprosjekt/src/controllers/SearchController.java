@@ -33,17 +33,19 @@ public class SearchController implements CustomListener{
     {
         mc = m;
         i = new InsuranceModel(r);
+        v = new SimpleSearchPanel();
     }
     
     public void findById()
     {
-        //int p = Integer.parseInt(v.srcField.getText());
-        Insurance in = i.findById(8);
+        System.out.println(v.pølse());
+        //int p = Integer.parseInt(v.getSearch());
+        //Insurance in = i.findById(8);
         
-        if(in == null)
+        /*if(in == null)
             mc.popUp("Error", "Fant ingen treff");
         else
-            mc.popUp(in.getType());
+            mc.popUp(in.getType());*/
         
         //(in.getConditions());
         //

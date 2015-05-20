@@ -31,7 +31,7 @@ public class NewCarInsurance extends CustomPanel {
     private JComboBox<String> carType;
     private GridBagConstraints gbc;
     private CustomButton submit;
-    private CustomButton2 delete;
+    private CustomButton2 delete, report;
     private boolean edit = false;
     private boolean viewMode = false;
     private CustomListener listener;
@@ -68,6 +68,8 @@ public class NewCarInsurance extends CustomPanel {
         submit = new CustomButton("Registrer");
         delete = new CustomButton2("Avslutt forsikring");
         delete.setVisible(false);
+        report = new CustomButton2("Opprett skademelding");
+        report.setVisible(false);
         
         
         
@@ -162,6 +164,10 @@ public class NewCarInsurance extends CustomPanel {
         add(bonus, gbc);
         
         gbc.gridy++;
+        gbc.gridx = 0;
+        add(report, gbc);
+        
+        gbc.gridx++;
         add(submit, gbc);
         
         gbc.gridx++;
@@ -189,6 +195,8 @@ public class NewCarInsurance extends CustomPanel {
         
         delete.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.DELETE_INSURANCE));});
         
+        report.addActionListener((e) -> System.out.println("FF"));
+        
     }
     
     /**
@@ -211,6 +219,7 @@ public class NewCarInsurance extends CustomPanel {
         
         submit.setText("Endre");
         delete.setVisible(true);
+        report.setVisible(true);
         carType.setVisible(false);
         carTypeField.setVisible(true);
         

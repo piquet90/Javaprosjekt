@@ -100,10 +100,15 @@ public class SimpleSearchPanel extends CustomPanel {
     }
     
     
-    public int getSrcTest()
+    public boolean pølse()
     {
-        int i = Integer.parseInt(srcField.getText());
-        return 8;
+        return true;
+    }
+    
+    
+    public String getSearch()
+    {
+        return srcField.getText();
     }
     
     /**

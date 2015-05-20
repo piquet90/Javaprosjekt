@@ -31,8 +31,11 @@ public class ViewTest {
         //JOptionPane.showMessageDialog(null, new TravelInsuranceView());
         //JOptionPane.showMessageDialog(null, new AdvancedSearchPanel());
         
-        NewReportPanel c = new NewReportPanel();
+        NewCarInsurance c = new NewCarInsurance();
         c.setViewMode();
+        
+        //SimpleSearchPanel c = new SimpleSearchPanel();
+        //
         //c.setIsForRent(false);
         
         JOptionPane.showMessageDialog(null, c);
