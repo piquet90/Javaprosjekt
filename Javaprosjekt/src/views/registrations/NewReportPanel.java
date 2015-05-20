@@ -21,6 +21,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -53,6 +56,7 @@ public class NewReportPanel extends JTabbedPane {
     private boolean edit = false;
     private boolean viewMode = false;
     private CustomListener listener;
+    private HashSet<String> pictures;
     
   
     
@@ -61,6 +65,7 @@ public class NewReportPanel extends JTabbedPane {
      */
     public NewReportPanel()
     {
+        pictures = new HashSet<>();
         txtTab = new CustomPanel();
         txtTab.setLayout(new GridBagLayout());
         ulTab = new CustomPanel();
@@ -340,7 +345,15 @@ public class NewReportPanel extends JTabbedPane {
         
         for (File f1 : f) {
             if (f1 != null) {
-                imageURL.append(f1.getAbsolutePath() + "\n");
+                try{
+                    Path target = Paths.get("src/"+f1.getName());
+                    pictures.add(f1.getName());
+                    imageURL.append(target + "\n");
+                }
+                catch(Exception e)
+                {  
+                    JOptionPane.showMessageDialog(null, "oops! Something wen't wrong!");
+                }
             }
         }
     }
@@ -545,6 +558,14 @@ public class NewReportPanel extends JTabbedPane {
     public void addCustomListener(CustomListener l)
     {
         this.listener = l;
+    }
+
+    public HashSet<String> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(HashSet<String> pictures) {
+        this.pictures = pictures;
     }
 
   
