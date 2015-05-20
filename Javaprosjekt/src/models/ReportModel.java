@@ -7,7 +7,6 @@ package models;
 
 import DAO.*;
 import java.util.HashSet;
-import java.util.Iterator;
 import models.objects.insurances.Insurance;
 /**
  *
