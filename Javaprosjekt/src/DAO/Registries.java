@@ -52,6 +52,7 @@ public class Registries implements Serializable{
             this.insurances = new HashSet<>();
             this.customers = new HashSet<>();
             this.reports = new HashSet<>();
+            System.out.println(e.toString());
         }
         
         

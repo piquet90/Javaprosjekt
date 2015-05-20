@@ -623,7 +623,7 @@ public class InsuranceController implements CustomListener {
         travelInsurance.setConditions(ins.getConditions());
         travelInsurance.setPremium(Double.toString(ins.getPrice()));
         if(ins.getEndDate()==null)
-            carInsurance.setActive("Aktiv");
+            travelInsurance.setActive("Aktiv");
         else
         {
             SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");            

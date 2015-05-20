@@ -186,7 +186,7 @@ public class NewTravelInsurance extends CustomPanel {
         });
         
         
-        delete.addActionListener((e) -> System.out.println("slett reiseforsikring"));
+        delete.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.DELETE_INSURANCE));});
         
         report.addActionListener((e) ->{listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));});
         

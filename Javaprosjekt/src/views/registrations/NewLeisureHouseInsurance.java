@@ -195,7 +195,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         });
         
         
-        delete.addActionListener((e) -> System.out.println("slett husforsikring"));
+        delete.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.DELETE_INSURANCE));});
         
         report.addActionListener((e) ->{listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));});
         
