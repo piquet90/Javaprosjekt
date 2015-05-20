@@ -22,7 +22,9 @@ import java.awt.Insets;
 import java.io.File;
 import java.util.HashSet;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -397,6 +399,20 @@ public class NewReportPanel extends JTabbedPane {
      */
     public void setType(String t) {
         type.setText(t);
+    }
+    
+    
+    /**
+     * Displays the image received in a dialog and its name as dialog title
+     * @param icon image to be displayed
+     * @param imgName the image name
+     */
+    public void showImage(ImageIcon icon, String imgName) {
+        
+        //icon = new ImageIcon(getClass().getResource("/resources/evil_logo.png"));
+        //imgName = "evil_logo.png";
+
+        JOptionPane.showMessageDialog(null, icon, imgName, JOptionPane.PLAIN_MESSAGE);
     }
     
   
