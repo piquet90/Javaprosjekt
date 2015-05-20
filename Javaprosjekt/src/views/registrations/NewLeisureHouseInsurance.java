@@ -49,9 +49,9 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         material = new CustomTextField(10);
         standard = new CustomTextField(10);
         houseSize = new CustomTextField(4);
-        amountBuilding = new CustomTextField(6);
-        amountContents = new CustomTextField(6);
-        premium = new CustomTextField(5);
+        amountBuilding = new CustomTextField(8);
+        amountContents = new CustomTextField(8);
+        premium = new CustomTextField(8);
         conditions = new CustomTextField(15);
         
         active = new CustomTextField(15);

@@ -48,9 +48,9 @@ public class NewHouseInsurance extends CustomPanel {
         material = new CustomTextField(10);
         standard = new CustomTextField(10);
         houseSize = new CustomTextField(5);
-        amountBuilding = new CustomTextField(5);
-        amountContents = new CustomTextField(5);
-        premium = new CustomTextField(5);
+        amountBuilding = new CustomTextField(8);
+        amountContents = new CustomTextField(8);
+        premium = new CustomTextField(8);
         conditions = new CustomTextField(18);
         
         active = new CustomTextField(15);

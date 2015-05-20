@@ -51,8 +51,8 @@ public class NewCarInsurance extends CustomPanel {
         regYear = new CustomTextField(6);
         kmPerYear = new CustomTextField(9);
         pricePerKm = new CustomTextField(6);
-        premium = new CustomTextField(5);
-        amount = new CustomTextField(5);
+        premium = new CustomTextField(8);
+        amount = new CustomTextField(8);
         conditions = new CustomTextField(15);
         bonus = new CustomTextField(6);
         
