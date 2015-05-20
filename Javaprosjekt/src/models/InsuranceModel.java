@@ -114,6 +114,20 @@ public class InsuranceModel {
         }
         return result;
     }
+
+    public boolean isActive(int id) {
+        HashSet<Insurance> ins = this.findByOwnerId(id);
+        Iterator<Insurance> i = ins.iterator();
+        
+        while(i.hasNext())
+        {
+            Insurance obj = i.next();
+            if(obj.getEndDate()==null)
+                return true;
+        }
+        return false;
+        
+    }
     
     
     private class Count<K, V> extends HashMap {

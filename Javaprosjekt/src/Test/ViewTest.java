@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import views.AdvancedSearchPanel;
 import views.MainView;
 import views.SimpleSearchPanel;
-import views.registrations.NewBoatInsurance;
+import views.registrations.BoatInsurancePanel;
 import views.registrations.NewCarInsurance;
 import views.registrations.NewHouseInsurance;
 import views.registrations.NewLeisureHouseInsurance;

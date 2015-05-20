@@ -7,6 +7,7 @@ package controllers;
 
 import DAO.Constants;
 import DAO.Registries;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import models.CustomerModel;
 import models.InsuranceModel;
@@ -31,7 +32,7 @@ public class InsuranceController implements CustomListener {
     private InsuranceModel imodel;
     private CustomerModel cModel;
     
-    private NewBoatInsurance boatInsurance;
+    private BoatInsurancePanel boatInsurance;
     private NewCarInsurance carInsurance;
     private NewHouseInsurance houseInsurance;
     private NewLeisureHouseInsurance leisureHouseInsurance;
@@ -92,7 +93,7 @@ public class InsuranceController implements CustomListener {
     public void newBoatInsurance(int id)
     {
         this.id = id;
-        boatInsurance = new NewBoatInsurance();
+        boatInsurance = new BoatInsurancePanel();
         boatInsurance.addCustomListener(this);
         boatInsurance.setAmount(Constants.STANDARD_BOAT_AMOUNT);
         boatInsurance.setPremium(Constants.STANDARD_BOAT_PREMIUM);
@@ -510,14 +511,20 @@ public class InsuranceController implements CustomListener {
         carInsurance.setBonus(Integer.toString(ins.getBonus()));
         carInsurance.setAmount(Double.toString(ins.getCoverage()));
         
-        
+        if(ins.getEndDate()==null)
+            carInsurance.setActive("Aktiv");
+        else
+        {
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");            
+            carInsurance.setActive("Avsluttet:\n"+format1.format(ins.getEndDate().getTime()));
+        }
         
         mc.popUp("CarInsurance", carInsurance);
     }
     
     private void viewBoatInsurance(BoatInsurance ins)
     {
-        boatInsurance = new NewBoatInsurance();
+        boatInsurance = new BoatInsurancePanel();
         boatInsurance.addCustomListener(this);
         
         boatInsurance.setViewMode();
@@ -533,7 +540,13 @@ public class InsuranceController implements CustomListener {
         boatInsurance.setAmount(Double.toString(ins.getCoverage()));
         boatInsurance.setPremium(Double.toString(ins.getPrice()));
         boatInsurance.setConditions(ins.getConditions());
-        
+        if(ins.getEndDate()==null)
+            boatInsurance.setActive("Aktiv");
+        else
+        {
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");            
+            boatInsurance.setActive("Avsluttet:\n"+format1.format(ins.getEndDate().getTime()));
+        }
         
         
         
@@ -560,7 +573,13 @@ public class InsuranceController implements CustomListener {
         leisureHouseInsurance.setPremium(Double.toString(ins.getPrice()));
         leisureHouseInsurance.setConditions(ins.getConditions());
         leisureHouseInsurance.setIsForRent(ins.getIsForRent());
-        
+        if(ins.getEndDate()==null)
+            leisureHouseInsurance.setActive("Aktiv");
+        else
+        {
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");            
+            leisureHouseInsurance.setActive("Avsluttet:\n"+format1.format(ins.getEndDate().getTime()));
+        }
         mc.popUp("Hus & Innboforsikring", leisureHouseInsurance);
     }
     private void viewHouseInsurance(HouseInsurance ins)
@@ -581,7 +600,13 @@ public class InsuranceController implements CustomListener {
         houseInsurance.setAmountContents(Double.toString(ins.getContentscoverage()));
         houseInsurance.setPremium(Double.toString(ins.getPrice()));
         houseInsurance.setConditions(ins.getConditions());
-        
+        if(ins.getEndDate()==null)
+            houseInsurance.setActive("Aktiv");
+        else
+        {
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");            
+            houseInsurance.setActive("Avsluttet:\n"+format1.format(ins.getEndDate().getTime()));
+        }
         mc.popUp("Hus & Innboforsikring", houseInsurance);
         
     }
@@ -597,7 +622,13 @@ public class InsuranceController implements CustomListener {
         travelInsurance.setAmount(Double.toString(ins.getCoverage()));
         travelInsurance.setConditions(ins.getConditions());
         travelInsurance.setPremium(Double.toString(ins.getPrice()));
-        
+        if(ins.getEndDate()==null)
+            carInsurance.setActive("Aktiv");
+        else
+        {
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");            
+            travelInsurance.setActive("Avsluttet:\n"+format1.format(ins.getEndDate().getTime()));
+        }
         mc.popUp("Reiseforsikring", travelInsurance);
         
     }
@@ -623,6 +654,7 @@ public class InsuranceController implements CustomListener {
                 viewHouseInsurance((HouseInsurance)ins);
             if(ins instanceof TravelInsurance)
                 viewTravelInsurance((TravelInsurance)ins);
+            
             
         }
         else 

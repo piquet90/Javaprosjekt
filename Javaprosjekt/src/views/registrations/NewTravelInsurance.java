@@ -63,7 +63,7 @@ public class NewTravelInsurance extends CustomPanel {
         valid.setVisible(false);
         valid.setFont(new Font("Arial", Font.PLAIN, 16));
         
-        active = new CustomTextField(10);
+        active = new CustomTextField(15);
         active.setBackground(null);
         active.setBorder(null);
         active.setForeground(Color.RED);

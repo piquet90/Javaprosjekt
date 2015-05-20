@@ -53,7 +53,7 @@ public class NewHouseInsurance extends CustomPanel {
         premium = new CustomTextField(5);
         conditions = new CustomTextField(18);
         
-        active = new CustomTextField(10);
+        active = new CustomTextField(15);
         active.setBackground(null);
         active.setBorder(null);
         active.setForeground(Color.RED);

@@ -26,7 +26,7 @@ import views.CustomListener;
  * @author Audun
  */
 
-public class NewBoatInsurance extends CustomPanel {
+public class BoatInsurancePanel extends CustomPanel {
     
     private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions, boatTypeField, active;
     private CustomPanel actions;
@@ -42,7 +42,7 @@ public class NewBoatInsurance extends CustomPanel {
     /**
      * NewBoatInsurance constructor
      */
-    public NewBoatInsurance()
+    public BoatInsurancePanel()
     {
         boatOwner = new CustomTextField(17);
         regNr = new CustomTextField(9);
@@ -56,7 +56,7 @@ public class NewBoatInsurance extends CustomPanel {
         modelYear = new CustomTextField(5);
         boatTypeField = new CustomTextField(15);
         boatTypeField.setVisible(false);
-        active = new CustomTextField(10);
+        active = new CustomTextField(15);
         active.setBackground(null);
         active.setBorder(null);
         active.setForeground(Color.RED);

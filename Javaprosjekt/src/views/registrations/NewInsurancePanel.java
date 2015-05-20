@@ -28,7 +28,7 @@ public class NewInsurancePanel extends CustomPanel {
     private String type;
     
     private NewCarInsurance bil;
-    private NewBoatInsurance boat;
+    private BoatInsurancePanel boat;
     //private NewDefaultInsurancePanel defaultPanel;
     private NewHouseInsurance house;
     private NewLeisureHouseInsurance leisureHouse;
@@ -42,7 +42,7 @@ public class NewInsurancePanel extends CustomPanel {
         
         bil = new NewCarInsurance();
         
-        boat = new NewBoatInsurance();
+        boat = new BoatInsurancePanel();
         
         house = new NewHouseInsurance();
         

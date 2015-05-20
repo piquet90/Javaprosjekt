@@ -12,7 +12,6 @@ import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import DAO.Constants;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -72,7 +71,7 @@ public class NewCarInsurance extends CustomPanel {
         delete = new CustomButton2("Avslutt forsikring");
         report = new CustomButton2("Opprett skademelding");
         
-        active = new CustomTextField(10);
+        active = new CustomTextField(15);
         active.setBackground(null);
         active.setBorder(null);
         active.setForeground(Color.RED);
