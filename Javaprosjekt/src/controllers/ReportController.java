@@ -50,6 +50,7 @@ public class ReportController implements CustomListener{
         this.view = new NewReportPanel();
         
         view.setType(iModel.findById(insuranceId).getType());
+        view.setInsNumber(Integer.toString(insuranceId));
         
 
         view.addCustomListener(this);
@@ -72,6 +73,8 @@ public class ReportController implements CustomListener{
         s+=validateDouble(view.getEstimation(), "Taksering av skade\n");
         s+=validateDouble(view.getPaid(), "Utbetalt\n");
         s+=(view.getDescription().equals("")?"Beskrivelse\n":"");
+        if(iModel.findById(insuranceId)==null)
+            s+="Ugyldig forsikringsID\n";  
         
         if(!s.equals(""))
             JOptionPane.showMessageDialog(view,  "Vennligst korriger følgende felter:\n\n"+s);
@@ -81,11 +84,10 @@ public class ReportController implements CustomListener{
             r.setDescription(view.getDescription());
             r.setPaid(Double.parseDouble(view.getPaid()));
             r.setType(view.getType());
-            
+            r.setInsuranceId(insuranceId);
             
             if(!view.isViewMode())
-            {
-                r.setInsuranceId(insuranceId);
+            {  
                 r.setOwnerId(iModel.findById(insuranceId).getOwnerId());
                 rModel.addReport(r);
             }

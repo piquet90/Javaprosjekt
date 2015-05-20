@@ -45,6 +45,8 @@ public class CustomerController extends Controller implements CustomListener{
     
     private ViewTable insuranceTable, reportTable;
     
+    private CustomerView cus;
+    
     
     /**
      * CustomerControllers constructor
@@ -70,7 +72,7 @@ public class CustomerController extends Controller implements CustomListener{
         customer = m.findById(i);
         
         // make view
-        CustomerView cus = new CustomerView();
+        cus = new CustomerView();
         cus.addCustomListener(this);
         this.view = cus;
         // fill Customer info
@@ -79,6 +81,11 @@ public class CustomerController extends Controller implements CustomListener{
         cus.setAdress(customer.getAddressStreet());
         cus.setZip(customer.getAreacode());
         cus.setCity(customer.getCity());
+        if(customer.isTotalCustomer())
+            cus.setTotalCustomer("Ja");
+        else
+            cus.setTotalCustomer("Nei");
+        
         
         // fill insurances
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
@@ -106,6 +113,10 @@ public class CustomerController extends Controller implements CustomListener{
     {
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
         insuranceTable.setModel(new InsuranceTable(set));
+        if(customer.isTotalCustomer())
+            cus.setTotalCustomer("Ja");
+        else
+            cus.setTotalCustomer("Nei");
         view.revalidate();
         view.repaint();
     }

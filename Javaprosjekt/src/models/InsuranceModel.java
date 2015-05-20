@@ -73,6 +73,7 @@ public class InsuranceModel {
      */
     public void addInsurance(Insurance i)
     {
+        insurances.add(i);
         
         HashSet<Insurance> ins = findByOwnerId(i.getOwnerId());
         
@@ -84,7 +85,7 @@ public class InsuranceModel {
         {
             result.add(it.next().getType());
         }
-        
+
         if(result.size()>=Constants.TOTALCUSTOMER_REQUIRMENT)
         {
             Customer c = customers.findById(i.getOwnerId());
@@ -92,7 +93,7 @@ public class InsuranceModel {
         }
         
         
-        insurances.add(i);
+        
     }
     
     /**
