@@ -478,7 +478,7 @@ public class NewReportPanel extends JTabbedPane {
         JOptionPane.showMessageDialog(null, icon, imgName, JOptionPane.PLAIN_MESSAGE);
     }
     
-<<<<<<< HEAD
+    
     public String getDate()
     {
         return this.date.getText();
@@ -489,8 +489,7 @@ public class NewReportPanel extends JTabbedPane {
         this.date.setText(s);
     }
     
-=======
-    
+
     public void clearFields()
     {
         date.setText("");
@@ -499,7 +498,6 @@ public class NewReportPanel extends JTabbedPane {
         witName1.setText("");
         witPhone1.setText("");
     }
->>>>>>> 636cde6fa1cb467e18e34eb17a0a061669d3683a
   
     
     /**
