@@ -113,6 +113,8 @@ public class CustomerController extends Controller implements CustomListener{
     {
         HashSet<Insurance> set = this.i.findByOwnerId(customer.getId());
         insuranceTable.setModel(new InsuranceTable(set));
+        HashSet<Report> repSet = this.r.getReportsByCustomerId(customer.getId());
+        reportTable.setModel(new ReportTable(repSet));
         if(customer.isTotalCustomer())
             cus.setTotalCustomer("Ja");
         else

@@ -41,6 +41,9 @@ public class ReportController implements CustomListener{
         this.mc = c;
     }
     
+    
+    
+    
     /**
      *
      */
@@ -85,6 +88,9 @@ public class ReportController implements CustomListener{
             r.setPaid(Double.parseDouble(view.getPaid()));
             r.setType(view.getType());
             r.setInsuranceId(insuranceId);
+            r.setDate(view.getDate());
+            r.setWitness1(view.get)
+            
             
             if(!view.isViewMode())
             {  
@@ -97,6 +103,18 @@ public class ReportController implements CustomListener{
         }
     }
     
+    public void viewReport(int id)
+    {
+        Report r = rModel.findById(id);
+        this.reportId= r.getId();
+        this.insuranceId = r.getInsuranceId();
+        
+        view = new NewReportPanel();
+        view.setDate(r.getDate());
+        view.setDescription(r.getDescription());
+        
+        
+    }
     
     private String validateDouble(String s, String err)
     {

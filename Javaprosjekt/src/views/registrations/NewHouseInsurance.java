@@ -181,7 +181,7 @@ public class NewHouseInsurance extends CustomPanel {
         
         delete.addActionListener((e) -> System.out.println("slett husforsikring"));
         
-        report.addActionListener((e) -> System.out.println("FFF"));
+        report.addActionListener((e) ->{listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));});
 
     }
     

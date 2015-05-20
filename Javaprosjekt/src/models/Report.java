@@ -15,7 +15,7 @@ public class Report implements Serializable{
     
     private int id, insuranceId, ownerId;
     private double paid, estimated;
-    private String description, type;
+    private String description, type, date;
 
     public double getPaid() {
         return paid;
@@ -85,6 +85,15 @@ public class Report implements Serializable{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    public String getDate()
+    {
+        return this.date;
     }
     
     

@@ -31,7 +31,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
     private CustomPanel cusTab, repTab;
     private GridBagConstraints gbc;
     private CustomButton2 endre, newIns;
-    private JPopupMenu insPopup, repPopup;
+    private JPopupMenu insPopup;
     private boolean edit = false;
     private CustomListener listener;
     
