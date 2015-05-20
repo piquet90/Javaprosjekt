@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import views.CustomEvent;
 import views.CustomListener;
@@ -28,9 +29,10 @@ import views.CustomListener;
 public class NewBoatInsurance extends CustomPanel {
     
     private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions, boatTypeField;
-    private GridBagConstraints gbc;
+    private CustomPanel actions;
+    private GridBagConstraints gbc, gbc2;
     private CustomButton submit;
-    private CustomButton2 delete;
+    private CustomButton2 delete, report;
     private JComboBox<String> boatType;
     private boolean edit = false;
     private boolean viewMode = false;
@@ -55,9 +57,25 @@ public class NewBoatInsurance extends CustomPanel {
         boatTypeField = new CustomTextField(15);
         boatTypeField.setVisible(false);
         
+       
+        
         submit = new CustomButton("Registrer");
         delete = new CustomButton2("Avslutt forsikring");
-        delete.setVisible(false);
+        report = new CustomButton2("Opprett skademelding");
+        actions = new CustomPanel();
+        actions.setLayout(new GridBagLayout());
+        gbc2 = new GridBagConstraints();
+        gbc2.anchor = GridBagConstraints.LINE_START;
+        gbc2.insets = new Insets(10, 5, 10, 5);
+        actions.setBorder(BorderFactory.createTitledBorder("Handlinger"));
+        gbc2.weighty = 1;
+        gbc2.weightx = 1;
+        gbc2.gridx = 0;
+        gbc2.gridy = 0;
+        actions.add(report, gbc2);
+        gbc2.gridy++;
+        actions.add(delete, gbc2);
+        actions.setVisible(false);
 
         
         String[] t = {"Velg type...", "Cabincruiser", "Daycruiser", "RIB", "Jolle","Landstedsbåt ",
@@ -155,8 +173,12 @@ public class NewBoatInsurance extends CustomPanel {
         gbc.gridy++;
         add(submit, gbc);
         
-        gbc.gridx++;
-        add(delete, gbc);
+        gbc.gridy = 2;
+        gbc.gridx = 2;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 3;
+        gbc.insets = new Insets(5, 40, 0, 5);
+        add(actions, gbc);
         
         
         submit.addActionListener((e) -> {
@@ -182,6 +204,8 @@ public class NewBoatInsurance extends CustomPanel {
             
         delete.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.DELETE_INSURANCE));});
         
+        report.addActionListener((e) -> System.out.println("FF"));
+        
     }
     
     
@@ -202,9 +226,9 @@ public class NewBoatInsurance extends CustomPanel {
         premium.setEditable(false);
         amount.setEditable(false);
         conditions.setEditable(false);
+        actions.setVisible(true);
         
         submit.setText("Endre");
-        delete.setVisible(true);
         boatType.setVisible(false);
         boatTypeField.setVisible(true);
         

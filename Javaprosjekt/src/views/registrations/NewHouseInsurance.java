@@ -14,6 +14,7 @@ import DAO.Constants;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.BorderFactory;
 import views.CustomEvent;
 import views.CustomListener;
 
@@ -25,9 +26,10 @@ import views.CustomListener;
 public class NewHouseInsurance extends CustomPanel {
     
     private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions;
-    private GridBagConstraints gbc;
+    private CustomPanel actions;
+    private GridBagConstraints gbc, gbc2;
     private CustomButton submit;
-    private CustomButton2 delete;
+    private CustomButton2 delete, report;
     private boolean viewMode = false;
     private boolean edit = false;
     
@@ -53,6 +55,24 @@ public class NewHouseInsurance extends CustomPanel {
         delete = new CustomButton2("Avslutt forsikring");
         delete.setVisible(false);
         submit = new CustomButton("Registrer");
+        
+        
+        report = new CustomButton2("Opprett skademelding");
+        actions = new CustomPanel();
+        actions.setLayout(new GridBagLayout());
+        gbc2 = new GridBagConstraints();
+        gbc2.anchor = GridBagConstraints.LINE_START;
+        gbc2.insets = new Insets(10, 5, 10, 5);
+        actions.setBorder(BorderFactory.createTitledBorder("Handlinger"));
+        gbc2.weighty = 1;
+        gbc2.weightx = 1;
+        gbc2.gridx = 0;
+        gbc2.gridy = 0;
+        actions.add(report, gbc2);
+        gbc2.gridy++;
+        actions.add(delete, gbc2);
+        actions.setVisible(false);
+        
         
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 5, 0, 5);
@@ -130,6 +150,13 @@ public class NewHouseInsurance extends CustomPanel {
         gbc.gridy++;
         add(submit, gbc);
         
+        gbc.gridy = 2;
+        gbc.gridx = 2;
+        gbc.gridwidth = 3;
+        gbc.gridheight = 3;
+        gbc.insets = new Insets(5, 40, 0, 5);
+        add(actions, gbc);
+        
         
         
         
@@ -153,6 +180,8 @@ public class NewHouseInsurance extends CustomPanel {
         
         
         delete.addActionListener((e) -> System.out.println("slett husforsikring"));
+        
+        report.addActionListener((e) -> System.out.println("FFF"));
 
     }
     
@@ -171,6 +200,7 @@ public class NewHouseInsurance extends CustomPanel {
         amountContents.setEditable(false);
         premium.setEditable(false);
         conditions.setEditable(false);
+        actions.setVisible(true);
         
         submit.setText("Endre");
         delete.setVisible(true);

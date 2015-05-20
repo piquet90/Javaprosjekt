@@ -30,7 +30,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
     private CustomTextField fName, lName, adress, city, zip, totalCustomer;
     private CustomPanel cusTab, repTab;
     private GridBagConstraints gbc;
-    private CustomButton2 endre, newIns, newRep;
+    private CustomButton2 endre, newIns;
     private JPopupMenu insPopup, repPopup;
     private boolean edit = false;
     private CustomListener listener;
@@ -56,11 +56,9 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         
         endre = new CustomButton2("Endre");
         newIns = new CustomButton2("Opprett ny forsikring");       
-        newRep = new CustomButton2("Opprett ny skademelding");
         
         endre.addActionListener(this);
         newIns.addActionListener(this);
-        newRep.addActionListener((e)->{listener.customActionPerformed(new CustomEvent(Constants.NEW_REPORT));});
         
         String[] insType = {"Bilforsikring", "Båtforsikring", "Hus- /innboforsikring", "Fritidsboligforsikring", "Reiseforsikring"};
         insPopup = new JPopupMenu();
@@ -154,8 +152,6 @@ public class CustomerView extends JTabbedPane implements ActionListener {
         g.gridx = 0;
         g.gridy = 0;
         p.add(newIns, g);
-        g.gridy++;
-        p.add(newRep, g);
         g.gridy++;
         g.insets = new Insets(15, 0, 5, 0);
         

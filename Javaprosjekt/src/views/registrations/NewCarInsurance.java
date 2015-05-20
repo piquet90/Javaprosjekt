@@ -81,7 +81,7 @@ public class NewCarInsurance extends CustomPanel {
         actions.setLayout(new GridBagLayout());
         gbc2 = new GridBagConstraints();
         gbc2.anchor = GridBagConstraints.LINE_START;
-        gbc2.insets = new Insets(15, 0, 0, 0);
+        gbc2.insets = new Insets(10, 5, 10, 5);
         actions.setBorder(BorderFactory.createTitledBorder("Handlinger"));
         gbc2.weighty = 1;
         gbc2.weightx = 1;
@@ -90,7 +90,6 @@ public class NewCarInsurance extends CustomPanel {
         actions.add(report, gbc2);
         gbc2.gridy++;
         actions.add(delete, gbc2);
-        
         actions.setVisible(false);
         
         
@@ -187,10 +186,11 @@ public class NewCarInsurance extends CustomPanel {
         gbc.gridy++;
         add(submit, gbc);
         
-        gbc.gridy = 0;
+        gbc.gridy = 2;
         gbc.gridx = 2;
         gbc.gridwidth = 3;
         gbc.gridheight = 3;
+        gbc.insets = new Insets(5, 40, 0, 5);
         add(actions, gbc);
         
         
