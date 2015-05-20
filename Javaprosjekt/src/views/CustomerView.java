@@ -353,7 +353,7 @@ public class CustomerView extends JTabbedPane implements ActionListener {
                     listener.customActionPerformed(new CustomEvent(Constants.NEW_INSURANCE, Constants.TRAVEL_INSURANCE_INT));
                     break;
             }
-
     }
+    
 
 }

@@ -6,7 +6,6 @@
 package controllers;
 
 import DAO.Registries;
-import views.View;
 import views.registrations.NewReportPanel;
 
 
