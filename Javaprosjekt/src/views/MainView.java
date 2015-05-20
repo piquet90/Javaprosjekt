@@ -77,7 +77,11 @@ public class MainView extends JFrame{
     public void addTop(CustomPanel tpanel)
     {
         Container c = getContentPane();
+        //c.removeAll();
+        //controller.vcController.update();
         c.add(tpanel, BorderLayout.NORTH);
+        c.repaint();
+        c.revalidate();
     }
     
     

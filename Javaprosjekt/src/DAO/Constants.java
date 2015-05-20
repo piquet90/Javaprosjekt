@@ -49,6 +49,7 @@ public class Constants {
     
     public static final int SEARCH_CUSTOMER = 129128192;
     public static final int SHOW_ALL_CUSTOMERS = 9901;
+    public static final int ADVANCED_SEARCH = 129219381;
     
     
     public static final int DELETE_INSURANCE = 43892738;

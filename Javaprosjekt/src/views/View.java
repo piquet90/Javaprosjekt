@@ -15,5 +15,4 @@ import controllers.Controller;
 public interface View {
     
     public boolean addController(Controller c);
-    public void initComponents();
 }

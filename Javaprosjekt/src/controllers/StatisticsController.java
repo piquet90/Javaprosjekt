@@ -25,27 +25,31 @@ public class StatisticsController implements CustomListener {
     private InsuranceModel ins;
     private ReportModel rep;
     private StatisticsView v;
+    private int aCar;
     
     public StatisticsController(Registries r, MainController m)
     {
+        
         mc = m;
         cus = new CustomerModel(r);
         ins = new InsuranceModel(r);
         rep = new ReportModel(r);
         
-        
-    }
-    
-    public void startView()
-    {
         v = new StatisticsView();
         v.addCustomListener(this);
-        mc.popUp("Statistics View", v);
+        mc.popUp("Statistikk", v);
+        
+        aCar = ins.getCarInsurances().size();
+        
+        v.setInsurances(aCar, 0, 0, 0, 0);
+        v.setAmountActiveCus("String");
     }
     
     public void amountInsurances()
     {
-        ins.getCarInsurances();
+        //v.setAmountCus("FFFF")
+        System.out.println(aCar);
+        
     }
 
     @Override

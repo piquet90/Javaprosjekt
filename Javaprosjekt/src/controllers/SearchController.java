@@ -11,6 +11,7 @@ import TableModels.CustomerTable;
 import java.util.HashSet;
 import models.Customer;
 import models.CustomerModel;
+import views.AdvancedSearchPanel;
 import views.CustomEvent;
 import views.CustomListener;
 import views.SimpleSearchPanel;
@@ -24,7 +25,8 @@ public class SearchController implements CustomListener{
     
     private MainController mc;
     private CustomerModel i;
-    private SimpleSearchPanel v;
+    private SimpleSearchPanel simple;
+    private AdvancedSearchPanel advanced;
     private ViewTable view;
     private CustomerTable table;
     
@@ -37,9 +39,19 @@ public class SearchController implements CustomListener{
     {
         mc = m;
         i = new CustomerModel(r);
-        v = new SimpleSearchPanel();
-        v.addCustomListener(this);
-        mc.addTop(v);
+        simple = new SimpleSearchPanel();
+        simple.addCustomListener(this);
+        
+        
+        
+        mc.addTop(simple);
+    }
+    
+    public void advancedSearch()
+    {
+        advanced = new AdvancedSearchPanel();
+        advanced.addCustomListener(this);
+        mc.addTop(advanced);
     }
     
     /**
@@ -47,7 +59,7 @@ public class SearchController implements CustomListener{
      */
     public void findCustomer()
     {
-        String search = v.getSearch();
+        String search = simple.getSearch();
         HashSet<Customer> r = new HashSet<>();
         Customer c = null;
         
@@ -67,8 +79,10 @@ public class SearchController implements CustomListener{
             table = new CustomerTable(r);
             mc.vcController.update(table);
         }
+        else if(r.size() == 0)
+            simple.showError("Tomt søk");
         else
-            mc.popUp("Feltene er ikke fylt inn korrekt");
+            simple.showError("Feltene er ikke fylt inn korrekt");
     }
 
     @Override
@@ -80,6 +94,10 @@ public class SearchController implements CustomListener{
         else if(i.getAction() == Constants.SHOW_ALL_CUSTOMERS)
         {
             mc.vcController.update();
+        }
+        else if(i.getAction() == Constants.ADVANCED_SEARCH)
+        {
+            advancedSearch();
         }
             
     }

@@ -10,11 +10,8 @@ import CustomSwing.CustomPanel;
 import DAO.Constants;
 import DAO.Registries;
 import java.awt.Component;
-import java.util.HashSet;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-import models.*;
-import models.Customer;
 import views.*;
 
 /**
@@ -71,12 +68,17 @@ public class MainController extends Controller {
         regController = new RegistrationController(r, this);
         insController = new InsuranceController(r, this);
         sController = new SearchController(r, this);
-        statsController = new StatisticsController(r, this);
+        
         
         
         // start with ViewCustomerController
         vcController.showAllCustomers();
         
+    }
+    
+    public void startStatistics()
+    {
+        statsController = new StatisticsController(r, this);
     }
     
     /**

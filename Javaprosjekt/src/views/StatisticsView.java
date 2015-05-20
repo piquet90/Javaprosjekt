@@ -34,10 +34,13 @@ public class StatisticsView extends JTabbedPane {
     private JComboBox<String> damageType, insuranceType;
     private CustomListener listener;
     
+ 
+    
+    
     /**
-     * Initalizes the GUI components
+     * StatisticsView constructor
      */
-    public void initComponents()
+    public StatisticsView()
     {
         cusPanel = new CustomPanel();
         cusPanel.setLayout(new GridBagLayout());
@@ -73,15 +76,7 @@ public class StatisticsView extends JTabbedPane {
         insuranceType = new JComboBox<>(iType);
         insuranceType.setFont(new Font("Arial", Font.PLAIN, 15));
         insuranceType.addActionListener((e) -> insuranceSearch());
-    }
-    
-    
-    /**
-     * StatisticsView constructor
-     */
-    public StatisticsView()
-    {
-        initComponents();
+        
         setFont(new Font("Arial", Font.BOLD, 18));
         
         //// Customer tab /////////////////////////////////////////////////////
@@ -199,6 +194,11 @@ public class StatisticsView extends JTabbedPane {
  
     }
     
+    public boolean tr()
+    {
+        return true;
+    }
+    
     /**
      * Returns total paid for all of the selected report type
      */
@@ -234,7 +234,7 @@ public class StatisticsView extends JTabbedPane {
      * @param ac amount of active customers
      */
     public void setAmountActiveCus(String ac) {
-        amountCus.setText(ac);
+        amountActiveCus.setText(ac);
     }
 
     /**

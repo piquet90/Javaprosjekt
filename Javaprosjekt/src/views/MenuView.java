@@ -6,6 +6,7 @@
 package views;
 
 
+import DAO.Constants;
 import controllers.MainController;
 import java.awt.Font;
 import javax.swing.*;
@@ -59,8 +60,8 @@ public class MenuView extends JMenuBar{
 
         newCustomer.addActionListener((e)->{controller.regController.newUser();});
         viewCustomer.addActionListener((e) -> controller.vcController.update());
-        showStats.addActionListener((e) -> controller.statsController.startView());
-        advancedSearch.addActionListener((e) -> c.popUp(new AdvancedSearchPanel()));
+        showStats.addActionListener((e) -> controller.startStatistics());
+        advancedSearch.addActionListener((e) -> controller.sController.customActionPerformed(new CustomEvent(Constants.ADVANCED_SEARCH)));
     }
     
 }

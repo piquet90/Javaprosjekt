@@ -38,11 +38,15 @@ public class AdvancedSearchPanel extends CustomPanel {
     private JCheckBox showInactiveCustomers;
     private JComboBox<String> insType, repType;
     private SimpleDateFormat sdf;
+    private CustomListener listener;
+    
+
+    
     
     /**
-     * Method that initalizes the GUI components
+     * AdvancedSearchPanels constructor
      */
-    public void initComponents()
+    public AdvancedSearchPanel()
     {
         sdf = new SimpleDateFormat("dd.MM.yyyy");
         customerSrcField = new CustomTextField(22);
@@ -71,15 +75,8 @@ public class AdvancedSearchPanel extends CustomPanel {
         srcBtn.addActionListener((e) -> customerSearch());
         clrBtn = new CustomButton("Nullstill felter");
         clrBtn.addActionListener((e) -> clearFields());
-    }
-    
-    
-    /**
-     * AdvancedSearchPanels constructor
-     */
-    public AdvancedSearchPanel()
-    {
-        initComponents();
+        
+        
         setLayout(new GridBagLayout());
         
  
@@ -400,6 +397,17 @@ public class AdvancedSearchPanel extends CustomPanel {
         insType.setSelectedIndex(0);
         repType.setSelectedIndex(0);
         showInactiveCustomers.setSelected(false);
+    }
+    
+    
+    
+    /**
+     * Method that connect controllers listener to the panel
+     * @param l CustomListener
+     */
+    public void addCustomListener(CustomListener l)
+    {
+        this.listener = l;
     }
 
 }

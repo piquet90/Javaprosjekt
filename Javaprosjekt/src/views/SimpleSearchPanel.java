@@ -86,21 +86,13 @@ public class SimpleSearchPanel extends CustomPanel {
     }
     
     /**
-     * Method calls the controller and recieves the search results
+     * Returns the statse of the show inactive-checkbox
+     * @return true for checked, false for unchecked
      */
-    public void search()
+    public boolean showInactive()
     {
-        
-        boolean i = showInactive.isSelected();
-        
-        if(!searchField.getText().equals(""))
-        {
-            System.out.println("Søkt etter: " + searchField.getText() + "\nVise inaktive kunder: " + i);
-        }
-        else 
-        {
-            showError("Vennligst fyll inn alle felter");
-        }
+        return showInactive.isSelected();
+
     }
   
     
