@@ -67,7 +67,8 @@ public class ViewCustomerController extends Controller implements CustomListener
     
 
     @Override
-    public void customActionPerformed(CustomEvent i) {        
+    public void customActionPerformed(CustomEvent i) {   
+        
         if(i.getAction()==Constants.DOUBLECLICK)
             mc.ncController.viewCustomer(i.getValue());
     }

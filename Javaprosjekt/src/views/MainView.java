@@ -80,8 +80,8 @@ public class MainView extends JFrame{
         //c.removeAll();
         //controller.vcController.update();
         c.add(tpanel, BorderLayout.NORTH);
-        c.repaint();
-        c.revalidate();
+        //c.repaint();
+        //c.revalidate();
     }
     
     

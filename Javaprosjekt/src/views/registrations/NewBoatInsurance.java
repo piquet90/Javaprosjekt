@@ -28,7 +28,7 @@ import views.CustomListener;
 
 public class NewBoatInsurance extends CustomPanel {
     
-    private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions, boatTypeField;
+    private CustomTextField boatOwner, regNr, model, modelYear, length, engineType, horsepower, premium, amount, conditions, boatTypeField, active;
     private CustomPanel actions;
     private GridBagConstraints gbc, gbc2;
     private CustomButton submit;
@@ -50,12 +50,16 @@ public class NewBoatInsurance extends CustomPanel {
         engineType = new CustomTextField(10);
         horsepower = new CustomTextField(6);
         length = new CustomTextField(6);
-        premium = new CustomTextField(5);
-        amount = new CustomTextField(5);
+        premium = new CustomTextField(8);
+        amount = new CustomTextField(8);
         conditions = new CustomTextField(15);
         modelYear = new CustomTextField(5);
         boatTypeField = new CustomTextField(15);
         boatTypeField.setVisible(false);
+        active = new CustomTextField(10);
+        active.setBackground(null);
+        active.setBorder(null);
+        active.setForeground(Color.RED);
         
        
         
@@ -180,6 +184,9 @@ public class NewBoatInsurance extends CustomPanel {
         gbc.insets = new Insets(5, 40, 0, 5);
         add(actions, gbc);
         
+        gbc.gridy = 4;
+        add(active, gbc);
+        
         
         submit.addActionListener((e) -> {
                 
@@ -250,6 +257,24 @@ public class NewBoatInsurance extends CustomPanel {
      */
     public void setViewMode(boolean vm) {
         viewMode = vm;
+    }
+    
+    /**
+     * Returns a string of the active status
+     * @return aktiv or unaktiv
+     */
+    public String getActive()
+    {
+        return active.getText();
+    }
+    
+    /**
+     * Sets the active status
+     * @param a active
+     */
+    public void setActive(String a)
+    {
+        active.setText(a);
     }
     
     
