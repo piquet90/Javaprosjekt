@@ -25,10 +25,10 @@ import views.CustomListener;
 
 public class NewLeisureHouseInsurance extends CustomPanel {
     
-    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions, leaseb;
+    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions;
     private GridBagConstraints gbc;
     private CustomButton submit;
-    private CustomCheckBox lease;
+    private CustomCheckBox isForRent;
     private CustomButton2 delete;
     private boolean viewMode = false;
     private boolean edit = false;
@@ -51,10 +51,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         premium = new CustomTextField(5);
         conditions = new CustomTextField(15);
         
-        leaseb = new CustomTextField(5);
-        leaseb.setVisible(false);
-        
-        lease = new CustomCheckBox("");
+        isForRent = new CustomCheckBox("");
         
         delete = new CustomButton2("Avslutt forsikring");
         submit = new CustomButton("Registrer");
@@ -139,8 +136,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         add(conditions, gbc);
         
         gbc.gridy++;
-        add(lease, gbc);
-        add(leaseb, gbc);
+        add(isForRent, gbc);
         
         gbc.gridy++;
         add(submit, gbc);
@@ -184,11 +180,8 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         amountContents.setEditable(false);
         premium.setEditable(false);
         conditions.setEditable(false);
-        leaseb.setEditable(false);
         
-        lease.setVisible(false);
-        leaseb.setVisible(true);
-        
+        isForRent.setEnabled(false);
         
         submit.setText("Endre");
         delete.setVisible(true);
@@ -301,10 +294,10 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     
     /**
      * Returns if the leisure house will be rented out
-     * @return true for lease, false if not
+     * @return true if the house is for rent, false if not
      */
-    public boolean getLease() {
-        return lease.isSelected();
+    public boolean getIsForRent() {
+        return isForRent.isSelected();
     }
     
     /**
@@ -372,11 +365,12 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     }
     
     /**
-     * Sets the lease-status in the lease-field
-     * @param l lease (true/false)
+     * Sets the isForRent-status in the isForRent-checkbox
+     * @param b is for rent status (true/false)
      */
-    public void setLease(String l) {
-        lease.setText(l);
+    public void setIsForRent(boolean b) {
+        
+        isForRent.setSelected(b);
     }
     
     /**
@@ -402,6 +396,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
     public void change()
     {
         if(!edit) {
+            
             adress.setEditable(true);
             yearBuilt.setEditable(true);
             type.setEditable(true);
@@ -412,7 +407,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
             amountContents.setEditable(true);
             premium.setEditable(true);
             conditions.setEditable(true);
-            leaseb.setEditable(true);
+            isForRent.setEnabled(true);
             
             submit.setText("Lagre");
             
@@ -429,7 +424,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
             amountContents.setEditable(false);
             premium.setEditable(false);
             conditions.setEditable(false);
-            leaseb.setEditable(false);
+            isForRent.setEnabled(false);
             
             submit.setText("Endre");
             
@@ -453,7 +448,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         amountContents.setText("");
         premium.setText("");
         conditions.setText("");
-        lease.setSelected(false);
+        isForRent.setSelected(false);
     }
     
     /**
