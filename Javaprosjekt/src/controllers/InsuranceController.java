@@ -24,7 +24,7 @@ import views.registrations.*;
  *
  * @author Rudi
  */
-public class InsuranceController implements CustomListener{
+public class InsuranceController implements CustomListener {
     
     private MainController mc;
     private InsuranceModel imodel;
@@ -535,7 +535,7 @@ public class InsuranceController implements CustomListener{
     @Override
     public void customActionPerformed(CustomEvent i) {
         if(i.getAction()==Constants.CAR_INSURANCE_INT)
-            registerCar(new CarInsurance());
+            registerCar();
         if(i.getAction()==Constants.BOAT_INSURANCE_INT)
             registerBoat();
         if(i.getAction()==Constants.HOUSE_INSURANCE_INT)
