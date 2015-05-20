@@ -169,6 +169,7 @@ public class InsuranceController implements CustomListener {
             System.out.println(carInsurance.getConditions());
             insurance.setVehicleOwner(carInsurance.getCarOwner());//done
             insurance.setVehicleOwner(carInsurance.getCarOwner());//done
+            insurance.setVehicleOwner(carInsurance.getCarOwner());//done
             insurance.setRegistrationNumber(carInsurance.getRegNr());//done
             insurance.setCarType(carInsurance.getCarType());//done
             insurance.setModel(carInsurance.getModel());
@@ -242,6 +243,7 @@ public class InsuranceController implements CustomListener {
         else {
             
             insurance.setOwnerId(id);
+            insurance.setVehicleOwner(boatInsurance.getBoatOwner());
             insurance.setVehicleOwner(boatInsurance.getBoatOwner());
             insurance.setVehicleOwner(boatInsurance.getBoatOwner());
             insurance.setRegistrationNumber(boatInsurance.getRegNr());
