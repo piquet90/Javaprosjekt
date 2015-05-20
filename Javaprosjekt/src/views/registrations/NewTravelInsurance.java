@@ -12,6 +12,7 @@ import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import DAO.Constants;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -27,7 +28,7 @@ import views.CustomListener;
  */
 public class NewTravelInsurance extends CustomPanel {
     
-    private CustomTextField insTaker, amount, premium, conditions;
+    private CustomTextField insTaker, amount, premium, conditions, active;
     private JTextArea valid;
     private CustomPanel actions;
     private CustomCheckBox asia, africa, europe, nAmerica, sAmerica, oceania;
@@ -61,6 +62,12 @@ public class NewTravelInsurance extends CustomPanel {
         valid.setEditable(false);
         valid.setVisible(false);
         valid.setFont(new Font("Arial", Font.PLAIN, 16));
+        
+        active = new CustomTextField(10);
+        active.setBackground(null);
+        active.setBorder(null);
+        active.setForeground(Color.RED);
+        active.setVisible(false);
         
         
         submit = new CustomButton("Registrer");
@@ -156,6 +163,9 @@ public class NewTravelInsurance extends CustomPanel {
         gbc.insets = new Insets(5, 40, 0, 5);
         add(actions, gbc);
         
+        gbc.gridy = 4;
+        add(active, gbc);
+        
         
         
         submit.addActionListener((e) -> {
@@ -197,6 +207,7 @@ public class NewTravelInsurance extends CustomPanel {
         africa.setVisible(false);
         
         actions.setVisible(true);
+        active.setVisible(true);
         
         valid.setVisible(true);
         
@@ -229,6 +240,24 @@ public class NewTravelInsurance extends CustomPanel {
         viewMode = vm;
     }
     
+    
+    /**
+     * Returns a string of the active status
+     * @return active statis
+     */
+    public String getActive()
+    {
+        return active.getText();
+    }
+    
+    /**
+     * Sets the active status
+     * @param a active status
+     */
+    public void setActive(String a)
+    {
+        active.setText(a);
+    }
     
     
     

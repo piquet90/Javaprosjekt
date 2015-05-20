@@ -60,6 +60,7 @@ public class NewBoatInsurance extends CustomPanel {
         active.setBackground(null);
         active.setBorder(null);
         active.setForeground(Color.RED);
+        active.setVisible(false);
         
        
         
@@ -234,6 +235,7 @@ public class NewBoatInsurance extends CustomPanel {
         amount.setEditable(false);
         conditions.setEditable(false);
         actions.setVisible(true);
+        active.setVisible(true);
         
         submit.setText("Endre");
         boatType.setVisible(false);
@@ -261,7 +263,7 @@ public class NewBoatInsurance extends CustomPanel {
     
     /**
      * Returns a string of the active status
-     * @return aktiv or unaktiv
+     * @return active statis
      */
     public String getActive()
     {
@@ -270,7 +272,7 @@ public class NewBoatInsurance extends CustomPanel {
     
     /**
      * Sets the active status
-     * @param a active
+     * @param a active status
      */
     public void setActive(String a)
     {

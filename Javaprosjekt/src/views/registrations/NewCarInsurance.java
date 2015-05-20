@@ -29,7 +29,7 @@ import views.CustomListener;
 
 public class NewCarInsurance extends CustomPanel {
     
-    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus, carTypeField;
+    private CustomTextField carOwner, regNr, model, horsepower, regYear, kmPerYear, pricePerKm, premium, amount, conditions, bonus, carTypeField, active;
     private CustomPanel actions;
     private JComboBox<String> carType;
     private GridBagConstraints gbc, gbc2;
@@ -43,11 +43,7 @@ public class NewCarInsurance extends CustomPanel {
      * NewCarInsurances constructor
      */
     public NewCarInsurance()
-    {
-        
-        
-        
-        
+    {        
         carOwner = new CustomTextField(17);
         regNr = new CustomTextField(9);
         
@@ -76,6 +72,11 @@ public class NewCarInsurance extends CustomPanel {
         delete = new CustomButton2("Avslutt forsikring");
         report = new CustomButton2("Opprett skademelding");
         
+        active = new CustomTextField(10);
+        active.setBackground(null);
+        active.setBorder(null);
+        active.setForeground(Color.RED);
+        active.setVisible(false);
         
         actions = new CustomPanel();
         actions.setLayout(new GridBagLayout());
@@ -91,6 +92,7 @@ public class NewCarInsurance extends CustomPanel {
         gbc2.gridy++;
         actions.add(delete, gbc2);
         actions.setVisible(false);
+        
         
         
         setLayout(new GridBagLayout());
@@ -193,11 +195,8 @@ public class NewCarInsurance extends CustomPanel {
         gbc.insets = new Insets(5, 40, 0, 5);
         add(actions, gbc);
         
-        
-        
-        
-        
-        
+        gbc.gridy = 4;
+        add(active, gbc);
         
         
         
@@ -242,6 +241,7 @@ public class NewCarInsurance extends CustomPanel {
         amount.setEditable(false);
         conditions.setEditable(false);
         bonus.setEditable(false);
+        active.setVisible(true);
         
         submit.setText("Endre");
         actions.setVisible(true);
@@ -267,6 +267,24 @@ public class NewCarInsurance extends CustomPanel {
      */
     public void setViewMode(boolean vm) {
         viewMode = vm;
+    }
+    
+    /**
+     * Returns a string of the active status
+     * @return active statis
+     */
+    public String getActive()
+    {
+        return active.getText();
+    }
+    
+    /**
+     * Sets the active status
+     * @param a active status
+     */
+    public void setActive(String a)
+    {
+        active.setText(a);
     }
     
     

@@ -12,6 +12,7 @@ import CustomSwing.CustomLabel;
 import CustomSwing.CustomPanel;
 import CustomSwing.CustomTextField;
 import DAO.Constants;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -26,7 +27,7 @@ import views.CustomListener;
 
 public class NewLeisureHouseInsurance extends CustomPanel {
     
-    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions;
+    private CustomTextField adress, yearBuilt, type, material, standard, houseSize, amountBuilding, amountContents, premium, conditions, active;
     private CustomPanel actions;
     private GridBagConstraints gbc, gbc2;
     private CustomButton submit;
@@ -52,6 +53,12 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         amountContents = new CustomTextField(6);
         premium = new CustomTextField(5);
         conditions = new CustomTextField(15);
+        
+        active = new CustomTextField(10);
+        active.setBackground(null);
+        active.setBorder(null);
+        active.setForeground(Color.RED);
+        active.setVisible(false);
         
         isForRent = new CustomCheckBox("");
         
@@ -165,6 +172,9 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         gbc.insets = new Insets(5, 40, 0, 5);
         add(actions, gbc);
         
+        gbc.gridy = 4;
+        add(active, gbc);
+        
         
         
         submit.addActionListener((e) -> {
@@ -206,6 +216,7 @@ public class NewLeisureHouseInsurance extends CustomPanel {
         amountContents.setEditable(false);
         premium.setEditable(false);
         conditions.setEditable(false);
+        active.setVisible(true);
         
         actions.setVisible(true);
         
@@ -232,6 +243,24 @@ public class NewLeisureHouseInsurance extends CustomPanel {
      */
     public void setViewMode(boolean vm) {
         viewMode = vm;
+    }
+    
+    /**
+     * Returns a string of the active status
+     * @return active statis
+     */
+    public String getActive()
+    {
+        return active.getText();
+    }
+    
+    /**
+     * Sets the active status
+     * @param a active status
+     */
+    public void setActive(String a)
+    {
+        active.setText(a);
     }
 
     /**
